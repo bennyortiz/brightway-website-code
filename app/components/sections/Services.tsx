@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { useRef, useEffect, useState } from 'react'
 import { Building2, Briefcase, Building, Droplets, Trash2, Clock, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'

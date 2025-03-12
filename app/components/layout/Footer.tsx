@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { siteConfig } from '@/app/constants/siteConfig'

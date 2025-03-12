@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import { Star } from 'lucide-react'
 import SafeImage from '../ui/safe-image'

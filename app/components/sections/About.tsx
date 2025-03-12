@@ -1,3 +1,4 @@
+import React from 'react'
 import { CheckCircle, Shield, ThumbsUp, Award } from 'lucide-react'
 import SafeImage from '../ui/safe-image'
 import SectionHeader from '../ui/section-header'
