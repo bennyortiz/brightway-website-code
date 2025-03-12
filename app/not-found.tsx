@@ -11,8 +11,8 @@
 
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { MainLayout } from './components/layout'
-import { siteConfig } from './constants'
+import MainLayout from './components/layout/MainLayout'
+import { siteConfig } from './constants/siteConfig'
 
 /**
  * 404 Page Metadata
