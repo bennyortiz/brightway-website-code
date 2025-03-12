@@ -19,6 +19,7 @@ import Contact from './components/sections/Contact'
 import MainLayout from './components/layout/MainLayout'
 import SEO from './components/shared/SEO'
 import { generatePageMetadata } from './utils/metadata'
+import CTABanner from './components/sections/CTABanner'
 
 /**
  * Page Metadata
@@ -49,6 +50,7 @@ export default function Home() {
       <SEO type="all" />
       <Hero />
       <Services />
+      <CTABanner />
       <About />
       <Testimonials />
       <FAQ />
