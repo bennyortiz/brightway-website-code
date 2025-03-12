@@ -21,7 +21,7 @@ export default function SectionHeader({
       centered ? "text-center" : "text-left",
       className
     )}>
-      <h5 className="text-primary font-medium mb-2">{subtitle}</h5>
+      <div className="text-primary font-medium mb-2">{subtitle}</div>
       <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
       {description && (
         <p className={cn(
