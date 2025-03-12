@@ -1,2 +1,2 @@
-// Simple redirect file to ensure the root page is accessible
+// Re-export the page component
 export { default } from './page'; 
