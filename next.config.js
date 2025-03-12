@@ -15,6 +15,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   
+  // Set output option for static exports 
+  output: 'standalone',
+  
   // Enhanced image optimization
   images: {
     remotePatterns: [
