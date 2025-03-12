@@ -19,9 +19,7 @@
     "NEXT_IGNORE_TYPE_ERROR": "true"
   },
   "routes": [
-    { "src": "/", "dest": "/" },
-    { "src": "/(.*)", "dest": "/$1" },
     { "handle": "filesystem" },
-    { "src": "/(.*)", "status": 404, "dest": "/404.html" }
+    { "src": "/(.*)", "dest": "/" }
   ]
 } 
