@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  
+  /* Custom colors */
+  --primary: #0070f3;
+  --primary-90: rgba(0, 112, 243, 0.9);
+  --primary-light: rgba(0, 112, 243, 0.1);
+  --primary-20: rgba(0, 112, 243, 0.2);
+  --secondary: #10b981;
+  --accent: #f59e0b;
+}
+
+@layer base {
+  body {
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-start-rgb));
+  }
+}
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .bg-primary-light {
+    background-color: var(--primary-light);
+  }
+  .bg-secondary {
+    background-color: var(--secondary);
+  }
+  .text-primary {
+    color: var(--primary);
+  }
+  .text-secondary {
+    color: var(--secondary);
+  }
+  .border-primary {
+    border-color: var(--primary);
+  }
+  .hover\:bg-primary-90:hover {
+    background-color: var(--primary-90);
+  }
+  .hover\:border-primary-20:hover {
+    border-color: var(--primary-20);
+  }
+  .focus\:ring-primary:focus {
+    --tw-ring-color: var(--primary);
+  }
+} 
