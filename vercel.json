@@ -4,6 +4,9 @@
   "installCommand": "npm install --legacy-peer-deps",
   "github": {
     "enabled": true,
-    "silent": false
-  }
+    "silent": false,
+    "autoAlias": true
+  },
+  "ignoreCommand": "git diff HEAD^ HEAD --quiet ./package.json",
+  "public": true
 } 
