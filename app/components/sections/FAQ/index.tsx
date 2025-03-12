@@ -1,6 +1,21 @@
+'use client'
+
 import React from 'react'
 import FAQCategory from './FAQCategory'
 import { faqData } from './faqData'
+
+// Fallback data in case the import fails
+const fallbackFaqData = [
+  {
+    title: "Services & Scheduling",
+    items: [
+      {
+        question: "What cleaning services do you offer for businesses?",
+        answer: "We offer a comprehensive range of commercial cleaning services including daily office cleaning, deep cleaning, floor maintenance, window cleaning, sanitization services, and specialized cleaning for different industries."
+      }
+    ]
+  }
+];
 
 /**
  * FAQ Section Component
@@ -9,6 +24,9 @@ import { faqData } from './faqData'
  * The accordion-style layout allows users to expand/collapse answers.
  */
 const FAQ = () => {
+  // Use faqData if available, otherwise use fallback
+  const faqCategories = faqData || fallbackFaqData;
+  
   return (
     <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
@@ -21,7 +39,7 @@ const FAQ = () => {
         </div>
         
         <div className="max-w-4xl mx-auto px-4 md:px-0">
-          {faqData.map((category, index) => (
+          {faqCategories.map((category, index) => (
             <FAQCategory 
               key={index}
               title={category.title}

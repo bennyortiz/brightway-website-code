@@ -4,6 +4,26 @@ import React, { useRef, useEffect, useState } from 'react'
 import Link from 'next/link'
 import ServiceCard from './ServiceCard'
 import { serviceItems } from './serviceData'
+import { Building2, Briefcase, Building, Droplets, Trash2, Clock } from 'lucide-react'
+
+// Service icons mapping
+const serviceIcons = [
+  <Building2 key="building2" className="h-14 w-14 text-primary" />,
+  <Briefcase key="briefcase" className="h-14 w-14 text-primary" />,
+  <Building key="building" className="h-14 w-14 text-primary" />,
+  <Droplets key="droplets" className="h-14 w-14 text-primary" />,
+  <Trash2 key="trash2" className="h-14 w-14 text-primary" />,
+  <Clock key="clock" className="h-14 w-14 text-primary" />
+];
+
+// Fallback service data in case the import fails
+const fallbackServiceItems = [
+  {
+    title: 'Office Cleaning',
+    description: 'Comprehensive cleaning solutions for offices of all sizes.',
+    features: ['Daily sanitization', 'Carpet cleaning', 'Restroom maintenance']
+  }
+];
 
 /**
  * Services Section Component
@@ -14,6 +34,9 @@ import { serviceItems } from './serviceData'
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  // Use service data if available, otherwise use fallback
+  const services = serviceItems || fallbackServiceItems;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,7 +79,7 @@ const Services = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceItems.map((service, index) => (
+          {services.map((service, index) => (
             <div 
               key={index}
               className={`transform transition-all duration-700 ${
@@ -66,7 +89,10 @@ const Services = () => {
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <ServiceCard {...service} />
+              <ServiceCard 
+                {...service} 
+                icon={serviceIcons[index % serviceIcons.length]} 
+              />
             </div>
           ))}
         </div>
