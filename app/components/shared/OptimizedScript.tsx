@@ -11,7 +11,7 @@ interface OptimizedScriptProps {
 
 /**
  * OptimizedScript Component
- * 
+ *
  * A script loader component that defers loading until the page is idle
  * Helps reduce JavaScript impact on page load performance
  */
@@ -23,9 +23,12 @@ export default function OptimizedScript({ src, id, onLoad }: OptimizedScriptProp
     if (typeof window !== 'undefined') {
       if ('requestIdleCallback' in window) {
         // @ts-ignore - TypeScript doesn't recognize requestIdleCallback
-        window.requestIdleCallback(() => {
-          setShouldLoad(true);
-        }, { timeout: 3000 });
+        window.requestIdleCallback(
+          () => {
+            setShouldLoad(true);
+          },
+          { timeout: 3000 }
+        );
       } else {
         // Fallback for browsers without requestIdleCallback
         setTimeout(() => {
@@ -39,12 +42,5 @@ export default function OptimizedScript({ src, id, onLoad }: OptimizedScriptProp
     return null;
   }
 
-  return (
-    <Script
-      id={id}
-      src={src}
-      strategy="lazyOnload"
-      onLoad={onLoad}
-    />
-  );
-} 
+  return <Script id={id} src={src} strategy="lazyOnload" onLoad={onLoad} />;
+}

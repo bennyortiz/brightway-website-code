@@ -1,17 +1,17 @@
-import { Metadata } from 'next'
-import { siteConfig } from '../constants/siteConfig'
-import { generateMetaDescription } from './seo'
+import { Metadata } from 'next';
+import { siteConfig } from '../constants/siteConfig';
+import { generateMetaDescription } from './seo';
 
-type PageType = 'home' | 'about' | 'contact' | 'custom'
+type PageType = 'home' | 'about' | 'contact' | 'custom';
 
 interface MetadataOptions {
-  pageType: PageType
-  title?: string
-  description?: string
-  ogImage?: string
-  customData?: Record<string, string>
-  slug?: string
-  noIndex?: boolean
+  pageType: PageType;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  customData?: Record<string, string>;
+  slug?: string;
+  noIndex?: boolean;
 }
 
 /**
@@ -28,24 +28,25 @@ export function generatePageMetadata({
   noIndex = false,
 }: MetadataOptions): Metadata {
   // Generate the base title
-  const baseTitle = title || (pageType === 'home' 
-    ? `${siteConfig.name} | ${siteConfig.tagline}`
-    : `${pageType.charAt(0).toUpperCase() + pageType.slice(1)} | ${siteConfig.name}`
-  )
-  
+  const baseTitle =
+    title ||
+    (pageType === 'home'
+      ? `${siteConfig.name} | ${siteConfig.tagline}`
+      : `${pageType.charAt(0).toUpperCase() + pageType.slice(1)} | ${siteConfig.name}`);
+
   // Generate the meta description
-  const metaDescription = description || (
-    pageType === 'custom' 
-      ? siteConfig.description 
-      : generateMetaDescription(pageType, customData)
-  )
-  
+  const metaDescription =
+    description ||
+    (pageType === 'custom'
+      ? siteConfig.description
+      : generateMetaDescription(pageType, customData));
+
   // Create a canonical URL
-  const canonicalUrl = `${siteConfig.url}${slug ? `/${slug}` : ''}`
-  
+  const canonicalUrl = `${siteConfig.url}${slug ? `/${slug}` : ''}`;
+
   // Determine the proper OG image
-  const ogImageUrl = ogImage || siteConfig.ogImage
-  
+  const ogImageUrl = ogImage || siteConfig.ogImage;
+
   // Return complete metadata object
   return {
     title: baseTitle,
@@ -59,12 +60,14 @@ export function generatePageMetadata({
       description: metaDescription,
       url: canonicalUrl,
       siteName: siteConfig.name,
-      images: [{
-        url: ogImageUrl,
-        width: 1200,
-        height: 630,
-        alt: baseTitle,
-      }],
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: baseTitle,
+        },
+      ],
       locale: siteConfig.seo.locale,
       type: pageType === 'home' ? 'website' : 'article',
     },
@@ -83,5 +86,5 @@ export function generatePageMetadata({
       },
     },
     formatDetection: siteConfig.seo.formatDetection,
-  }
-} 
+  };
+}

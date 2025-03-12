@@ -1,19 +1,19 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Error({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen">
@@ -28,7 +28,7 @@ export default function Error({
         >
           Try again
         </button>
-        <Link 
+        <Link
           href="/"
           className="inline-flex h-11 items-center justify-center rounded-md border border-gray-300 px-8 text-base font-medium text-gray-700 shadow"
         >
@@ -36,5 +36,5 @@ export default function Error({
         </Link>
       </div>
     </div>
-  )
-} 
+  );
+}

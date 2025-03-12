@@ -10,7 +10,7 @@ interface ServiceImageProps {
 
 /**
  * ServiceImage Component
- * 
+ *
  * Optimized image component for service thumbnails and smaller images
  * Uses static image dimensions instead of fill to reduce layout shifts
  * Always uses lazy loading since these are typically below the fold
@@ -18,7 +18,7 @@ interface ServiceImageProps {
 export default function ServiceImage({
   src,
   alt,
-  className = "",
+  className = '',
   width = 400,
   height = 300,
 }: ServiceImageProps) {
@@ -36,4 +36,4 @@ export default function ServiceImage({
       />
     </div>
   );
-} 
+}

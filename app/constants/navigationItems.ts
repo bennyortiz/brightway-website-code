@@ -1,4 +1,4 @@
-import { siteConfig } from './siteConfig'
+import { siteConfig } from './siteConfig';
 
 export const navigationItems = [
   { name: 'Home', href: '/' },
@@ -29,25 +29,25 @@ export const footerNavigation = {
     { name: 'Cookie Policy', href: '#' },
   ],
   social: [
-    { 
-      name: 'Facebook', 
-      href: siteConfig.social.facebook, 
-      icon: 'facebook' 
+    {
+      name: 'Facebook',
+      href: siteConfig.social.facebook,
+      icon: 'facebook',
     },
-    { 
-      name: 'Twitter', 
-      href: siteConfig.social.twitter, 
-      icon: 'twitter' 
+    {
+      name: 'Twitter',
+      href: siteConfig.social.twitter,
+      icon: 'twitter',
     },
-    { 
-      name: 'Instagram', 
-      href: siteConfig.social.instagram, 
-      icon: 'instagram' 
+    {
+      name: 'Instagram',
+      href: siteConfig.social.instagram,
+      icon: 'instagram',
     },
-    { 
-      name: 'LinkedIn', 
-      href: siteConfig.social.linkedin, 
-      icon: 'linkedin' 
+    {
+      name: 'LinkedIn',
+      href: siteConfig.social.linkedin,
+      icon: 'linkedin',
     },
   ],
-}; 
+};

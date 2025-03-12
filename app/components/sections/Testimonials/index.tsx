@@ -1,20 +1,21 @@
-'use client'
+'use client';
 
-import React from 'react'
-import TestimonialCard from './TestimonialCard'
-import { testimonials } from './testimonialsData'
+import React from 'react';
+import TestimonialCard from './TestimonialCard';
+import { testimonials } from './testimonialsData';
 
 // Fallback testimonial data in case the import fails
 const fallbackTestimonial = {
-  quote: "Brightway Cleaning has transformed our office space. Their attention to detail and consistent quality have made them an invaluable partner for our business.",
-  author: "Sarah Johnson",
-  position: "Office Manager",
-  company: "Tech Solutions Inc."
+  quote:
+    'Brightway Cleaning has transformed our office space. Their attention to detail and consistent quality have made them an invaluable partner for our business.',
+  author: 'Sarah Johnson',
+  position: 'Office Manager',
+  company: 'Tech Solutions Inc.',
 };
 
 /**
  * Testimonials Section Component
- * 
+ *
  * Displays client testimonials in a clean, focused layout.
  * Currently shows only the first testimonial to avoid client/server mismatches.
  */
@@ -31,7 +32,7 @@ const Testimonials = () => {
             Don't just take our word for it. Here's what our clients have to say about our services.
           </p>
         </div>
-        
+
         <div className="max-w-4xl mx-auto">
           <TestimonialCard
             quote={testimonial.quote}
@@ -42,7 +43,7 @@ const Testimonials = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Testimonials 
+export default Testimonials;

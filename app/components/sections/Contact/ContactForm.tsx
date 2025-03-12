@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import React, { useState } from 'react'
-import { Send } from 'lucide-react'
+import React, { useState } from 'react';
+import { Send } from 'lucide-react';
 
 /**
  * ContactForm Component
- * 
+ *
  * Renders a form that allows users to submit contact information and inquiries.
  * Handles form state and submission with client-side validation.
  */
@@ -15,27 +15,29 @@ const ContactForm = () => {
     email: '',
     phone: '',
     service: '',
-    message: ''
-  })
+    message: '',
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // In a real implementation, this would send the form data to a server
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! We will get back to you soon.')
+    console.log('Form submitted:', formData);
+    alert('Thank you for your message! We will get back to you soon.');
     setFormData({
       name: '',
       email: '',
       phone: '',
       service: '',
-      message: ''
-    })
-  }
+      message: '',
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-lg">
@@ -124,7 +126,7 @@ const ContactForm = () => {
         Send Message
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default ContactForm 
+export default ContactForm;

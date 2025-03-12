@@ -3,7 +3,15 @@
 import React from 'react';
 import HeroContent from './HeroContent';
 import SafeImage from '../../ui/safe-image';
-import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+// Dynamically import motion components to reduce initial bundle size
+const MotionDiv = dynamic(
+  () => import('framer-motion').then((mod) => ({ 
+    default: mod.motion.div 
+  })),
+  { ssr: false }
+);
 
 /**
  * Hero Section Component
@@ -21,7 +29,7 @@ const Hero = () => {
           <HeroContent />
 
           {/* Image section - deferred loading on mobile */}
-          <motion.div 
+          <MotionDiv 
             className="mt-12 md:mt-0 md:w-1/2 flex justify-center md:justify-end"
             initial={{ opacity: 0, scale: 0.9, x: 100 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -32,7 +40,7 @@ const Hero = () => {
               delay: 0.2
             }}
           >
-            <motion.div 
+            <MotionDiv 
               className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
               whileHover={{ 
                 scale: 1.03,
@@ -48,8 +56,8 @@ const Hero = () => {
                 loading="lazy"
                 className="w-full h-full object-cover md:opacity-100 transition-opacity duration-300"
               />
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </div>
     </section>

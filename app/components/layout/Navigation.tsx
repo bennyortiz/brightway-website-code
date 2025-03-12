@@ -1,43 +1,46 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
-import { siteConfig } from '@/app/constants/siteConfig'
-import { navigationItems } from '@/app/constants/navigationItems'
+import React from 'react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+import { siteConfig } from '@/app/constants/siteConfig';
+import { navigationItems } from '@/app/constants/navigationItems';
 
 const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll event to change navigation style when scrolled
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setScrolled(true)
+        setScrolled(true);
       } else {
-        setScrolled(false)
+        setScrolled(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className="relative">
-      <nav className={`w-full fixed top-0 z-50 transition-all duration-300 
-        ${(scrolled || isOpen)
-          ? 'bg-white border-b border-gray-200 py-4 md:py-4' 
-          : 'bg-transparent py-5 md:py-5'
-        }`}>
+      <nav
+        className={`w-full fixed top-0 z-50 transition-all duration-300 
+        ${
+          scrolled || isOpen
+            ? 'bg-white border-b border-gray-200 py-4 md:py-4'
+            : 'bg-transparent py-5 md:py-5'
+        }`}
+      >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -50,12 +53,12 @@ const Navigation = () => {
               {/* Navigation Links */}
               <div className="flex space-x-8">
                 {navigationItems.map((item) => (
-                  <Link 
+                  <Link
                     key={item.name}
                     href={item.href}
                     className={`font-medium transition-colors ${
                       scrolled || isOpen
-                        ? 'text-gray-800 hover:text-primary' 
+                        ? 'text-gray-800 hover:text-primary'
                         : 'text-gray-800 hover:text-primary'
                     }`}
                   >
@@ -74,7 +77,7 @@ const Navigation = () => {
             </div>
 
             {/* Mobile menu button */}
-            <button 
+            <button
               onClick={toggleMenu}
               className="md:hidden text-primary p-1"
               aria-label="Toggle menu"
@@ -86,7 +89,7 @@ const Navigation = () => {
       </nav>
 
       {/* Mobile menu - Sliding down animation */}
-      <div 
+      <div
         className={`md:hidden w-full fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${
           isOpen ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
@@ -100,7 +103,7 @@ const Navigation = () => {
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col space-y-4">
               {navigationItems.map((item) => (
-                <Link 
+                <Link
                   key={item.name}
                   href={item.href}
                   className="text-gray-800 hover:text-primary py-2.5 font-medium text-lg"
@@ -109,7 +112,7 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              
+
               {/* Mobile CTA Button */}
               <div className="py-2">
                 <Link
@@ -125,7 +128,7 @@ const Navigation = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navigation 
+export default Navigation;

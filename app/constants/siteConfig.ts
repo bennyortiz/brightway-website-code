@@ -1,9 +1,9 @@
 /**
  * SITE CONFIGURATION
- * 
+ *
  * This is the central location for all business information and site settings.
  * Update this file to change your contact details, business information, and site metadata.
- * 
+ *
  * === HOW TO EDIT ===
  * Simply update the values below while maintaining the structure.
  * For example, to change your phone number, find the 'phone' section and update the 'display' value.
@@ -16,10 +16,11 @@ export const siteConfig = {
   // =========================================================================
   name: 'Brightway Cleaning',
   tagline: 'Professional Cleaning Services',
-  description: 'Professional commercial cleaning services with a focus on quality, reliability, and customer satisfaction.',
+  description:
+    'Professional commercial cleaning services with a focus on quality, reliability, and customer satisfaction.',
   url: 'https://brightway-cleaning.com',
   ogImage: 'https://brightway-cleaning.com/og.svg',
-  
+
   // =========================================================================
   // BUSINESS INFORMATION (Edit as your business evolves)
   // =========================================================================
@@ -31,14 +32,14 @@ export const siteConfig = {
     clientsServed: '1000+',
     satisfaction: '99%',
   },
-  
+
   // =========================================================================
   // CONTACT INFORMATION (Edit when your contact details change)
   // =========================================================================
   contact: {
     phone: {
-      display: '(214) 636-2323',  // Phone number as displayed on the site
-      raw: '+12146362323',        // Phone number for tel: links (no spaces or special chars)
+      display: '(214) 636-2323', // Phone number as displayed on the site
+      raw: '+12146362323', // Phone number for tel: links (no spaces or special chars)
     },
     email: 'brightwaycleaningco@gmail.com',
     address: {
@@ -47,16 +48,16 @@ export const siteConfig = {
       state: 'TX',
       zip: '',
       country: 'USA',
-      full: 'Bedford, TX',        // Combined address as displayed on the site
-      maps: 'https://maps.google.com/?q=Bedford+TX'
+      full: 'Bedford, TX', // Combined address as displayed on the site
+      maps: 'https://maps.google.com/?q=Bedford+TX',
     },
     hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
     coordinates: {
       latitude: 32.8465,
-      longitude: -97.1429
-    }
+      longitude: -97.1429,
+    },
   },
-  
+
   // =========================================================================
   // SOCIAL MEDIA LINKS (Update when your social media changes)
   // =========================================================================
@@ -70,9 +71,9 @@ export const siteConfig = {
       twitter: '@brightwaycleaningco',
       facebook: 'brightwaycleaningco',
       instagram: '@brightwaycleaningco',
-    }
+    },
   },
-  
+
   // =========================================================================
   // SEO AND METADATA (Update periodically for SEO optimization)
   // =========================================================================
@@ -116,7 +117,7 @@ export const siteConfig = {
       'DFW Metroplex',
     ],
     businessType: 'Commercial Cleaning Service',
-    businessCategory: 'Professional Services', 
+    businessCategory: 'Professional Services',
     yearEstablished: 2010,
   },
 
@@ -138,6 +139,6 @@ export const siteConfig = {
       id: 'sanitization-services',
       name: 'Sanitization Services',
       shortDescription: 'Deep sanitization services to ensure a healthy environment.',
-    }
+    },
   ],
-}; 
+};

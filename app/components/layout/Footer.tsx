@@ -1,31 +1,29 @@
-import React from 'react'
-import Link from 'next/link'
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from 'lucide-react'
-import { siteConfig } from '@/app/constants/siteConfig'
-import { footerNavigation } from '@/app/constants/navigationItems'
+import React from 'react';
+import Link from 'next/link';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { siteConfig } from '@/app/constants/siteConfig';
+import { footerNavigation } from '@/app/constants/navigationItems';
 
 const getSocialIcon = (icon: string) => {
   switch (icon) {
     case 'facebook':
-      return <Facebook className="h-5 w-5" />
+      return <Facebook className="h-5 w-5" />;
     case 'twitter':
-      return <Twitter className="h-5 w-5" />
+      return <Twitter className="h-5 w-5" />;
     case 'instagram':
-      return <Instagram className="h-5 w-5" />
+      return <Instagram className="h-5 w-5" />;
     case 'linkedin':
-      return <Linkedin className="h-5 w-5" />
+      return <Linkedin className="h-5 w-5" />;
     default:
-      return null
+      return null;
   }
-}
+};
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear()
-  const startYear = siteConfig.business.startYear
-  const copyrightYears = startYear === currentYear 
-    ? currentYear 
-    : `${startYear}-${currentYear}`
-  
+  const currentYear = new Date().getFullYear();
+  const startYear = siteConfig.business.startYear;
+  const copyrightYears = startYear === currentYear ? currentYear : `${startYear}-${currentYear}`;
+
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
@@ -33,15 +31,13 @@ const Footer = () => {
           {/* Company Information */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold">{siteConfig.name}</h3>
-            <p className="text-gray-400">
-              {siteConfig.description}
-            </p>
+            <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
               {footerNavigation.social.map((item) => (
-                <Link 
+                <Link
                   key={item.name}
-                  href={item.href} 
-                  className="hover:text-primary transition-colors" 
+                  href={item.href}
+                  className="hover:text-primary transition-colors"
                   aria-label={item.name}
                 >
                   {getSocialIcon(item.icon)}
@@ -56,7 +52,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerNavigation.services.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-gray-400 hover:text-primary transition-colors">
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
                     {item.name}
                   </Link>
                 </li>
@@ -70,7 +69,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerNavigation.company.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-gray-400 hover:text-primary transition-colors">
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
                     {item.name}
                   </Link>
                 </li>
@@ -88,13 +90,19 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Phone className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
-                <a href={`tel:${siteConfig.contact.phone.raw}`} className="text-gray-400 hover:text-primary transition-colors">
+                <a
+                  href={`tel:${siteConfig.contact.phone.raw}`}
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
                   {siteConfig.contact.phone.display}
                 </a>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
-                <a href={`mailto:${siteConfig.contact.email}`} className="text-gray-400 hover:text-primary transition-colors">
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="text-gray-400 hover:text-primary transition-colors"
+                >
                   {siteConfig.contact.email}
                 </a>
               </div>
@@ -113,7 +121,11 @@ const Footer = () => {
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             {footerNavigation.legal.map((item) => (
-              <Link key={item.name} href={item.href} className="text-gray-500 hover:text-primary text-sm transition-colors">
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-gray-500 hover:text-primary text-sm transition-colors"
+              >
                 {item.name}
               </Link>
             ))}
@@ -121,7 +133,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer 
+export default Footer;

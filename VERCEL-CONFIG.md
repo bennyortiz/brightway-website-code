@@ -42,4 +42,4 @@ If deployment issues occur, verify:
 
 - The framework is correctly set to "nextjs"
 - The buildCommand matches what's defined in package.json
-- The Vercel project settings match these configuration values 
+- The Vercel project settings match these configuration values

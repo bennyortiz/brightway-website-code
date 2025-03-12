@@ -36,4 +36,4 @@ This project uses shadcn/ui components with Tailwind CSS for styling.
 
 ## Deployment
 
-This project is configured for deployment on Vercel. 
+This project is configured for deployment on Vercel.

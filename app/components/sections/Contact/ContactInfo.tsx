@@ -1,10 +1,10 @@
-import React from 'react'
-import { Mail, Phone, MapPin } from 'lucide-react'
-import { siteConfig } from '@/app/constants/siteConfig'
+import React from 'react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { siteConfig } from '@/app/constants/siteConfig';
 
 /**
  * ContactInfo Component
- * 
+ *
  * Displays contact information including phone, email and address.
  * Uses Lucide icons for visual enhancement.
  */
@@ -23,7 +23,7 @@ const ContactInfo = () => {
           </a>
         </div>
       </div>
-      
+
       <div className="flex items-start space-x-4">
         <div className="bg-primary/10 p-3 rounded-full">
           <Mail className="h-6 w-6 text-primary" />
@@ -36,7 +36,7 @@ const ContactInfo = () => {
           </a>
         </div>
       </div>
-      
+
       <div className="flex items-start space-x-4">
         <div className="bg-primary/10 p-3 rounded-full">
           <MapPin className="h-6 w-6 text-primary" />
@@ -50,7 +50,7 @@ const ContactInfo = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ContactInfo 
+export default ContactInfo;

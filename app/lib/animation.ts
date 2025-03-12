@@ -15,8 +15,12 @@ export function fadeAnimation(name: string, delay: number = 0): string {
  * @param staggerDelay Delay between each item
  * @returns Calculated delay in milliseconds
  */
-export function staggeredDelay(index: number, baseDelay: number = 0, staggerDelay: number = 100): number {
-  return baseDelay + (index * staggerDelay);
+export function staggeredDelay(
+  index: number,
+  baseDelay: number = 0,
+  staggerDelay: number = 100
+): number {
+  return baseDelay + index * staggerDelay;
 }
 
 // Define proper types for animation properties
@@ -43,7 +47,10 @@ interface AnimationProps {
  * @param distance The distance element moves (in pixels or other CSS units)
  * @returns CSS animation properties
  */
-export function slideIn(direction: 'left' | 'right' | 'top' | 'bottom', distance: string = '20px'): AnimationProps {
+export function slideIn(
+  direction: 'left' | 'right' | 'top' | 'bottom',
+  distance: string = '20px'
+): AnimationProps {
   const directionMap = {
     left: { x: `-${distance}`, y: 0 },
     right: { x: distance, y: 0 },
@@ -54,16 +61,16 @@ export function slideIn(direction: 'left' | 'right' | 'top' | 'bottom', distance
   return {
     initial: {
       opacity: 0,
-      ...directionMap[direction]
+      ...directionMap[direction],
     },
     animate: {
       opacity: 1,
       x: 0,
-      y: 0
+      y: 0,
     },
     transition: {
       duration: 0.5,
-      ease: "easeOut"
-    }
+      ease: 'easeOut',
+    },
   };
-} 
+}

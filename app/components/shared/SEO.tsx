@@ -1,11 +1,14 @@
-'use client'
+'use client';
 
-import Script from 'next/script'
-import { generateLocalBusinessSchema, generateWebsiteSchema, generateOrganizationSchema, generateFAQSchema } from '@/app/utils/seo'
-import { faqItems } from '@/app/content/faqInfo'
+import Script from 'next/script';
+import {
+  generateLocalBusinessSchema,
+  generateWebsiteSchema,
+  generateOrganizationSchema,
+} from '@/app/utils/seo';
 
 interface SEOProps {
-  type?: 'local_business' | 'website' | 'organization' | 'all' | 'faq';
+  type?: 'local_business' | 'website' | 'organization' | 'all';
   jsonLd?: Record<string, any>;
 }
 
@@ -23,34 +26,31 @@ export default function SEO({ type = 'all', jsonLd }: SEOProps) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    )
+    );
   }
 
   // Generate schemas based on type
   const getSchemas = () => {
     switch (type) {
       case 'local_business':
-        return [generateLocalBusinessSchema()]
+        return [generateLocalBusinessSchema()];
       case 'website':
-        return [generateWebsiteSchema()]
+        return [generateWebsiteSchema()];
       case 'organization':
-        return [generateOrganizationSchema()]
-      case 'faq':
-        return [generateFAQSchema(faqItems)]
+        return [generateOrganizationSchema()];
       case 'all':
         return [
           generateLocalBusinessSchema(),
           generateWebsiteSchema(),
           generateOrganizationSchema(),
-          generateFAQSchema(faqItems)
-        ]
+        ];
       default:
-        return [generateLocalBusinessSchema()]
+        return [generateLocalBusinessSchema()];
     }
-  }
+  };
 
   // Get the generated schemas
-  const schemas = getSchemas()
+  const schemas = getSchemas();
 
   // Add each schema as a separate script to improve readability and maintainability
   return (
@@ -65,5 +65,5 @@ export default function SEO({ type = 'all', jsonLd }: SEOProps) {
         />
       ))}
     </>
-  )
-} 
+  );
+}
