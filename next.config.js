@@ -48,6 +48,29 @@ const nextConfig = {
     // Reduce the impact of images on Core Web Vitals with proper sizing
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+  },
+  
+  // Performance optimization settings
+  swcMinify: true, // Use SWC for minification (faster than Terser)
+  
+  // Enable more aggressive code optimizations
+  compiler: {
+    // Remove console.log statements in production
+    removeConsole: process.env.NODE_ENV === 'production',
+    // Enable React optimizations
+    reactRemoveProperties: { properties: ['^data-test$'] },
+  },
+  
+  // Enable experimental features for better performance
+  experimental: {
+    // Enable optimized server components
+    serverComponents: true,
+    // Better code splitting
+    optimizeCss: true,
+    // Optimized font loading
+    fontLoaders: [
+      { loader: '@next/font/google', options: { subsets: ['latin'] } },
+    ],
   }
 };
 

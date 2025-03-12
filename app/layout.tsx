@@ -129,9 +129,18 @@ export default function RootLayout({
             font-display: swap;
           }
         `}} />
+
+        {/* Preload critical styles and resources */}
+        <link rel="preload" href="/fonts/plus-jakarta-sans-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {children}
+        
+        {/* Defer non-critical scripts */}
+        <Script 
+          src="https://polyfill.io/v3/polyfill.min.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   )
