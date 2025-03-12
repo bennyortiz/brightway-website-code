@@ -27,25 +27,7 @@ const nextConfig = {
       },
     ],
     formats: ['image/avif', 'image/webp'],
-  },
-  
-  // Basic security headers
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          { key: 'X-DNS-Prefetch-Control', value: 'on' },
-          { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-        ],
-      },
-    ];
-  },
-  
-  // This is crucial for proper 404 handling on Vercel
-  trailingSlash: false,
+  }
 };
 
 module.exports = nextConfig; 
