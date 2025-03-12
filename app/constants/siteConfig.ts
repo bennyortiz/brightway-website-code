@@ -1,47 +1,70 @@
-// Central location for all site-specific information
-import { businessInfo } from '../content/businessInfo';
+/**
+ * SITE CONFIGURATION
+ * 
+ * This is the central location for all business information and site settings.
+ * Update this file to change your contact details, business information, and site metadata.
+ * 
+ * === HOW TO EDIT ===
+ * Simply update the values below while maintaining the structure.
+ * For example, to change your phone number, find the 'phone' section and update the 'display' value.
+ */
 
+// Central location for all site-specific information
 export const siteConfig = {
-  // Basic site info
-  name: businessInfo.name,
-  tagline: businessInfo.tagline,
-  description: businessInfo.description,
+  // =========================================================================
+  // BASIC SITE INFO (Edit these values frequently as needed)
+  // =========================================================================
+  name: 'Brightway Cleaning',
+  tagline: 'Professional Cleaning Services',
+  description: 'Professional commercial cleaning services with a focus on quality, reliability, and customer satisfaction.',
   url: 'https://brightway-cleaning.com',
   ogImage: 'https://brightway-cleaning.com/og.svg',
   
-  // Business information
+  // =========================================================================
+  // BUSINESS INFORMATION (Edit as your business evolves)
+  // =========================================================================
   business: {
-    legalName: businessInfo.legalName,
-    startYear: businessInfo.yearEstablished,
-    employeeCount: businessInfo.stats.employeeCount,
-    servicesCount: businessInfo.stats.servicesCount,
-    clientsServed: businessInfo.stats.clientsServed,
-    satisfaction: businessInfo.stats.satisfaction,
+    legalName: 'Brightway Cleaning',
+    startYear: 2010,
+    employeeCount: '50+',
+    servicesCount: '15+',
+    clientsServed: '1000+',
+    satisfaction: '99%',
   },
   
-  // Contact information
+  // =========================================================================
+  // CONTACT INFORMATION (Edit when your contact details change)
+  // =========================================================================
   contact: {
-    phone: businessInfo.phone,
-    email: businessInfo.email,
+    phone: {
+      display: '(214) 636-2323',  // Phone number as displayed on the site
+      raw: '+12146362323',        // Phone number for tel: links (no spaces or special chars)
+    },
+    email: 'brightwaycleaningco@gmail.com',
     address: {
-      street: businessInfo.location.address,
-      city: businessInfo.location.city,
-      state: businessInfo.location.state,
+      street: 'Bedford, TX',
+      city: 'Bedford',
+      state: 'TX',
       zip: '',
       country: 'USA',
-      full: businessInfo.location.fullAddress,
-      maps: businessInfo.location.googleMapsUrl
+      full: 'Bedford, TX',        // Combined address as displayed on the site
+      maps: 'https://maps.google.com/?q=Bedford+TX'
     },
-    hours: businessInfo.hours,
-    coordinates: businessInfo.location.coordinates
+    hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
+    coordinates: {
+      latitude: 32.8465,
+      longitude: -97.1429
+    }
   },
   
-  // Social media links
+  // =========================================================================
+  // SOCIAL MEDIA LINKS (Update when your social media changes)
+  // =========================================================================
   social: {
-    twitter: businessInfo.social.twitter,
-    facebook: businessInfo.social.facebook,
-    instagram: businessInfo.social.instagram,
-    linkedin: businessInfo.social.linkedin,
+    twitter: 'https://twitter.com/brightwaycleaningco',
+    facebook: 'https://facebook.com/brightwaycleaningco',
+    instagram: 'https://instagram.com/brightwaycleaningco',
+    linkedin: 'https://linkedin.com/company/brightwaycleaningco',
     // Social handles without URLs (for Schema.org)
     handles: {
       twitter: '@brightwaycleaningco',
@@ -50,7 +73,9 @@ export const siteConfig = {
     }
   },
   
-  // SEO and metadata
+  // =========================================================================
+  // SEO AND METADATA (Update periodically for SEO optimization)
+  // =========================================================================
   seo: {
     keywords: [
       'cleaning services',
@@ -78,13 +103,26 @@ export const siteConfig = {
     },
     robotsContent: 'index, follow',
     // Common regions/cities served - used for local SEO
-    serviceAreas: businessInfo.serviceAreas,
+    serviceAreas: [
+      'Bedford',
+      'Fort Worth',
+      'Dallas',
+      'Arlington',
+      'Irving',
+      'Plano',
+      'Euless',
+      'Grapevine',
+      'Hurst',
+      'DFW Metroplex',
+    ],
     businessType: 'Commercial Cleaning Service',
     businessCategory: 'Professional Services', 
-    yearEstablished: businessInfo.yearEstablished,
+    yearEstablished: 2010,
   },
 
-  // Service types (used for displaying service cards only)
+  // =========================================================================
+  // SERVICE TYPES (Update when adding/changing service offerings)
+  // =========================================================================
   serviceTypes: [
     {
       id: 'office-cleaning',
