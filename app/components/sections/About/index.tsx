@@ -1,5 +1,5 @@
 import React from 'react'
-import SafeImage from '../../ui/safe-image'
+import OptimizedImage from '../../ui/optimized-image'
 import SectionHeader from '../../ui/section-header'
 import BenefitItem from './BenefitItem'
 import { benefitsData } from './benefitsData'
@@ -25,13 +25,13 @@ const About = () => {
         <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
           <div className="md:w-1/2">
             <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-xl">
-              <div className="w-full h-full">
-                <SafeImage
-                  src="/images/brightway-commercial-cleaning-wiping.jpg"
-                  alt="Brightway Professional Cleaning Team"
-                  fallbackText="Professional Cleaning Team"
-                />
-              </div>
+              <OptimizedImage
+                src="/images/optimized/brightway-commercial-cleaning-wiping.webp"
+                alt="Brightway Professional Cleaning Team"
+                fallbackText="Professional Cleaning Team"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                quality={85}
+              />
             </div>
           </div>
           

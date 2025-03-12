@@ -122,6 +122,14 @@ export default function RootLayout({
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         
+        {/* Preload critical resources */}
+        <link 
+          rel="preload" 
+          href="/images/optimized/brightway-commercial-cleaning-wiping.webp" 
+          as="image" 
+          type="image/webp"
+        />
+        
         {/* Font optimization - ensures proper font display while loading */}
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {

@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroContent from './HeroContent'
-import SafeImage from '../../ui/safe-image'
+import OptimizedImage from '../../ui/optimized-image'
 
 /**
  * Hero Section Component
@@ -19,10 +19,12 @@ const Hero = () => {
           {/* Image section */}
           <div className="mt-12 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
             <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <SafeImage
-                src="/images/brightway-commercial-cleaning-wiping.jpg"
+              <OptimizedImage
+                src="/images/optimized/brightway-commercial-cleaning-wiping.webp"
                 alt="Brightway Commercial Cleaning Team"
                 fallbackText="Commercial Cleaning Team"
+                priority={true}
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
           </div>
