@@ -37,79 +37,85 @@ export async function generateMetadata({ params }: { params: { service: string }
 }
 
 // Service page component
-export default async function ServicePage({ params }: { params: { service: string } }) {
-  // Find the service data from the slug
-  const serviceSlug = params.service
-  const service = siteConfig.services.find((s) => s.slug === serviceSlug)
-  
-  // Return 404 if service doesn't exist
-  if (!service) {
-    notFound()
-  }
-  
-  // Example service FAQs - in a real site, these would likely come from a CMS or database
-  const serviceFAQs = [
-    {
-      question: `What is included in your ${service.name}?`,
-      answer: `Our ${service.name} includes comprehensive cleaning tailored to your specific needs. We use professional-grade equipment and eco-friendly products to ensure the highest quality results.`
-    },
-    {
-      question: `How much does your ${service.name} cost?`,
-      answer: 'Our pricing is customized based on your specific requirements. Contact us for a free quote tailored to your needs.'
-    },
-    {
-      question: 'Do you provide services on weekends?',
-      answer: 'Yes, we offer flexible scheduling including weekends to accommodate your business hours and minimize disruption.'
+// Use proper typing for the params in Next.js 15
+export default function ServicePage({ params }: { params: { service: string } }) {
+  // Convert to non-async function to avoid the Promise<any> type issue
+  const renderServicePage = () => {
+    // Find the service data from the slug
+    const serviceSlug = params.service
+    const service = siteConfig.services.find((s) => s.slug === serviceSlug)
+    
+    // Return 404 if service doesn't exist
+    if (!service) {
+      notFound()
     }
-  ]
-  
-  // Schema for the service page
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service.name,
-    provider: {
-      '@type': 'ProfessionalService',
-      name: siteConfig.name,
-      url: siteConfig.url
-    },
-    description: service.shortDescription,
-    url: `${siteConfig.url}/${serviceSlug}`,
-    areaServed: siteConfig.seo.serviceAreas.join(', '),
-    serviceType: service.name,
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-      availability: 'https://schema.org/InStock',
-      priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+    
+    // Example service FAQs - in a real site, these would likely come from a CMS or database
+    const serviceFAQs = [
+      {
+        question: `What is included in your ${service.name}?`,
+        answer: `Our ${service.name} includes comprehensive cleaning tailored to your specific needs. We use professional-grade equipment and eco-friendly products to ensure the highest quality results.`
+      },
+      {
+        question: `How much does your ${service.name} cost?`,
+        answer: 'Our pricing is customized based on your specific requirements. Contact us for a free quote tailored to your needs.'
+      },
+      {
+        question: 'Do you provide services on weekends?',
+        answer: 'Yes, we offer flexible scheduling including weekends to accommodate your business hours and minimize disruption.'
+      }
+    ]
+    
+    // Schema for the service page
+    const serviceSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: service.name,
+      provider: {
+        '@type': 'ProfessionalService',
+        name: siteConfig.name,
+        url: siteConfig.url
+      },
+      description: service.shortDescription,
+      url: `${siteConfig.url}/${serviceSlug}`,
+      areaServed: siteConfig.seo.serviceAreas.join(', '),
+      serviceType: service.name,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/InStock',
+        priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+      }
     }
-  }
-  
-  return (
-    <MainLayout>
-      {/* Add custom schema for the service and FAQs */}
-      <SEO jsonLd={serviceSchema} />
-      <SEO jsonLd={generateFAQSchema(serviceFAQs)} />
-      
-      {/* Page content would go here */}
-      <div className="container mx-auto px-4 py-24">
-        <h1 className="text-4xl font-bold">{service.name}</h1>
-        <p className="mt-4 text-lg text-gray-600">{service.shortDescription}</p>
+    
+    return (
+      <MainLayout>
+        {/* Add custom schema for the service and FAQs */}
+        <SEO jsonLd={serviceSchema} />
+        <SEO jsonLd={generateFAQSchema(serviceFAQs)} />
         
-        {/* Other service page content would go here */}
-        <div className="my-12">
-          <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            {serviceFAQs.map((faq, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-medium text-gray-900">{faq.question}</h3>
-                <p className="mt-2 text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
+        {/* Page content would go here */}
+        <div className="container mx-auto px-4 py-24">
+          <h1 className="text-4xl font-bold">{service.name}</h1>
+          <p className="mt-4 text-lg text-gray-600">{service.shortDescription}</p>
+          
+          {/* Other service page content would go here */}
+          <div className="my-12">
+            <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              {serviceFAQs.map((faq, index) => (
+                <div key={index} className="bg-gray-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-medium text-gray-900">{faq.question}</h3>
+                  <p className="mt-2 text-gray-600">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </MainLayout>
-  )
+      </MainLayout>
+    )
+  }
+  
+  return renderServicePage()
 } 
