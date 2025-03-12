@@ -2,11 +2,11 @@
 
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { TestimonialItem } from './testimonialsData';
 import TestimonialCard from './TestimonialCard';
 
-// Import the server component with dynamic to make it compatible with Suspense
+// Lazy-load the TestimonialList (server component)
 const TestimonialList = dynamic(() => import('./TestimonialList'), {
-  ssr: true,
   loading: () => <TestimonialsSkeleton />
 });
 
@@ -15,18 +15,19 @@ const TestimonialList = dynamic(() => import('./TestimonialList'), {
  */
 const TestimonialsSkeleton = () => {
   return (
-    <div className="space-y-8">
-      {[1, 2].map((index) => (
-        <div key={index} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
-          <div className="h-4 bg-gray-200 rounded w-3/4 mb-6"></div>
-          <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
-          <div className="h-4 bg-gray-200 rounded w-5/6 mb-8"></div>
-          <div className="flex items-center">
-            <div className="rounded-full bg-gray-200 h-12 w-12"></div>
-            <div className="ml-4">
-              <div className="h-3 bg-gray-200 rounded w-24 mb-2"></div>
-              <div className="h-2 bg-gray-200 rounded w-32"></div>
-            </div>
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {[1, 2, 3].map((index) => (
+        <div key={index} className="bg-gray-50 rounded-lg shadow-sm p-8 md:p-12 animate-pulse">
+          <div className="h-6 bg-gray-200 rounded-full w-12 mb-8"></div>
+          <div className="space-y-3">
+            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+          </div>
+          <div className="mt-6 space-y-2">
+            <div className="h-3 bg-gray-200 rounded w-24"></div>
+            <div className="h-3 bg-gray-200 rounded w-32"></div>
           </div>
         </div>
       ))}
@@ -37,8 +38,9 @@ const TestimonialsSkeleton = () => {
 /**
  * Testimonials Section Component
  *
- * Displays client testimonials in a clean, focused layout.
- * Uses Suspense and streaming for improved performance
+ * Displays client testimonials in a responsive carousel.
+ * Desktop: Displays 3 testimonials side by side
+ * Mobile: Displays 1 testimonial with swipe functionality
  */
 const Testimonials = () => {
   return (
@@ -51,8 +53,8 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Wrap the server component with Suspense for streaming */}
+        <div className="max-w-7xl mx-auto">
+          {/* Use Suspense with TestimonialList (which now returns the carousel) */}
           <Suspense fallback={<TestimonialsSkeleton />}>
             <TestimonialList />
           </Suspense>
