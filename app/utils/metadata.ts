@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { siteConfig } from '../constants/siteConfig'
 import { generateMetaDescription } from './seo'
 
-type PageType = 'home' | 'service' | 'about' | 'contact' | 'custom'
+type PageType = 'home' | 'about' | 'contact' | 'custom'
 
 interface MetadataOptions {
   pageType: PageType

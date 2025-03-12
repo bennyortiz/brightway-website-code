@@ -92,28 +92,22 @@ export const siteConfig = {
     yearEstablished: 2010,
   },
 
-  // Services information
-  services: [
+  // Service types (used for displaying service cards only)
+  serviceTypes: [
     {
       id: 'office-cleaning',
       name: 'Office Cleaning',
       shortDescription: 'Professional office cleaning tailored to your business needs.',
-      metaDescription: 'Professional office cleaning services by Brightway Cleaning. We ensure a clean, healthy workplace environment for your team.',
-      slug: 'office-cleaning',
     },
     {
       id: 'commercial-cleaning',
       name: 'Commercial Cleaning',
       shortDescription: 'Comprehensive commercial cleaning solutions for all business types.',
-      metaDescription: 'Expert commercial cleaning services for businesses of all sizes. Brightway Cleaning provides reliable, high-quality cleaning solutions.',
-      slug: 'commercial-cleaning',
     },
     {
       id: 'sanitization-services',
       name: 'Sanitization Services',
       shortDescription: 'Deep sanitization services to ensure a healthy environment.',
-      metaDescription: 'Professional sanitization services by Brightway Cleaning. Create a safe, hygienic environment with our advanced cleaning protocols.',
-      slug: 'sanitization-services',
     }
   ],
 }; 

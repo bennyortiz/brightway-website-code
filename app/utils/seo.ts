@@ -124,7 +124,7 @@ export const generateFAQSchema = (faqs: Array<{question: string, answer: string}
  * Generates a formatted meta description for different page types
  */
 export const generateMetaDescription = (
-  type: 'home' | 'service' | 'about' | 'contact', 
+  type: 'home' | 'about' | 'contact', 
   customData?: Record<string, string>
 ) => {
   const baseDesc = siteConfig.description
@@ -132,8 +132,6 @@ export const generateMetaDescription = (
   switch (type) {
     case 'home':
       return baseDesc
-    case 'service':
-      return `${customData?.serviceName || 'Professional cleaning'} services by ${siteConfig.name}. ${baseDesc}`
     case 'about':
       return `Learn about ${siteConfig.name}, established in ${siteConfig.business.startYear} with ${siteConfig.business.clientsServed} satisfied clients.`
     case 'contact':
