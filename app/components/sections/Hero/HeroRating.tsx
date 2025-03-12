@@ -1,9 +1,9 @@
-import React from 'react'
-import { Star } from 'lucide-react'
+import React from 'react';
+import { Star } from 'lucide-react';
 
 /**
  * HeroRating Component
- * 
+ *
  * Displays a rating element with stars, rating value, and number of reviews.
  * Used in the Hero section to showcase the company's reputation.
  */
@@ -20,7 +20,7 @@ const HeroRating = () => {
         <span className="text-gray-500 text-sm">(500+ reviews)</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HeroRating 
+export default HeroRating;
