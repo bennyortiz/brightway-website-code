@@ -7,7 +7,7 @@
     "build": "npx next build",
     "start": "npx next start",
     "lint": "npx next lint",
-    "vercel-build": "npm install --legacy-peer-deps && npm run build"
+    "vercel-build": "npm install --legacy-peer-deps --exact && npm run build"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.2.5",
