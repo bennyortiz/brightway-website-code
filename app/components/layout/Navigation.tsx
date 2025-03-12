@@ -7,6 +7,12 @@ import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/app/constants/siteConfig';
 import { navigationItems } from '@/app/constants/navigationItems';
 
+// Helper to determine which links should be prefetched
+const shouldPrefetch = (href: string): boolean => {
+  // Prefetch home and full page destinations, not anchor links
+  return href === '/' || !href.startsWith('#');
+};
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +50,7 @@ const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" className="text-2xl font-bold text-primary">
+            <Link href="/" prefetch={true} className="text-2xl font-bold text-primary">
               {siteConfig.name}
             </Link>
 
@@ -56,6 +62,7 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     href={item.href}
+                    prefetch={shouldPrefetch(item.href)}
                     className={`font-medium transition-colors ${
                       scrolled || isOpen
                         ? 'text-gray-800 hover:text-primary'

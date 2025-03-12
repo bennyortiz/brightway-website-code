@@ -1,28 +1,46 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import TestimonialCard from './TestimonialCard';
-import { testimonials } from './testimonialsData';
 
-// Fallback testimonial data in case the import fails
-const fallbackTestimonial = {
-  quote:
-    'Brightway Cleaning has transformed our office space. Their attention to detail and consistent quality have made them an invaluable partner for our business.',
-  author: 'Sarah Johnson',
-  position: 'Office Manager',
-  company: 'Tech Solutions Inc.',
+// Import the server component with dynamic to make it compatible with Suspense
+const TestimonialList = dynamic(() => import('./TestimonialList'), {
+  ssr: true,
+  loading: () => <TestimonialsSkeleton />
+});
+
+/**
+ * Skeleton loader component for testimonials while they're loading
+ */
+const TestimonialsSkeleton = () => {
+  return (
+    <div className="space-y-8">
+      {[1, 2].map((index) => (
+        <div key={index} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-3/4 mb-6"></div>
+          <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
+          <div className="h-4 bg-gray-200 rounded w-5/6 mb-8"></div>
+          <div className="flex items-center">
+            <div className="rounded-full bg-gray-200 h-12 w-12"></div>
+            <div className="ml-4">
+              <div className="h-3 bg-gray-200 rounded w-24 mb-2"></div>
+              <div className="h-2 bg-gray-200 rounded w-32"></div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 /**
  * Testimonials Section Component
  *
  * Displays client testimonials in a clean, focused layout.
- * Currently shows only the first testimonial to avoid client/server mismatches.
+ * Uses Suspense and streaming for improved performance
  */
 const Testimonials = () => {
-  // Use testimonials data if available, otherwise use fallback
-  const testimonial = testimonials?.[0] || fallbackTestimonial;
-
   return (
     <section id="testimonials" className="w-full py-12 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -34,12 +52,10 @@ const Testimonials = () => {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <TestimonialCard
-            quote={testimonial.quote}
-            author={testimonial.author}
-            position={testimonial.position}
-            company={testimonial.company}
-          />
+          {/* Wrap the server component with Suspense for streaming */}
+          <Suspense fallback={<TestimonialsSkeleton />}>
+            <TestimonialList />
+          </Suspense>
         </div>
       </div>
     </section>
