@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import HeroContent from './HeroContent'
 import SafeImage from '../../ui/safe-image'
@@ -25,12 +27,7 @@ const Hero = () => {
                 fallbackText="Commercial Hallway Cleaning"
                 priority={false}
                 loading="lazy" 
-                className="w-full h-full object-cover opacity-0 md:opacity-100 transition-opacity duration-300"
-                onLoadingComplete={(img) => {
-                  // Fade in image after load on mobile
-                  img.classList.remove('opacity-0');
-                  img.classList.add('opacity-100');
-                }}
+                className="w-full h-full object-cover md:opacity-100 transition-opacity duration-300"
               />
             </div>
           </div>
