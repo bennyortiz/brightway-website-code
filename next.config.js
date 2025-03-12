@@ -4,7 +4,6 @@ const nextConfig = {
   
   // Disable TypeScript type checking during build
   typescript: {
-    // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     ignoreBuildErrors: true,
@@ -15,7 +14,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   
-  // Output option for better Vercel compatibility
+  // Improved compatibility with Vercel hosting
   output: 'standalone',
   
   // Image optimization
@@ -30,10 +29,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   
-  // Compression for faster response times
-  compress: true,
-  
-  // Simple header configuration
+  // Basic security headers
   async headers() {
     return [
       {
@@ -45,8 +41,11 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         ],
       },
-    ]
+    ];
   },
-}
+  
+  // This is crucial for proper 404 handling on Vercel
+  trailingSlash: false,
+};
 
-module.exports = nextConfig 
+module.exports = nextConfig; 

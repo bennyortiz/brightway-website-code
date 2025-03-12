@@ -1,21 +1,6 @@
 {
-  "version": 2,
-  "buildCommand": "npm run vercel-build",
-  "installCommand": "npm install",
-  "github": {
-    "enabled": true,
-    "silent": false,
-    "autoAlias": true
-  },
-  "ignoreCommand": "git diff HEAD^ HEAD --quiet ./package.json",
-  "public": true,
-  "outputDirectory": ".next",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "env": {
-    "VERCEL_DEBUG": "true",
-    "NODE_ENV": "production",
-    "NEXT_TELEMETRY_DISABLED": "1",
-    "NEXT_IGNORE_TYPE_ERROR": "true"
-  }
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install"
 } 
