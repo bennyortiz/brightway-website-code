@@ -8,5 +8,14 @@
     "autoAlias": true
   },
   "ignoreCommand": "git diff HEAD^ HEAD --quiet ./package.json",
-  "public": true
+  "public": true,
+  "outputDirectory": ".next",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "env": {
+    "VERCEL_DEBUG": "true",
+    "NODE_ENV": "production",
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "NEXT_IGNORE_TYPE_ERROR": "true"
+  }
 } 

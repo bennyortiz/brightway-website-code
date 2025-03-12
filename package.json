@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "npx next dev",
-    "build": "npx next build",
-    "start": "npx next start",
-    "lint": "npx next lint",
-    "vercel-build": "node vercel.config.js && NODE_OPTIONS=--max_old_space_size=4096 NEXT_TELEMETRY_DISABLED=1 next build || next build"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@fontsource-variable/plus-jakarta-sans": "^5.2.5",
