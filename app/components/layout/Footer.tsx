@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { siteConfig } from '@/app/constants/siteConfig';
 import { footerNavigation } from '@/app/constants/navigationItems';
+import Logo from '../ui/Logo';
 
 const getSocialIcon = (icon: string) => {
   switch (icon) {
@@ -30,7 +31,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Information */}
           <div className="space-y-4 md:col-span-2">
-            <h3 className="text-xl font-bold">{siteConfig.name}</h3>
+            <Logo className="text-white" />
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
               {footerNavigation.social.map((item) => (

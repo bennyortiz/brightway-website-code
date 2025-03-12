@@ -12,14 +12,14 @@ import { TestimonialItem } from './testimonialsData';
  */
 const TestimonialCard = ({ quote, author, position, company }: TestimonialItem) => {
   return (
-    <div className="relative bg-gray-50 p-8 md:p-10 rounded-lg shadow-sm h-full flex flex-col">
-      <Quote className="h-12 w-12 text-primary/20 absolute top-6 left-6" />
+    <div className="relative bg-white p-8 md:p-10 rounded-lg shadow-md border border-gray-100 h-full flex flex-col">
+      <Quote className="h-10 w-10 text-primary/30 absolute top-6 right-6" />
 
-      <div className="relative z-10">
-        <p className="text-base md:text-lg italic mb-6 flex-grow">"{quote}"</p>
+      <div className="relative z-10 flex flex-col h-full">
+        <p className="text-base md:text-lg italic text-gray-700 mb-6 flex-grow">"{quote}"</p>
 
         <div className="flex flex-col mt-auto pt-4 border-t border-gray-200">
-          <span className="font-semibold">{author}</span>
+          <span className="font-semibold text-gray-900">{author}</span>
           <span className="text-gray-600 text-sm">
             {position}, {company}
           </span>

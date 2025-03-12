@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { siteConfig } from '@/app/constants/siteConfig';
 import { navigationItems } from '@/app/constants/navigationItems';
+import Logo from '../ui/Logo';
 
 // Helper to determine which links should be prefetched
 const shouldPrefetch = (href: string): boolean => {
@@ -50,9 +51,7 @@ const Navigation = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link href="/" prefetch={true} className="text-2xl font-bold text-primary">
-              {siteConfig.name}
-            </Link>
+            <Logo textSize="lg" />
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">

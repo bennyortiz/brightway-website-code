@@ -11,6 +11,12 @@ interface TestimonialCarouselProps {
 }
 
 const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
+  // Safeguard against empty testimonials
+  if (!testimonials || testimonials.length === 0) {
+    console.warn('No testimonials provided to carousel');
+    return null;
+  }
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
@@ -71,75 +77,86 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   // Get current testimonials to display
   const getCurrentTestimonials = () => {
     const startIdx = currentIndex * itemsPerView;
-    return testimonials.slice(startIdx, startIdx + itemsPerView);
+    // Ensure we don't exceed array bounds
+    return testimonials.slice(startIdx, Math.min(startIdx + itemsPerView, testimonials.length));
   };
+
+  // Get currently visible testimonials
+  const visibleTestimonials = getCurrentTestimonials();
 
   return (
     <div className="relative w-full">
       {/* Main Carousel */}
       <div 
-        className="overflow-hidden"
+        className="overflow-hidden w-full"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-          >
-            {getCurrentTestimonials().map((testimonial, idx) => (
-              <div key={`${testimonial.author}-${idx}`} className="w-full">
-                <TestimonialCard
-                  quote={testimonial.quote}
-                  author={testimonial.author}
-                  position={testimonial.position}
-                  company={testimonial.company}
-                />
-              </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+        {/* Simpler animation approach */}
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 min-h-[250px]"
+        >
+          {visibleTestimonials.map((testimonial, idx) => (
+            <div key={`${testimonial.author}-${idx}`} className="w-full h-full">
+              <TestimonialCard
+                quote={testimonial.quote}
+                author={testimonial.author}
+                position={testimonial.position}
+                company={testimonial.company}
+              />
+            </div>
+          ))}
+          
+          {/* Fill in empty slots if needed on desktop */}
+          {!isMobile && visibleTestimonials.length < itemsPerView && (
+            Array.from({ length: itemsPerView - visibleTestimonials.length }).map((_, idx) => (
+              <div key={`empty-${idx}`} className="w-full h-full bg-transparent"></div>
+            ))
+          )}
+        </motion.div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex justify-center mt-8 gap-4">
-        {/* Previous Button */}
-        <button
-          onClick={goToPrevious}
-          className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
-          aria-label="Previous testimonial"
-        >
-          <ChevronLeft className="h-5 w-5 text-gray-600" />
-        </button>
-        
-        {/* Indicators */}
-        <div className="flex items-center space-x-2">
-          {Array.from({ length: totalPages }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                idx === currentIndex ? 'bg-primary' : 'bg-gray-300'
-              }`}
-              aria-label={`Go to testimonial page ${idx + 1}`}
-            />
-          ))}
+      {/* Navigation Controls - Only show if we have enough testimonials to navigate */}
+      {totalPages > 1 && (
+        <div className="flex justify-center mt-8 gap-4">
+          {/* Previous Button */}
+          <button
+            onClick={goToPrevious}
+            className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft className="h-5 w-5 text-gray-600" />
+          </button>
+          
+          {/* Indicators */}
+          <div className="flex items-center space-x-2">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                  idx === currentIndex ? 'bg-primary' : 'bg-gray-300'
+                }`}
+                aria-label={`Go to testimonial page ${idx + 1}`}
+              />
+            ))}
+          </div>
+          
+          {/* Next Button */}
+          <button
+            onClick={goToNext}
+            className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            aria-label="Next testimonial"
+          >
+            <ChevronRight className="h-5 w-5 text-gray-600" />
+          </button>
         </div>
-        
-        {/* Next Button */}
-        <button
-          onClick={goToNext}
-          className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
-          aria-label="Next testimonial"
-        >
-          <ChevronRight className="h-5 w-5 text-gray-600" />
-        </button>
-      </div>
+      )}
     </div>
   );
 };
