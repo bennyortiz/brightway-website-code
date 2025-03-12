@@ -26,7 +26,7 @@ const About = () => {
         />
 
         {/* Company Story Section */}
-        <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-16 text-center md:text-left">
           <div className="md:w-1/2 mx-auto">
             <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-xl">
               <div className="w-full h-full">
