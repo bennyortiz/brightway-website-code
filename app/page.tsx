@@ -10,14 +10,10 @@
  */
 
 import { Metadata } from 'next'
-import Hero from './components/sections/Hero'
-import Services from './components/sections/Services'
-import About from './components/sections/About'
-import Testimonials from './components/sections/Testimonials'
-import Contact from './components/sections/Contact'
-import MainLayout from './components/layout/MainLayout'
-import SEO from './components/shared/SEO'
-import { generatePageMetadata } from './utils/metadata'
+import { Hero, Services, About, Testimonials, Contact } from './components/sections'
+import { MainLayout } from './components/layout'
+import { SEO } from './components/shared'
+import { generatePageMetadata } from './utils'
 
 /**
  * Page Metadata
