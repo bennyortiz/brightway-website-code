@@ -29,7 +29,7 @@ export const testimonials = [
     name: 'Jennifer Williams',
     title: 'Business Owner',
     company: 'Cornerstone Retail',
-    content: 'As a retail business, appearance is everything. Brightway Cleaning has been essential in maintaining our store's pristine condition. Their flexible scheduling works perfectly with our hours of operation.',
+    content: 'As a retail business, appearance is everything. Brightway Cleaning has been essential in maintaining our store\'s pristine condition. Their flexible scheduling works perfectly with our hours of operation.',
     rating: 5,
     image: '/images/testimonials/testimonial-3.jpg', // Replace with actual image path or use null
   },
