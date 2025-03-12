@@ -1,51 +1,47 @@
 // Central location for all site-specific information
+import { businessInfo } from '../content/businessInfo';
+
 export const siteConfig = {
   // Basic site info
-  name: 'Brightway Cleaning',
-  tagline: 'Professional Cleaning Services',
-  description: 'Professional commercial cleaning services with a focus on quality, reliability, and customer satisfaction.',
+  name: businessInfo.name,
+  tagline: businessInfo.tagline,
+  description: businessInfo.description,
   url: 'https://brightway-cleaning.com',
   ogImage: 'https://brightway-cleaning.com/og.svg',
   
   // Business information
   business: {
-    legalName: 'Brightway Cleaning',
-    startYear: 2010,
-    employeeCount: '50+',
-    servicesCount: '15+',
-    clientsServed: '1000+',
-    satisfaction: '99%',
+    legalName: businessInfo.legalName,
+    startYear: businessInfo.yearEstablished,
+    employeeCount: businessInfo.stats.employeeCount,
+    servicesCount: businessInfo.stats.servicesCount,
+    clientsServed: businessInfo.stats.clientsServed,
+    satisfaction: businessInfo.stats.satisfaction,
   },
   
   // Contact information
   contact: {
-    phone: {
-      display: '(214) 636-2323',
-      raw: '+12146362323',
-    },
-    email: 'brightwaycleaningco@gmail.com',
+    phone: businessInfo.phone,
+    email: businessInfo.email,
     address: {
-      street: 'Bedford, TX',
-      city: 'Bedford',
-      state: 'TX',
+      street: businessInfo.location.address,
+      city: businessInfo.location.city,
+      state: businessInfo.location.state,
       zip: '',
       country: 'USA',
-      full: 'Bedford, TX',
-      maps: 'https://maps.google.com/?q=Bedford+TX'
+      full: businessInfo.location.fullAddress,
+      maps: businessInfo.location.googleMapsUrl
     },
-    hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
-    coordinates: {
-      latitude: 32.8465,
-      longitude: -97.1429
-    }
+    hours: businessInfo.hours,
+    coordinates: businessInfo.location.coordinates
   },
   
   // Social media links
   social: {
-    twitter: 'https://twitter.com/brightwaycleaningco',
-    facebook: 'https://facebook.com/brightwaycleaningco',
-    instagram: 'https://instagram.com/brightwaycleaningco',
-    linkedin: 'https://linkedin.com/company/brightwaycleaningco',
+    twitter: businessInfo.social.twitter,
+    facebook: businessInfo.social.facebook,
+    instagram: businessInfo.social.instagram,
+    linkedin: businessInfo.social.linkedin,
     // Social handles without URLs (for Schema.org)
     handles: {
       twitter: '@brightwaycleaningco',
@@ -82,21 +78,10 @@ export const siteConfig = {
     },
     robotsContent: 'index, follow',
     // Common regions/cities served - used for local SEO
-    serviceAreas: [
-      'Bedford',
-      'Fort Worth',
-      'Dallas',
-      'Arlington',
-      'Irving',
-      'Plano',
-      'Euless',
-      'Grapevine',
-      'Hurst',
-      'DFW Metroplex',
-    ],
+    serviceAreas: businessInfo.serviceAreas,
     businessType: 'Commercial Cleaning Service',
     businessCategory: 'Professional Services', 
-    yearEstablished: 2010,
+    yearEstablished: businessInfo.yearEstablished,
   },
 
   // Service types (used for displaying service cards only)

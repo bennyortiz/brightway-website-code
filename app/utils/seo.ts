@@ -1,4 +1,5 @@
 import { siteConfig } from '../constants/siteConfig'
+import { businessInfo } from '../content/businessInfo'
 
 /**
  * Generates Schema.org JSON-LD for a LocalBusiness
@@ -37,15 +38,15 @@ export const generateLocalBusinessSchema = () => {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 37.7749, // Replace with actual coordinates
-      longitude: -122.4194 // Replace with actual coordinates
+      latitude: businessInfo.location.coordinates.latitude,
+      longitude: businessInfo.location.coordinates.longitude
     },
     areaServed: {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 37.7749, // Replace with actual coordinates
-        longitude: -122.4194 // Replace with actual coordinates
+        latitude: businessInfo.location.coordinates.latitude,
+        longitude: businessInfo.location.coordinates.longitude
       },
       geoRadius: '50000' // 50km radius
     }
@@ -133,9 +134,9 @@ export const generateMetaDescription = (
     case 'home':
       return baseDesc
     case 'about':
-      return `Learn about ${siteConfig.name}, established in ${siteConfig.business.startYear} with ${siteConfig.business.clientsServed} satisfied clients.`
+      return `Learn about ${siteConfig.name}, established in ${siteConfig.business.startYear} with ${siteConfig.business.clientsServed} satisfied clients in the ${businessInfo.location.city} area.`
     case 'contact':
-      return `Contact ${siteConfig.name} for ${siteConfig.business.satisfaction} satisfaction guaranteed cleaning services. Get a free quote today!`
+      return `Contact ${siteConfig.name} for ${siteConfig.business.satisfaction} satisfaction guaranteed cleaning services in the DFW metroplex. Get a free quote today!`
     default:
       return baseDesc
   }

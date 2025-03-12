@@ -1,10 +1,11 @@
 'use client'
 
 import Script from 'next/script'
-import { generateLocalBusinessSchema, generateWebsiteSchema, generateOrganizationSchema } from '@/app/utils/seo'
+import { generateLocalBusinessSchema, generateWebsiteSchema, generateOrganizationSchema, generateFAQSchema } from '@/app/utils/seo'
+import { faqItems } from '@/app/content/faqInfo'
 
 interface SEOProps {
-  type?: 'local_business' | 'website' | 'organization' | 'all';
+  type?: 'local_business' | 'website' | 'organization' | 'all' | 'faq';
   jsonLd?: Record<string, any>;
 }
 
@@ -34,11 +35,14 @@ export default function SEO({ type = 'all', jsonLd }: SEOProps) {
         return [generateWebsiteSchema()]
       case 'organization':
         return [generateOrganizationSchema()]
+      case 'faq':
+        return [generateFAQSchema(faqItems)]
       case 'all':
         return [
           generateLocalBusinessSchema(),
           generateWebsiteSchema(),
-          generateOrganizationSchema()
+          generateOrganizationSchema(),
+          generateFAQSchema(faqItems)
         ]
       default:
         return [generateLocalBusinessSchema()]
