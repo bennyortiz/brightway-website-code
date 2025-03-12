@@ -1,8 +1,6 @@
 import React from 'react'
 import SafeImage from '../../ui/safe-image'
 import SectionHeader from '../../ui/section-header'
-import BenefitItem from './BenefitItem'
-import { benefitsData } from './benefitsData'
 import { siteConfig } from '@/app/constants/siteConfig'
 
 /**
@@ -10,10 +8,13 @@ import { siteConfig } from '@/app/constants/siteConfig'
  * 
  * Displays information about the company, including:
  * - Section header with title and description
- * - Company image
- * - List of company benefits
+ * - Company history and mission
+ * - Relevant images
  */
 const About = () => {
+  const currentYear = new Date().getFullYear();
+  const yearsInBusiness = currentYear - siteConfig.business.startYear;
+  
   return (
     <section id="about" className="w-full py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -37,22 +38,17 @@ const About = () => {
             </div>
           </div>
           
-          <div className="md:w-1/2 space-y-8">
-            <h3 className="text-3xl font-bold">Why Choose Brightway?</h3>
+          <div className="md:w-1/2 space-y-6">
+            <h3 className="text-3xl font-bold">Our Story</h3>
             <p className="text-lg text-gray-600">
-              We take pride in our exceptional cleaning services and our commitment to customer satisfaction throughout the DFW metroplex. Here's what sets us apart:
+              For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional cleaning services to businesses throughout the DFW metroplex. What started as a small family-owned operation has grown into one of the region's most trusted commercial cleaning companies.
             </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {benefitsData.map((benefit, index) => (
-                <BenefitItem 
-                  key={index}
-                  icon={benefit.icon}
-                  title={benefit.title}
-                  description={benefit.description}
-                />
-              ))}
-            </div>
+            <p className="text-lg text-gray-600">
+              We've built our reputation on reliability, attention to detail, and a genuine commitment to customer satisfaction. Our team of {siteConfig.business.employeeCount} dedicated professionals takes pride in transforming spaces and exceeding expectations with every clean.
+            </p>
+            <p className="text-lg text-gray-600">
+              From daily office maintenance to specialized industrial cleaning, we approach every job with the same level of care and professionalism that has earned us a {siteConfig.business.satisfaction} client satisfaction rate.
+            </p>
           </div>
         </div>
       </div>

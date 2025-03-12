@@ -4,6 +4,7 @@ export const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '#services' },
   { name: 'About', href: '#about' },
+  { name: 'Why Choose Us', href: '#why-choose-us' },
   { name: 'Testimonials', href: '#testimonials' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -18,9 +19,9 @@ export const footerNavigation = {
   ],
   company: [
     { name: 'About Us', href: '#about' },
+    { name: 'Why Choose Us', href: '#why-choose-us' },
     { name: 'Our Team', href: '#about' },
     { name: 'Careers', href: '#about' },
-    { name: 'Press', href: '#about' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '#' },
