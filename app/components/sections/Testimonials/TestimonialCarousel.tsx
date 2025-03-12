@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TestimonialItem } from './testimonialsData';
 import TestimonialCard from './TestimonialCard';
@@ -16,6 +16,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     console.warn('No testimonials provided to carousel');
     return null;
   }
+
+  // Log the testimonials to debug
+  console.log('Rendering testimonials:', testimonials);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -42,6 +45,16 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // After mounting, log visibility status
+  useEffect(() => {
+    console.log('TestimonialCarousel mounted, checking visibility');
+    // Give the browser time to render, then check if the testimonials are visible
+    setTimeout(() => {
+      const testimonialCards = document.querySelectorAll('.testimonial-carousel-item');
+      console.log(`Found ${testimonialCards.length} testimonial cards`);
+    }, 1000);
   }, []);
 
   // Navigation functions
@@ -88,21 +101,19 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     <div className="relative w-full">
       {/* Main Carousel */}
       <div 
-        className="overflow-hidden w-full"
+        className="w-full bg-transparent"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Simpler animation approach */}
-        <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 min-h-[250px]"
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8"
         >
           {visibleTestimonials.map((testimonial, idx) => (
-            <div key={`${testimonial.author}-${idx}`} className="w-full h-full">
+            <div 
+              key={`${testimonial.author}-${idx}`} 
+              className="w-full h-full min-h-[300px] testimonial-carousel-item opacity-100 visible"
+            >
               <TestimonialCard
                 quote={testimonial.quote}
                 author={testimonial.author}
@@ -118,28 +129,28 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
               <div key={`empty-${idx}`} className="w-full h-full bg-transparent"></div>
             ))
           )}
-        </motion.div>
+        </div>
       </div>
 
       {/* Navigation Controls - Only show if we have enough testimonials to navigate */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-8 gap-4">
+        <div className="flex justify-center mt-12 gap-4">
           {/* Previous Button */}
           <button
             onClick={goToPrevious}
-            className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 border border-gray-200"
             aria-label="Previous testimonial"
           >
-            <ChevronLeft className="h-5 w-5 text-gray-600" />
+            <ChevronLeft className="h-6 w-6 text-primary" />
           </button>
           
           {/* Indicators */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                className={`w-3 h-3 rounded-full transition-colors ${
                   idx === currentIndex ? 'bg-primary' : 'bg-gray-300'
                 }`}
                 aria-label={`Go to testimonial page ${idx + 1}`}
@@ -150,10 +161,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
           {/* Next Button */}
           <button
             onClick={goToNext}
-            className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 border border-gray-200"
             aria-label="Next testimonial"
           >
-            <ChevronRight className="h-5 w-5 text-gray-600" />
+            <ChevronRight className="h-6 w-6 text-primary" />
           </button>
         </div>
       )}

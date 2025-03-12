@@ -27,7 +27,7 @@ const About = () => {
 
         {/* Company Story Section */}
         <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 mx-auto">
             <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-xl">
               <div className="w-full h-full">
                 <SafeImage
@@ -40,7 +40,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="md:w-1/2 space-y-6">
+          <div className="md:w-1/2 space-y-6 text-center md:text-left">
             <h3 className="text-3xl font-bold">Our Story</h3>
             <p className="text-lg text-gray-600">
               For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional
