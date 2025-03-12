@@ -12,6 +12,7 @@
 import { Metadata } from 'next';
 import Hero from './components/sections/Hero';
 import Services from './components/sections/Services';
+import ServiceAreas from './components/sections/ServiceAreas';
 import About from './components/sections/About';
 import WhyChooseUs from './components/sections/WhyChooseUs';
 import Testimonials from './components/sections/Testimonials';
@@ -40,11 +41,12 @@ export const metadata: Metadata = generatePageMetadata({
  * Sections are rendered in a specific order to create a cohesive user experience:
  * 1. Hero - Main banner with headline and call to action
  * 2. Services - Overview of cleaning services offered
- * 3. About - Company information and values
- * 4. Why Choose Us - Competitive advantages and benefits
- * 5. Testimonials - Customer reviews and feedback
- * 6. FAQ - Frequently asked questions
- * 7. Contact - Contact form and information
+ * 3. Service Areas - Locations where we provide services
+ * 4. About - Company information and values
+ * 5. Why Choose Us - Competitive advantages and benefits
+ * 6. Testimonials - Customer reviews and feedback
+ * 7. FAQ - Frequently asked questions
+ * 8. Contact - Contact form and information
  */
 export default function Home() {
   return (
@@ -52,6 +54,7 @@ export default function Home() {
       <SEO type="all" />
       <Hero />
       <Services />
+      <ServiceAreas />
       <CTABanner />
       <About />
       <WhyChooseUs />

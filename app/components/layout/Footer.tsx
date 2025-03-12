@@ -27,9 +27,9 @@ const Footer = () => {
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Information */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:col-span-2">
             <h3 className="text-xl font-bold">{siteConfig.name}</h3>
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
@@ -63,6 +63,23 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Locations */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Locations</h3>
+            <ul className="space-y-2">
+              {footerNavigation.locations.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Company */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
@@ -81,7 +98,7 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:col-span-2">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start">
