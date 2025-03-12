@@ -1,12 +1,43 @@
+/**
+ * Root Layout Component
+ * 
+ * This component defines the global layout structure for the entire application.
+ * It wraps all pages and provides common elements like:
+ * - HTML structure with lang attribute
+ * - Font configuration
+ * - Metadata and SEO settings
+ * - Performance monitoring scripts
+ * 
+ * In Next.js App Router, this layout.tsx file creates a persistent layout
+ * that remains consistent across all pages in the application.
+ */
+
 import type { Metadata } from 'next'
 import '@fontsource-variable/plus-jakarta-sans'
 import './globals.css'
 import { siteConfig } from './constants/siteConfig'
 import Script from 'next/script'
 
-// Setup the Plus Jakarta Sans as the main font
+/**
+ * Font Configuration
+ * 
+ * Sets up Plus Jakarta Sans as the main font for the entire site
+ * We're using the variable font version for better performance and flexibility
+ */
 const fontClassName = 'font-plus-jakarta'
 
+/**
+ * Global Metadata Configuration
+ * 
+ * Defines the default metadata for all pages, including:
+ * - Title and description
+ * - SEO keywords
+ * - Author information
+ * - OpenGraph and Twitter card data for social sharing
+ * - Favicon and icon definitions
+ * 
+ * These values are pulled from the centralized siteConfig
+ */
 export const metadata: Metadata = {
   title: {
     default: `${siteConfig.name} | ${siteConfig.tagline}`,
@@ -57,13 +88,29 @@ export const metadata: Metadata = {
   },
 }
 
-// Export viewport configuration separately as recommended by Next.js 
+/**
+ * Viewport Configuration
+ * 
+ * Defines responsive behavior settings:
+ * - Sets the viewport width to device width
+ * - Sets initial scale to 1 for proper mobile rendering
+ * - Defines theme color for browser UI elements
+ * 
+ * Next.js 13+ recommends exporting viewport separately from metadata
+ */
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: '#0070f3',
 }
 
+/**
+ * Root Layout Component
+ * 
+ * The main layout wrapper that surrounds all page content
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - The page content to be rendered within the layout
+ */
 export default function RootLayout({
   children,
 }: {
@@ -72,10 +119,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontClassName}>
       <head>
-        {/* Preconnect to domains for resources */}
+        {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         
-        {/* Font display optimization */}
+        {/* Font optimization - ensures proper font display while loading */}
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'Plus Jakarta Sans Variable';
@@ -86,7 +133,14 @@ export default function RootLayout({
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {children}
         
-        {/* Web Vitals & Performance Monitoring - only in production */}
+        {/* 
+         * Web Vitals & Performance Monitoring 
+         * Only included in production builds
+         * Measures key performance metrics like:
+         * - Cumulative Layout Shift (CLS)
+         * - Largest Contentful Paint (LCP)
+         * - First Input Delay (FID)
+         */}
         {process.env.NODE_ENV === 'production' && (
           <Script id="performance-monitoring" strategy="afterInteractive">
             {`
