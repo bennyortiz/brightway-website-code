@@ -24,6 +24,7 @@ const Hero = () => {
                 alt="Brightway Commercial Hallway Cleaning"
                 fallbackText="Commercial Hallway Cleaning"
                 priority={true}
+                loading="eager"
               />
             </div>
           </div>

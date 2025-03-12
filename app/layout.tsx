@@ -132,45 +132,6 @@ export default function RootLayout({
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {children}
-        
-        {/* 
-         * Web Vitals & Performance Monitoring 
-         * Only included in production builds
-         * Measures key performance metrics like:
-         * - Cumulative Layout Shift (CLS)
-         * - Largest Contentful Paint (LCP)
-         * - First Input Delay (FID)
-         */}
-        {process.env.NODE_ENV === 'production' && (
-          <Script id="performance-monitoring" strategy="afterInteractive">
-            {`
-              // Cumulative Layout Shift detection
-              let cls = 0;
-              new PerformanceObserver((entryList) => {
-                for (const entry of entryList.getEntries()) {
-                  if (!entry.hadRecentInput) {
-                    cls += entry.value;
-                  }
-                }
-                console.log('Cumulative Layout Shift:', cls);
-              }).observe({type: 'layout-shift', buffered: true});
-              
-              // Largest Contentful Paint detection
-              new PerformanceObserver((entryList) => {
-                const entries = entryList.getEntries();
-                const lastEntry = entries[entries.length - 1];
-                console.log('Largest Contentful Paint:', lastEntry.startTime);
-              }).observe({type: 'largest-contentful-paint', buffered: true});
-              
-              // First Input Delay detection
-              new PerformanceObserver((entryList) => {
-                for (const entry of entryList.getEntries()) {
-                  console.log('First Input Delay:', entry.processingStart - entry.startTime);
-                }
-              }).observe({type: 'first-input', buffered: true});
-            `}
-          </Script>
-        )}
       </body>
     </html>
   )

@@ -6,6 +6,7 @@ interface SafeImageProps {
   className?: string;
   fallbackText?: string;
   priority?: boolean;
+  loading?: "eager" | "lazy";
 }
 
 export default function SafeImage({
@@ -14,7 +15,14 @@ export default function SafeImage({
   className = "w-full h-full object-cover",
   fallbackText,
   priority = false,
+  loading,
 }: SafeImageProps) {
+  // Determine loading strategy
+  // - priority images are always loaded eagerly
+  // - explicitly set loading attribute is respected
+  // - otherwise, default to lazy loading
+  const loadingStrategy = priority ? "eager" : loading || "lazy";
+
   return (
     <Image
       src={src}
@@ -23,6 +31,7 @@ export default function SafeImage({
       fill
       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       priority={priority}
+      loading={loadingStrategy}
       quality={85}
     />
   );

@@ -30,6 +30,7 @@ const About = () => {
                   src="/images/brightway-commercial-cleaning-wiping.jpg"
                   alt="Brightway Professional Cleaning Team"
                   fallbackText="Professional Cleaning Team"
+                  loading="lazy"
                 />
               </div>
             </div>

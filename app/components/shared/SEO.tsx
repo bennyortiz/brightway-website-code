@@ -4,8 +4,8 @@ import Script from 'next/script'
 import { generateLocalBusinessSchema, generateWebsiteSchema, generateOrganizationSchema } from '@/app/utils/seo'
 
 interface SEOProps {
-  type?: 'local_business' | 'website' | 'organization' | 'all'
-  jsonLd?: Record<string, any>
+  type?: 'local_business' | 'website' | 'organization' | 'all';
+  jsonLd?: Record<string, any>;
 }
 
 /**
@@ -19,6 +19,7 @@ export default function SEO({ type = 'all', jsonLd }: SEOProps) {
       <Script
         id="json-ld"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     )
@@ -55,6 +56,7 @@ export default function SEO({ type = 'all', jsonLd }: SEOProps) {
           key={`json-ld-${index}`}
           id={`json-ld-${index}`}
           type="application/ld+json"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
