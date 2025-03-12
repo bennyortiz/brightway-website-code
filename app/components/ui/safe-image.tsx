@@ -7,6 +7,7 @@ interface SafeImageProps {
   fallbackText?: string;
   priority?: boolean;
   loading?: "eager" | "lazy";
+  onLoadingComplete?: (img: HTMLImageElement) => void;
 }
 
 export default function SafeImage({
@@ -16,6 +17,7 @@ export default function SafeImage({
   fallbackText,
   priority = false,
   loading,
+  onLoadingComplete,
 }: SafeImageProps) {
   // Determine loading strategy
   // - priority images are always loaded eagerly
@@ -33,6 +35,7 @@ export default function SafeImage({
       priority={priority}
       loading={loadingStrategy}
       quality={85}
+      onLoadingComplete={onLoadingComplete}
     />
   );
 } 

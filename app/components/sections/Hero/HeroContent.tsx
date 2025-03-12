@@ -19,11 +19,11 @@ const HeroContent = () => {
         <span>Professional Commercial Cleaning</span>
       </div>
       
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 text-rendering-optimizeLegibility">
         Pristine Spaces for <span className="text-primary">Productive</span> Businesses
       </h1>
       
-      <p className="text-lg md:text-xl text-gray-600 max-w-[600px]">
+      <p className="text-lg md:text-xl text-gray-600 max-w-[600px] mx-auto md:mx-0 font-optimizeLegibility">
         Brightway Cleaning delivers exceptional commercial cleaning services tailored to your business needs, ensuring a healthy, professional environment.
       </p>
       

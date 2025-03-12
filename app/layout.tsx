@@ -122,15 +122,25 @@ export default function RootLayout({
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         
-        {/* Font optimization - ensures proper font display while loading */}
+        {/* Optimized font loading for LCP performance */}
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'Plus Jakarta Sans Variable';
             font-display: swap;
+            font-style: normal;
+            font-weight: 100 900;
+          }
+
+          /* Mobile optimization for text rendering */
+          @media (max-width: 768px) {
+            .text-lg, .text-xl, .text-2xl {
+              font-display: block;
+              text-rendering: optimizeSpeed;
+            }
           }
         `}} />
 
-        {/* Preload critical styles and resources */}
+        {/* Preload critical fonts and resources */}
         <link rel="preload" href="/fonts/plus-jakarta-sans-variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
