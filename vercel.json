@@ -1,27 +1,6 @@
 {
-  /**
-   * Schema definition for Vercel configuration
-   * This ensures IDE validation against Vercel's API spec
-   */
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  
-  /**
-   * Vercel platform version
-   * Version 2 is the current standard for deployment configuration
-   */
   "version": 2,
-  
-  /**
-   * Framework designation
-   * Explicitly tells Vercel this is a Next.js project
-   * This is crucial for proper detection and deployment
-   */
   "framework": "nextjs",
-  
-  /**
-   * Custom build command
-   * Specifies the command to build the application
-   * Uses the standard npm run build which maps to next build
-   */
   "buildCommand": "npm run build"
 } 
