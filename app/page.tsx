@@ -14,6 +14,7 @@ import Hero from './components/sections/Hero'
 import Services from './components/sections/Services'
 import About from './components/sections/About'
 import Testimonials from './components/sections/Testimonials'
+import FAQ from './components/sections/FAQ'
 import Contact from './components/sections/Contact'
 import MainLayout from './components/layout/MainLayout'
 import SEO from './components/shared/SEO'
@@ -39,7 +40,8 @@ export const metadata: Metadata = generatePageMetadata({
  * 2. Services - Overview of cleaning services offered
  * 3. About - Company information and values
  * 4. Testimonials - Customer reviews and feedback
- * 5. Contact - Contact form and information
+ * 5. FAQ - Frequently asked questions
+ * 6. Contact - Contact form and information
  */
 export default function Home() {
   return (
@@ -49,6 +51,7 @@ export default function Home() {
       <Services />
       <About />
       <Testimonials />
+      <FAQ />
       <Contact />
     </MainLayout>
   )
