@@ -45,13 +45,7 @@ const nextConfig = {
     ],
     // Specify which next-gen image formats to use
     formats: ['image/avif', 'image/webp'],
-    // Set image quality to balance size and quality
-    quality: 80,
-    // Enable content-aware image resizing for better performance
-    contentDispositionType: 'attachment',
-    // Minimize image sizes
-    minimumCacheTTL: 60,
-    // Reduce the impact of images on Core Web Vitals
+    // Reduce the impact of images on Core Web Vitals with proper sizing
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   }
