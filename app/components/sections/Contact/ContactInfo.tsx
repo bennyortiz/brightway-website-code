@@ -1,5 +1,6 @@
 import React from 'react'
 import { Mail, Phone, MapPin } from 'lucide-react'
+import { siteConfig } from '@/app/constants/siteConfig'
 
 /**
  * ContactInfo Component
@@ -16,9 +17,9 @@ const ContactInfo = () => {
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-1">Call Us</h3>
-          <p className="text-gray-600 mb-1">Available Monday-Saturday</p>
-          <a href="tel:+1234567890" className="text-primary hover:underline">
-            (123) 456-7890
+          <p className="text-gray-600 mb-1">Available Monday-Friday</p>
+          <a href={`tel:${siteConfig.contact.phone.raw}`} className="text-primary hover:underline">
+            {siteConfig.contact.phone.display}
           </a>
         </div>
       </div>
@@ -30,8 +31,8 @@ const ContactInfo = () => {
         <div>
           <h3 className="text-xl font-semibold mb-1">Email Us</h3>
           <p className="text-gray-600 mb-1">We'll respond within 24 hours</p>
-          <a href="mailto:info@brightwaycleaning.com" className="text-primary hover:underline">
-            info@brightwaycleaning.com
+          <a href={`mailto:${siteConfig.contact.email}`} className="text-primary hover:underline">
+            {siteConfig.contact.email}
           </a>
         </div>
       </div>
@@ -41,11 +42,10 @@ const ContactInfo = () => {
           <MapPin className="h-6 w-6 text-primary" />
         </div>
         <div>
-          <h3 className="text-xl font-semibold mb-1">Visit Us</h3>
-          <p className="text-gray-600 mb-1">Our main office</p>
+          <h3 className="text-xl font-semibold mb-1">Service Area</h3>
+          <p className="text-gray-600 mb-1">Serving the DFW Metroplex</p>
           <address className="not-italic text-primary">
-            123 Cleaning Street<br />
-            San Francisco, CA 94107
+            Based in {siteConfig.contact.address.full}
           </address>
         </div>
       </div>

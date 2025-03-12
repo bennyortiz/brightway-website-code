@@ -17,10 +17,10 @@ const CTABanner = () => {
           <div className="relative px-6 py-12 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">
-                Ready to Transform Your Space?
+                Ready to Transform Your Space in DFW?
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl">
-                Get a customized cleaning solution that meets your business needs. Contact us today for a free, no-obligation quote.
+                Get a customized cleaning solution that meets your business needs throughout the DFW metroplex. Contact us today for a free, no-obligation quote.
               </p>
             </div>
             

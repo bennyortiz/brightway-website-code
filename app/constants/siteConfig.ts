@@ -4,12 +4,12 @@ export const siteConfig = {
   name: 'Brightway Cleaning',
   tagline: 'Professional Cleaning Services',
   description: 'Professional commercial cleaning services with a focus on quality, reliability, and customer satisfaction.',
-  url: 'https://brightwayservices.com',
-  ogImage: 'https://brightwayservices.com/og.svg',
+  url: 'https://brightway-cleaning.com',
+  ogImage: 'https://brightway-cleaning.com/og.svg',
   
   // Business information
   business: {
-    legalName: 'Brightway Cleaning Services, Inc.',
+    legalName: 'Brightway Cleaning',
     startYear: 2010,
     employeeCount: '50+',
     servicesCount: '15+',
@@ -20,37 +20,37 @@ export const siteConfig = {
   // Contact information
   contact: {
     phone: {
-      display: '(555) 123-4567',
-      raw: '+15551234567',
+      display: '(214) 636-2323',
+      raw: '+12146362323',
     },
-    email: 'info@brightwayservices.com',
+    email: 'brightwaycleaningco@gmail.com',
     address: {
-      street: '123 Main Street, Suite 100',
-      city: 'San Francisco',
-      state: 'CA',
-      zip: '94105',
+      street: 'Bedford, TX',
+      city: 'Bedford',
+      state: 'TX',
+      zip: '',
       country: 'USA',
-      full: '123 Main Street, Suite 100, San Francisco, CA 94105',
-      maps: 'https://maps.google.com/?q=123+Main+Street+San+Francisco+CA+94105'
+      full: 'Bedford, TX',
+      maps: 'https://maps.google.com/?q=Bedford+TX'
     },
     hours: 'Monday - Friday: 8:00 AM - 6:00 PM',
     coordinates: {
-      latitude: 37.7749,
-      longitude: -122.4194
+      latitude: 32.8465,
+      longitude: -97.1429
     }
   },
   
   // Social media links
   social: {
-    twitter: 'https://twitter.com/brightwayservices',
-    facebook: 'https://facebook.com/brightwayservices',
-    instagram: 'https://instagram.com/brightwayservices',
-    linkedin: 'https://linkedin.com/company/brightwayservices',
+    twitter: 'https://twitter.com/brightwaycleaningco',
+    facebook: 'https://facebook.com/brightwaycleaningco',
+    instagram: 'https://instagram.com/brightwaycleaningco',
+    linkedin: 'https://linkedin.com/company/brightwaycleaningco',
     // Social handles without URLs (for Schema.org)
     handles: {
-      twitter: '@brightwayservices',
-      facebook: 'brightwayservices',
-      instagram: '@brightwayservices',
+      twitter: '@brightwaycleaningco',
+      facebook: 'brightwaycleaningco',
+      instagram: '@brightwaycleaningco',
     }
   },
   
@@ -64,6 +64,8 @@ export const siteConfig = {
       'janitorial services',
       'sanitization services',
       'workplace cleaning',
+      'DFW cleaning services',
+      'Bedford cleaning company',
     ],
     locale: 'en_US',
     type: 'ProfessionalService', // Schema.org type
@@ -81,11 +83,16 @@ export const siteConfig = {
     robotsContent: 'index, follow',
     // Common regions/cities served - used for local SEO
     serviceAreas: [
-      'San Francisco',
-      'Oakland',
-      'San Jose',
-      'Bay Area',
-      'Silicon Valley',
+      'Bedford',
+      'Fort Worth',
+      'Dallas',
+      'Arlington',
+      'Irving',
+      'Plano',
+      'Euless',
+      'Grapevine',
+      'Hurst',
+      'DFW Metroplex',
     ],
     businessType: 'Commercial Cleaning Service',
     businessCategory: 'Professional Services', 

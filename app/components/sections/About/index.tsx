@@ -3,6 +3,7 @@ import SafeImage from '../../ui/safe-image'
 import SectionHeader from '../../ui/section-header'
 import BenefitItem from './BenefitItem'
 import { benefitsData } from './benefitsData'
+import { siteConfig } from '@/app/constants/siteConfig'
 
 /**
  * About Section Component
@@ -19,7 +20,7 @@ const About = () => {
         <SectionHeader 
           subtitle="About Us"
           title="Your Trusted Cleaning Partner"
-          description="With years of experience in the commercial cleaning industry, we provide reliable, high-quality cleaning services that keep your business looking its best."
+          description={`Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable, high-quality cleaning services that keep your business looking its best.`}
         />
         
         <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
@@ -39,7 +40,7 @@ const About = () => {
           <div className="md:w-1/2 space-y-8">
             <h3 className="text-3xl font-bold">Why Choose Brightway?</h3>
             <p className="text-lg text-gray-600">
-              We take pride in our exceptional cleaning services and our commitment to customer satisfaction. Here's what sets us apart:
+              We take pride in our exceptional cleaning services and our commitment to customer satisfaction throughout the DFW metroplex. Here's what sets us apart:
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
