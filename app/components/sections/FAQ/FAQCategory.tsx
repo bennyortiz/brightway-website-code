@@ -11,9 +11,11 @@ import { FAQCategory as FAQCategoryType } from './faqData'
  */
 const FAQCategory = ({ title, items }: FAQCategoryType) => {
   return (
-    <div className="mb-10 last:mb-0">
-      <h2 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-primary pl-4">{title}</h2>
-      <div className="bg-white rounded-lg shadow-sm">
+    <div className="mb-12 last:mb-0">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-primary pl-4 py-1">
+        {title}
+      </h2>
+      <div className="bg-white rounded-lg shadow-md p-1">
         {items.map((item, index) => (
           <FAQItem 
             key={index}

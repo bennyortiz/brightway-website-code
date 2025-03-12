@@ -20,7 +20,7 @@ const Hero = () => {
           <div className="mt-12 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
             <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl">
               <SafeImage
-                src="/images/brightway-commercial-cleaning-team.jpg"
+                src="/images/brightway-commercial-cleaning-wiping.jpg"
                 alt="Brightway Commercial Cleaning Team"
                 fallbackText="Commercial Cleaning Team"
               />
