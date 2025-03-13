@@ -50,9 +50,6 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // Performance optimization settings
-  swcMinify: true, // Use SWC for minification (faster than Terser)
-
   // Enable more aggressive code optimizations
   compiler: {
     // Remove console.log statements in production
@@ -63,12 +60,8 @@ const nextConfig = {
 
   // Enable experimental features for better performance
   experimental: {
-    // Enable optimized server components
-    serverComponents: true,
     // Better code splitting
     optimizeCss: true,
-    // Optimized font loading
-    fontLoaders: [{ loader: '@next/font/google', options: { subsets: ['latin'] } }],
   },
 };
 
