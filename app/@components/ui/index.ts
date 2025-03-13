@@ -7,7 +7,7 @@
  */
 
 // Re-export components as they're added to the UI directory
-// For now, this is a placeholder for future components
+export * from './Button';
 
 // Layout
 export * from './layout/MainLayout'; 

@@ -7,4 +7,5 @@
  */
 
 // Re-export utility functions 
-export * from './metadata'; 
+export * from './metadata';
+export * from './formatting'; 
