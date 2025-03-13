@@ -27,6 +27,12 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  // Enable SWC minification for better performance (moved from experimental)
+  swcMinify: true,
+
+  // Define external packages for server components (moved from experimental)
+  serverExternalPackages: ['sharp'],
+
   // Output standalone build
   // This creates a standalone build that includes all dependencies
   // Essential for proper Vercel deployment with serverless functions
@@ -64,10 +70,6 @@ const nextConfig = {
   experimental: {
     // Better code splitting
     optimizeCss: true,
-    // Enable partitioning for better code splitting
-    serverComponentsExternalPackages: ['sharp'],
-    // Enable SWC minification for better performance
-    swcMinify: true,
     // Enable optimistic updates
     optimisticClientCache: true,
     // Enable server actions for form handling with less client JS
