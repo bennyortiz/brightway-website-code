@@ -9,14 +9,20 @@ import { TestimonialItem } from './testimonialsData';
  *
  * @param {TestimonialItem} props - The testimonial data
  */
-const TestimonialCard = ({ quote, author, position, company }: TestimonialItem) => {
+const TestimonialCard = ({ 
+  quote, 
+  author, 
+  position, 
+  company, 
+  transparent = false 
+}: TestimonialItem & { transparent?: boolean }) => {
   return (
     <div className="relative group h-full transition-all duration-300 ease-in-out">
       {/* Card container with hover effects */}
-      <div className="bg-white rounded-2xl shadow-lg h-full p-8 flex flex-col relative z-10 
+      <div className={`${transparent ? 'bg-transparent' : 'bg-white'} rounded-2xl shadow-lg h-full p-8 flex flex-col relative z-10 
                     transition-all duration-300 
                     border border-gray-100 group-hover:border-primary/30
-                    group-hover:shadow-xl group-hover:-translate-y-1">
+                    group-hover:shadow-xl group-hover:-translate-y-1`}>
         
         {/* Quote icon as a stylized element */}
         <div className="text-5xl leading-none text-primary/30 font-serif mb-2">"</div>

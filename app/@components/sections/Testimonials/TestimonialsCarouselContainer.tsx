@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { TestimonialItem } from './testimonialsData';
-import TestimonialCarousel from './TestimonialCarousel';
+import TestimonialsCarousel from './TestimonialsCarousel';
 
 interface TestimonialsCarouselContainerProps {
   testimonials: TestimonialItem[];
@@ -36,7 +36,7 @@ const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps
       
       {/* Carousel content */}
       <div className="relative py-4">
-        <TestimonialCarousel testimonials={testimonials} />
+        <TestimonialsCarousel testimonials={testimonials} cardStyle="transparent" />
       </div>
     </div>
   );

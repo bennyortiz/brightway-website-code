@@ -25,6 +25,9 @@ export * from './buttons';
 // Export card components
 export * from './cards';
 
+// Export carousel components
+export * from './carousel';
+
 // Add additional component exports as the library grows
 // export * from './layout';
 // export * from './navigation';
