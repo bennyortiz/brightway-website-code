@@ -30,6 +30,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
   preload: true,
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
 });
 
 /**
@@ -152,11 +153,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             font-weight: 100 900;
           }
 
+          /* Font optimization for LCP */
+          .hero-text p, .hero-text h1, .hero-text h2 {
+            font-display: swap;
+            text-rendering: optimizeSpeed;
+            content-visibility: auto;
+            contain-intrinsic-size: 1px 1000px;
+          }
+
           /* Mobile optimization for text rendering */
           @media (max-width: 768px) {
             .text-lg, .text-xl, .text-2xl {
               font-display: block;
               text-rendering: optimizeSpeed;
+            }
+            
+            /* Force LCP content to render quickly */
+            .hero-content p {
+              content-visibility: auto;
+              contain-intrinsic-size: 1px 500px;
             }
           }
         `,
@@ -185,18 +200,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           id="polyfill-io"
         />
         
-        {/* Add Web Vitals measurement script */}
+        {/* Add Web Vitals measurement script with improved timing */}
         <Script
           id="web-vitals"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              function sendToAnalytics(metric) {
+              const sendToAnalytics = (metric) => {
                 // You can send to any analytics service here
                 console.log(metric);
-              }
+              };
               
-              try {
+              // Only load web-vitals after page is fully loaded and idle
+              if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(() => {
+                  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+                    getCLS(sendToAnalytics);
+                    getFID(sendToAnalytics);
+                    getFCP(sendToAnalytics);
+                    getLCP(sendToAnalytics);
+                    getTTFB(sendToAnalytics);
+                  });
+                }, { timeout: 5000 });
+              } else {
+                // Fallback for browsers that don't support requestIdleCallback
                 window.addEventListener('load', () => {
                   setTimeout(() => {
                     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
@@ -206,10 +233,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       getLCP(sendToAnalytics);
                       getTTFB(sendToAnalytics);
                     });
-                  }, 3000); // Delay to not impact initial load
+                  }, 5000);
                 });
-              } catch (e) {
-                console.error(e);
               }
             `,
           }}

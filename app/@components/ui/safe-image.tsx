@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { useState } from 'react';
+import ImageSkeleton from './image-skeleton';
 
 type ImagePlacement = 'hero' | 'above-fold' | 'mid-page' | 'below-fold' | 'footer';
 
@@ -12,11 +14,14 @@ interface SafeImageProps {
   onLoadingComplete?: (img: HTMLImageElement) => void;
   placement?: ImagePlacement;
   quality?: number;
+  width?: number;
+  height?: number;
+  sizes?: string;
 }
 
 /**
  * Enhanced safe image component with intelligent loading strategies
- * based on image placement within the page
+ * based on image placement within the page and optimized for LCP performance
  */
 export default function SafeImage({
   src,
@@ -28,9 +33,15 @@ export default function SafeImage({
   onLoadingComplete,
   placement,
   quality = 85,
+  width,
+  height,
+  sizes,
 }: SafeImageProps) {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
   // Determine priority based on placement if not explicitly set
-  const shouldPrioritize = priority || placement === 'hero' || placement === 'above-fold';
+  const shouldPrioritize = priority || placement === 'hero';
   
   // Determine loading strategy
   // - hero and above-fold images are loaded eagerly by default
@@ -49,13 +60,14 @@ export default function SafeImage({
     }
   }
 
-  // Determine image quality based on placement
-  // Hero and above-fold images get higher quality
-  const imageQuality = shouldPrioritize ? 90 : quality;
+  // Determine image quality based on placement and device
+  // Hero and above-fold images get higher quality but still optimize for mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const imageQuality = shouldPrioritize ? (isMobile ? 85 : 90) : (isMobile ? 75 : quality);
   
   // Determine appropriate sizes based on placement
   // This helps the browser make better decisions about which source to load
-  let imageSizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
+  let imageSizes = sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
   
   if (placement === 'hero') {
     imageSizes = "(max-width: 768px) 100vw, 50vw";
@@ -63,17 +75,61 @@ export default function SafeImage({
     imageSizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw";
   }
 
+  // Handle image load completion
+  const handleLoadingComplete = (img: HTMLImageElement) => {
+    setIsLoading(false);
+    if (onLoadingComplete) {
+      onLoadingComplete(img);
+    }
+  };
+
+  // Handle image load error
+  const handleError = () => {
+    setIsLoading(false);
+    setHasError(true);
+  };
+
+  // Aspect ratio for skeleton
+  let aspectRatio: 'square' | '16/9' | '4/3' | '2/1' = 'square';
+  if (width && height) {
+    const ratio = width / height;
+    if (ratio > 1.7 && ratio < 1.9) {
+      aspectRatio = '16/9';
+    } else if (ratio > 1.25 && ratio < 1.35) {
+      aspectRatio = '4/3';
+    } else if (ratio > 1.9) {
+      aspectRatio = '2/1';
+    }
+  }
+
   return (
-    <Image
-      src={src}
-      alt={alt || fallbackText || 'Image'}
-      className={className}
-      fill
-      sizes={imageSizes}
-      priority={shouldPrioritize}
-      loading={loadingStrategy}
-      quality={imageQuality}
-      onLoadingComplete={onLoadingComplete}
-    />
+    <>
+      {isLoading && <ImageSkeleton aspectRatio={aspectRatio} className={className} />}
+      
+      <Image
+        src={src}
+        alt={alt || fallbackText || 'Image'}
+        className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
+        fill={!width || !height}
+        width={width}
+        height={height}
+        sizes={imageSizes}
+        priority={shouldPrioritize}
+        loading={loadingStrategy}
+        quality={imageQuality}
+        onLoadingComplete={handleLoadingComplete}
+        onError={handleError}
+        style={{
+          // For mobile optimization, applying content visibility to non-critical images
+          contentVisibility: placement === 'below-fold' || placement === 'footer' ? 'auto' : undefined,
+        }}
+      />
+      
+      {hasError && (
+        <div className="flex items-center justify-center absolute inset-0 bg-gray-100 text-gray-500 text-sm p-4 text-center">
+          {fallbackText || alt || 'Image could not be loaded'}
+        </div>
+      )}
+    </>
   );
 }

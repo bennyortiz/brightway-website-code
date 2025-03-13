@@ -48,6 +48,8 @@ const nextConfig = {
     // Reduce the impact of images on Core Web Vitals with proper sizing
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Improve LCP by minimizing image size while maintaining visual quality
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
 
   // Enable more aggressive code optimizations
@@ -62,6 +64,66 @@ const nextConfig = {
   experimental: {
     // Better code splitting
     optimizeCss: true,
+    // Optimize fonts for faster loading
+    optimizeFonts: true,
+    // New font optimization
+    fontLoaders: [
+      { loader: '@next/font/google', options: { subsets: ['latin'] } },
+    ],
+    // Additional optimizations for Core Web Vitals
+    adjustFontFallbacks: true,
+    adjustFontFailures: true,
+    // Enable image optimization improvements
+    optimizeImages: true,
+    // Create smaller JS bundles
+    turbotrace: {
+      logLevel: 'error',
+    },
+  },
+
+  // Make production builds faster
+  swcMinify: true,
+  
+  // Configure response headers for better caching
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        source: '/images/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000',
+          },
+        ],
+      },
+      {
+        source: '/_next/image:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000',
+          },
+        ],
+      },
+      {
+        source: '/fonts/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
 };
 

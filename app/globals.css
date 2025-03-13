@@ -65,6 +65,37 @@
   }
 }
 
+/* Optimize LCP text elements */
+h1, p.hero-text {
+  text-wrap: balance;
+  font-display: swap;
+}
+
+/* Optimized text contrast for readability */
+.text-gray-600 {
+  color: #4b5563; /* Slightly darker than default for better contrast */
+}
+
+/* Shimmer animation for image skeletons */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+
+/* Content visibility optimizations for below-fold content */
+.below-fold-content {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+}
+
 /* Testimonial Card Styles - Ensure Visibility */
 #testimonials .testimonial-carousel-item {
   display: block !important;
