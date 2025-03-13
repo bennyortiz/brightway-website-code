@@ -32,8 +32,8 @@ export default function ServicesPage() {
   return (
     <MainLayout>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-primary/10 to-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
+      <section className="relative bg-white py-16 md:py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>
         </div>
         <div className="container mx-auto px-4">
