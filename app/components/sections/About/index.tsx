@@ -1,6 +1,5 @@
 import React from 'react';
 import SafeImage from '../../ui/safe-image';
-import SectionHeader from '../../ui/section-header';
 import { siteConfig } from '@/app/constants/siteConfig';
 
 /**
@@ -15,13 +14,7 @@ const About = () => {
   return (
     <section id="about" className="w-full py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
-        <SectionHeader
-          subtitle="About Us"
-          title="Your Trusted Cleaning Partner"
-          description={`Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable, high-quality cleaning services.`}
-        />
-
-        {/* Simple Content Layout with Image and Text */}
+        {/* Content Layout with Image and Text side by side */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           {/* Left Column - Image */}
           <div className="lg:col-span-5 flex items-center justify-center">
@@ -38,8 +31,18 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column - Company Info */}
+          {/* Right Column - Header and Company Info */}
           <div className="lg:col-span-7 flex flex-col justify-center">
+            {/* Header content */}
+            <div className="mb-6">
+              <div className="text-primary font-medium mb-2">About Us</div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Trusted Cleaning Partner</h2>
+              <p className="text-gray-600 mb-6">
+                Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable, high-quality cleaning services.
+              </p>
+            </div>
+            
+            {/* Company information */}
             <p className="text-lg text-gray-600 mb-4">
               For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional
               cleaning services to businesses throughout the DFW metroplex.
