@@ -1,15 +1,10 @@
 'use client';
 
 import React, { Suspense, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { TestimonialItem } from './testimonialsData';
 import TestimonialCard from './TestimonialCard';
 import { testimonials as staticTestimonials } from './testimonialsData';
-
-// Lazy-load the TestimonialList (server component)
-const TestimonialList = dynamic(() => import('./TestimonialList'), {
-  loading: () => <TestimonialsSkeleton />
-});
+import { lazyLoad } from '@/app/utils/lazyLoad';
 
 /**
  * Skeleton loader component for testimonials while they're loading
@@ -35,6 +30,15 @@ const TestimonialsSkeleton = () => {
     </div>
   );
 };
+
+// Lazy-load the TestimonialList (server component) with position-based optimization
+const TestimonialList = lazyLoad(
+  () => import('./TestimonialList'),
+  { 
+    placement: 'below-fold',
+    loadingComponent: <TestimonialsSkeleton />
+  }
+);
 
 /**
  * Fallback testimonials component - a direct rendering of testimonials without the carousel

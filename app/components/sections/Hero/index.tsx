@@ -52,8 +52,9 @@ const Hero = () => {
                 src="/images/brightway-commercial-hallway.jpg"
                 alt="Brightway Commercial Hallway Cleaning"
                 fallbackText="Commercial Hallway Cleaning"
-                priority={false}
-                loading="lazy"
+                priority={true}
+                placement="hero"
+                quality={95}
                 className="w-full h-full object-cover md:opacity-100 transition-opacity duration-300"
               />
             </MotionDiv>
