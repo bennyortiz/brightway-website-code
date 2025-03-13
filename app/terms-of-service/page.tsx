@@ -4,12 +4,18 @@ import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 
 /**
  * Page Metadata
+ * 
+ * Terms of Service pages should be indexed by search engines for transparency
+ * and to ensure users can find your legal documents.
  */
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Terms of Service | Brightway Cleaning',
   description: 'Please read our Terms of Service to understand the conditions for using Brightway Cleaning services.',
-  slug: 'terms-of-service',
+  canonicalPath: '/terms-of-service',
+  seo: {
+    maxSnippet: 0, // Prevent showing snippets of legal text in search results
+  }
 });
 
 export default function TermsOfService() {

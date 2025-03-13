@@ -4,12 +4,19 @@ import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 
 /**
  * Page Metadata
+ * 
+ * Privacy Policy pages should be indexed by search engines for transparency
+ * and to comply with various privacy regulations that require policies to be
+ * easily accessible.
  */
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Privacy Policy | Brightway Cleaning',
   description: 'Learn about how Brightway Cleaning collects, uses, and protects your personal information.',
-  slug: 'privacy-policy',
+  canonicalPath: '/privacy-policy',
+  seo: {
+    maxSnippet: 0, // Prevent showing snippets of legal text in search results
+  }
 });
 
 export default function PrivacyPolicy() {

@@ -4,12 +4,19 @@ import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 
 /**
  * Page Metadata
+ * 
+ * Cookie Policy pages should be indexed by search engines for transparency
+ * and to comply with cookie regulations like GDPR that require cookie information
+ * to be easily accessible.
  */
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Cookie Policy | Brightway Cleaning',
   description: 'Learn how Brightway Cleaning uses cookies and similar technologies on our website.',
-  slug: 'cookie-policy',
+  canonicalPath: '/cookie-policy',
+  seo: {
+    maxSnippet: 0, // Prevent showing snippets of legal text in search results
+  }
 });
 
 export default function CookiePolicy() {
