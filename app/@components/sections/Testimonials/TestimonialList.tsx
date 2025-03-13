@@ -6,7 +6,8 @@
 
 import { useEffect, useState } from 'react';
 import TestimonialsCarouselContainer from './TestimonialsCarouselContainer';
-import { testimonials as fallbackTestimonials, TestimonialItem } from './testimonialsData';
+import { testimonials as fallbackTestimonials, TestimonialItem } from '@/app/@lib/data/testimonials';
+import { getTestimonials } from '@/app/@lib/api/services/testimonials';
 
 export default function TestimonialList() {
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>(fallbackTestimonials);
@@ -16,8 +17,6 @@ export default function TestimonialList() {
     // Fetch testimonials on the client side
     const fetchTestimonials = async () => {
       try {
-        // Import the service dynamically to avoid bundling issues
-        const { getTestimonials } = await import('@/app/services/testimonialsService');
         const data = await getTestimonials();
         
         // Log testimonials for debugging

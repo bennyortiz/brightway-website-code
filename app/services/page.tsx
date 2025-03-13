@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
-import { serviceItems } from '@/app/@components/sections/Services/serviceData';
+import { serviceItems } from '@/app/@lib/data/services';
 import { BriefcaseIcon, CheckCircle2, ClockIcon, MessageSquareIcon, ShieldIcon, SparklesIcon } from 'lucide-react';
 
 /**

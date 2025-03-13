@@ -10,5 +10,5 @@
 export * from './Contact/ContactForm';
 export * from './Contact/ContactInfo';
 
-// Services section components
-export * from './Services/serviceData'; 
+// Services section components - now imported from lib
+export { serviceItems } from '@/app/@lib/data/services'; 

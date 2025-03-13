@@ -6,7 +6,7 @@ import { CheckCircle } from 'lucide-react';
 import SectionHeader from '../../ui/section-header';
 import SafeImage from '../../ui/safe-image';
 import BenefitItem from './BenefitItem';
-import { benefitsData } from './benefitsData';
+import { benefitsData } from '@/app/@lib/data/benefits';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { motion } from 'framer-motion';
 import { 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { faqData } from './faqData';
+import { faqData } from '@/app/@lib/data/faq';
 import { ChevronRight } from 'lucide-react';
 
 // Fallback data in case the import fails

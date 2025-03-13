@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import ServiceCard from './ServiceCard';
-import { serviceItems } from './serviceData';
+import { serviceItems } from '@/app/@lib/data/services';
 import { Building2, Briefcase, Building, Droplets, Trash2, Clock } from 'lucide-react';
 
 // Service icons mapping

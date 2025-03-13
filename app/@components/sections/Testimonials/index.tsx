@@ -1,9 +1,8 @@
 'use client';
 
 import React, { Suspense, useEffect } from 'react';
-import { TestimonialItem } from './testimonialsData';
+import { TestimonialItem, testimonials as staticTestimonials } from '@/app/@lib/data/testimonials';
 import TestimonialCard from './TestimonialCard';
-import { testimonials as staticTestimonials } from './testimonialsData';
 import dynamic from 'next/dynamic';
 
 /**

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Search, MapPin, CheckCircle, Clock, ArrowRight, ChevronDown, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { dfwMapData, DFWMapRegion } from './dfwMapData';
+import { dfwMapData, DFWMapRegion } from '@/app/@lib/data/dfwMapData';
 
 /**
  * ServiceAreas Component

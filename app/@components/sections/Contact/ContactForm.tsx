@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
+import { submitContactForm } from '@/app/@lib/api/services/contactForm';
 
 /**
  * ContactForm Component
@@ -17,6 +18,11 @@ const ContactForm = () => {
     service: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    success?: boolean;
+    message?: string;
+  }>({});
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -25,22 +31,44 @@ const ContactForm = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send the form data to a server
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    });
+    setIsSubmitting(true);
+    setSubmitStatus({});
+    
+    try {
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        setSubmitStatus({
+          success: true,
+          message: 'Thank you for your message! We will get back to you soon.',
+        });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+        });
+      }
+    } catch (error) {
+      setSubmitStatus({
+        success: false,
+        message: 'There was an error submitting your message. Please try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-lg">
+      {submitStatus.message && (
+        <div className={`p-4 mb-4 rounded-md ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+          {submitStatus.message}
+        </div>
+      )}
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -120,10 +148,13 @@ const ContactForm = () => {
       </div>
       <button
         type="submit"
-        className="w-full flex justify-center items-center gap-2 bg-primary text-white py-3 px-4 rounded-md hover:bg-primary/90 transition-colors"
+        className={`mt-4 w-full flex justify-center items-center gap-2 py-2 px-4 rounded-md bg-primary ${
+          isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-dark'
+        } text-white`}
+        disabled={isSubmitting}
       >
-        <Send className="h-4 w-4" />
-        Send Message
+        {isSubmitting ? 'Sending...' : 'Send Message'}
+        <Send size={18} />
       </button>
     </form>
   );

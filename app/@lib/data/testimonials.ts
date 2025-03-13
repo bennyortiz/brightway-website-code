@@ -1,14 +1,22 @@
 /**
- * Testimonial Service
- * 
- * Fetches testimonial data from a service or API with artificial delay
- * to simulate a real-world API request
+ * Testimonial Item Interface
+ *
+ * Defines the structure for testimonial items displayed throughout the application
  */
+export interface TestimonialItem {
+  quote: string;
+  author: string;
+  position: string;
+  company: string;
+}
 
-import { TestimonialItem } from '../@components/sections/Testimonials/testimonialsData';
-
-// Sample testimonial data that would normally come from a database or API
-const testimonialData: TestimonialItem[] = [
+/**
+ * Testimonials Data
+ *
+ * Contains testimonial quotes from clients with their details.
+ * Used in the Testimonials section to display client feedback.
+ */
+export const testimonials: TestimonialItem[] = [
   {
     quote:
       'Brightway Cleaning has transformed our office space. Their attention to detail and consistent quality have made them an invaluable partner for our business.',
@@ -40,5 +48,5 @@ export async function getTestimonials(): Promise<TestimonialItem[]> {
   // Add artificial delay to simulate real API
   await new Promise((resolve) => setTimeout(resolve, 1500));
   
-  return testimonialData;
+  return testimonials;
 } 
