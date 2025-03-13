@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
-import { generatePageMetadata } from '@/app/@lib/utils/metadata';
-import { serviceItems } from '@/app/@components/sections/Services/serviceData';
+import MainLayout from '../components/layout/MainLayout';
+import { generatePageMetadata } from '../utils/metadata';
+import { serviceItems } from '../components/sections/Services/serviceData';
 import { BriefcaseIcon, CheckCircle2, ClockIcon, MessageSquareIcon, ShieldIcon, SparklesIcon } from 'lucide-react';
 
 /**

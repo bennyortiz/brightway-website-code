@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
-import { generatePageMetadata } from '@/app/@lib/utils/metadata';
+import MainLayout from '../components/layout/MainLayout';
+import { generatePageMetadata } from '../utils/metadata';
 
 /**
  * Page Metadata

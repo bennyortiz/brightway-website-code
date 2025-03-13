@@ -2,7 +2,15 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { AlertTriangle } from 'lucide-react';
 
+/**
+ * Error Component
+ * 
+ * Next.js Error Boundary component for the entire application
+ * This component is rendered when an uncaught exception is thrown
+ * in a React component tree at runtime.
+ */
 export default function Error({
   error,
   reset,
@@ -12,28 +20,33 @@ export default function Error({
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
+    console.error('Application error:', error);
   }, [error]);
 
   return (
-    <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-5xl font-bold mb-4">Something went wrong!</h1>
-      <p className="text-xl text-gray-600 mb-8 text-center max-w-xl">
-        We apologize for the inconvenience. Please try again later.
-      </p>
-      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-        <button
-          onClick={reset}
-          className="inline-flex h-11 items-center justify-center rounded-md bg-blue-600 px-8 text-base font-medium text-white shadow"
-        >
-          Try again
-        </button>
-        <Link
-          href="/"
-          className="inline-flex h-11 items-center justify-center rounded-md border border-gray-300 px-8 text-base font-medium text-gray-700 shadow"
-        >
-          Return to Homepage
-        </Link>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="max-w-lg w-full text-center">
+        <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
+          <AlertTriangle className="w-8 h-8 text-red-500" />
+        </div>
+        <h1 className="text-3xl font-bold mb-3">Something went wrong</h1>
+        <p className="text-gray-600 mb-6">
+          We apologize for the inconvenience. Our team has been notified of this issue.
+        </p>
+        <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 justify-center">
+          <button
+            onClick={reset}
+            className="inline-flex items-center justify-center h-10 px-6 font-medium bg-primary text-white rounded-md shadow hover:bg-primary-dark transition-colors"
+          >
+            Try again
+          </button>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center h-10 px-6 font-medium bg-gray-100 text-gray-900 rounded-md shadow hover:bg-gray-200 transition-colors"
+          >
+            Go home
+          </Link>
+        </div>
       </div>
     </div>
   );

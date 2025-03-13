@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
-import { generatePageMetadata } from '@/app/@lib/utils/metadata';
-import { siteConfig } from '@/app/@lib/constants/siteConfig';
+import MainLayout from '../components/layout/MainLayout';
+import { generatePageMetadata } from '../utils/metadata';
+import { siteConfig } from '../constants/siteConfig';
 
 /**
  * Page Metadata

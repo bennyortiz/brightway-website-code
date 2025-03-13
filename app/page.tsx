@@ -10,18 +10,18 @@
  */
 
 import { Metadata } from 'next';
-import Hero from './@components/sections/Hero';
-import Services from './@components/sections/Services';
-import ServiceAreas from './@components/sections/ServiceAreas';
-import About from './@components/sections/About';
-import WhyChooseUs from './@components/sections/WhyChooseUs';
-import Testimonials from './@components/sections/Testimonials';
-import FAQ from './@components/sections/FAQ';
-import Contact from './@components/sections/Contact';
-import MainLayout from './@components/ui/layout/MainLayout';
-import SEO from './@components/shared/SEO';
-import { generatePageMetadata } from './@lib/utils/metadata';
-import CTABanner from './@components/sections/CTABanner';
+import Hero from '@/app/@components/sections/Hero';
+import Services from '@/app/@components/sections/Services';
+import ServiceAreas from '@/app/@components/sections/ServiceAreas';
+import About from '@/app/@components/sections/About';
+import WhyChooseUs from '@/app/@components/sections/WhyChooseUs';
+import Testimonials from '@/app/@components/sections/Testimonials';
+import FAQ from '@/app/@components/sections/FAQ';
+import Contact from '@/app/@components/sections/Contact';
+import MainLayout from '@/app/@components/ui/layout/MainLayout';
+import SEO from '@/app/@components/shared/SEO';
+import { generatePageMetadata } from '@/app/@lib/utils/metadata';
+import CTABanner from '@/app/@components/sections/CTABanner';
 
 /**
  * Page Metadata
@@ -35,7 +35,7 @@ export const metadata: Metadata = generatePageMetadata({
 });
 
 /**
- * Home Component
+ * Home Page Component
  *
  * The main page component that assembles all sections of the landing page
  * Sections are rendered in a specific order to create a cohesive user experience:

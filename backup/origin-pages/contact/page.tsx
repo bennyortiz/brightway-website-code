@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
-import { generatePageMetadata } from '@/app/@lib/utils/metadata';
-import ContactForm from '@/app/@components/sections/Contact/ContactForm';
-import ContactInfo from '@/app/@components/sections/Contact/ContactInfo';
+import MainLayout from '../components/layout/MainLayout';
+import { generatePageMetadata } from '../utils/metadata';
+import ContactForm from '../components/sections/Contact/ContactForm';
+import ContactInfo from '../components/sections/Contact/ContactInfo';
 import { MapPin } from 'lucide-react';
 
 /**
