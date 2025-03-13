@@ -22,7 +22,7 @@ const MotionDiv = dynamic(
  */
 const Hero = () => {
   return (
-    <section className="w-full pt-28 pb-12 md:py-32 lg:py-40 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
+    <section className="w-full pt-32 md:pt-36 lg:pt-40 pb-12 md:pb-32 lg:pb-40 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center">
           {/* Text content - prioritized for mobile */}
