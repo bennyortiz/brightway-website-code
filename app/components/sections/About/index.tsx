@@ -32,7 +32,7 @@ const About = () => {
           {/* Right Column - Header and Company Info */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Header content */}
-            <div className="mb-6">
+            <div className="mb-6 text-center lg:text-left">
               <div className="text-primary font-medium mb-2">About Us</div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Trusted Cleaning Partner</h2>
               <p className="text-gray-600 mb-6">
@@ -41,15 +41,15 @@ const About = () => {
             </div>
             
             {/* Company information */}
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg text-gray-600 mb-4 text-center lg:text-left">
               For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional
               cleaning services to businesses throughout the DFW metroplex.
             </p>
-            <p className="text-lg text-gray-600 mb-4">
+            <p className="text-lg text-gray-600 mb-4 text-center lg:text-left">
               We've built our reputation on reliability, attention to detail, and a genuine
               commitment to customer satisfaction with a {siteConfig.business.satisfaction} client satisfaction rate.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 text-center lg:text-left">
               <a
                 href="/about-us"
                 className="text-primary font-medium hover:underline"
