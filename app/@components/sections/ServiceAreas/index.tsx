@@ -16,7 +16,6 @@ const ServiceAreas = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedArea, setSelectedArea] = useState<DFWMapRegion | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [coverageFilter, setCoverageFilter] = useState<'all' | 'full' | 'partial'>('all');
   
   // Select the top cities to display (9 cities - divisible by 3 columns for larger screens)
   // This ensures we don't have incomplete columns
@@ -33,23 +32,21 @@ const ServiceAreas = () => {
       .slice(0, 9); // Take only the first 9 cities
   }, []);
   
-  // Filter areas based on search query and coverage filter
+  // Filter areas based on search query
   const filteredAreas = useMemo(() => {
-    if (searchQuery || coverageFilter !== 'all') {
-      // Apply filters when searching or filtering
+    if (searchQuery) {
+      // Apply search filter
       return dfwMapData.filter(area => {
         const matchesSearch = area.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                             (area.zipCodes && area.zipCodes.some(zip => zip.includes(searchQuery)));
         
-        const matchesFilter = coverageFilter === 'all' || area.coverageLevel === coverageFilter;
-        
-        return matchesSearch && matchesFilter;
+        return matchesSearch;
       });
     } else {
-      // When not searching or filtering, show top cities
+      // When not searching, show top cities
       return topCities;
     }
-  }, [searchQuery, coverageFilter, topCities]);
+  }, [searchQuery, topCities]);
 
   // Handle selecting an area to view details
   const handleSelectArea = (area: DFWMapRegion) => {
@@ -76,35 +73,19 @@ const ServiceAreas = () => {
           </p>
         </div>
 
-        {/* Search and Filter Controls */}
+        {/* Search Control */}
         <div className="mb-10">
-          <div className="flex flex-col md:flex-row gap-4">
-            {/* Search Bar */}
-            <div className="relative flex-grow">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                placeholder="Search by city or zip code..."
-                className="block w-full pl-10 pr-3 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400" />
             </div>
-
-            {/* Coverage Filter */}
-            <div className="md:w-48">
-              <select
-                value={coverageFilter}
-                onChange={(e) => setCoverageFilter(e.target.value as 'all' | 'full' | 'partial')}
-                className="block w-full py-3 px-4 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-              >
-                <option value="all">All Coverage Levels</option>
-                <option value="full">Full Coverage</option>
-                <option value="partial">Partial Coverage</option>
-              </select>
-            </div>
+            <input
+              type="text"
+              placeholder="Search by city or zip code..."
+              className="block w-full pl-10 pr-3 py-3 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
         </div>
 
@@ -113,7 +94,6 @@ const ServiceAreas = () => {
           <p className="text-gray-600">
             {filteredAreas.length} {filteredAreas.length === 1 ? 'area' : 'areas'} found
             {searchQuery && ` for "${searchQuery}"`}
-            {coverageFilter !== 'all' && ` with ${coverageFilter} coverage`}
           </p>
         </div>
 
@@ -159,7 +139,6 @@ const ServiceAreas = () => {
               <button 
                 onClick={() => {
                   setSearchQuery('');
-                  setCoverageFilter('all');
                 }}
                 className="text-primary hover:text-primary/80 font-medium"
               >
@@ -253,7 +232,7 @@ const ServiceAreaCard = ({ area, onClick }: { area: DFWMapRegion, onClick: () =>
 /**
  * Service Area Details Modal Component
  * 
- * Displays detailed information about a service area
+ * Displays detailed information about a selected service area
  */
 const ServiceAreaDetailsModal = ({ 
   area, 
@@ -262,109 +241,118 @@ const ServiceAreaDetailsModal = ({
   area: DFWMapRegion, 
   onClose: () => void 
 }) => {
-  // Close modal when escape key is pressed
+  // Close modal when pressing Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+      }
     };
-    
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [onClose]);
 
-  // Prevent scrolling on the body when modal is open
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEscape);
     return () => {
-      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleEscape);
     };
-  }, []);
+  }, [onClose]);
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-        transition={{ type: "spring", duration: 0.5 }}
-        className="relative bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-auto"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ type: 'spring', damping: 30, stiffness: 500 }}
+        className="bg-white rounded-xl shadow-lg max-w-2xl w-full max-h-[90vh] overflow-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header with area color */}
-        <div className={`h-2 ${area.coverageLevel === 'full' ? 'bg-primary' : 'bg-blue-400'} w-full`} />
-
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-gray-100 transition-colors text-gray-500 z-10"
-          aria-label="Close details"
-        >
-          <X className="h-5 w-5" />
-        </button>
+        <div className={`h-2 w-full ${area.coverageLevel === 'full' ? 'bg-primary' : 'bg-blue-400'}`} />
         
-        {/* Modal Content */}
-        <div className="p-8">
-          <h2 className="text-3xl font-bold mb-3">{area.name}</h2>
-          
-          <div className="flex flex-wrap gap-5 mb-7">
-            <div className="flex items-center text-gray-700 bg-gray-50 px-3 py-1.5 rounded-lg">
-              <CheckCircle className="h-5 w-5 text-primary mr-2" />
-              <span className="font-medium">{area.coverageLevel === 'full' ? 'Full' : 'Partial'} coverage</span>
+        <div className="p-6">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h3 className="text-2xl font-bold">{area.name}</h3>
+              <div className="flex items-center mt-2">
+                <div className={`flex-shrink-0 h-3 w-3 rounded-full ${area.coverageLevel === 'full' ? 'bg-primary' : 'bg-blue-400'} mr-2`}></div>
+                <span className="text-gray-600">
+                  {area.coverageLevel === 'full' ? 'Full coverage' : 'Partial coverage'}
+                </span>
+              </div>
             </div>
-            
-            <div className="flex items-center text-gray-700 bg-gray-50 px-3 py-1.5 rounded-lg">
-              <Clock className="h-5 w-5 text-primary mr-2" />
-              <span className="font-medium">{area.responseTime}</span>
-            </div>
+            <button 
+              onClick={onClose} 
+              className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+              aria-label="Close modal"
+            >
+              <X className="h-6 w-6" />
+            </button>
           </div>
           
-          <div className="mb-7">
-            <h3 className="text-lg font-semibold mb-3">About Our Service in {area.name}</h3>
-            <p className="text-gray-700 leading-relaxed">{area.description}</p>
+          <div className="mb-6">
+            <p className="text-gray-700">{area.description}</p>
           </div>
           
-          {area.keyLocations && area.keyLocations.length > 0 && (
-            <div className="mb-7">
-              <h3 className="text-lg font-semibold mb-3">Key Areas Served</h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {area.keyLocations.map((location, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <MapPin className="h-5 w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700">{location}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h4 className="text-lg font-semibold mb-2 flex items-center">
+                <MapPin className="h-5 w-5 text-primary mr-2" />
+                Key Locations
+              </h4>
+              <ul className="ml-6 space-y-1">
+                {area.keyLocations.map((location, index) => (
+                  <li key={index} className="flex items-start text-gray-700">
+                    <span className="text-primary mr-2">•</span>
+                    {location}
                   </li>
                 ))}
               </ul>
             </div>
-          )}
-          
-          {area.zipCodes && area.zipCodes.length > 0 && (
-            <div className="mb-7">
-              <h3 className="text-lg font-semibold mb-3">Zip Codes Covered</h3>
-              <div className="flex flex-wrap gap-2">
-                {area.zipCodes.map((zip, idx) => (
-                  <div key={idx} className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full text-sm font-medium">
-                    {zip}
+            
+            <div>
+              <h4 className="text-lg font-semibold mb-2 flex items-center">
+                <Clock className="h-5 w-5 text-primary mr-2" />
+                Response Time
+              </h4>
+              <p className="ml-6 text-gray-700">{area.responseTime}</p>
+              
+              {area.zipCodes && area.zipCodes.length > 0 && (
+                <>
+                  <h4 className="text-lg font-semibold mb-2 mt-4 flex items-center">
+                    <CheckCircle className="h-5 w-5 text-primary mr-2" />
+                    Zip Codes Covered
+                  </h4>
+                  <div className="ml-6 flex flex-wrap gap-2">
+                    {area.zipCodes.map((zip) => (
+                      <span 
+                        key={zip} 
+                        className="inline-block px-2 py-1 bg-blue-50 text-blue-700 rounded text-sm"
+                      >
+                        {zip}
+                      </span>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </div>
-          )}
+          </div>
           
-          <div className="mt-8 flex justify-center">
-            <a
-              href="#contact"
-              onClick={onClose}
-              className="inline-flex items-center justify-center rounded-md bg-primary px-7 py-3.5 text-base font-medium text-white shadow-sm hover:bg-primary/90 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 group"
-            >
-              Request Service in {area.name}
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
+          <div className="mt-6 pt-4 border-t border-gray-100">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+              <p className="text-gray-600">Need service in this area?</p>
+              <a
+                href="#contact"
+                onClick={onClose}
+                className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-6 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 group"
+              >
+                <span>Contact Us</span>
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
           </div>
         </div>
       </motion.div>
