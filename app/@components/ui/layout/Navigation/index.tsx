@@ -33,7 +33,7 @@ const Navigation = () => {
   return (
     <div className="relative">
       <nav
-        className={`w-full fixed top-0 z-50 transition-all duration-300 
+        className={`w-full fixed top-0 z-50 transition-all duration-150 
         ${
           scrolled || isOpen
             ? 'bg-white border-b border-gray-200 py-4 md:py-4'

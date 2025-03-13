@@ -22,7 +22,7 @@ const DesktopMenu = ({ scrolled, isOpen }: DesktopMenuProps) => {
             key={item.name}
             href={item.href}
             prefetch={shouldPrefetch(item.href)}
-            className={`font-medium transition-colors ${
+            className={`font-medium transition-colors duration-150 ${
               scrolled || isOpen
                 ? 'text-gray-800 hover:text-primary'
                 : 'text-gray-800 hover:text-primary'
@@ -36,7 +36,7 @@ const DesktopMenu = ({ scrolled, isOpen }: DesktopMenuProps) => {
       {/* CTA Button */}
       <Link
         href="#contact"
-        className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 font-medium text-white shadow transition-colors hover:bg-primary-dark"
+        className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-6 font-medium text-white shadow transition-colors duration-150 hover:bg-primary-dark"
       >
         Get a Quote
       </Link>
