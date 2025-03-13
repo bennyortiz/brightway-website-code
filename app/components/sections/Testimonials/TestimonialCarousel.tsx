@@ -26,6 +26,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   const [touchEnd, setTouchEnd] = useState(0);
   
   // Items per view depends on screen size
+  // For mobile (< 768px width), show only 1 item per view (carousel mode)
+  // For desktop, show 3 items side by side
   const itemsPerView = isMobile ? 1 : 3;
   
   // Total number of "pages" in the carousel
@@ -66,9 +68,10 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     setCurrentIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
   };
 
-  // Touch event handlers for mobile swipe
+  // Touch event handlers for mobile swipe - improved sensitivity
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX); // Reset touchEnd to prevent unintended swipes
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -76,12 +79,13 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
+    // More sensitive swipe detection for mobile (reduced threshold)
+    if (touchStart - touchEnd > 30) {
       // Swipe left, go to next
       goToNext();
     }
     
-    if (touchEnd - touchStart > 50) {
+    if (touchEnd - touchStart > 30) {
       // Swipe right, go to previous
       goToPrevious();
     }

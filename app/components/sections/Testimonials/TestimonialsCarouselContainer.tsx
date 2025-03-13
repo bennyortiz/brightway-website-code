@@ -38,16 +38,6 @@ const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps
       <div className="relative py-4">
         <TestimonialCarousel testimonials={testimonials} />
       </div>
-      
-      {/* Decorative dots pattern */}
-      <div className="absolute top-12 left-8 grid grid-cols-3 gap-2 opacity-10 -z-10">
-        {[...Array(9)].map((_, i) => (
-          <div key={i} className="w-2 h-2 rounded-full bg-primary"></div>
-        ))}
-      </div>
-      
-      {/* Additional decorative element */}
-      <div className="absolute bottom-12 right-8 w-24 h-24 rounded-full border-4 border-dashed border-primary/10 -z-10"></div>
     </div>
   );
 };

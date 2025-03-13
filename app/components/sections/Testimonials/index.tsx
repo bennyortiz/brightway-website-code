@@ -72,12 +72,8 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-primary/5"></div>
-        <div className="absolute bottom-[20%] right-[10%] w-96 h-96 rounded-full bg-primary/5"></div>
-        <div className="absolute top-[40%] right-[15%] w-20 h-20 rounded-full bg-primary/10"></div>
-        <div className="absolute bottom-[15%] left-[20%] w-32 h-32 rounded-full bg-primary/10"></div>
+      {/* Decorative background - simplified, removed circles */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5">
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
