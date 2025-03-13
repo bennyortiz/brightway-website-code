@@ -17,6 +17,7 @@ import './globals.css';
 import { siteConfig } from './@lib/constants/siteConfig';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/react";
 
 /**
  * Font Configuration
@@ -160,6 +161,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {children}
+
+        {/* Vercel Analytics */}
+        <Analytics />
 
         {/* Defer non-critical scripts */}
         <Script 
