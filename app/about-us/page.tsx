@@ -33,7 +33,7 @@ export default function AboutUs() {
             
             {/* Main Content with Image */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-5 mx-auto">
                 <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/brightway-commercial-cleaning-wiping.jpg"
@@ -46,8 +46,8 @@ export default function AboutUs() {
               </div>
               
               <div className="lg:col-span-7 flex flex-col justify-center">
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Story</h2>
-                <div className="prose prose-lg max-w-none text-gray-600">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Our Story</h2>
+                <div className="prose prose-lg max-w-none text-gray-600 text-center lg:text-left">
                   <p>
                     For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional
                     cleaning services to businesses throughout the DFW metroplex. What started as a small
@@ -87,22 +87,22 @@ export default function AboutUs() {
               <h2 className="text-3xl font-bold mb-8 text-center">Our Core Values</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Excellence</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Excellence</h3>
+                  <p className="text-gray-600 text-center md:text-left">
                     We strive for excellence in every cleaning task, no matter how small, because we
                     believe that details matter and quality is non-negotiable.
                   </p>
                 </div>
                 <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Integrity</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Integrity</h3>
+                  <p className="text-gray-600 text-center md:text-left">
                     We operate with complete transparency, honesty, and accountability in all our
                     business relationships and cleaning practices.
                   </p>
                 </div>
                 <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-primary">Reliability</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Reliability</h3>
+                  <p className="text-gray-600 text-center md:text-left">
                     Our clients can count on us to show up on time, every time, and deliver
                     consistent, dependable cleaning services they can trust.
                   </p>
@@ -173,7 +173,7 @@ export default function AboutUs() {
             {/* Company History Timeline */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-8 text-center">Our Journey</h2>
-              <div className="space-y-8">
+              <div className="space-y-8 text-center md:text-left">
                 <div className="flex flex-col md:flex-row">
                   <div className="md:w-1/4 mb-4 md:mb-0">
                     <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
@@ -183,6 +183,36 @@ export default function AboutUs() {
                   <div className="md:w-3/4">
                     <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
                     <p className="text-gray-600">
+                      Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
+                      commercial cleaning services to local businesses.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0 flex justify-center md:justify-start">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
+                    <p className="text-gray-600">
+                      Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
+                      commercial cleaning services to local businesses.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2 text-center md:text-left">Company Founded</h3>
+                    <p className="text-gray-600 text-center md:text-left">
                       Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
                       commercial cleaning services to local businesses.
                     </p>
