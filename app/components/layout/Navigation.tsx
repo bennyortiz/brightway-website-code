@@ -4,7 +4,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
-import { siteConfig } from '@/app/constants/siteConfig';
 import { navigationItems } from '@/app/constants/navigationItems';
 import Logo from '../ui/Logo';
 
