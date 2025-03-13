@@ -2,23 +2,19 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import ServiceAreaCard from './ServiceAreaCard';
-import { serviceAreas } from './serviceAreasData';
 import { MapPin, Globe, ArrowRight } from 'lucide-react';
+import InteractiveMapContainer from './InteractiveMapContainer';
 
 /**
  * ServiceAreas Component
  *
- * Displays a grid of service areas with animation effects.
- * Uses the IntersectionObserver API for scroll-based animations.
+ * Displays an interactive map of DFW metroplex service areas
+ * Replaces the previous static grid of service area cards with a more
+ * engaging and user-friendly interactive map experience
  */
 const ServiceAreas = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
-  // Filter featured areas (to be displayed at the top if needed)
-  const featuredAreas = serviceAreas.filter(area => area.isFeatured);
-  const otherAreas = serviceAreas.filter(area => !area.isFeatured);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,36 +51,21 @@ const ServiceAreas = () => {
             <h2 className="text-3xl md:text-4xl font-bold">Areas We Service</h2>
           </div>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Brightway Cleaning provides exceptional cleaning services across California. 
-            Our team is strategically located to serve businesses in these key areas and beyond.
+            Explore our interactive map to see our service coverage throughout the 
+            DFW metroplex. Click on any area to learn more about our services in that location.
           </p>
         </div>
 
+        {/* Interactive Map Container */}
         <div 
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-1000 ${
+          className={`transition-opacity duration-1000 ${
             isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          {serviceAreas.map((area, index) => (
-            <div
-              key={area.city}
-              className="transform transition-all duration-700"
-              style={{ 
-                transitionDelay: `${index * 150}ms`,
-                transform: isVisible ? 'translateY(0)' : 'translateY(40px)' 
-              }}
-            >
-              <ServiceAreaCard
-                city={area.city}
-                description={area.description}
-                population={area.population}
-                keyLocations={area.keyLocations}
-                isFeatured={area.isFeatured}
-              />
-            </div>
-          ))}
+          <InteractiveMapContainer />
         </div>
 
+        {/* Contact Info */}
         <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
           <div className="p-4 bg-white rounded-xl shadow-md flex items-center max-w-md">
             <Globe className="h-8 w-8 text-primary flex-shrink-0 mr-4" />
