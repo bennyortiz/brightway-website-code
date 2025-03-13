@@ -4,6 +4,19 @@ import { generateMetaDescription } from './seo';
 
 type PageType = 'home' | 'about' | 'contact' | 'custom';
 
+// Enhanced SEO control options
+export interface SEOOptions {
+  noIndex?: boolean;
+  noFollow?: boolean;
+  noCache?: boolean;
+  noArchive?: boolean;
+  noSnippet?: boolean;
+  maxSnippet?: number;
+  maxImagePreview?: 'none' | 'standard' | 'large';
+  maxVideoPreview?: number;
+  unavailableAfter?: string; // ISO date format
+}
+
 interface MetadataOptions {
   pageType: PageType;
   title?: string;
@@ -11,8 +24,8 @@ interface MetadataOptions {
   ogImage?: string;
   customData?: Record<string, string>;
   slug?: string;
-  noIndex?: boolean;
   canonicalPath?: string;
+  seo?: SEOOptions; // Using our new SEO options interface
 }
 
 /**
@@ -26,8 +39,8 @@ export function generatePageMetadata({
   ogImage,
   customData,
   slug = '',
-  noIndex = false,
   canonicalPath,
+  seo = {},
 }: MetadataOptions): Metadata {
   // Generate the base title
   const baseTitle =
@@ -50,12 +63,35 @@ export function generatePageMetadata({
   // Determine the proper OG image
   const ogImageUrl = ogImage || siteConfig.ogImage;
 
+  // Build robots directives
+  const robotsDirectives: Record<string, boolean | number | string> = {
+    index: !seo.noIndex,
+    follow: !seo.noFollow,
+  };
+
+  // Add optional robots directives if specified
+  if (seo.noCache) robotsDirectives['noarchive'] = true;
+  if (seo.noArchive) robotsDirectives['noarchive'] = true;
+  if (seo.noSnippet) robotsDirectives['nosnippet'] = true;
+  if (seo.maxSnippet !== undefined) robotsDirectives['max-snippet'] = seo.maxSnippet;
+  if (seo.maxImagePreview) robotsDirectives['max-image-preview'] = seo.maxImagePreview;
+  if (seo.maxVideoPreview !== undefined) robotsDirectives['max-video-preview'] = seo.maxVideoPreview;
+  if (seo.unavailableAfter) robotsDirectives['unavailable_after'] = seo.unavailableAfter;
+
   // Return complete metadata object
   return {
     title: baseTitle,
     description: metaDescription,
     metadataBase: new URL(siteConfig.url),
-    robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
+    robots: {
+      ...robotsDirectives,
+      googleBot: {
+        ...robotsDirectives,
+        'max-image-preview': seo.maxImagePreview || 'large',
+        'max-snippet': seo.maxSnippet || -1,
+        'max-video-preview': seo.maxVideoPreview || -1,
+      },
+    },
     alternates: {
       canonical: canonicalUrl,
     },

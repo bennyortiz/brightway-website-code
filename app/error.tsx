@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { AlertTriangle } from 'lucide-react';
+import NoIndex from './@components/shared/NoIndex';
 
 /**
  * Error Component
@@ -25,6 +26,9 @@ export default function Error({
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
+      {/* Prevent search engines from indexing error pages */}
+      <NoIndex noFollow={true} />
+      
       <div className="max-w-lg w-full text-center">
         <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
           <AlertTriangle className="w-8 h-8 text-red-500" />

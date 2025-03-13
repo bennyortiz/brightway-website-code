@@ -16,6 +16,12 @@ export default function GlobalError({
 
   return (
     <html>
+      <head>
+        {/* Prevent search engines from indexing error pages */}
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+        <title>Error - Brightway Cleaning</title>
+      </head>
       <body>
         <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center min-h-screen">
           <h1 className="text-5xl font-bold mb-4">Something went wrong!</h1>

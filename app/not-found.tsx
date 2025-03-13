@@ -11,7 +11,7 @@
 
 import { Metadata } from 'next';
 import Link from 'next/link';
-import MainLayout from './@components/ui/layout/MainLayout';
+import { generatePageMetadata } from './@lib/utils/metadata';
 import { siteConfig } from './@lib/constants/siteConfig';
 
 /**
@@ -21,10 +21,16 @@ import { siteConfig } from './@lib/constants/siteConfig';
  * This enhances SEO by providing appropriate title and description
  * for search engines that index this page.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
+  pageType: 'custom',
   title: `Page Not Found | ${siteConfig.name}`,
   description: `The page you're looking for could not be found. Return to ${siteConfig.name} homepage.`,
-};
+  canonicalPath: '/404',
+  seo: {
+    noIndex: true, // Don't index 404 pages
+    maxSnippet: 0,  // Don't show snippets
+  }
+});
 
 /**
  * NotFound Component
