@@ -19,12 +19,12 @@ export const footerNavigation = {
     { name: 'Waste Management', href: '#services' },
   ],
   locations: [
-    { name: 'Los Angeles', href: '#service-areas' },
-    { name: 'San Diego', href: '#service-areas' },
-    { name: 'Orange County', href: '#service-areas' },
-    { name: 'San Francisco', href: '#service-areas' },
-    { name: 'Sacramento', href: '#service-areas' },
-    { name: 'San Jose', href: '#service-areas' },
+    { name: 'Dallas', href: '#service-areas' },
+    { name: 'Fort Worth', href: '#service-areas' },
+    { name: 'Plano', href: '#service-areas' },
+    { name: 'Irving', href: '#service-areas' },
+    { name: 'Arlington', href: '#service-areas' },
+    { name: 'Frisco', href: '#service-areas' },
   ],
   company: [
     { name: 'About Us', href: '#about' },

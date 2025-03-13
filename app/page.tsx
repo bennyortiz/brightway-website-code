@@ -41,9 +41,9 @@ export const metadata: Metadata = generatePageMetadata({
  * Sections are rendered in a specific order to create a cohesive user experience:
  * 1. Hero - Main banner with headline and call to action
  * 2. Services - Overview of cleaning services offered
- * 3. Service Areas - Locations where we provide services
- * 4. About - Company information and values
- * 5. Why Choose Us - Competitive advantages and benefits
+ * 3. About - Company information and values
+ * 4. Why Choose Us - Competitive advantages and benefits
+ * 5. Service Areas - Locations where we provide services
  * 6. Testimonials - Customer reviews and feedback
  * 7. FAQ - Frequently asked questions
  * 8. Contact - Contact form and information
@@ -54,10 +54,10 @@ export default function Home() {
       <SEO type="all" />
       <Hero />
       <Services />
-      <ServiceAreas />
       <CTABanner />
       <About />
       <WhyChooseUs />
+      <ServiceAreas />
       <Testimonials />
       <FAQ />
       <Contact />
