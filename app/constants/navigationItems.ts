@@ -4,10 +4,10 @@ export const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '#services' },
   { name: 'Service Areas', href: '#service-areas' },
-  { name: 'About', href: '#about' },
+  { name: 'About', href: '/about-us' },
   { name: 'Why Choose Us', href: '#why-choose-us' },
   { name: 'Testimonials', href: '#testimonials' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export const footerNavigation = {
@@ -27,15 +27,15 @@ export const footerNavigation = {
     { name: 'Frisco', href: '#service-areas' },
   ],
   company: [
-    { name: 'About Us', href: '#about' },
+    { name: 'About Us', href: '/about-us' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
-    { name: 'Our Team', href: '#about' },
-    { name: 'Careers', href: '#about' },
+    { name: 'Our Team', href: '/about-us#team' },
+    { name: 'Careers', href: '/about-us' },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-    { name: 'Cookie Policy', href: '#' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Terms of Service', href: '/terms-of-service' },
+    { name: 'Cookie Policy', href: '/cookie-policy' },
   ],
   social: [
     {
