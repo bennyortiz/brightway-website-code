@@ -71,13 +71,26 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section id="testimonials" className="w-full py-16 md:py-28 bg-gray-50 relative z-0 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about our services.
+    <section id="testimonials" className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[5%] w-64 h-64 rounded-full bg-primary/5"></div>
+        <div className="absolute bottom-[20%] right-[10%] w-96 h-96 rounded-full bg-primary/5"></div>
+        <div className="absolute top-[40%] right-[15%] w-20 h-20 rounded-full bg-primary/10"></div>
+        <div className="absolute bottom-[15%] left-[20%] w-32 h-32 rounded-full bg-primary/10"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section header with visual accent */}
+        <div className="text-center mb-16 relative">
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Testimonials</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+            What Our Clients Say
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Don't just take our word for it. See how we've helped businesses keep their spaces clean and their clients impressed.
           </p>
+          <div className="absolute w-16 h-1 bg-primary rounded-full left-1/2 transform -translate-x-1/2 bottom-0 mt-4"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative">
@@ -90,6 +103,14 @@ const Testimonials = () => {
           <div id="testimonial-fallback" className="hidden">
             <DirectTestimonials testimonials={staticTestimonials} />
           </div>
+        </div>
+
+        {/* Call to action */}
+        <div className="mt-16 text-center">
+          <p className="text-gray-600 mb-6 text-lg">Join our satisfied customers today.</p>
+          <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            Get a Free Quote
+          </a>
         </div>
       </div>
 
