@@ -60,9 +60,6 @@ const nextConfig = {
     reactRemoveProperties: { properties: ['^data-test$'] },
   },
 
-  // SWC minification is now a top-level configuration
-  swcMinify: true,
-  
   // External packages to be bundled with server components
   serverExternalPackages: ['sharp'],
   
