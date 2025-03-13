@@ -23,7 +23,8 @@ export const footerNavigation = {
     { name: 'San Diego', href: '#service-areas' },
     { name: 'Orange County', href: '#service-areas' },
     { name: 'San Francisco', href: '#service-areas' },
-    { name: 'Other Areas', href: '#service-areas' },
+    { name: 'Sacramento', href: '#service-areas' },
+    { name: 'San Jose', href: '#service-areas' },
   ],
   company: [
     { name: 'About Us', href: '#about' },

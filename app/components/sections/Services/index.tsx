@@ -91,7 +91,7 @@ const Services = () => {
 
         <div className="mt-16 text-center">
           <Link
-            href="/contact"
+            href="#contact"
             className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-white shadow transition-colors hover:bg-primary/90"
           >
             Get a Free Quote
