@@ -2,11 +2,7 @@ import { siteConfig } from './siteConfig';
 
 export const navigationItems = [
   { name: 'Home', href: '/' },
-  { name: 'Services', href: '#services' },
-  { name: 'Service Areas', href: '#service-areas' },
   { name: 'About', href: '/about-us' },
-  { name: 'Why Choose Us', href: '#why-choose-us' },
-  { name: 'Testimonials', href: '#testimonials' },
   { name: 'Contact', href: '/contact' },
 ];
 
