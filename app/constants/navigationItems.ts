@@ -2,17 +2,18 @@ import { siteConfig } from './siteConfig';
 
 export const navigationItems = [
   { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
   { name: 'About', href: '/about-us' },
   { name: 'Contact', href: '/contact' },
 ];
 
 export const footerNavigation = {
   services: [
-    { name: 'Office Cleaning', href: '#services' },
-    { name: 'Commercial Spaces', href: '#services' },
-    { name: 'Industrial Cleaning', href: '#services' },
-    { name: 'Sanitization Services', href: '#services' },
-    { name: 'Waste Management', href: '#services' },
+    { name: 'Office Cleaning', href: '/services#service-list' },
+    { name: 'Commercial Spaces', href: '/services#service-list' },
+    { name: 'Industrial Cleaning', href: '/services#service-list' },
+    { name: 'Sanitization Services', href: '/services#service-list' },
+    { name: 'Waste Management', href: '/services#service-list' },
   ],
   locations: [
     { name: 'Dallas', href: '#service-areas' },
