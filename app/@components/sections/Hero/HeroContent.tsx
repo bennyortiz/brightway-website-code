@@ -4,6 +4,12 @@ import React from 'react';
 import HeroRating from './HeroRating';
 import { PrimaryButton, OutlineButton } from '../../ui/buttons';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
+// Dynamically import HeroText for hydration
+const HeroText = dynamic(() => import('./HeroText'), {
+  ssr: true,
+});
 
 // Animation variants - optimized for better performance
 const containerVariants = {
@@ -12,7 +18,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.05,
+      when: "beforeChildren"
     }
   }
 };
@@ -29,70 +35,46 @@ const itemVariants = {
 /**
  * HeroContent Component
  *
- * Displays the main textual content of the Hero section, including:
- * - Badge
- * - Heading
- * - Description
+ * Displays the main content of the Hero section, including:
+ * - Server-rendered text content (HeroText)
  * - Rating
  * - Call-to-action buttons
  * 
- * Optimized for better LCP performance with simplified animations.
+ * Optimized for better LCP performance by:
+ * 1. Using server-rendered text
+ * 2. Deferring animations until after hydration
+ * 3. Lazy-loading non-critical elements
  */
 const HeroContent = () => {
   return (
-    <LazyMotion features={domAnimation}>
-      <motion.div 
-        className="flex flex-col space-y-4 md:space-y-6 md:w-1/2 text-center md:text-left hero-content"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+    <div className="md:w-1/2">
+      {/* Critical text content - server rendered */}
+      <HeroText />
+
+      {/* Interactive elements - client rendered with animations */}
+      <LazyMotion features={domAnimation}>
         <motion.div 
-          className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm text-primary self-center md:self-start"
-          variants={itemVariants}
+          className="mt-6 space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <span>Professional Commercial Cleaning</span>
+          <motion.div variants={itemVariants}>
+            <HeroRating />
+          </motion.div>
+
+          <motion.div 
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-2 md:pt-4"
+            variants={itemVariants}
+          >
+            <PrimaryButton href="#contact">Get a Free Quote</PrimaryButton>
+            <OutlineButton href="#services" withArrow>
+              Explore Services
+            </OutlineButton>
+          </motion.div>
         </motion.div>
-
-        <motion.h1 
-          className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 text-rendering-optimizeLegibility hero-text"
-          variants={itemVariants}
-        >
-          Pristine Spaces for{' '}
-          <span className="text-primary">
-            Productive
-          </span>{' '}
-          Businesses
-        </motion.h1>
-
-        <motion.p 
-          className="text-lg md:text-xl text-gray-600 max-w-[600px] mx-auto md:mx-0 font-optimizeLegibility hero-text"
-          variants={itemVariants}
-          data-lcp="true"
-          style={{
-            contentVisibility: 'auto',
-            containIntrinsicSize: '0 500px',
-          }}
-        >
-          Brightway Cleaning delivers exceptional commercial cleaning services tailored to your
-          business needs, ensuring a healthy, professional environment.
-        </motion.p>
-
-        <motion.div variants={itemVariants}>
-          <HeroRating />
-        </motion.div>
-
-        <motion.div 
-          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-2 md:pt-4"
-          variants={itemVariants}
-        >
-          <PrimaryButton href="#contact">Get a Free Quote</PrimaryButton>
-          <OutlineButton href="#services" withArrow>
-            Explore Services
-          </OutlineButton>
-        </motion.div>
-      </motion.div>
-    </LazyMotion>
+      </LazyMotion>
+    </div>
   );
 };
 
