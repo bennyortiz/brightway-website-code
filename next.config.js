@@ -27,9 +27,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Enable SWC minification for better performance (moved from experimental)
-  swcMinify: true,
-
   // Define external packages for server components (moved from experimental)
   serverExternalPackages: ['sharp'],
 
