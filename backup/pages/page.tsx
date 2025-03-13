@@ -10,18 +10,18 @@
  */
 
 import { Metadata } from 'next';
-import Hero from './@components/sections/Hero';
-import Services from './@components/sections/Services';
-import ServiceAreas from './@components/sections/ServiceAreas';
-import About from './@components/sections/About';
-import WhyChooseUs from './@components/sections/WhyChooseUs';
-import Testimonials from './@components/sections/Testimonials';
-import FAQ from './@components/sections/FAQ';
-import Contact from './@components/sections/Contact';
-import MainLayout from './@components/ui/layout/MainLayout';
-import SEO from './@components/shared/SEO';
-import { generatePageMetadata } from './@lib/utils/metadata';
-import CTABanner from './@components/sections/CTABanner';
+import Hero from './components/sections/Hero';
+import Services from './components/sections/Services';
+import ServiceAreas from './components/sections/ServiceAreas';
+import About from './components/sections/About';
+import WhyChooseUs from './components/sections/WhyChooseUs';
+import Testimonials from './components/sections/Testimonials';
+import FAQ from './components/sections/FAQ';
+import Contact from './components/sections/Contact';
+import MainLayout from './components/layout/MainLayout';
+import SEO from './components/shared/SEO';
+import { generatePageMetadata } from './utils/metadata';
+import CTABanner from './components/sections/CTABanner';
 
 /**
  * Page Metadata
