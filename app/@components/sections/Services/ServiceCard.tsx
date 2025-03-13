@@ -65,7 +65,7 @@ const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
       <h3 className="text-xl font-bold mb-2">{title}</h3>
       <p className="text-gray-600 mb-4">{description}</p>
       <div className="mt-auto">
-        <h4 className="font-semibold text-gray-800 mb-2">Key Features:</h4>
+        <div className="font-semibold text-gray-800 mb-2">Key Features:</div>
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <motion.li 

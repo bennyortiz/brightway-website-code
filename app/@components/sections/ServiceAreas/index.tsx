@@ -299,10 +299,10 @@ const ServiceAreaDetailsModal = ({
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <h4 className="text-lg font-semibold mb-2 flex items-center">
+              <div className="text-lg font-semibold mb-2 flex items-center">
                 <MapPin className="h-5 w-5 text-primary mr-2" />
-                Key Locations
-              </h4>
+                <span>Key Locations</span>
+              </div>
               <ul className="ml-6 space-y-1">
                 {area.keyLocations.map((location, index) => (
                   <li key={index} className="flex items-start text-gray-700">
@@ -314,18 +314,18 @@ const ServiceAreaDetailsModal = ({
             </div>
             
             <div>
-              <h4 className="text-lg font-semibold mb-2 flex items-center">
+              <div className="text-lg font-semibold mb-2 flex items-center">
                 <Clock className="h-5 w-5 text-primary mr-2" />
-                Response Time
-              </h4>
+                <span>Response Time</span>
+              </div>
               <p className="ml-6 text-gray-700">{area.responseTime}</p>
               
               {area.zipCodes && area.zipCodes.length > 0 && (
                 <>
-                  <h4 className="text-lg font-semibold mb-2 mt-4 flex items-center">
+                  <div className="text-lg font-semibold mb-2 mt-4 flex items-center">
                     <CheckCircle className="h-5 w-5 text-primary mr-2" />
-                    Zip Codes Covered
-                  </h4>
+                    <span>Zip Codes Covered</span>
+                  </div>
                   <div className="ml-6 flex flex-wrap gap-2">
                     {area.zipCodes.map((zip) => (
                       <span 
