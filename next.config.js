@@ -64,25 +64,7 @@ const nextConfig = {
   experimental: {
     // Better code splitting
     optimizeCss: true,
-    // Optimize fonts for faster loading
-    optimizeFonts: true,
-    // New font optimization
-    fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['latin'] } },
-    ],
-    // Additional optimizations for Core Web Vitals
-    adjustFontFallbacks: true,
-    adjustFontFailures: true,
-    // Enable image optimization improvements
-    optimizeImages: true,
-    // Create smaller JS bundles
-    turbotrace: {
-      logLevel: 'error',
-    },
   },
-
-  // Make production builds faster
-  swcMinify: true,
   
   // Configure response headers for better caching
   async headers() {
