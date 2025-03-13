@@ -1,9 +1,10 @@
 'use client';
 
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState, useMemo } from 'react';
 import { TestimonialItem, testimonials as staticTestimonials } from '@/app/@lib/data/testimonials';
 import TestimonialCard from './TestimonialCard';
 import dynamic from 'next/dynamic';
+import { useInView } from 'react-intersection-observer';
 
 /**
  * Skeleton loader component for testimonials while they're loading
@@ -30,97 +31,80 @@ const TestimonialsSkeleton = () => {
   );
 };
 
-// Use dynamic import instead of lazyLoad for the TestimonialList component
-const TestimonialList = dynamic(() => import('./TestimonialList'), {
-  loading: () => <TestimonialsSkeleton />,
-  ssr: false
-});
+// Use dynamic import with a smaller, more performant implementation
+const OptimizedTestimonialList = dynamic(
+  () => import('./OptimizedTestimonialList'), 
+  {
+    loading: () => <TestimonialsSkeleton />,
+    ssr: false
+  }
+);
 
 /**
- * Fallback testimonials component - a direct rendering of testimonials without the carousel
- * This is used as a last resort if the dynamic loading fails
- */
-const DirectTestimonials = ({ testimonials }: { testimonials: TestimonialItem[] }) => {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {testimonials.map((testimonial, index) => (
-        <div key={index} className="min-h-[300px]">
-          <TestimonialCard
-            quote={testimonial.quote}
-            author={testimonial.author}
-            position={testimonial.position}
-            company={testimonial.company}
-          />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-/**
- * Testimonials Section Component
+ * Testimonials Section Component (Optimized)
  *
- * Displays client testimonials in a responsive carousel.
- * Desktop: Displays 3 testimonials side by side
- * Mobile: Displays 1 testimonial with swipe functionality
+ * Displays client testimonials with improved performance:
+ * - Lazy loading based on visibility
+ * - Reduced DOM elements
+ * - Optimized rendering with virtualization
  */
 const Testimonials = () => {
-  // Client-side detection for debugging
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '200px 0px',
+  });
+  
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  // Load testimonials only when in view
   useEffect(() => {
-    console.log('Testimonials section mounted');
+    if (inView && !isLoaded) {
+      setIsLoaded(true);
+    }
+  }, [inView, isLoaded]);
+
+  // Limit number of testimonials to display
+  const displayedTestimonials = useMemo(() => {
+    return staticTestimonials.slice(0, 6); // Show only 6 testimonials to reduce DOM size
   }, []);
 
   return (
-    <section id="testimonials" className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden">
-      {/* Decorative background - simplified, removed circles */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5">
-      </div>
+    <section 
+      id="testimonials" 
+      ref={ref}
+      className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden"
+    >
+      {/* Decorative background - simplified */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header with visual accent */}
-        <div className="text-center mb-16 relative">
+        <div className="text-center mb-12 md:mb-16 relative">
           <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Testimonials</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
             What Our Clients Say
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Don't just take our word for it. See how we've helped businesses keep their spaces clean and their clients impressed.
+            See how we've helped businesses keep their spaces clean and their clients impressed.
           </p>
-          <div className="absolute w-16 h-1 bg-primary rounded-full left-1/2 transform -translate-x-1/2 bottom-0 mt-4"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto relative">
-          {/* Use dynamic import instead of Suspense with TestimonialList */}
-          <TestimonialList />
-
-          {/* Fallback: If dynamic loading fails completely, show static testimonials after 5 seconds */}
-          <div id="testimonial-fallback" className="hidden">
-            <DirectTestimonials testimonials={staticTestimonials} />
-          </div>
+        <div className="max-w-7xl mx-auto relative contains-many-items">
+          {/* Only load the component when in view */}
+          {isLoaded ? (
+            <OptimizedTestimonialList testimonials={displayedTestimonials} />
+          ) : (
+            <TestimonialsSkeleton />
+          )}
         </div>
 
         {/* Call to action */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-6 text-lg">Join our satisfied customers today.</p>
-          <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div className="mt-12 md:mt-16 text-center">
+          <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300">
             Get a Free Quote
           </a>
         </div>
       </div>
-
-      {/* Script to reveal fallback testimonials if needed */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          setTimeout(() => {
-            // Check if any testimonial cards are visible
-            const visibleCards = document.querySelectorAll('.testimonial-carousel-item');
-            if (visibleCards.length === 0) {
-              console.log('No visible testimonial cards detected, showing fallback');
-              document.getElementById('testimonial-fallback').classList.remove('hidden');
-            }
-          }, 5000);
-        `
-      }} />
     </section>
   );
 };

@@ -9,19 +9,18 @@
  * the main content rendered at the root route (/).
  */
 
+'use client';
+
 import { Metadata } from 'next';
 import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
 import ServiceAreas from '@/app/@components/sections/ServiceAreas';
-import About from '@/app/@components/sections/About';
 import WhyChooseUs from '@/app/@components/sections/WhyChooseUs';
-import Testimonials from '@/app/@components/sections/Testimonials';
-import FAQ from '@/app/@components/sections/FAQ';
-import Contact from '@/app/@components/sections/Contact';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import SEO from '@/app/@components/shared/SEO';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import CTABanner from '@/app/@components/sections/CTABanner';
+import { Suspense, lazy } from 'react';
 
 /**
  * Page Metadata
@@ -31,9 +30,17 @@ import CTABanner from '@/app/@components/sections/CTABanner';
  * The metadata is generated using a utility function for consistency
  */
 export const metadata: Metadata = generatePageMetadata({
+  title: 'Brightway Commercial Cleaning Services', 
+  description: 'Professional commercial cleaning services for businesses in Austin, TX. Brighten your workspace with Brightway.',
   pageType: 'home',
   canonicalPath: '/', // Explicitly set canonical path for home page
 });
+
+// Dynamic imports for below-fold components
+const About = lazy(() => import('@/app/@components/sections/About'));
+const Testimonials = lazy(() => import('@/app/@components/sections/Testimonials'));
+const Contact = lazy(() => import('@/app/@components/sections/Contact'));
+const FAQ = lazy(() => import('@/app/@components/sections/FAQ'));
 
 /**
  * Home Page Component
@@ -49,19 +56,25 @@ export const metadata: Metadata = generatePageMetadata({
  * 7. FAQ - Frequently asked questions
  * 8. Contact - Contact form and information
  */
-export default function Home() {
+export default function HomePage() {
   return (
     <MainLayout>
       <SEO type="all" />
       <Hero />
       <Services />
       <CTABanner />
-      <About />
-      <WhyChooseUs />
-      <ServiceAreas />
-      <Testimonials />
-      <FAQ />
-      <Contact />
+      
+      {/* Below-fold content loaded after initial render */}
+      <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
+        <div className="below-fold-content">
+          <WhyChooseUs />
+          <ServiceAreas />
+          <About />
+          <Testimonials />
+          <Contact />
+          <FAQ />
+        </div>
+      </Suspense>
     </MainLayout>
   );
 }

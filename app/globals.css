@@ -96,6 +96,27 @@ h1, p.hero-text {
   contain-intrinsic-size: 1px 500px;
 }
 
+/* DOM size optimization */
+.contains-many-items {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 5000px;
+  contain: content;
+}
+
+/* Virtual list for large collections */
+.virtual-list-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 120px;
+  contain: layout style paint;
+}
+
+/* Optimize rendering for deeply nested elements */
+.optimized-rendering {
+  contain: layout style paint;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
 /* Testimonial Card Styles - Ensure Visibility */
 #testimonials .testimonial-carousel-item {
   display: block !important;
