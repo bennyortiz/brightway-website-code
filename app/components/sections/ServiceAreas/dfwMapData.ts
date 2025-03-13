@@ -24,7 +24,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Dallas',
     path: 'M120,100 L170,80 L190,120 L160,150 L120,140 Z',
     coverageLevel: 'full',
-    description: 'Comprehensive cleaning services throughout Dallas, covering downtown business districts, corporate offices, and commercial spaces.',
+    description: "Comprehensive cleaning services throughout Dallas, covering downtown business districts, corporate offices, and commercial spaces.",
     keyLocations: [
       'Downtown Dallas',
       'Uptown',
@@ -39,7 +39,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Fort Worth',
     path: 'M60,110 L100,90 L110,130 L80,150 L50,140 Z',
     coverageLevel: 'full',
-    description: 'Complete cleaning solutions for Fort Worth businesses, from downtown to the cultural district and surrounding commercial areas.',
+    description: "Complete cleaning solutions for Fort Worth businesses, from downtown to the cultural district and surrounding commercial areas.",
     keyLocations: [
       'Downtown Fort Worth',
       'Cultural District',
@@ -54,7 +54,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Arlington',
     path: 'M110,120 L140,110 L150,140 L120,160 L100,150 Z',
     coverageLevel: 'full',
-    description: 'Professional cleaning services for Arlington businesses, entertainment venues, and commercial properties.',
+    description: "Professional cleaning services for Arlington businesses, entertainment venues, and commercial properties.",
     keyLocations: [
       'Entertainment District',
       'Downtown Arlington',
@@ -69,7 +69,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Irving',
     path: 'M90,80 L120,70 L130,100 L110,110 L90,100 Z',
     coverageLevel: 'full',
-    description: 'Tailored cleaning solutions for Irving's Las Colinas business district and surrounding commercial areas.',
+    description: "Tailored cleaning solutions for Irving's Las Colinas business district and surrounding commercial areas.",
     keyLocations: [
       'Las Colinas',
       'Irving Convention Center',
@@ -84,7 +84,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Plano',
     path: 'M150,50 L180,40 L190,70 L160,80 L140,70 Z',
     coverageLevel: 'full',
-    description: 'Premium cleaning services for Plano's corporate headquarters, retail centers, and business parks.',
+    description: "Premium cleaning services for Plano's corporate headquarters, retail centers, and business parks.",
     keyLocations: [
       'Legacy Business Park',
       'Downtown Plano',
@@ -99,7 +99,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Frisco',
     path: 'M160,20 L190,10 L200,40 L170,50 L150,40 Z',
     coverageLevel: 'full',
-    description: 'Expert cleaning solutions for Frisco's rapidly growing business community, sports venues, and retail spaces.',
+    description: "Expert cleaning solutions for Frisco's rapidly growing business community, sports venues, and retail spaces.",
     keyLocations: [
       'The Star',
       'Frisco Square',
@@ -114,7 +114,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'McKinney',
     path: 'M190,30 L220,20 L230,50 L200,60 L180,50 Z',
     coverageLevel: 'full',
-    description: 'Reliable cleaning services for McKinney's historic downtown, new developments, and commercial properties.',
+    description: "Reliable cleaning services for McKinney's historic downtown, new developments, and commercial properties.",
     keyLocations: [
       'Historic Downtown',
       'Craig Ranch',
@@ -129,7 +129,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Richardson',
     path: 'M140,70 L170,60 L180,90 L150,100 L130,90 Z',
     coverageLevel: 'full',
-    description: 'Specialized cleaning for Richardson's Telecom Corridor and surrounding business centers.',
+    description: "Specialized cleaning for Richardson's Telecom Corridor and surrounding business centers.",
     keyLocations: [
       'Telecom Corridor',
       'CityLine',
@@ -144,7 +144,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Lewisville',
     path: 'M80,50 L110,40 L120,70 L90,80 L70,70 Z',
     coverageLevel: 'full',
-    description: 'Comprehensive cleaning services for Lewisville businesses, retail centers, and commercial properties.',
+    description: "Comprehensive cleaning services for Lewisville businesses, retail centers, and commercial properties.",
     keyLocations: [
       'Vista Ridge Mall area',
       'Old Town',
@@ -159,7 +159,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Carrollton',
     path: 'M110,60 L140,50 L150,80 L120,90 L100,80 Z',
     coverageLevel: 'full',
-    description: 'Professional cleaning for Carrollton's diverse business community and commercial centers.',
+    description: "Professional cleaning for Carrollton's diverse business community and commercial centers.",
     keyLocations: [
       'Downtown Carrollton',
       'Trinity Mills area',
@@ -174,7 +174,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Bedford',
     path: 'M80,80 L100,70 L110,90 L90,100 L80,90 Z',
     coverageLevel: 'full',
-    description: 'Quality cleaning services throughout Bedford's business district and commercial properties.',
+    description: "Quality cleaning services throughout Bedford's business district and commercial properties.",
     keyLocations: [
       'Central Bedford',
       'Bedford Commons',
@@ -189,7 +189,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Grapevine',
     path: 'M70,60 L90,50 L100,70 L80,80 L60,70 Z',
     coverageLevel: 'full',
-    description: 'Exceptional cleaning solutions for Grapevine's historic downtown, wineries, and commercial spaces.',
+    description: "Exceptional cleaning solutions for Grapevine's historic downtown, wineries, and commercial spaces.",
     keyLocations: [
       'Historic Downtown',
       'Grapevine Mills area',
@@ -204,7 +204,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Garland',
     path: 'M170,80 L200,70 L210,100 L180,110 L160,100 Z',
     coverageLevel: 'partial',
-    description: 'Efficient cleaning services for Garland's industrial parks, business centers, and commercial properties.',
+    description: "Efficient cleaning services for Garland's industrial parks, business centers, and commercial properties.",
     keyLocations: [
       'Downtown Garland',
       'Firewheel area',
@@ -219,7 +219,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Mesquite',
     path: 'M180,110 L210,100 L220,130 L190,140 L170,130 Z',
     coverageLevel: 'partial',
-    description: 'Reliable cleaning solutions for Mesquite's retail corridors and business areas.',
+    description: "Reliable cleaning solutions for Mesquite's retail corridors and business areas.",
     keyLocations: [
       'Town East Mall area',
       'Downtown Mesquite',
@@ -234,7 +234,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Denton',
     path: 'M50,20 L80,10 L90,40 L60,50 L40,40 Z',
     coverageLevel: 'partial',
-    description: 'Professional cleaning for Denton's university areas, square, and commercial properties.',
+    description: "Professional cleaning for Denton's university areas, square, and commercial properties.",
     keyLocations: [
       'Downtown Square',
       'UNT area',
@@ -249,7 +249,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Southlake',
     path: 'M70,70 L90,65 L95,85 L75,90 L65,85 Z',
     coverageLevel: 'full',
-    description: 'Premium cleaning services for Southlake's upscale shopping districts and business centers.',
+    description: "Premium cleaning services for Southlake's upscale shopping districts and business centers.",
     keyLocations: [
       'Southlake Town Square',
       'Gateway Plaza',
@@ -264,7 +264,7 @@ export const dfwMapData: DFWMapRegion[] = [
     name: 'Allen',
     path: 'M160,40 L180,30 L190,50 L170,60 L160,50 Z',
     coverageLevel: 'partial',
-    description: 'Comprehensive cleaning solutions for Allen's retail centers and business parks.',
+    description: "Comprehensive cleaning solutions for Allen's retail centers and business parks.",
     keyLocations: [
       'Allen Premium Outlets',
       'The Village at Allen',
