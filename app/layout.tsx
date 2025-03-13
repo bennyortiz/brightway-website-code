@@ -55,9 +55,6 @@ export const metadata: Metadata = {
   creator: siteConfig.business.legalName,
   publisher: siteConfig.business.legalName,
   metadataBase: new URL(siteConfig.url),
-  alternates: {
-    canonical: '/',
-  },
   robots: {
     index: true,
     follow: true,

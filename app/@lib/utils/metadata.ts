@@ -57,8 +57,18 @@ export function generatePageMetadata({
       : generateMetaDescription(pageType, customData));
 
   // Create a canonical URL
-  const resolvedPath = canonicalPath || (slug ? `/${slug.replace(/^\/+/, '')}` : '');
-  const canonicalUrl = `${siteConfig.url.replace(/\/+$/, '')}${resolvedPath}`;
+  // For the homepage, use the site URL directly without any path
+  // For other pages, append the canonicalPath or slug to the site URL
+  let canonicalUrl: string;
+  
+  if (pageType === 'home' || canonicalPath === '/') {
+    // For the homepage, just use the base URL without trailing slash
+    canonicalUrl = siteConfig.url.replace(/\/+$/, '');
+  } else {
+    // For other pages, properly format the path with a leading slash
+    const resolvedPath = canonicalPath || (slug ? `/${slug.replace(/^\/+/, '')}` : '');
+    canonicalUrl = `${siteConfig.url.replace(/\/+$/, '')}${resolvedPath}`;
+  }
 
   // Determine the proper OG image
   const ogImageUrl = ogImage || siteConfig.ogImage;
