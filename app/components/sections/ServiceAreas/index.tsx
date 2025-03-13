@@ -18,17 +18,38 @@ const ServiceAreas = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [coverageFilter, setCoverageFilter] = useState<'all' | 'full' | 'partial'>('all');
   
+  // Select the top cities to display (9 cities - divisible by 3 columns for larger screens)
+  // This ensures we don't have incomplete columns
+  const topCities = useMemo(() => {
+    // Prioritize full coverage areas first, then sort alphabetically
+    return [...dfwMapData]
+      .sort((a, b) => {
+        // First sort by coverage level (full first)
+        if (a.coverageLevel === 'full' && b.coverageLevel !== 'full') return -1;
+        if (a.coverageLevel !== 'full' && b.coverageLevel === 'full') return 1;
+        // Then sort alphabetically by name
+        return a.name.localeCompare(b.name);
+      })
+      .slice(0, 9); // Take only the first 9 cities
+  }, []);
+  
   // Filter areas based on search query and coverage filter
   const filteredAreas = useMemo(() => {
-    return dfwMapData.filter(area => {
-      const matchesSearch = area.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                           (area.zipCodes && area.zipCodes.some(zip => zip.includes(searchQuery)));
-      
-      const matchesFilter = coverageFilter === 'all' || area.coverageLevel === coverageFilter;
-      
-      return matchesSearch && matchesFilter;
-    });
-  }, [searchQuery, coverageFilter]);
+    if (searchQuery || coverageFilter !== 'all') {
+      // Apply filters when searching or filtering
+      return dfwMapData.filter(area => {
+        const matchesSearch = area.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            (area.zipCodes && area.zipCodes.some(zip => zip.includes(searchQuery)));
+        
+        const matchesFilter = coverageFilter === 'all' || area.coverageLevel === coverageFilter;
+        
+        return matchesSearch && matchesFilter;
+      });
+    } else {
+      // When not searching or filtering, show top cities
+      return topCities;
+    }
+  }, [searchQuery, coverageFilter, topCities]);
 
   // Handle selecting an area to view details
   const handleSelectArea = (area: DFWMapRegion) => {
@@ -56,7 +77,7 @@ const ServiceAreas = () => {
         </div>
 
         {/* Search and Filter Controls */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="mb-10">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search Bar */}
             <div className="relative flex-grow">
@@ -73,7 +94,7 @@ const ServiceAreas = () => {
             </div>
 
             {/* Coverage Filter */}
-            <div className="flex-shrink-0">
+            <div className="md:w-48">
               <select
                 value={coverageFilter}
                 onChange={(e) => setCoverageFilter(e.target.value as 'all' | 'full' | 'partial')}
@@ -88,7 +109,7 @@ const ServiceAreas = () => {
         </div>
 
         {/* Results Counter */}
-        <div className="max-w-4xl mx-auto mb-6">
+        <div className="mb-6">
           <p className="text-gray-600">
             {filteredAreas.length} {filteredAreas.length === 1 ? 'area' : 'areas'} found
             {searchQuery && ` for "${searchQuery}"`}
@@ -97,7 +118,7 @@ const ServiceAreas = () => {
         </div>
 
         {/* Service Areas Grid */}
-        <div className="max-w-4xl mx-auto">
+        <div className="mb-12">
           {filteredAreas.length > 0 ? (
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -149,7 +170,7 @@ const ServiceAreas = () => {
         </div>
 
         {/* "Don't see your area?" Section */}
-        <div className="max-w-4xl mx-auto mt-12 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
           <div className="p-5 bg-white rounded-xl shadow-md flex items-center max-w-md">
             <div className="bg-blue-50 p-2 rounded-full mr-4">
               <MapPin className="h-6 w-6 text-primary" />
