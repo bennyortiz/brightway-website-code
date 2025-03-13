@@ -18,10 +18,6 @@ const TestimonialCard = ({ quote, author, position, company }: TestimonialItem) 
                     border border-gray-100 group-hover:border-primary/30
                     group-hover:shadow-xl group-hover:-translate-y-1">
         
-        {/* Decorative elements */}
-        <div className="absolute -top-3 -left-3 w-12 h-12 rounded-full bg-primary/10 z-0"></div>
-        <div className="absolute -bottom-3 -right-3 w-20 h-20 rounded-full bg-primary/5 z-0"></div>
-        
         {/* Quote icon as a stylized element */}
         <div className="text-5xl leading-none text-primary/30 font-serif mb-2">"</div>
         
