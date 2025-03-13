@@ -32,6 +32,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   variable: '--font-plus-jakarta-sans',
   preload: true,
   fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+  weight: ['400', '500', '600', '700'],
 });
 
 /**

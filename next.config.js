@@ -64,6 +64,16 @@ const nextConfig = {
   experimental: {
     // Better code splitting
     optimizeCss: true,
+    // Enable partitioning for better code splitting
+    serverComponentsExternalPackages: ['sharp'],
+    // Enable SWC minification for better performance
+    swcMinify: true,
+    // Enable optimistic updates
+    optimisticClientCache: true,
+    // Enable server actions for form handling with less client JS
+    serverActions: { 
+      allowedOrigins: ['localhost:3000', 'brightway-website.vercel.app']
+    },
   },
   
   // Configure response headers for better caching

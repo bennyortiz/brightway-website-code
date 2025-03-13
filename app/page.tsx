@@ -9,22 +9,23 @@
  * the main content rendered at the root route (/).
  */
 
-'use client';
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
+// Import critical above-fold components directly
 import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
-import ServiceAreas from '@/app/@components/sections/ServiceAreas';
-import WhyChooseUs from '@/app/@components/sections/WhyChooseUs';
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
-import SEO from '@/app/@components/shared/SEO';
 import CTABanner from '@/app/@components/sections/CTABanner';
-import { Suspense, lazy } from 'react';
+import SEO from '@/app/@components/shared/SEO';
 
-// Dynamic imports for below-fold components
-const About = lazy(() => import('@/app/@components/sections/About'));
-const Testimonials = lazy(() => import('@/app/@components/sections/Testimonials'));
-const Contact = lazy(() => import('@/app/@components/sections/Contact'));
-const FAQ = lazy(() => import('@/app/@components/sections/FAQ'));
+// Dynamically import below-fold components
+const MainLayout = dynamic(() => import('@/app/@components/ui/layout/MainLayout'));
+const WhyChooseUs = dynamic(() => import('@/app/@components/sections/WhyChooseUs'));
+const ServiceAreas = dynamic(() => import('@/app/@components/sections/ServiceAreas'));
+const About = dynamic(() => import('@/app/@components/sections/About'));
+const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
+const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
+const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
 
 /**
  * Home Page Component

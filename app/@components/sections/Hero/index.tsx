@@ -54,11 +54,10 @@ const Hero = () => {
                   src="/images/brightway-commercial-hallway.jpg"
                   alt="Brightway Commercial Hallway Cleaning"
                   fallbackText="Commercial Hallway Cleaning"
-                  priority={false}
+                  priority={true}
                   placement="above-fold"
                   quality={85}
                   className="w-full h-full object-cover transition-opacity duration-300"
-                  loading="lazy"
                 />
               </MotionDiv>
             </Suspense>
