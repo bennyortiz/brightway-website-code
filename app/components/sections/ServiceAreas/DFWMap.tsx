@@ -153,15 +153,25 @@ const DFWMap: React.FC<DFWMapProps> = ({
                    region.id === 'arlington' ? 120 :
                    region.id === 'plano' ? 165 :
                    region.id === 'frisco' ? 175 :
-                   parseInt(region.path.split(' ')[1].split(',')[0]) + 
-                   parseInt(region.path.split(' ')[5].split(',')[0].slice(0, -1)) / 2}
+                   (() => {
+                     const parts = region.path.split(' ');
+                     const firstPart = parts[1] && parts[1].split(',')[0] ? parseInt(parts[1].split(',')[0]) : 0;
+                     const fifthPart = parts[5] && parts[5].includes(',') ? 
+                       parseInt(parts[5].split(',')[0].replace('Z', '')) : 0;
+                     return firstPart + (fifthPart / 2);
+                   })()}
                 y={region.id === 'dallas' ? 120 :
                    region.id === 'fortWorth' ? 120 :
                    region.id === 'arlington' ? 135 :
                    region.id === 'plano' ? 60 :
                    region.id === 'frisco' ? 30 :
-                   parseInt(region.path.split(' ')[1].split(',')[1]) + 
-                   parseInt(region.path.split(' ')[5].split(',')[1].slice(0, -1)) / 2}
+                   (() => {
+                     const parts = region.path.split(' ');
+                     const firstPart = parts[1] && parts[1].split(',')[1] ? parseInt(parts[1].split(',')[1]) : 0;
+                     const fifthPart = parts[5] && parts[5].includes(',') ? 
+                       parseInt(parts[5].split(',')[1].replace('Z', '')) : 0;
+                     return firstPart + (fifthPart / 2);
+                   })()}
               >
                 {region.name}
               </text>
