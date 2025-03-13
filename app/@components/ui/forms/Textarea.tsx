@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 /**
  * Textarea Props
@@ -30,8 +30,9 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     },
     ref
   ) => {
-    // Generate unique ID for textarea field and label
-    const id = props.id || `textarea-${Math.random().toString(36).substring(2, 9)}`;
+    // Generate stable ID for textarea field and label
+    const uniqueId = useId();
+    const id = props.id || `textarea-${uniqueId}`;
     
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';

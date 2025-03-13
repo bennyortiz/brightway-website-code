@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 /**
  * Checkbox Props
@@ -28,8 +28,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
-    // Generate unique ID for checkbox field and label
-    const id = props.id || `checkbox-${Math.random().toString(36).substring(2, 9)}`;
+    // Generate stable ID for checkbox field and label
+    const uniqueId = useId();
+    const id = props.id || `checkbox-${uniqueId}`;
     
     // Calculate checkbox classes based on error state
     const checkboxClasses = `

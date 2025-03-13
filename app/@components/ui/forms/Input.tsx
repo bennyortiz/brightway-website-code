@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 /**
  * Input Props
@@ -32,8 +32,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    // Generate unique ID for input field and label
-    const id = props.id || `input-${Math.random().toString(36).substring(2, 9)}`;
+    // Generate stable ID for input field and label
+    const uniqueId = useId();
+    const id = props.id || `input-${uniqueId}`;
     
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useId } from 'react';
 
 /**
  * Option Item for Select
@@ -45,8 +45,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     },
     ref
   ) => {
-    // Generate unique ID for select field and label
-    const id = props.id || `select-${Math.random().toString(36).substring(2, 9)}`;
+    // Generate stable ID for select field and label
+    const uniqueId = useId();
+    const id = props.id || `select-${uniqueId}`;
     
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';
