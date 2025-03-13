@@ -18,6 +18,7 @@ import { siteConfig } from './@lib/constants/siteConfig';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 /**
  * Font Configuration
@@ -190,8 +191,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white text-gray-900 min-h-screen flex flex-col">
         {children}
 
-        {/* Vercel Analytics */}
-        <Analytics />
+        {/* Vercel Analytics with enhanced configuration */}
+        <Analytics 
+          mode={process.env.NODE_ENV === 'production' ? 'production' : 'development'}
+          debug={process.env.NODE_ENV !== 'production'}
+        />
+        
+        {/* Vercel Speed Insights for enhanced performance metrics */}
+        <SpeedInsights />
 
         {/* Defer non-critical scripts */}
         <Script 
@@ -206,20 +213,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              const sendToAnalytics = (metric) => {
-                // You can send to any analytics service here
-                console.log(metric);
+              const sendToVercelAnalytics = (metric) => {
+                // Send to Vercel Analytics
+                if (window.va) {
+                  window.va('event', {
+                    name: metric.name,
+                    value: metric.value.toString(),
+                    metricId: metric.id,
+                    attribution: metric.attribution,
+                    navigationType: metric.navigationType
+                  });
+                }
+                // Log in development
+                if (process.env.NODE_ENV !== 'production') {
+                  console.log(metric);
+                }
               };
               
               // Only load web-vitals after page is fully loaded and idle
               if ('requestIdleCallback' in window) {
                 window.requestIdleCallback(() => {
                   import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-                    getCLS(sendToAnalytics);
-                    getFID(sendToAnalytics);
-                    getFCP(sendToAnalytics);
-                    getLCP(sendToAnalytics);
-                    getTTFB(sendToAnalytics);
+                    getCLS(sendToVercelAnalytics);
+                    getFID(sendToVercelAnalytics);
+                    getFCP(sendToVercelAnalytics);
+                    getLCP(sendToVercelAnalytics);
+                    getTTFB(sendToVercelAnalytics);
                   });
                 }, { timeout: 5000 });
               } else {
@@ -227,11 +246,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 window.addEventListener('load', () => {
                   setTimeout(() => {
                     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-                      getCLS(sendToAnalytics);
-                      getFID(sendToAnalytics);
-                      getFCP(sendToAnalytics);
-                      getLCP(sendToAnalytics);
-                      getTTFB(sendToAnalytics);
+                      getCLS(sendToVercelAnalytics);
+                      getFID(sendToVercelAnalytics);
+                      getFCP(sendToVercelAnalytics);
+                      getLCP(sendToVercelAnalytics);
+                      getTTFB(sendToVercelAnalytics);
                     });
                   }, 5000);
                 });
