@@ -2,72 +2,35 @@
 
 This is the codebase for the Brightway Cleaning website, built with Next.js 15 and TypeScript.
 
-## Project Structure
-
-The project follows a well-organized directory structure:
-
-```
-brightway-website-code/
-├── app/                      # Next.js App Router
-│   ├── @components/          # React components
-│   │   ├── ui/               # Reusable UI components
-│   │   ├── sections/         # Page sections
-│   │   └── shared/           # Shared components
-│   ├── @lib/                 # Utilities and non-component code
-│   │   ├── constants/        # Constants and configuration
-│   │   ├── utils/            # Utility functions
-│   │   ├── hooks/            # Custom React hooks
-│   │   ├── api/              # API-related utilities
-│   │   └── types/            # TypeScript type definitions
-│   ├── about-us/             # About page route
-│   ├── contact/              # Contact page route
-│   ├── services/             # Services page route
-│   ├── privacy-policy/       # Privacy policy page route
-│   ├── terms-of-service/     # Terms page route
-│   ├── cookie-policy/        # Cookie policy page route
-│   ├── page.tsx              # Home page
-│   └── layout.tsx            # Root layout
-├── public/                   # Static assets
-└── ...
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18.x or later
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-2. Install dependencies:
+## Quick Start
 
 ```bash
+# Install dependencies
 npm install
-# or
-yarn install
-```
 
-3. Run the development server:
-
-```bash
+# Start development server
 npm run dev
-# or
-yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Build
+## Documentation
 
-To build the project for production:
+Comprehensive documentation is available in the [docs](./docs) directory:
 
-```bash
-npm run build
-# or
-yarn build
-```
+- [Getting Started](./docs/getting-started.md)
+- [Project Structure](./docs/project-structure.md)
+- [Development Guides](./docs/guides/README.md)
+- [Component Library](./docs/components.md)
+- [Utility Libraries](./docs/libraries.md)
+
+## Features
+
+- **Modern Stack**: Next.js 15, React 18, TypeScript
+- **Performance**: Optimized for Core Web Vitals
+- **Responsive**: Mobile-first design approach
+- **Accessibility**: WCAG 2.1 AA compliant
+- **SEO**: Optimized metadata and structured data
 
 ## Development Standards
 
@@ -76,10 +39,16 @@ yarn build
 - **Component Structure**: Group related components in directories
 - **Documentation**: Document functions and components with JSDoc comments
 
-See [PATH_ALIASES.md](./PATH_ALIASES.md) for more information on import paths.
+## Available Scripts
 
-## Documentation
+- **dev**: Starts the development server
+- **build**: Builds the application for production
+- **start**: Starts the production server
+- **lint**: Runs ESLint to check for code issues
+- **lint:fix**: Runs ESLint and automatically fixes issues
+- **format**: Runs Prettier to format code
+- **format:check**: Checks if code is properly formatted
 
-- [Components Documentation](./app/@components/README.md)
-- [Library Documentation](./app/@lib/README.md)
-- [Path Aliases](./PATH_ALIASES.md)
+## License
+
+This project is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
