@@ -10,21 +10,21 @@ import ContactInfo from './ContactInfo';
  */
 const Contact = () => {
   return (
-    <section id="contact" className="w-full py-12 md:py-24 bg-gray-50">
+    <section id="contact" className="w-full py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Get In Touch</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Ready to experience the Brightway difference? Get in touch for a free quote or to learn
-            more about our services.
+            Ready to experience the Brightway difference? Contact us for a free quote or to learn
+            more about our professional cleaning services.
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12">
-          <div className="lg:w-1/3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-1">
             <ContactInfo />
           </div>
-          <div className="lg:w-2/3">
+          <div className="lg:col-span-2">
             <ContactForm />
           </div>
         </div>

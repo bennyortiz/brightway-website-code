@@ -1,8 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Send } from 'lucide-react';
+import { Send, User, Mail, Phone, BookCheck, MessageSquare } from 'lucide-react';
+import { 
+  Input, 
+  Textarea, 
+  Select, 
+  FormGroup, 
+  Checkbox 
+} from '@/app/@components/ui/forms';
+import { Button } from '@/app/@components/ui/buttons';
+import { 
+  Card, 
+  CardHeader, 
+  CardBody, 
+  CardFooter, 
+  CardTitle 
+} from '@/app/@components/ui/cards';
 import { submitContactForm } from '@/app/@lib/api/services/contactForm';
+import { serviceItems } from '@/app/@lib/data/services';
 
 /**
  * ContactForm Component
@@ -17,7 +33,9 @@ const ContactForm = () => {
     phone: '',
     service: '',
     message: '',
+    consent: false
   });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success?: boolean;
@@ -27,8 +45,10 @@ const ContactForm = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
+    
+    setFormData((prev) => ({ ...prev, [name]: newValue }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,6 +69,7 @@ const ContactForm = () => {
           phone: '',
           service: '',
           message: '',
+          consent: false
         });
       }
     } catch (error) {
@@ -60,103 +81,130 @@ const ContactForm = () => {
       setIsSubmitting(false);
     }
   };
+  
+  // Create options for the service dropdown from our service data
+  const serviceOptions = [
+    { value: '', label: 'Select a service', disabled: true },
+    ...serviceItems.map(service => ({
+      value: service.title.toLowerCase().replace(/\s+/g, '-'),
+      label: service.title
+    }))
+  ];
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 bg-white rounded-lg shadow-lg">
-      {submitStatus.message && (
-        <div className={`p-4 mb-4 rounded-md ${submitStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-          {submitStatus.message}
-        </div>
-      )}
+    <Card variant="elevated" className="overflow-hidden">
+      <CardHeader>
+        <CardTitle>Get In Touch</CardTitle>
+        <p className="text-gray-600 mt-2">
+          Fill out the form below and our team will get back to you shortly.
+        </p>
+      </CardHeader>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
-            required
-          />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
-          />
-        </div>
-        <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
-            Service Interested In
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
+      <CardBody>
+        <form onSubmit={handleSubmit}>
+          {submitStatus.message && (
+            <div 
+              className={`p-4 mb-6 rounded-md ${
+                submitStatus.success 
+                  ? 'bg-green-50 border border-green-200 text-green-700' 
+                  : 'bg-red-50 border border-red-200 text-red-700'
+              }`}
+            >
+              {submitStatus.message}
+            </div>
+          )}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <FormGroup>
+              <Input
+                name="name"
+                label="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your full name"
+                required
+                icon={<User size={18} />}
+              />
+            </FormGroup>
+            
+            <FormGroup>
+              <Input
+                name="email"
+                type="email"
+                label="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="your@email.com"
+                required
+                icon={<Mail size={18} />}
+              />
+            </FormGroup>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <FormGroup>
+              <Input
+                name="phone"
+                type="tel"
+                label="Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="(123) 456-7890"
+                icon={<Phone size={18} />}
+                helperText="Optional, but helps us reach you faster"
+              />
+            </FormGroup>
+            
+            <FormGroup>
+              <Select
+                name="service"
+                label="Service Interested In"
+                value={formData.service}
+                onChange={handleChange}
+                options={serviceOptions}
+                icon={<BookCheck size={18} />}
+              />
+            </FormGroup>
+          </div>
+          
+          <div className="mb-6">
+            <FormGroup>
+              <Textarea
+                name="message"
+                label="Your Message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Tell us about your cleaning needs..."
+                rows={5}
+                required
+              />
+            </FormGroup>
+          </div>
+          
+          <div className="mb-6">
+            <Checkbox
+              name="consent"
+              checked={formData.consent}
+              onChange={handleChange as any}
+              label="I agree to be contacted about my inquiry and understand the Privacy Policy regarding how my data is used."
+              required
+            />
+          </div>
+          
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
+            loading={isSubmitting}
+            rightIcon={<Send size={18} />}
+            disabled={isSubmitting}
           >
-            <option value="">Select a service</option>
-            <option value="residential">Residential Cleaning</option>
-            <option value="commercial">Commercial Cleaning</option>
-            <option value="deep">Deep Cleaning</option>
-            <option value="move">Move In/Out Cleaning</option>
-          </select>
-        </div>
-      </div>
-      <div className="mb-4">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          rows={4}
-          className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/50 focus:border-primary"
-          required
-        ></textarea>
-      </div>
-      <button
-        type="submit"
-        className={`mt-4 w-full flex justify-center items-center gap-2 py-2 px-4 rounded-md bg-primary ${
-          isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-primary-dark'
-        } text-white`}
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? 'Sending...' : 'Send Message'}
-        <Send size={18} />
-      </button>
-    </form>
+            {isSubmitting ? 'Sending...' : 'Send Message'}
+          </Button>
+        </form>
+      </CardBody>
+    </Card>
   );
 };
 
