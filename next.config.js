@@ -27,9 +27,6 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  // Define external packages for server components (moved from experimental)
-  serverExternalPackages: ['sharp'],
-
   // Output standalone build
   // This creates a standalone build that includes all dependencies
   // Essential for proper Vercel deployment with serverless functions
@@ -63,6 +60,12 @@ const nextConfig = {
     reactRemoveProperties: { properties: ['^data-test$'] },
   },
 
+  // SWC minification is now a top-level configuration
+  swcMinify: true,
+  
+  // External packages to be bundled with server components
+  serverExternalPackages: ['sharp'],
+  
   // Enable experimental features for better performance
   experimental: {
     // Better code splitting
