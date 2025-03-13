@@ -44,17 +44,22 @@ const itemVariants = {
  * 1. Using server-rendered text
  * 2. Deferring animations until after hydration
  * 3. Lazy-loading non-critical elements
+ * 
+ * Responsive design enhancements:
+ * - Consistent text sizes across all devices
+ * - Proper spacing and alignment on small screens
+ * - Optimized button layout for mobile and tablet
  */
 const HeroContent = () => {
   return (
-    <div className="md:w-1/2">
+    <div className="w-full">
       {/* Critical text content - server rendered */}
       <HeroText />
 
       {/* Interactive elements - client rendered with animations */}
       <LazyMotion features={domAnimation}>
         <motion.div 
-          className="mt-6 space-y-6"
+          className="mt-6 sm:mt-8 space-y-5 sm:space-y-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -64,11 +69,13 @@ const HeroContent = () => {
           </motion.div>
 
           <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-2 md:pt-4"
+            className="flex flex-col sm:flex-row gap-4 sm:gap-4 pt-2 sm:pt-3 md:pt-4"
             variants={itemVariants}
           >
-            <PrimaryButton href="#contact">Get a Free Quote</PrimaryButton>
-            <OutlineButton href="#services" withArrow>
+            <PrimaryButton href="#contact" className="w-full sm:w-auto justify-center">
+              Get a Free Quote
+            </PrimaryButton>
+            <OutlineButton href="#services" className="w-full sm:w-auto justify-center" withArrow>
               Explore Services
             </OutlineButton>
           </motion.div>
