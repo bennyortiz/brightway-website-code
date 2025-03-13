@@ -32,6 +32,7 @@ import CTABanner from '@/app/@components/sections/CTABanner';
  */
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'home',
+  canonicalPath: '/', // Explicitly set canonical path for home page
 });
 
 /**

@@ -12,6 +12,7 @@ interface MetadataOptions {
   customData?: Record<string, string>;
   slug?: string;
   noIndex?: boolean;
+  canonicalPath?: string;
 }
 
 /**
@@ -26,6 +27,7 @@ export function generatePageMetadata({
   customData,
   slug = '',
   noIndex = false,
+  canonicalPath,
 }: MetadataOptions): Metadata {
   // Generate the base title
   const baseTitle =
@@ -42,7 +44,8 @@ export function generatePageMetadata({
       : generateMetaDescription(pageType, customData));
 
   // Create a canonical URL
-  const canonicalUrl = `${siteConfig.url}${slug ? `/${slug}` : ''}`;
+  const resolvedPath = canonicalPath || (slug ? `/${slug.replace(/^\/+/, '')}` : '');
+  const canonicalUrl = `${siteConfig.url.replace(/\/+$/, '')}${resolvedPath}`;
 
   // Determine the proper OG image
   const ogImageUrl = ogImage || siteConfig.ogImage;
@@ -51,6 +54,7 @@ export function generatePageMetadata({
   return {
     title: baseTitle,
     description: metaDescription,
+    metadataBase: new URL(siteConfig.url),
     robots: noIndex ? { index: false, follow: true } : { index: true, follow: true },
     alternates: {
       canonical: canonicalUrl,

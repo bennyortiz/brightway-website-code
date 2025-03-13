@@ -11,7 +11,7 @@ export const metadata: Metadata = generatePageMetadata({
   pageType: 'about',
   title: 'About Us | Brightway Cleaning',
   description: 'Learn more about Brightway Cleaning, our mission, values, and the team behind our exceptional commercial cleaning services in DFW.',
-  slug: 'about-us',
+  canonicalPath: '/about-us',
 });
 
 export default function AboutUs() {

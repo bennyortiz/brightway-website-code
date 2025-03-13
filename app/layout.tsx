@@ -61,6 +61,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   openGraph: {
     type: 'website',
@@ -83,12 +90,21 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
+    creator: siteConfig.social.handles?.twitter || '@brightwayservices',
   },
   icons: {
     icon: [{ url: '/favicon.ico' }, { url: '/favicon.svg', type: 'image/svg+xml' }],
     apple: '/apple-touch-icon.png',
     shortcut: '/favicon.ico',
   },
+  verification: {
+    google: siteConfig.seo.verification?.google,
+    yandex: siteConfig.seo.verification?.yandex,
+    other: {
+      'msvalidate.01': siteConfig.seo.verification?.bing,
+    },
+  },
+  formatDetection: siteConfig.seo.formatDetection,
 };
 
 /**
