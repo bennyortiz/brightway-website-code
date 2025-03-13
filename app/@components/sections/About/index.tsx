@@ -1,6 +1,6 @@
 import React from 'react';
 import SafeImage from '../../ui/safe-image';
-import { siteConfig } from '@/app/constants/siteConfig';
+import { siteConfig } from '@/app/@lib/constants/siteConfig';
 
 /**
  * About Section Component

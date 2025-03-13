@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { siteConfig } from '@/app/constants/siteConfig';
+import { siteConfig } from '@/app/@lib/constants/siteConfig';
 
 /**
  * ContactInfo Component

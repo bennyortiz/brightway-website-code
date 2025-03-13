@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import { CheckCircle } from 'lucide-react';
 import SectionHeader from '../../ui/section-header';
+import SafeImage from '../../ui/safe-image';
 import BenefitItem from './BenefitItem';
 import { benefitsData } from './benefitsData';
-import { siteConfig } from '@/app/constants/siteConfig';
+import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { motion } from 'framer-motion';
 import { 
   FadeIn, 

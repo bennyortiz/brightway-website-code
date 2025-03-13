@@ -8,4 +8,6 @@
 
 // Re-export utility functions 
 export * from './metadata';
-export * from './formatting'; 
+export * from './formatting';
+export * from './seo';
+export * from '../utils'; // Re-export from root utils for backward compatibility 

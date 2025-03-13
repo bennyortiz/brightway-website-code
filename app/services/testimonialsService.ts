@@ -5,7 +5,7 @@
  * to simulate a real-world API request
  */
 
-import { TestimonialItem } from '../components/sections/Testimonials/testimonialsData';
+import { TestimonialItem } from '../@components/sections/Testimonials/testimonialsData';
 
 // Sample testimonial data that would normally come from a database or API
 const testimonialData: TestimonialItem[] = [

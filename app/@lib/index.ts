@@ -7,6 +7,13 @@ export * from './constants/siteConfig';
 export * from './constants/navigationItems';
 
 // Utils
-export * from './utils/metadata';
-export * from './utils/seo';
-export * from './utils/lazyLoad'; 
+export * from './utils';
+
+// Animations
+export * from './animations';
+
+// API
+export * from './api';
+
+// Hooks
+export * from './hooks'; 

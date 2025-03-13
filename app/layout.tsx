@@ -14,7 +14,7 @@
 
 import type { Metadata } from 'next';
 import './globals.css';
-import { siteConfig } from './constants/siteConfig';
+import { siteConfig } from './@lib/constants/siteConfig';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 

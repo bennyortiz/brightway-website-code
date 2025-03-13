@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { cn } from '@/app/lib/utils';
+import { cn } from '@/app/@lib/utils';
 
 /**
  * LinkButton Props Interface
