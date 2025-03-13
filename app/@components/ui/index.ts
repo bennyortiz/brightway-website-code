@@ -1,13 +1,33 @@
 /**
- * Barrel file for UI components
- * This allows for cleaner imports when using multiple components
+ * UI Components Library
  * 
- * Example usage:
- * import { Button, Card } from '@/app/@components/ui';
+ * This file serves as a central export point for all reusable UI components.
+ * It allows importing components from a single location, making it easier
+ * to maintain and update the UI library.
+ * 
+ * Usage:
+ * ```tsx
+ * // Import specific components from specific categories
+ * import { Button, ButtonLink } from '@/app/@components/ui/buttons';
+ * import { Input, Textarea } from '@/app/@components/ui/forms';
+ * 
+ * // Or import everything from the UI library
+ * import { Button, Input, Card, ... } from '@/app/@components/ui';
+ * ```
  */
 
-// Re-export components as they're added to the UI directory
-export * from './Button';
+// Export form components
+export * from './forms';
 
-// Layout
-export * from './layout/MainLayout'; 
+// Export button components
+export * from './buttons';
+
+// Export card components
+export * from './cards';
+
+// Add additional component exports as the library grows
+// export * from './layout';
+// export * from './navigation';
+// export * from './feedback';
+// export * from './data-display';
+// etc. 

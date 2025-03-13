@@ -1,21 +1,39 @@
 /**
  * Data Exports
  * 
- * This file serves as a central export point for all application data.
- * It allows importing data from a single location for better maintainability.
+ * This file serves as a central export point for all data used throughout the application.
+ * It allows for easier imports and better organization of data files.
  * 
- * Example usage:
- * import { serviceItems, testimonials, faqData } from '@/app/@lib/data';
+ * Usage:
+ * ```tsx
+ * // Import specific data
+ * import { faqData } from '@/app/@lib/data';
+ * 
+ * // Use in component
+ * const FAQSection = () => {
+ *   return (
+ *     <div>
+ *       {faqData.map(category => (
+ *         <div key={category.title}>
+ *           <h3>{category.title}</h3>
+ *           {category.items.map(item => (
+ *             <div key={item.question}>
+ *               <h4>{item.question}</h4>
+ *               <p>{item.answer}</p>
+ *             </div>
+ *           ))}
+ *         </div>
+ *       ))}
+ *     </div>
+ *   );
+ * };
+ * ```
  */
 
-// Service data exports
-export * from './services';
-
-// Testimonial data exports
-export * from './testimonials';
-
-// FAQ data exports
+// Export all data
 export * from './faq';
-
-// Service areas data exports
-export * from './service-areas'; 
+export * from './service-areas';
+export * from './services';
+export * from './testimonials';
+export * from './benefits';
+export * from './dfwMapData'; 

@@ -1,12 +1,36 @@
 /**
- * Button Components
- *
- * This file exports all button components used throughout the application.
- * It serves as a single point of import for all button-related components.
+ * Button Components Library
+ * 
+ * A collection of reusable button components with consistent styling and features
+ * for use throughout the application.
+ * 
+ * Usage:
+ * ```tsx
+ * import { Button, ButtonLink } from '@/app/@components/ui/buttons';
+ * 
+ * // Basic button
+ * <Button>Click Me</Button>
+ * 
+ * // Button with variant and size
+ * <Button variant="secondary" size="lg">Large Secondary Button</Button>
+ * 
+ * // Link styled as a button
+ * <ButtonLink href="/contact">Contact Us</ButtonLink>
+ * 
+ * // Button with loading state
+ * <Button loading>Processing...</Button>
+ * 
+ * // Button with icons
+ * <Button 
+ *   leftIcon={<IconMail />} 
+ *   variant="outline"
+ * >
+ *   Email Us
+ * </Button>
+ * ```
  */
 
-// Export the base Button component
-export { Button } from './Button';
+export * from './Button';
 
 // Export LinkButton and its variants with aliases for backward compatibility
 export {
