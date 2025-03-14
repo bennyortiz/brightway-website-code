@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 /**
@@ -14,76 +14,61 @@ export interface ServiceItem {
   features: string[];
 }
 
-// Animation variants
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' }
-  }
-};
-
-const featureVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: {
-      delay: 0.1 + (i * 0.05),
-      duration: 0.3
-    }
-  })
-};
-
 /**
  * ServiceCard Component
  *
  * Displays information about a single service offering with animations.
- * Includes an icon, title, description, and list of features.
- *
- * @param {ServiceItem} props - The service data to display
+ * Updated with a more sleek, modern design aesthetic.
  */
 const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
   return (
     <motion.div
-      className="flex flex-col h-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      variants={cardVariants}
-      whileHover={{ y: -5 }}
-      transition={{ type: 'spring', stiffness: 300 }}
+      className="flex flex-col h-full overflow-hidden bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-primary/30 transition-all duration-300"
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
-      <motion.div 
-        className="mb-4"
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-      >
-        {icon}
-      </motion.div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <div className="mt-auto">
-        <div className="font-semibold text-gray-800 mb-2">Key Features:</div>
-        <ul className="space-y-2">
-          {features.map((feature, index) => (
-            <motion.li 
-              key={index} 
-              className="flex items-start"
-              custom={index}
-              variants={featureVariants}
-            >
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+      <div className="p-6 flex flex-col h-full">
+        {/* Service Icon */}
+        <div className="mb-5 p-3 bg-primary/5 rounded-lg w-fit">
+          {icon}
+        </div>
+        
+        {/* Service Title & Description */}
+        <h3 className="text-xl font-bold mb-3 text-gray-900">{title}</h3>
+        <p className="text-gray-600 mb-6">{description}</p>
+        
+        {/* Features List */}
+        <div className="mt-auto pt-4 border-t border-gray-100">
+          <ul className="space-y-3">
+            {features.slice(0, 3).map((feature, index) => (
+              <motion.li 
+                key={index} 
+                className="flex items-start"
+                initial={{ opacity: 0, x: -5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + (index * 0.1) }}
               >
-                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mr-2" />
-              </motion.div>
-              <span className="text-gray-700">{feature}</span>
-            </motion.li>
-          ))}
-        </ul>
+                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mr-2.5 mt-0.5" />
+                <span className="text-gray-700">{feature}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      
+      {/* Footer Link */}
+      <div className="mt-auto bg-gray-50 py-3 px-6 flex justify-between items-center border-t border-gray-100">
+        <span className="text-sm font-medium text-gray-500">Learn more</span>
+        <motion.span 
+          className="h-8 w-8 flex items-center justify-center rounded-full bg-primary/10 text-primary"
+          whileHover={{ 
+            backgroundColor: 'rgba(0, 112, 243, 0.2)', 
+            scale: 1.1,
+            transition: { duration: 0.2 }
+          }}
+        >
+          <ArrowUpRight size={16} />
+        </motion.span>
       </div>
     </motion.div>
   );
