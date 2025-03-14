@@ -25,6 +25,7 @@ import { serviceItems } from '@/app/@lib/data/services';
  *
  * Renders a form that allows users to submit contact information and inquiries.
  * Handles form state and submission with client-side validation.
+ * Modified to ensure it fills the full height of its container.
  */
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -92,7 +93,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <Card variant="elevated" className="overflow-hidden">
+    <Card variant="elevated" className="h-full flex flex-col overflow-hidden">
       <CardHeader>
         <CardTitle>Get In Touch</CardTitle>
         <p className="text-gray-600 mt-2">
@@ -100,7 +101,7 @@ const ContactForm = () => {
         </p>
       </CardHeader>
       
-      <CardBody>
+      <CardBody className="flex-grow">
         <form onSubmit={handleSubmit}>
           {submitStatus.message && (
             <div 
