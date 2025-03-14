@@ -27,8 +27,8 @@ const WhyChooseUs = dynamic(() => import('@/app/@components/sections/WhyChooseUs
 const ServiceAreas = dynamic(() => import('@/app/@components/sections/ServiceAreas'));
 const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
-const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
+const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 
 /**
  * Section Wrapper
@@ -106,12 +106,12 @@ export default function HomePage() {
             <Testimonials />
           </SectionWrapper>
           
-          <SectionWrapper name="Contact">
-            <Contact />
-          </SectionWrapper>
-          
           <SectionWrapper name="FAQ">
             <FAQ />
+          </SectionWrapper>
+          
+          <SectionWrapper name="Contact">
+            <Contact />
           </SectionWrapper>
         </div>
       </Suspense>
