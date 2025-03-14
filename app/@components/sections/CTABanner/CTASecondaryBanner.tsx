@@ -10,7 +10,7 @@ import { CalendarDays } from 'lucide-react';
  */
 const CTASecondaryBanner = () => {
   return (
-    <section className="w-full py-16">
+    <section className="w-full py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="relative rounded-2xl bg-primary overflow-hidden shadow-xl">
           <div className="relative px-6 py-12 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
