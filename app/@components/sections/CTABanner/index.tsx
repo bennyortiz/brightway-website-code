@@ -1,15 +1,37 @@
 import React from 'react';
 import { PrimaryButton } from '../../ui/buttons';
+import { useCtaBackground, BackgroundColor } from './CTAContext';
 
 /**
  * CTABanner Component
  *
  * A call-to-action banner that encourages users to take action.
  * Features a compelling headline, description, and CTA button.
+ * Uses the CTAContext to automatically determine the appropriate background
+ * color based on the previous section, but also accepts an override prop.
  */
-const CTABanner = () => {
+interface CTABannerProps {
+  backgroundColor?: BackgroundColor; // Optional override for the background color
+  nextSectionBackground?: BackgroundColor; // Sets the expected background of the next section
+}
+
+const CTABanner: React.FC<CTABannerProps> = ({ 
+  backgroundColor,
+  nextSectionBackground = 'white'
+}) => {
+  // Get the current background from context
+  const { currentBackground, setNextBackground } = useCtaBackground();
+  
+  // Use the provided backgroundColor or get it from context
+  const bgColor = backgroundColor || currentBackground;
+  
+  // Set the next section's background
+  React.useEffect(() => {
+    setNextBackground(nextSectionBackground);
+  }, [nextSectionBackground, setNextBackground]);
+  
   return (
-    <section className="w-full py-16 bg-white">
+    <section className={`w-full py-16 bg-${bgColor}`}>
       <div className="container mx-auto px-4">
         <div className="relative rounded-2xl bg-primary overflow-hidden shadow-xl">
           <div className="relative px-6 py-12 md:py-16 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
