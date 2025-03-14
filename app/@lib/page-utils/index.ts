@@ -15,4 +15,12 @@ export * from './createPageWrapper';
 export * from './pageStructure';
 
 // Export section layout components
-export * from './sectionLayout'; 
+export * from './sectionLayout';
+
+/**
+ * Page utilities index file
+ * Re-exports all page-specific utilities for centralized imports
+ */
+
+// Re-export any page-specific utilities here
+// This will include functions specific to page management and handling 
