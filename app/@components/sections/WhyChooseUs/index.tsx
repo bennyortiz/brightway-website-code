@@ -69,10 +69,10 @@ const WhyChooseUs = () => {
           {/* Statistics Bar */}
           <FadeIn>
             <motion.div 
-              className="bg-primary text-white rounded-xl p-8 mb-16 shadow-lg"
+              className="bg-primary text-white rounded-lg p-8 mb-12 shadow-xl"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.5 }}
             >
               <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -85,7 +85,7 @@ const WhyChooseUs = () => {
           </FadeIn>
 
           {/* Benefits Grid */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefitsData.slice(0, 8).map((benefit, index) => (
               <motion.div 
                 key={index}
@@ -110,9 +110,9 @@ const WhyChooseUs = () => {
           {/* Client Promise */}
           <ScaleIn className="mt-16">
             <motion.div 
-              className="text-center bg-white rounded-xl p-8 shadow-md max-w-4xl mx-auto"
+              className="text-center bg-white rounded-lg p-10 shadow-xl border border-gray-200 max-w-4xl mx-auto"
               whileHover={{ 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08)",
                 y: -5,
                 transition: { duration: 0.3 }
               }}
@@ -124,13 +124,12 @@ const WhyChooseUs = () => {
                 professional appearance of your business environment.
               </p>
               <p className="text-lg text-gray-600 mb-8">
-                Experience the Brightway difference for yourself. Our{' '}
-                {siteConfig.business.satisfaction} satisfaction rate speaks volumes about our
+                Experience the Brightway difference for yourself. Our {siteConfig.business.satisfaction} satisfaction rate speaks volumes about our
                 dedication to excellence.
               </p>
               <motion.a
                 href="#contact"
-                className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center h-12 px-10 font-medium bg-primary text-white rounded-full shadow hover:bg-primary/90 transition-colors"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
