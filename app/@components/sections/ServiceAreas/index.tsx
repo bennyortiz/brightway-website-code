@@ -60,7 +60,7 @@ const ServiceAreas = () => {
   };
 
   return (
-    <section id="service-areas" className="w-full py-16 md:py-24 bg-blue-50">
+    <section id="service-areas" className="w-full py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Service Areas</span>

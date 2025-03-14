@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { PageHeader } from '@/app/@components/ui/page';
@@ -9,23 +9,25 @@ import { PageHeader } from '@/app/@components/ui/page';
  * Terms of Service pages should be indexed by search engines for transparency
  * and to ensure users can find your legal documents.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = generatePageMetadata({
+  pageType: 'custom',
   title: 'Terms of Service | Brightway Cleaning',
-  description: 'Read the terms and conditions that govern the use of Brightway Cleaning services and website.',
-  alternates: {
-    canonical: 'https://brightwaycleaning.com/terms-of-service',
-  },
-};
+  description: 'Please read our Terms of Service to understand the conditions for using Brightway Cleaning services.',
+  canonicalPath: '/terms-of-service',
+  seo: {
+    maxSnippet: 0, // Prevent showing snippets of legal text in search results
+  }
+});
 
 export default function TermsOfService() {
   return (
     <MainLayout>
       <PageHeader 
         title="Terms of Service" 
-        description="Please read these terms and conditions carefully before using our services or website."
+        backgroundPattern={false}
       />
       
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <div className="prose prose-lg max-w-none">
             <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>

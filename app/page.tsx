@@ -17,11 +17,8 @@ import dynamic from 'next/dynamic';
 // Import critical above-fold components directly
 import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
+import CTABanner from '@/app/@components/sections/CTABanner';
 import SEO from '@/app/@components/shared/SEO';
-import { Section, CTASection } from '@/app/@components/sections/SectionBackgrounds';
-
-// Import the unified CTA Banner
-const CTAUnifiedBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTAUnifiedBanner'));
 
 // Dynamically import below-fold components
 const MainLayout = dynamic(() => import('@/app/@components/ui/layout/MainLayout'));
@@ -31,6 +28,7 @@ const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
+const CTASecondaryBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTASecondaryBanner'));
 
 // Import ErrorBoundary
 const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
@@ -91,70 +89,52 @@ export default function HomePage() {
       </SectionWrapper>
       
       {/* Services section - What we do */}
-      <Section background="white">
-        <SectionWrapper name="Services">
-          <Services />
-        </SectionWrapper>
-      </Section>
+      <SectionWrapper name="Services">
+        <Services />
+      </SectionWrapper>
       
       {/* Below-fold content loaded after initial render */}
       <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
         <div className="below-fold-content">
           {/* About section - Who we are */}
-          <Section background="gray-50">
-            <SectionWrapper name="About">
-              <About />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="About">
+            <About />
+          </SectionWrapper>
           
           {/* Why Choose Us - Our advantages */}
-          <Section background="white">
-            <SectionWrapper name="Why Choose Us">
-              <WhyChooseUs />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="Why Choose Us">
+            <WhyChooseUs />
+          </SectionWrapper>
           
           {/* Service Areas - Where we operate */}
-          <Section background="gray-50">
-            <SectionWrapper name="Service Areas">
-              <ServiceAreas />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="Service Areas">
+            <ServiceAreas />
+          </SectionWrapper>
           
           {/* First CTA Banner - After establishing who we are and what we do */}
-          <CTASection background="gray-50">
-            <SectionWrapper name="CTA Banner">
-              <CTAUnifiedBanner variant="quote" />
-            </SectionWrapper>
-          </CTASection>
+          <SectionWrapper name="CTA Banner">
+            <CTABanner />
+          </SectionWrapper>
           
           {/* Testimonials - Proof from clients */}
-          <Section background="white">
-            <SectionWrapper name="Testimonials">
-              <Testimonials />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="Testimonials">
+            <Testimonials />
+          </SectionWrapper>
           
           {/* FAQ - Answer common questions */}
-          <Section background="gray-50">
-            <SectionWrapper name="FAQ">
-              <FAQ />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="FAQ">
+            <FAQ />
+          </SectionWrapper>
           
           {/* Second CTA Banner - Before contact form */}
-          <CTASection background="gray-50">
-            <SectionWrapper name="Secondary CTA Banner">
-              <CTAUnifiedBanner variant="consultation" />
-            </SectionWrapper>
-          </CTASection>
+          <SectionWrapper name="Secondary CTA Banner">
+            <CTASecondaryBanner />
+          </SectionWrapper>
           
           {/* Contact - Final action point */}
-          <Section background="white">
-            <SectionWrapper name="Contact">
-              <Contact />
-            </SectionWrapper>
-          </Section>
+          <SectionWrapper name="Contact">
+            <Contact />
+          </SectionWrapper>
         </div>
       </Suspense>
     </MainLayout>
