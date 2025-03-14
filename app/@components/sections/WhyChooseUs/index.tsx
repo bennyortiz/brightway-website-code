@@ -17,7 +17,7 @@ const WhyChooseUs = () => {
   const yearsInBusiness = currentYear - siteConfig.business.startYear;
   
   return (
-    <section id="why-choose-us" className="w-full py-20 bg-white">
+    <section id="why-choose-us" className="w-full py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <FadeInUp>
           <div className="text-center mb-14 max-w-3xl mx-auto">
