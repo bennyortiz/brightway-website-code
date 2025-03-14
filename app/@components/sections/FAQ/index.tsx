@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { faqData } from '@/app/@lib/data/faq';
 import { ChevronRight } from 'lucide-react';
-import { useCtaBackground } from '../CTABanner/CTAContext';
 
 // Fallback data in case the import fails
 const fallbackFaqData = [
@@ -36,14 +35,6 @@ const FAQ = () => {
   // Get currently selected FAQ item
   const selectedCategory = faqCategories[activeCategory];
   const selectedQuestion = selectedCategory?.items[activeQuestion] || { question: '', answer: '' };
-
-  // Use background context to register this section's background
-  const { setNextBackground } = useCtaBackground();
-  
-  // Set this section's background when the component mounts
-  useEffect(() => {
-    setNextBackground('gray-50');
-  }, [setNextBackground]);
 
   return (
     <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">

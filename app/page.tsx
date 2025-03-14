@@ -17,9 +17,11 @@ import dynamic from 'next/dynamic';
 // Import critical above-fold components directly
 import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
-import CTABanner from '@/app/@components/sections/CTABanner';
 import SEO from '@/app/@components/shared/SEO';
-import CTAContextProvider from '@/app/@components/sections/CTABanner/CTAContext';
+import { Section, CTASection } from '@/app/@components/sections/SectionBackgrounds';
+
+// Import the unified CTA Banner
+const CTAUnifiedBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTAUnifiedBanner'));
 
 // Dynamically import below-fold components
 const MainLayout = dynamic(() => import('@/app/@components/ui/layout/MainLayout'));
@@ -29,7 +31,6 @@ const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
-const CTASecondaryBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTASecondaryBanner'));
 
 // Import ErrorBoundary
 const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
@@ -84,62 +85,78 @@ export default function HomePage() {
     <MainLayout>
       <SEO type="all" />
       
-      <CTAContextProvider initialBackground="white">
-        {/* Hero section - First impression */}
-        <SectionWrapper name="Hero">
-          <Hero />
-        </SectionWrapper>
-        
-        {/* Services section - What we do */}
+      {/* Hero section - First impression */}
+      <SectionWrapper name="Hero">
+        <Hero />
+      </SectionWrapper>
+      
+      {/* Services section - What we do */}
+      <Section background="white">
         <SectionWrapper name="Services">
           <Services />
         </SectionWrapper>
-        
-        {/* Below-fold content loaded after initial render */}
-        <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
-          <div className="below-fold-content">
-            {/* About section - Who we are */}
+      </Section>
+      
+      {/* Below-fold content loaded after initial render */}
+      <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
+        <div className="below-fold-content">
+          {/* About section - Who we are */}
+          <Section background="gray-50">
             <SectionWrapper name="About">
               <About />
             </SectionWrapper>
-            
-            {/* Why Choose Us - Our advantages */}
+          </Section>
+          
+          {/* Why Choose Us - Our advantages */}
+          <Section background="white">
             <SectionWrapper name="Why Choose Us">
               <WhyChooseUs />
             </SectionWrapper>
-            
-            {/* Service Areas - Where we operate */}
+          </Section>
+          
+          {/* Service Areas - Where we operate */}
+          <Section background="gray-50">
             <SectionWrapper name="Service Areas">
               <ServiceAreas />
             </SectionWrapper>
-            
-            {/* First CTA Banner - After establishing who we are and what we do */}
+          </Section>
+          
+          {/* First CTA Banner - After establishing who we are and what we do */}
+          <CTASection background="gray-50">
             <SectionWrapper name="CTA Banner">
-              <CTABanner />
+              <CTAUnifiedBanner variant="quote" />
             </SectionWrapper>
-            
-            {/* Testimonials - Proof from clients */}
+          </CTASection>
+          
+          {/* Testimonials - Proof from clients */}
+          <Section background="white">
             <SectionWrapper name="Testimonials">
               <Testimonials />
             </SectionWrapper>
-            
-            {/* FAQ - Answer common questions */}
+          </Section>
+          
+          {/* FAQ - Answer common questions */}
+          <Section background="gray-50">
             <SectionWrapper name="FAQ">
               <FAQ />
             </SectionWrapper>
-            
-            {/* Second CTA Banner - Before contact form */}
+          </Section>
+          
+          {/* Second CTA Banner - Before contact form */}
+          <CTASection background="gray-50">
             <SectionWrapper name="Secondary CTA Banner">
-              <CTASecondaryBanner />
+              <CTAUnifiedBanner variant="consultation" />
             </SectionWrapper>
-            
-            {/* Contact - Final action point */}
+          </CTASection>
+          
+          {/* Contact - Final action point */}
+          <Section background="white">
             <SectionWrapper name="Contact">
               <Contact />
             </SectionWrapper>
-          </div>
-        </Suspense>
-      </CTAContextProvider>
+          </Section>
+        </div>
+      </Suspense>
     </MainLayout>
   );
 }

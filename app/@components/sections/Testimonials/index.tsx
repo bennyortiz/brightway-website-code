@@ -69,10 +69,10 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section 
+    <div 
       id="testimonials" 
       ref={ref}
-      className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden"
+      className="relative z-0 overflow-hidden"
     >
       {/* Decorative background - simplified */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5"></div>
@@ -105,7 +105,7 @@ const Testimonials = () => {
           </a>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

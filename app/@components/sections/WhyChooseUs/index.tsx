@@ -1,11 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Shield, Clock, Sparkles, Award, ThumbsUp, ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { FadeIn, FadeInUp } from '../../ui/animations/motion-components';
-import { useCtaBackground } from '../CTABanner/CTAContext';
 
 /**
  * Why Choose Us Section Component
@@ -16,14 +15,6 @@ import { useCtaBackground } from '../CTABanner/CTAContext';
 const WhyChooseUs = () => {
   const currentYear = new Date().getFullYear();
   const yearsInBusiness = currentYear - siteConfig.business.startYear;
-  
-  // Use background context to register this section's background
-  const { setNextBackground } = useCtaBackground();
-  
-  // Set this section's background when the component mounts
-  useEffect(() => {
-    setNextBackground('gray-50');
-  }, [setNextBackground]);
   
   return (
     <section id="why-choose-us" className="w-full py-20 bg-gray-50">
