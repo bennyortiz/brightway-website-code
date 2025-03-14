@@ -41,13 +41,14 @@ const featureVariants = {
  *
  * Displays information about a single service offering with animations.
  * Includes an icon, title, description, and list of features.
+ * Modified to ensure all cards have equal height based on the tallest card.
  *
  * @param {ServiceItem} props - The service data to display
  */
 const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
   return (
     <motion.div
-      className="flex flex-col h-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      className="flex flex-col h-full w-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
@@ -63,8 +64,8 @@ const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
         {icon}
       </motion.div>
       <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
-      <div className="mt-auto">
+      <p className="text-gray-600 mb-4 flex-none">{description}</p>
+      <div className="mt-auto flex-grow">
         <div className="font-semibold text-gray-800 mb-2">Key Features:</div>
         <ul className="space-y-2">
           {features.map((feature, index) => (

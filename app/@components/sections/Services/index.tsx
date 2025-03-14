@@ -73,13 +73,14 @@ const Services = () => {
         </div>
 
         <Grid 
-          columns={{ default: 1, md: 2, lg: 3 }} 
+          columns={{ default: 1, sm: 2, lg: 3 }} 
           gap={8}
+          className="items-stretch"
         >
           {serviceItems.map((service, index) => (
-            <Column key={index}>
+            <Column key={index} className="flex h-full">
               <div
-                className={`transform transition-all duration-500 ${
+                className={`transform transition-all duration-500 w-full ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
                 }`}
                 style={{ transitionDelay: `${Math.min(index * 50, 300)}ms` }} // Limit delay to 300ms maximum
