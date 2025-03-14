@@ -63,10 +63,8 @@ const ServiceAreas = () => {
     <section id="service-areas" className="w-full py-16 md:py-24 bg-blue-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center mb-4">
-            <MapPin className="h-6 w-6 text-primary mr-2" />
-            <h2 className="text-3xl md:text-4xl font-bold">Areas We Service</h2>
-          </div>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Service Areas</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Areas We Service</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Find your location below to learn more about our service coverage in your area.
             We provide professional cleaning services throughout the DFW metroplex.

@@ -40,7 +40,7 @@ const FAQ = () => {
     <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm">FAQ</span>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">FAQ</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Find answers to common questions about our commercial cleaning services. If you don't

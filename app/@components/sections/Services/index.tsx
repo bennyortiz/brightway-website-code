@@ -68,6 +68,7 @@ const Services = () => {
     <section id="services" ref={sectionRef} className="w-full py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Services</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             We provide comprehensive cleaning services for businesses of all sizes, with customized

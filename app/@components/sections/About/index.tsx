@@ -33,7 +33,7 @@ const About = () => {
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Header content */}
             <div className="mb-6 text-center lg:text-left">
-              <div className="text-primary font-medium mb-2">About Us</div>
+              <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">About Us</span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Trusted Cleaning Partner</h2>
               <p className="text-gray-600 mb-6">
                 Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable, high-quality cleaning services.
