@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { faqData } from '@/app/@lib/data/faq';
-import { ChevronRight } from 'lucide-react';
 import { Grid, Column, Section } from '../../ui/layout';
+import { ChevronRight } from 'lucide-react';
 
 // Fallback data in case the import fails
 const fallbackFaqData = [
@@ -22,7 +22,7 @@ const fallbackFaqData = [
 /**
  * FAQ Section Component
  *
- * Displays frequently asked questions in a modern two-column layout.
+ * Displays frequently asked questions in a two-column layout.
  * Left column shows categories and questions, right column shows the selected answer.
  * Uses Grid and Column components for responsive layout.
  */
