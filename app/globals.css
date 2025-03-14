@@ -1,3 +1,6 @@
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -140,4 +143,46 @@ h1, p.hero-text {
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
+}
+
+.testimonial-carousel .slick-track {
+  display: flex !important;
+}
+.testimonial-carousel .slick-slide {
+  height: inherit !important;
+  display: flex !important;
+}
+.testimonial-carousel .slick-slide > div {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+.testimonial-carousel .slick-dots li button:before {
+  color: #0070f3;
+}
+.testimonial-carousel .slick-dots li.slick-active button:before {
+  color: #0070f3;
+  opacity: 1;
+}
+.testimonial-carousel .slick-prev, 
+.testimonial-carousel .slick-next {
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+}
+.testimonial-carousel .slick-prev {
+  left: -5px;
+}
+.testimonial-carousel .slick-next {
+  right: -5px;
+}
+.testimonial-carousel .slick-prev:before,
+.testimonial-carousel .slick-next:before {
+  color: #0070f3;
+  font-size: 24px;
+}
+@media (max-width: 768px) {
+  .testimonial-carousel .slick-dots {
+    bottom: -35px;
+  }
 }
