@@ -34,44 +34,39 @@ const iconVariants = {
 const BenefitItem = ({ icon, title, description }: BenefitItemProps) => {
   return (
     <motion.div 
-      className="group relative flex flex-col items-center p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-primary/10 shadow-lg hover:shadow-xl transition-all duration-300"
+      className="flex flex-col items-center p-6 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow border border-gray-100"
       whileHover={{ 
         y: -5,
-        transition: { type: 'spring', stiffness: 300 }
+        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+        borderColor: "rgba(0, 112, 243, 0.3)",
       }}
+      transition={{ type: 'spring', stiffness: 300 }}
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      
-      <div className="relative">
-        <motion.div 
-          className="p-4 bg-gradient-to-br from-primary/10 to-transparent rounded-2xl mb-6 group-hover:from-primary/20 transition-colors duration-300"
-          variants={iconVariants}
-          initial="rest"
-          whileHover="hover"
-          animate="rest"
-        >
-          {icon}
-        </motion.div>
-        
-        <motion.h3 
-          className="text-xl font-semibold mb-3 text-center bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          {title}
-        </motion.h3>
-        
-        <motion.p 
-          className="text-gray-600 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          {description}
-        </motion.p>
-      </div>
+      <motion.div 
+        className="p-3 bg-primary/10 rounded-full mb-4"
+        variants={iconVariants}
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+      >
+        {icon}
+      </motion.div>
+      <motion.h3 
+        className="text-xl font-semibold mb-3 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        {title}
+      </motion.h3>
+      <motion.p 
+        className="text-gray-600 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        {description}
+      </motion.p>
     </motion.div>
   );
 };

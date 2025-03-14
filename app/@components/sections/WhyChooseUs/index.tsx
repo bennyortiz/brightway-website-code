@@ -2,10 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import SectionHeader from '../../ui/section-header';
-import SafeImage from '../../ui/safe-image';
-import BenefitItem from './BenefitItem';
 import { benefitsData } from '@/app/@lib/data/benefits';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { motion } from 'framer-motion';
@@ -29,20 +27,19 @@ const countUpVariants = {
 const MotionCounter = ({ targetValue, label }: { targetValue: string | number, label: string }) => {
   return (
     <motion.div 
-      className="text-center relative"
+      className="relative z-10"
       variants={countUpVariants}
       whileHover={{ scale: 1.05 }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-xl -z-10 blur-xl" />
       <motion.p 
-        className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent"
+        className="text-4xl md:text-5xl font-bold mb-2 text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
         {typeof targetValue === 'string' ? targetValue : `${targetValue}+`}
       </motion.p>
-      <p className="text-sm uppercase tracking-wider text-gray-600 font-medium">{label}</p>
+      <p className="text-sm uppercase tracking-wider text-white/90">{label}</p>
     </motion.div>
   );
 };
@@ -56,37 +53,43 @@ const MotionCounter = ({ targetValue, label }: { targetValue: string | number, l
  */
 const WhyChooseUs = () => {
   return (
-    <section id="why-choose-us" className="relative w-full py-20 md:py-32 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative">
+    <section id="why-choose-us" className="w-full py-20 md:py-28 relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-50 to-white z-0"></div>
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-1/2 h-1/3 bg-primary/3 z-0"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <FadeInUp>
           <SectionHeader
             subtitle="Why Choose Us"
-            title="What Sets Us Apart"
-            description="We take pride in our exceptional cleaning services and our commitment to customer satisfaction throughout the DFW metroplex."
-            centered
+            title="Our Commitment to Excellence"
+            description="Discover the Brightway difference and why businesses throughout the DFW metroplex trust us with their commercial cleaning needs."
+            centered={true}
           />
         </FadeInUp>
 
-        <div className="mt-20">
-          {/* Statistics Bar */}
+        <div className="mt-16">
+          {/* Statistics Banner */}
           <FadeIn>
             <motion.div 
-              className="relative mb-24"
+              className="relative rounded-2xl overflow-hidden mb-20 shadow-xl"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
             >
-              {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl blur-xl" />
+              {/* Background gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark z-0"></div>
               
-              <div className="relative bg-white/80 backdrop-blur-sm border border-primary/10 rounded-2xl p-12 shadow-xl">
-                <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+              {/* Pattern overlay */}
+              <div className="absolute inset-0 opacity-10 z-0">
+                <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>
+              </div>
+              
+              <div className="relative z-10 p-10 md:p-12">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">Our Impact by the Numbers</h3>
+                <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
                   <MotionCounter targetValue={siteConfig.business.clientsServed} label="Clients Served" />
                   <MotionCounter targetValue={yearsInBusiness()} label="Years Experience" />
                   <MotionCounter targetValue={siteConfig.business.servicesCount} label="Service Options" />
@@ -96,57 +99,93 @@ const WhyChooseUs = () => {
             </motion.div>
           </FadeIn>
 
-          {/* Benefits Grid */}
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {benefitsData.slice(0, 8).map((benefit, index) => (
-              <motion.div 
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { duration: 0.5, delay: index * 0.1 }
-                  }
-                }}
-              >
-                <BenefitItem
-                  icon={benefit.icon}
-                  title={benefit.title}
-                  description={benefit.description}
-                />
-              </motion.div>
-            ))}
-          </StaggerContainer>
+          {/* Feature Cards */}
+          <div className="relative mb-20">
+            <div className="max-w-6xl mx-auto">
+              <FadeInUp className="mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold text-center mb-4">What Makes Us Different</h3>
+                <p className="text-gray-600 max-w-3xl mx-auto text-center">
+                  Our comprehensive approach to commercial cleaning combines professional expertise, advanced equipment, and a genuine commitment to your satisfaction.
+                </p>
+              </FadeInUp>
+              
+              <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {benefitsData.slice(0, 8).map((benefit, index) => (
+                  <motion.div 
+                    key={index}
+                    className="group"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { 
+                        opacity: 1, 
+                        y: 0,
+                        transition: { duration: 0.5, delay: index * 0.1 }
+                      }
+                    }}
+                  >
+                    <div className="h-full flex flex-col bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-primary/0 group-hover:border-primary">
+                      <div className="p-6 flex flex-col h-full">
+                        <div className="p-3 bg-primary/10 rounded-full mb-5 w-fit group-hover:bg-primary/20 transition-all duration-300">
+                          {benefit.icon}
+                        </div>
+                        <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
+                        <p className="text-gray-600 mb-6 flex-grow">{benefit.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </StaggerContainer>
+            </div>
+          </div>
 
           {/* Client Promise */}
-          <ScaleIn className="mt-24">
+          <ScaleIn>
             <motion.div 
-              className="relative text-center max-w-4xl mx-auto"
+              className="relative rounded-2xl overflow-hidden bg-white shadow-xl max-w-5xl mx-auto"
               whileHover={{ 
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
                 y: -5,
                 transition: { duration: 0.3 }
               }}
             >
-              {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl blur-xl" />
+              {/* Side accent */}
+              <div className="absolute left-0 top-0 bottom-0 w-2 bg-primary"></div>
               
-              <div className="relative bg-white/80 backdrop-blur-sm border border-primary/10 rounded-2xl p-12 shadow-xl">
-                <span className="inline-block px-4 py-1 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-6">Our Promise</span>
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">The Brightway Difference</h3>
-                <p className="text-lg text-gray-600 mb-8">
-                  When you choose Brightway Cleaning, you're not just getting a cleaning service -
-                  you're getting a committed partner in maintaining the cleanliness, health, and
-                  professional appearance of your business environment.
-                </p>
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center justify-center px-8 py-4 font-medium text-white rounded-xl bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary shadow-lg shadow-primary/25 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Get a Free Quote
-                </motion.a>
+              <div className="grid md:grid-cols-5 gap-0">
+                <div className="md:col-span-3 p-10 md:p-12">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">Our Client Promise</h3>
+                  <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                    When you choose Brightway Cleaning, you're partnering with a team that's dedicated to maintaining the cleanliness, health, and professional image of your business environment.
+                  </p>
+                  <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                    Experience the Brightway difference with our industry-leading {siteConfig.business.satisfaction} satisfaction rate and personalized approach to commercial cleaning.
+                  </p>
+                  <motion.a
+                    href="#contact"
+                    className="inline-flex items-center justify-center px-6 py-3 font-medium text-white bg-primary rounded-lg shadow-md hover:bg-primary-dark transition-colors group"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Get a Free Quote
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </motion.a>
+                </div>
+                <div className="hidden md:block md:col-span-2 relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-dark">
+                    <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat opacity-10"></div>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center text-white p-8">
+                      <div className="mb-4">
+                        <CheckCircle className="h-16 w-16 mx-auto text-white opacity-90" />
+                      </div>
+                      <h4 className="text-2xl font-bold mb-2">100% Satisfaction</h4>
+                      <p className="text-white/90">
+                        Our commitment to excellence is backed by our satisfaction guarantee
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </ScaleIn>
