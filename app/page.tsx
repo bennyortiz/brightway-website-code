@@ -28,7 +28,6 @@ const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
-const CTASecondaryBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTASecondaryBanner'));
 
 // Import ErrorBoundary
 const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
@@ -113,7 +112,7 @@ export default function HomePage() {
           
           {/* First CTA Banner - After establishing who we are and what we do */}
           <SectionWrapper name="CTA Banner">
-            <CTABanner />
+            <CTABanner variant="primary" backgroundColor="white" />
           </SectionWrapper>
           
           {/* Testimonials - Proof from clients */}
@@ -128,7 +127,7 @@ export default function HomePage() {
           
           {/* Second CTA Banner - Before contact form */}
           <SectionWrapper name="Secondary CTA Banner">
-            <CTASecondaryBanner />
+            <CTABanner variant="secondary" backgroundColor="gray" />
           </SectionWrapper>
           
           {/* Contact - Final action point */}
