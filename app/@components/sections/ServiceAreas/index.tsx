@@ -148,14 +148,22 @@ const ServiceAreasPage = () => {
   const serviceAreasGrid = (
     <>
       <Grid columns={{ default: 1, md: 2, lg: 3 }} gap={6}>
-        {filteredAreas.map((area) => (
+        {filteredAreas.map((area, index) => (
           <Column key={area.id}>
-            <div className="h-full">
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: 0.05 * Math.min(index, 10) 
+              }}
+              className="h-full"
+            >
               <ServiceAreaCard 
                 area={area} 
                 onClick={() => handleSelectArea(area)} 
               />
-            </div>
+            </motion.div>
           </Column>
         ))}
       </Grid>
