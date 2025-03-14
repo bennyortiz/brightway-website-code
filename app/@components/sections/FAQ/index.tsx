@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { faqData } from '@/app/@lib/data/faq';
 import { ChevronRight } from 'lucide-react';
+import { Grid, Column, Section, Container } from '../../ui/layout';
 
 // Fallback data in case the import fails
 const fallbackFaqData = [
@@ -23,6 +24,7 @@ const fallbackFaqData = [
  *
  * Displays frequently asked questions in a modern two-column layout.
  * Left column shows categories and questions, right column shows the selected answer.
+ * Uses Grid and Column components for responsive layout.
  */
 const FAQ = () => {
   // Use faqData if available, otherwise use fallback
@@ -37,8 +39,8 @@ const FAQ = () => {
   const selectedQuestion = selectedCategory?.items[activeQuestion] || { question: '', answer: '' };
 
   return (
-    <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
+    <div id="faq">
+      <Section className="bg-gray-50">
         <div className="text-center mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">FAQ</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
@@ -48,9 +50,9 @@ const FAQ = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+        <Grid columns={{ default: 1, lg: 12 }} gap={8} className="max-w-6xl mx-auto">
           {/* Left column - Categories and Questions */}
-          <div className="lg:col-span-5 space-y-8 h-full">
+          <Column span={{ default: 'full', lg: 5 }} className="space-y-8 h-full">
             {faqCategories.map((category, catIndex) => (
               <div key={catIndex} className="bg-white rounded-xl shadow-md overflow-hidden">
                 <h3 
@@ -85,10 +87,10 @@ const FAQ = () => {
                 )}
               </div>
             ))}
-          </div>
+          </Column>
           
           {/* Right column - Answer display */}
-          <div className="lg:col-span-7">
+          <Column span={{ default: 'full', lg: 7 }}>
             <div className="bg-white rounded-xl shadow-md p-8 sticky top-24">
               <h3 className="text-xl font-bold text-gray-800 mb-6">
                 {selectedQuestion.question}
@@ -112,8 +114,8 @@ const FAQ = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </Column>
+        </Grid>
 
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-4">Still have questions?</p>
@@ -124,8 +126,8 @@ const FAQ = () => {
             Contact Us
           </a>
         </div>
-      </div>
-    </section>
+      </Section>
+    </div>
   );
 };
 
