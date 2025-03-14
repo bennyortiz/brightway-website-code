@@ -25,7 +25,7 @@ const serviceIcons = [
  *
  * Displays a grid of service offerings with animation effects.
  * Optimized for faster loading and preventing layout shift.
- * Uses Grid and Column components for responsive layout.
+ * Using direct Tailwind grid classes for more reliable responsive layout.
  */
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -72,13 +72,10 @@ const Services = () => {
           </p>
         </div>
 
-        <Grid 
-          columns={{ default: 1, sm: 2, lg: 3 }} 
-          gap={8}
-          className="items-stretch"
-        >
+        {/* Direct grid implementation for more reliable responsive layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {serviceItems.map((service, index) => (
-            <Column key={index} className="flex h-full">
+            <div key={index} className="h-full flex">
               <div
                 className={`transform transition-all duration-500 w-full ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
@@ -87,9 +84,9 @@ const Services = () => {
               >
                 <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
               </div>
-            </Column>
+            </div>
           ))}
-        </Grid>
+        </div>
 
         <div className="mt-16 text-center">
           <Link
