@@ -23,7 +23,7 @@ import dynamic from 'next/dynamic';
 
 // Dynamically import components
 const SkipLink = dynamic(() => import('./@components/ui/SkipLink'));
-const WebVitals = dynamic(() => import('./@components/shared/WebVitals'), { ssr: false });
+const WebVitals = dynamic(() => import('./@components/shared/WebVitals'));
 
 /**
  * Font Configuration
@@ -213,58 +213,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="https://polyfill.io/v3/polyfill.min.js" 
           strategy="lazyOnload" 
           id="polyfill-io"
-        />
-        
-        {/* Add Web Vitals measurement script with improved timing */}
-        <Script
-          id="web-vitals"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              const sendToVercelAnalytics = (metric) => {
-                // Send to Vercel Analytics
-                if (window.va) {
-                  window.va('event', {
-                    name: metric.name,
-                    value: metric.value.toString(),
-                    metricId: metric.id,
-                    attribution: metric.attribution,
-                    navigationType: metric.navigationType
-                  });
-                }
-                // Log in development
-                if (process.env.NODE_ENV !== 'production') {
-                  console.log(metric);
-                }
-              };
-              
-              // Only load web-vitals after page is fully loaded and idle
-              if ('requestIdleCallback' in window) {
-                window.requestIdleCallback(() => {
-                  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-                    getCLS(sendToVercelAnalytics);
-                    getFID(sendToVercelAnalytics);
-                    getFCP(sendToVercelAnalytics);
-                    getLCP(sendToVercelAnalytics);
-                    getTTFB(sendToVercelAnalytics);
-                  });
-                }, { timeout: 5000 });
-              } else {
-                // Fallback for browsers that don't support requestIdleCallback
-                window.addEventListener('load', () => {
-                  setTimeout(() => {
-                    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-                      getCLS(sendToVercelAnalytics);
-                      getFID(sendToVercelAnalytics);
-                      getFCP(sendToVercelAnalytics);
-                      getLCP(sendToVercelAnalytics);
-                      getTTFB(sendToVercelAnalytics);
-                    });
-                  }, 5000);
-                });
-              }
-            `,
-          }}
         />
       </body>
     </html>
