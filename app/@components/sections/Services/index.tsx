@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ServiceCard from './ServiceCard';
 import { serviceItems } from '@/app/@lib/data/services';
 import { Building2, Briefcase, Building, Droplets, Trash2, Clock } from 'lucide-react';
+import { Grid, Column, Container, Section } from '../../ui/layout';
 
 // Service icons mapping
 const serviceIcons = [
@@ -30,6 +31,7 @@ const fallbackServiceItems = [
  *
  * Displays a grid of service offerings with animation effects.
  * Uses the IntersectionObserver API for scroll-based animations.
+ * Uses Grid and Column components for responsive layout
  */
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -65,8 +67,11 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="w-full py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <div id="services" ref={sectionRef}>
+      <Section 
+        className="py-16 md:py-24 bg-gray-50"
+        withContainer={true}
+      >
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -75,19 +80,23 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <Grid 
+          columns={{ default: 1, md: 2, lg: 3 }} 
+          gap={8}
+        >
           {services.map((service, index) => (
-            <div
-              key={index}
-              className={`transform transition-all duration-700 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
-            </div>
+            <Column key={index}>
+              <div
+                className={`transform transition-all duration-700 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
+              </div>
+            </Column>
           ))}
-        </div>
+        </Grid>
 
         <div className="mt-16 text-center">
           <Link
@@ -97,8 +106,8 @@ const Services = () => {
             Get a Free Quote
           </Link>
         </div>
-      </div>
-    </section>
+      </Section>
+    </div>
   );
 };
 

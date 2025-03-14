@@ -4,6 +4,8 @@ import React, { Suspense } from 'react';
 import HeroContent from './HeroContent';
 import SafeImage from '../../ui/safe-image';
 import dynamic from 'next/dynamic';
+import { Grid, Column } from '../../ui/layout';
+import { Container } from '../../ui/layout';
 
 // Dynamically import motion components to reduce initial bundle size
 const MotionDiv = dynamic(
@@ -21,19 +23,23 @@ const MotionDiv = dynamic(
  * 1. Server-rendering critical content
  * 2. Lazy-loading non-critical components
  * 3. Optimizing image loading strategy
+ * 
+ * Uses Grid and Column components for responsive layout
  */
 const Hero = () => {
   return (
     <section className="w-full pt-24 md:pt-32 lg:pt-36 pb-12 md:pb-32 lg:pb-40 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
+      <Container>
+        <Grid columns={{ default: 1, md: 2 }} gap={8} className="items-center">
           {/* Critical content - server rendered */}
-          <Suspense fallback={null}>
-            <HeroContent />
-          </Suspense>
+          <Column span={{ default: 'full', md: 6 }}>
+            <Suspense fallback={null}>
+              <HeroContent />
+            </Suspense>
+          </Column>
 
           {/* Image section - client rendered with optimizations */}
-          <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
+          <Column span={{ default: 'full', md: 6 }} className="mt-10 md:mt-0 flex justify-center md:justify-end">
             <Suspense 
               fallback={
                 <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" />
@@ -61,9 +67,9 @@ const Hero = () => {
                 />
               </MotionDiv>
             </Suspense>
-          </div>
-        </div>
-      </div>
+          </Column>
+        </Grid>
+      </Container>
     </section>
   );
 };

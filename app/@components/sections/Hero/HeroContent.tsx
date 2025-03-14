@@ -5,6 +5,7 @@ import HeroRating from './HeroRating';
 import { PrimaryButton, OutlineButton } from '../../ui/buttons';
 import { motion, LazyMotion, domAnimation } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import { Grid, Column } from '../../ui/layout';
 
 // Dynamically import HeroText for hydration
 const HeroText = dynamic(() => import('./HeroText'), {
@@ -44,10 +45,12 @@ const itemVariants = {
  * 1. Using server-rendered text
  * 2. Deferring animations until after hydration
  * 3. Lazy-loading non-critical elements
+ * 
+ * Uses Grid component for responsive button layout
  */
 const HeroContent = () => {
   return (
-    <div className="md:w-1/2">
+    <div>
       {/* Critical text content - server rendered */}
       <HeroText />
 
@@ -64,13 +67,23 @@ const HeroContent = () => {
           </motion.div>
 
           <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-2 md:pt-4"
             variants={itemVariants}
+            className="pt-2 md:pt-4"
           >
-            <PrimaryButton href="#contact">Get a Free Quote</PrimaryButton>
-            <OutlineButton href="#services" withArrow>
-              Explore Services
-            </OutlineButton>
+            <Grid 
+              columns={{ default: 1, sm: 2 }} 
+              gap={4}
+              className="w-full sm:w-auto"
+            >
+              <Column>
+                <PrimaryButton href="#contact" className="w-full sm:w-auto">Get a Free Quote</PrimaryButton>
+              </Column>
+              <Column>
+                <OutlineButton href="#services" withArrow className="w-full sm:w-auto">
+                  Explore Services
+                </OutlineButton>
+              </Column>
+            </Grid>
           </motion.div>
         </motion.div>
       </LazyMotion>
