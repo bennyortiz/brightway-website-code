@@ -5,16 +5,16 @@ import { TestimonialItem, testimonials as staticTestimonials } from '@/app/@lib/
 import TestimonialCard from './TestimonialCard';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import { Grid, Column, Section, Container } from '../../ui/layout';
+import { Section } from '../../ui/layout';
 
 /**
  * Skeleton loader component for testimonials while they're loading
  */
 const TestimonialsSkeleton = () => {
   return (
-    <Grid columns={{ default: 1, md: 3 }} gap={{ default: 6, md: 8 }}>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {[1, 2, 3].map((index) => (
-        <Column key={index}>
+        <div key={index} className="px-3">
           <div className="bg-gray-50 rounded-lg shadow-sm p-8 md:p-12 animate-pulse">
             <div className="h-6 bg-gray-200 rounded-full w-12 mb-8"></div>
             <div className="space-y-3">
@@ -28,14 +28,14 @@ const TestimonialsSkeleton = () => {
               <div className="h-3 bg-gray-200 rounded w-32"></div>
             </div>
           </div>
-        </Column>
+        </div>
       ))}
-    </Grid>
+    </div>
   );
 };
 
 // Use dynamic import with a smaller, more performant implementation
-const OptimizedTestimonialList = dynamic(
+const TestimonialCarousel = dynamic(
   () => import('./OptimizedTestimonialList'), 
   {
     loading: () => <TestimonialsSkeleton />,
@@ -44,13 +44,14 @@ const OptimizedTestimonialList = dynamic(
 );
 
 /**
- * Testimonials Section Component (Optimized)
+ * Testimonials Section Component
  *
- * Displays client testimonials with improved performance:
- * - Lazy loading based on visibility
- * - Reduced DOM elements
- * - Optimized rendering with virtualization
- * - Uses Grid and Column components for responsive layout
+ * Displays client testimonials in a carousel with the following features:
+ * - 3 testimonials per slide on desktop
+ * - 1 testimonial per slide on mobile
+ * - Touch-friendly swiping
+ * - Autoplay with pause on hover
+ * - Optimized for performance with lazy loading
  */
 const Testimonials = () => {
   const [ref, inView] = useInView({
@@ -66,10 +67,15 @@ const Testimonials = () => {
       setIsLoaded(true);
     }
   }, [inView, isLoaded]);
-
-  // Limit number of testimonials to display
+  
+  // Make sure we have at least 6 testimonials for the carousel
   const displayedTestimonials = useMemo(() => {
-    return staticTestimonials.slice(0, 6); // Show only 6 testimonials to reduce DOM size
+    let items = [...staticTestimonials];
+    // If we have fewer than 6 testimonials, duplicate them
+    while (items.length < 6) {
+      items = [...items, ...staticTestimonials];
+    }
+    return items.slice(0, 9); // Show up to 9 testimonials for better carousel experience
   }, []);
 
   return (
@@ -93,17 +99,17 @@ const Testimonials = () => {
             </p>
           </div>
 
-          <div className="max-w-7xl mx-auto relative contains-many-items">
+          <div className="max-w-7xl mx-auto px-4 relative">
             {/* Only load the component when in view */}
             {isLoaded ? (
-              <OptimizedTestimonialList testimonials={displayedTestimonials} />
+              <TestimonialCarousel testimonials={displayedTestimonials} />
             ) : (
               <TestimonialsSkeleton />
             )}
           </div>
 
           {/* Call to action */}
-          <div className="mt-12 md:mt-16 text-center">
+          <div className="mt-16 text-center">
             <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300">
               Get a Free Quote
             </a>
