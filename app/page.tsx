@@ -28,6 +28,7 @@ const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
+const CTASecondaryBanner = dynamic(() => import('@/app/@components/sections/CTABanner/CTASecondaryBanner'));
 
 // Import ErrorBoundary
 const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
@@ -82,43 +83,57 @@ export default function HomePage() {
     <MainLayout>
       <SEO type="all" />
       
+      {/* Hero section - First impression */}
       <SectionWrapper name="Hero">
         <Hero />
       </SectionWrapper>
       
+      {/* Services section - What we do */}
       <SectionWrapper name="Services">
         <Services />
-      </SectionWrapper>
-      
-      <SectionWrapper name="CTA Banner">
-        <CTABanner />
       </SectionWrapper>
       
       {/* Below-fold content loaded after initial render */}
       <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
         <div className="below-fold-content">
-          <SectionWrapper name="Why Choose Us">
-            <WhyChooseUs />
-          </SectionWrapper>
-          
-          <SectionWrapper name="Service Areas">
-            <ServiceAreas />
-          </SectionWrapper>
-          
+          {/* About section - Who we are */}
           <SectionWrapper name="About">
             <About />
           </SectionWrapper>
           
+          {/* Why Choose Us - Our advantages */}
+          <SectionWrapper name="Why Choose Us">
+            <WhyChooseUs />
+          </SectionWrapper>
+          
+          {/* Service Areas - Where we operate */}
+          <SectionWrapper name="Service Areas">
+            <ServiceAreas />
+          </SectionWrapper>
+          
+          {/* First CTA Banner - After establishing who we are and what we do */}
+          <SectionWrapper name="CTA Banner">
+            <CTABanner />
+          </SectionWrapper>
+          
+          {/* Testimonials - Proof from clients */}
           <SectionWrapper name="Testimonials">
             <Testimonials />
           </SectionWrapper>
           
-          <SectionWrapper name="Contact">
-            <Contact />
-          </SectionWrapper>
-          
+          {/* FAQ - Answer common questions */}
           <SectionWrapper name="FAQ">
             <FAQ />
+          </SectionWrapper>
+          
+          {/* Second CTA Banner - Before contact form */}
+          <SectionWrapper name="Secondary CTA Banner">
+            <CTASecondaryBanner />
+          </SectionWrapper>
+          
+          {/* Contact - Final action point */}
+          <SectionWrapper name="Contact">
+            <Contact />
           </SectionWrapper>
         </div>
       </Suspense>
