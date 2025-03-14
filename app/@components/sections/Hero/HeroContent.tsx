@@ -70,20 +70,12 @@ const HeroContent = () => {
             variants={itemVariants}
             className="pt-2 md:pt-4"
           >
-            <Grid 
-              columns={{ default: 1, sm: 2 }} 
-              gap={4}
-              className="w-full sm:w-auto"
-            >
-              <Column>
-                <PrimaryButton href="#contact" className="w-full sm:w-auto">Get a Free Quote</PrimaryButton>
-              </Column>
-              <Column>
-                <OutlineButton href="#services" withArrow className="w-full sm:w-auto">
-                  Explore Services
-                </OutlineButton>
-              </Column>
-            </Grid>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <PrimaryButton href="#contact" className="w-full sm:w-auto">Get a Free Quote</PrimaryButton>
+              <OutlineButton href="#services" withArrow className="w-full sm:w-auto">
+                Explore Services
+              </OutlineButton>
+            </div>
           </motion.div>
         </motion.div>
       </LazyMotion>
