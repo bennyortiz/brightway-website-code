@@ -29,9 +29,9 @@ const Footer = () => {
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
       <Container>
-        <Grid columns={{ default: 1, md: 5 }} gap={8}>
+        <Grid columns={{ default: 1, md: 4 }} gap={8}>
           {/* Company Information */}
-          <Column span={{ default: 'full', md: 2 }} className="space-y-4">
+          <Column span={{ default: 'full', md: 1 }} className="space-y-4">
             <Logo className="text-white" />
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
@@ -65,23 +65,6 @@ const Footer = () => {
             </ul>
           </Column>
 
-          {/* Locations */}
-          <Column>
-            <h3 className="text-lg font-semibold mb-4">Locations</h3>
-            <ul className="space-y-2">
-              {footerNavigation.locations.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Column>
-
           {/* Company */}
           <Column>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
@@ -100,7 +83,7 @@ const Footer = () => {
           </Column>
 
           {/* Contact */}
-          <Column span={{ default: 'full', md: 2 }} className="space-y-4">
+          <Column span={{ default: 'full', md: 1 }} className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start">
