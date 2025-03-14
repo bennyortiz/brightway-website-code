@@ -39,6 +39,21 @@ Comprehensive documentation is available in the [docs](./docs) directory:
 - **Component Structure**: Group related components in directories
 - **Documentation**: Document functions and components with JSDoc comments
 
+## Important Notes
+
+### Font Configuration
+- The project uses `@fontsource-variable/plus-jakarta-sans` for font loading
+- Font is configured in `app/layout.tsx` and imported directly from the package
+- Do not use `onLoadingComplete` in Next.js Image components - use `onLoad` instead
+
+### Performance Optimizations
+- To fix webpack cache issues: `rm -rf .next/cache`
+- When adding images, use the `SafeImage` or `OptimizedImage` components for best practices
+
+### Common Issues
+- If you encounter webpack cache errors, clear the `.next/cache` directory
+- If images aren't loading properly, check the `onLoad` event handlers and correct paths
+
 ## Available Scripts
 
 - **dev**: Starts the development server

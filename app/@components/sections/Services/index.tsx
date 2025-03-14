@@ -79,13 +79,19 @@ const Services = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
-              key={index}
+              key={service.title}
               className={`transform transition-all duration-700 ${
                 isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
+              <ServiceCard 
+                service={{
+                  ...service,
+                  icon: serviceIcons[index % serviceIcons.length]
+                }} 
+                index={index}
+              />
             </div>
           ))}
         </div>

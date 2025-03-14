@@ -20,6 +20,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from 'next/dynamic';
+import '@fontsource-variable/plus-jakarta-sans';
 
 // Dynamically import components
 const SkipLink = dynamic(() => import('./@components/ui/SkipLink'));
@@ -153,13 +154,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <style
           dangerouslySetInnerHTML={{
             __html: `
-          @font-face {
-            font-family: 'Plus Jakarta Sans Variable';
-            font-display: swap;
-            font-style: normal;
-            font-weight: 100 900;
-          }
-
           /* Font optimization for LCP */
           .hero-text p, .hero-text h1, .hero-text h2 {
             font-display: swap;
@@ -183,15 +177,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }
         `,
           }}
-        />
-
-        {/* Preload critical fonts and resources */}
-        <link
-          rel="preload"
-          href="/fonts/plus-jakarta-sans-variable.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
         />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">

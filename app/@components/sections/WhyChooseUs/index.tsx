@@ -137,9 +137,10 @@ const WhyChooseUs = () => {
         </div>
         
         {/* Stats bar */}
-        <div className="bg-gray-50 rounded-2xl p-8 md:p-10">
+        <div className="bg-primary rounded-2xl p-8 md:p-10 shadow-lg">
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-gray-900">By The Numbers</h3>
+            <h3 className="text-2xl font-bold text-white">By The Numbers</h3>
+            <p className="text-white/80 mt-2">Our track record of excellence and reliability</p>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
@@ -164,7 +165,7 @@ const WhyChooseUs = () => {
           <div className="text-center mt-8">
             <motion.a
               href="#testimonials"
-              className="inline-flex items-center text-primary font-medium hover:text-primary-dark"
+              className="inline-flex items-center text-white font-medium hover:text-white/90"
               whileHover={{ x: 4 }}
             >
               Read our reviews <span className="ml-2">→</span>
@@ -180,8 +181,8 @@ const WhyChooseUs = () => {
 const StatItem = ({ value, label }: { value: string | number, label: string }) => {
   return (
     <div className="flex flex-col items-center text-center">
-      <span className="text-4xl font-bold text-primary mb-2">{value}</span>
-      <span className="text-sm uppercase tracking-wider text-gray-600">{label}</span>
+      <span className="text-4xl font-bold text-white mb-2">{value}</span>
+      <span className="text-sm uppercase tracking-wider text-white/80">{label}</span>
     </div>
   );
 };

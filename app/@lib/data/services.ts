@@ -1,3 +1,5 @@
+import type { Service } from '../types';
+
 /**
  * Service Item Interface
  *
@@ -13,10 +15,10 @@ export interface ServiceItem {
 /**
  * Service Items Data
  *
- * Contains all the service offerings data used in the Services section.
- * Each item includes an icon, title, description, and list of features.
+ * Contains all the service offerings data used throughout the application.
+ * Each item includes title, description, and list of features.
  */
-export const serviceItems: Omit<ServiceItem, 'icon'>[] = [
+export const serviceItems: Omit<Service, 'icon'>[] = [
   {
     title: 'Office Cleaning',
     description:

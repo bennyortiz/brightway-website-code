@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { PageHeader } from '@/app/@components/ui/page';
+import SafeImage from '@/app/@components/ui/safe-image';
 
 /**
  * Page Metadata
@@ -32,12 +32,13 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
             <div className="lg:col-span-5 mx-auto">
               <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl">
-                <Image
+                <SafeImage
                   src="/images/brightway-commercial-cleaning-wiping.jpg"
                   alt="Brightway Professional Cleaning Team"
                   className="object-cover object-center"
                   width={600}
                   height={700}
+                  placement="above-fold"
                 />
               </div>
             </div>
@@ -113,12 +114,13 @@ export default function AboutUs() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
                 <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                  <Image
+                  <SafeImage
                     src="/images/team-placeholder.jpg"
                     alt="John Doe"
                     width={160}
                     height={160}
                     className="object-cover h-full w-full"
+                    placement="mid-page"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">John Doe</h3>
@@ -131,12 +133,13 @@ export default function AboutUs() {
               
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
                 <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                  <Image
+                  <SafeImage
                     src="/images/team-placeholder.jpg"
                     alt="Jane Smith"
                     width={160}
                     height={160}
                     className="object-cover h-full w-full"
+                    placement="mid-page"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">Jane Smith</h3>
@@ -149,12 +152,13 @@ export default function AboutUs() {
               
               <div className="bg-white p-6 rounded-lg shadow-md text-center">
                 <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                  <Image
+                  <SafeImage
                     src="/images/team-placeholder.jpg"
                     alt="Michael Johnson"
                     width={160}
                     height={160}
                     className="object-cover h-full w-full"
+                    placement="mid-page"
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-1">Michael Johnson</h3>
@@ -180,36 +184,6 @@ export default function AboutUs() {
                 <div className="md:w-3/4">
                   <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
                   <p className="text-gray-600">
-                    Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
-                    commercial cleaning services to local businesses.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/4 mb-4 md:mb-0 flex justify-center md:justify-start">
-                  <div className="bg-primary text-white rounded-lg p-4 md:mr-4">
-                    <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
-                  </div>
-                </div>
-                <div className="md:w-3/4">
-                  <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
-                  <p className="text-gray-600">
-                    Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
-                    commercial cleaning services to local businesses.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/4 mb-4 md:mb-0">
-                  <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
-                    <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
-                  </div>
-                </div>
-                <div className="md:w-3/4">
-                  <h3 className="text-xl font-semibold mb-2 text-center md:text-left">Company Founded</h3>
-                  <p className="text-gray-600 text-center md:text-left">
                     Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
                     commercial cleaning services to local businesses.
                   </p>

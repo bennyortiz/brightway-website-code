@@ -16,20 +16,36 @@
  * ```
  */
 
-// Export form components
-export * from './forms';
+// Export all UI components from a single file for easier imports
+// This pattern simplifies imports by allowing:
+// import { ComponentName } from '@/app/@components/ui';
 
-// Export button components
+// Core UI Components
+export { default as Button } from './Button';
+export { default as Logo } from './Logo';
+export { default as SkipLink } from './SkipLink';
+export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as SectionHeader } from './section-header';
+
+// Images - Use SafeImage for all image needs, it has the most features
+export { default as SafeImage } from './safe-image';
+export { default as OptimizedImage } from './OptimizedImage'; // Alternative with different API
+export { default as ImageSkeleton } from './image-skeleton';
+/**
+ * @deprecated Use SafeImage instead. ServiceImage will be removed in a future update.
+ */
+export { default as ServiceImage } from './service-image';
+
+// Layout Components (re-export from nested directories)
+export * from './layout';
+export * from './page';
 export * from './buttons';
-
-// Export card components
+export * from './forms';
 export * from './cards';
-
-// Export carousel components
 export * from './carousel';
 
-// Export layout components
-export * from './layout';
+// Virtual List for large data sets
+export { default as VirtualList } from './virtual-list';
 
 // Add additional component exports as the library grows
 // export * from './navigation';

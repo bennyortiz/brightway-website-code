@@ -3,15 +3,14 @@
 import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import type { Service } from '@/app/@lib/types';
 
 /**
- * Service item type definition
+ * ServiceCard component props that use the central Service interface
  */
-export interface ServiceItem {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  features: string[];
+interface ServiceCardProps {
+  service: Service & { icon: React.ReactNode };
+  index: number;
 }
 
 // Animation variants
@@ -39,12 +38,10 @@ const featureVariants = {
 /**
  * ServiceCard Component
  *
- * Displays information about a single service offering with animations.
- * Includes an icon, title, description, and list of features.
- *
- * @param {ServiceItem} props - The service data to display
+ * Displays a service offering with icon, title, description, and features
+ * Includes animation effects for enhanced visual engagement
  */
-const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
   return (
     <motion.div
       className="flex flex-col h-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -60,14 +57,14 @@ const ServiceCard = ({ icon, title, description, features }: ServiceItem) => {
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
       >
-        {icon}
+        {service.icon}
       </motion.div>
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+      <p className="text-gray-600 mb-4">{service.description}</p>
       <div className="mt-auto">
         <div className="font-semibold text-gray-800 mb-2">Key Features:</div>
         <ul className="space-y-2">
-          {features.map((feature, index) => (
+          {service.features.map((feature, index) => (
             <motion.li 
               key={index} 
               className="flex items-start"

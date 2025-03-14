@@ -15,15 +15,21 @@ export interface PageMetadata {
 
 /**
  * Service information
+ * Centralized definition for all service-related types
  */
 export interface Service {
   title: string;
   description: string;
   features: string[];
-  icon?: string;
+  icon?: React.ReactNode | string;
   image?: string;
   slug?: string;
 }
+
+/**
+ * @deprecated Use Service interface instead
+ */
+export type ServiceItem = Service;
 
 /**
  * Contact form data

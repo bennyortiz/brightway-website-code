@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import ImageSkeleton from './image-skeleton';
+import type { SyntheticEvent } from 'react';
 
 type ImagePlacement = 'hero' | 'above-fold' | 'mid-page' | 'below-fold' | 'footer';
 
@@ -13,7 +14,7 @@ interface SafeImageProps {
   fallbackText?: string;
   priority?: boolean;
   loading?: 'eager' | 'lazy';
-  onLoadingComplete?: (img: HTMLImageElement) => void;
+  onLoad?: (event: SyntheticEvent<HTMLImageElement, Event>) => void;
   placement?: ImagePlacement;
   quality?: number;
   width?: number;
@@ -32,7 +33,7 @@ export default function SafeImage({
   fallbackText,
   priority = false,
   loading,
-  onLoadingComplete,
+  onLoad,
   placement,
   quality = 85,
   width,
@@ -78,10 +79,10 @@ export default function SafeImage({
   }
 
   // Handle image load completion
-  const handleLoadingComplete = (img: HTMLImageElement) => {
+  const handleLoadingComplete = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     setIsLoading(false);
-    if (onLoadingComplete) {
-      onLoadingComplete(img);
+    if (onLoad) {
+      onLoad(event);
     }
   };
 
@@ -119,7 +120,7 @@ export default function SafeImage({
         priority={shouldPrioritize}
         loading={loadingStrategy}
         quality={imageQuality}
-        onLoadingComplete={handleLoadingComplete}
+        onLoad={handleLoadingComplete}
         onError={handleError}
         style={{
           // For mobile optimization, applying content visibility to non-critical images

@@ -1,9 +1,9 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { MainLayout } from '@/app/@components/ui/layout';
 import { Section, Container, Grid, Column } from '@/app/@components/ui/layout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { PageHeader } from '@/app/@components/ui/page';
+import SafeImage from '@/app/@components/ui/safe-image';
 
 /**
  * Page Metadata
@@ -81,11 +81,13 @@ export default function GalleryPage() {
               className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="relative h-64 w-full">
-                <Image
+                <SafeImage
                   src={item.imageUrl}
                   alt={item.title}
-                  fill
+                  width={600}
+                  height={400}
                   className="object-cover"
+                  placement="mid-page"
                 />
               </div>
               <div className="p-6">
