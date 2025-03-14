@@ -3,6 +3,7 @@ import { siteConfig } from './siteConfig';
 export const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
+  { name: 'Gallery', href: '/gallery' },
   { name: 'About', href: '/about-us' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -25,6 +26,7 @@ export const footerNavigation = {
   ],
   company: [
     { name: 'About Us', href: '/about-us' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
     { name: 'Our Team', href: '/about-us#team' },
     { name: 'Careers', href: '/about-us' },

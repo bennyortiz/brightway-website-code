@@ -28,8 +28,10 @@ export * from './cards';
 // Export carousel components
 export * from './carousel';
 
+// Export layout components
+export * from './layout';
+
 // Add additional component exports as the library grows
-// export * from './layout';
 // export * from './navigation';
 // export * from './feedback';
 // export * from './data-display';

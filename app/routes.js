@@ -11,6 +11,7 @@ export const routes = {
   aboutUs: "/about-us",
   services: "/services",
   contact: "/contact",
+  gallery: "/gallery",
   
   // Legal pages
   termsOfService: "/terms-of-service",
