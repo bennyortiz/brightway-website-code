@@ -19,6 +19,11 @@ import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import dynamic from 'next/dynamic';
+
+// Dynamically import components
+const SkipLink = dynamic(() => import('./@components/ui/SkipLink'));
+const WebVitals = dynamic(() => import('./@components/shared/WebVitals'), { ssr: false });
 
 /**
  * Font Configuration
@@ -132,7 +137,7 @@ export const viewport = {
  */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={plusJakartaSans.className}>
+    <html lang="en" className={plusJakartaSans.variable}>
       <head>
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
@@ -189,16 +194,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           crossOrigin="anonymous"
         />
       </head>
-      <body className="bg-white text-gray-900 min-h-screen flex flex-col">
-        {children}
-
-        {/* Vercel Analytics with enhanced configuration */}
-        <Analytics 
-          mode={process.env.NODE_ENV === 'production' ? 'production' : 'development'}
-          debug={process.env.NODE_ENV !== 'production'}
-        />
+      <body className="min-h-screen bg-background font-sans antialiased">
+        {/* Skip to content link for keyboard accessibility */}
+        <SkipLink />
         
-        {/* Vercel Speed Insights for enhanced performance metrics */}
+        {/* Main content area with ID for skip link target */}
+        <div id="main-content">
+          {children}
+        </div>
+        
+        {/* Performance monitoring */}
+        <WebVitals />
+        <Analytics />
         <SpeedInsights />
 
         {/* Defer non-critical scripts */}

@@ -21,33 +21,26 @@ const MotionDiv = dynamic(
  * 1. Server-rendering critical content
  * 2. Lazy-loading non-critical components
  * 3. Optimizing image loading strategy
- * 
- * Enhanced with responsive design across all viewport sizes:
- * - Stack content on small screens
- * - Side-by-side on medium screens and above
- * - Optimized image sizes and aspect ratios for each viewport
  */
 const Hero = () => {
   return (
-    <section className="w-full pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-10 sm:pb-16 md:pb-24 lg:pb-32 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex flex-col md:flex-row items-center md:items-start lg:items-center justify-between gap-8 md:gap-4 lg:gap-8">
+    <section className="w-full pt-24 md:pt-32 lg:pt-36 pb-12 md:pb-32 lg:pb-40 bg-gradient-to-br from-blue-50 to-green-50 overflow-hidden">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row items-center">
           {/* Critical content - server rendered */}
-          <div className="w-full md:w-1/2 max-w-2xl mx-auto md:mx-0">
-            <Suspense fallback={null}>
-              <HeroContent />
-            </Suspense>
-          </div>
+          <Suspense fallback={null}>
+            <HeroContent />
+          </Suspense>
 
           {/* Image section - client rendered with optimizations */}
-          <div className="w-full md:w-5/12 lg:w-1/2 max-w-xl mx-auto md:mx-0">
+          <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
             <Suspense 
               fallback={
-                <div className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" />
+                <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" />
               }
             >
               <MotionDiv 
-                className="relative w-full aspect-square sm:aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden shadow-2xl"
+                className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ 
@@ -65,7 +58,6 @@ const Hero = () => {
                   placement="above-fold"
                   quality={85}
                   className="w-full h-full object-cover transition-opacity duration-300"
-                  sizes="(max-width: 640px) 95vw, (max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
                 />
               </MotionDiv>
             </Suspense>
