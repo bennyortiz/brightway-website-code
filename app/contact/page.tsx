@@ -1,208 +1,138 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import ContactForm from '@/app/@components/sections/Contact/ContactForm';
-import { Grid, Column, Section, Container } from '@/app/@components/ui/layout';
+import ContactInfo from '@/app/@components/sections/Contact/ContactInfo';
+import { MapPin, PhoneCall } from 'lucide-react';
+import { Card, CardHeader, CardBody, CardTitle } from '@/app/@components/ui/cards';
+import { ButtonLink } from '@/app/@components/ui/buttons';
 
 /**
  * Page Metadata
  */
 export const metadata: Metadata = generatePageMetadata({
-  pageType: 'custom',
+  pageType: 'contact',
   title: 'Contact Us | Brightway Cleaning',
-  description: 'Get in touch with Brightway Cleaning for all your commercial cleaning needs in DFW. Contact us for a free quote or to learn more about our services.',
-  canonicalPath: '/contact',
+  description: 'Get in touch with Brightway Cleaning for reliable commercial cleaning services in the DFW metroplex. Request a quote or learn more about our services.',
+  slug: 'contact',
 });
 
-export default function ContactPage() {
+export default function Contact() {
   return (
     <MainLayout>
-      <div className="bg-gradient-to-r from-primary to-primary-dark">
-        <Container className="py-16 lg:py-24">
-          <div className="text-center text-white max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-xl opacity-90">
-              Have questions or ready to get started? Reach out to our team for personalized assistance with your commercial cleaning needs.
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24">
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-gray-900">Contact Us</h1>
+          
+          <div className="prose prose-lg max-w-none mb-8 md:mb-12 text-center">
+            <p className="text-lg md:text-xl text-gray-600">
+              Ready to experience the Brightway difference? Get in touch for a free quote or to learn
+              more about our services. We're here to help keep your business looking its best.
             </p>
           </div>
-        </Container>
-      </div>
-
-      <Container className="py-16 md:py-24">
-        <Grid columns={{ default: 1, md: 2 }} gap={12}>
-          {/* Contact Information */}
-          <Column>
-            <div className="bg-white rounded-xl shadow-lg p-8 md:p-10 h-full">
-              <h2 className="text-2xl font-bold mb-6">Get In Touch</h2>
-              <p className="text-gray-600 mb-8">
-                We're here to answer any questions you have about our services. Reach out to us through any of the following channels:
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Our Office</h3>
-                    <p className="text-gray-600">
-                      1234 Main Street<br />
-                      Bedford, TX 76021
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <Phone className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Phone</h3>
-                    <p className="text-gray-600">
-                      <a href="tel:+18175551234" className="hover:text-primary">(817) 555-1234</a>
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Email</h3>
-                    <p className="text-gray-600">
-                      <a href="mailto:info@brightwaycleaning.com" className="hover:text-primary">info@brightwaycleaning.com</a>
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <Clock className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Business Hours</h3>
-                    <p className="text-gray-600">
-                      Monday - Friday: 8:00 AM - 6:00 PM<br />
-                      Saturday: 9:00 AM - 2:00 PM<br />
-                      Sunday: Closed
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="mt-10">
-                <h3 className="font-semibold text-lg mb-4">Service Areas</h3>
-                <p className="text-gray-600 mb-3">
-                  We proudly serve the entire Dallas-Fort Worth metroplex, including:
-                </p>
-                <Grid columns={{ default: 2 }} gap={4}>
-                  <Column>
-                    <ul className="space-y-1 text-gray-600">
-                      <li>• Bedford</li>
-                      <li>• Euless</li>
-                      <li>• Arlington</li>
-                      <li>• Hurst</li>
-                    </ul>
-                  </Column>
-                  <Column>
-                    <ul className="space-y-1 text-gray-600">
-                      <li>• Fort Worth</li>
-                      <li>• Dallas</li>
-                      <li>• Irving</li>
-                      <li>• Grapevine</li>
-                    </ul>
-                  </Column>
-                </Grid>
-              </div>
-            </div>
-          </Column>
           
-          {/* Contact Form */}
-          <Column>
-            <div className="bg-white rounded-xl shadow-lg p-8 md:p-10">
-              <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-              <p className="text-gray-600 mb-8">
-                Fill out the form below, and one of our team members will get back to you as soon as possible.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+            {/* Contact Information - Will display on top for mobile, left side for desktop */}
+            <div className="lg:col-span-1 order-1 lg:order-1">
+              <ContactInfo />
+            </div>
+            
+            {/* Contact Form - Will display below contact info for mobile, right side for desktop */}
+            <div className="lg:col-span-2 order-2 lg:order-2">
               <ContactForm />
             </div>
-          </Column>
-        </Grid>
-      </Container>
-      
-      {/* Map Section */}
-      <div className="bg-gray-50 py-16">
-        <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Find Us</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We're conveniently located in Bedford, with easy access to the entire DFW metroplex.
-            </p>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-lg h-96">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d107439.00075296759!2d-97.14309222161913!3d32.850595820217856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7ef78ca1147d%3A0xb934b5d8b18a886!2sBedford%2C%20TX!5e0!3m2!1sen!2sus!4v1647372890772!5m2!1sen!2sus" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen 
-              loading="lazy"
-              title="Brightway Cleaning Location Map"
-            ></iframe>
+          
+          {/* Service Area Map */}
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-900">Our Service Area</h2>
+            <Card variant="elevated">
+              <CardBody className="p-4 md:p-6">
+                <div className="flex flex-col md:flex-row items-center justify-center mb-4 text-center gap-2">
+                  <MapPin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+                  <p className="text-base md:text-lg text-gray-600">
+                    Based in Bedford, TX — Proudly serving the entire DFW metroplex
+                  </p>
+                </div>
+                
+                <div className="aspect-[16/9] w-full h-auto relative rounded-lg overflow-hidden shadow-md">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d214575.70138497924!2d-97.19858782188162!3d32.766764862246895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7decba153b7f%3A0x55625d7141b31a0c!2sBedford%2C%20TX%2C%20USA!5e0!3m2!1sen!2sus!4v1654812345678!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border:0 }} 
+                    allowFullScreen={true} 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </CardBody>
+            </Card>
           </div>
-        </Container>
-      </div>
-      
-      {/* FAQ Section */}
-      <Container className="py-16 md:py-24">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Common questions about our commercial cleaning services.
-          </p>
+          
+          {/* FAQ Section */}
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-900">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+              <Card>
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">How quickly can you start service?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    In most cases, we can begin service within 24-48 hours of finalizing your contract. For specialized cleaning needs, we may require additional time to prepare.
+                  </p>
+                </CardBody>
+              </Card>
+              
+              <Card>
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Do you provide free estimates?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    Yes! We provide free, no-obligation estimates for all our commercial cleaning services. Contact us to schedule a consultation.
+                  </p>
+                </CardBody>
+              </Card>
+              
+              <Card>
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Are your employees insured?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    Yes, all our employees are fully insured and bonded. We also carry comprehensive liability insurance for your peace of mind.
+                  </p>
+                </CardBody>
+              </Card>
+              
+              <Card>
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Do you bring your own supplies?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    Yes, we provide all cleaning supplies and equipment. We use high-quality, eco-friendly products unless you have specific preferences.
+                  </p>
+                </CardBody>
+              </Card>
+            </div>
+          </div>
+          
+          {/* Emergency Cleaning */}
+          <Card variant="elevated" className="bg-primary/10 border-primary/20 mb-8">
+            <CardBody className="p-4 md:p-8 text-center">
+              <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Need Emergency Cleaning?</h2>
+              <p className="text-base md:text-lg mb-4 md:mb-6">
+                We offer emergency cleaning services for unexpected situations. Call our emergency line for immediate assistance.
+              </p>
+              <ButtonLink 
+                href="tel:+1-555-123-4567" 
+                variant="primary"
+                size="lg"
+                leftIcon={<PhoneCall size={18} />}
+                className="w-full md:w-auto break-words text-sm md:text-base px-3 py-2 md:px-4 md:py-3"
+              >
+                Emergency Cleaning: (555) 123-4567
+              </ButtonLink>
+            </CardBody>
+          </Card>
         </div>
-        
-        <Grid columns={{ default: 1, md: 2 }} gap={8} className="max-w-5xl mx-auto">
-          <Column>
-            <div className="bg-white p-6 rounded-lg shadow-md h-full">
-              <h3 className="text-xl font-semibold mb-3">How do I get a quote?</h3>
-              <p className="text-gray-600">
-                You can request a quote by filling out our contact form, calling our office, or sending us an email. We'll schedule a walkthrough of your facility to provide an accurate estimate.
-              </p>
-            </div>
-          </Column>
-          
-          <Column>
-            <div className="bg-white p-6 rounded-lg shadow-md h-full">
-              <h3 className="text-xl font-semibold mb-3">Are you insured and bonded?</h3>
-              <p className="text-gray-600">
-                Yes, Brightway Cleaning is fully insured and bonded. We carry comprehensive liability insurance and workers' compensation coverage for all our employees.
-              </p>
-            </div>
-          </Column>
-          
-          <Column>
-            <div className="bg-white p-6 rounded-lg shadow-md h-full">
-              <h3 className="text-xl font-semibold mb-3">What cleaning products do you use?</h3>
-              <p className="text-gray-600">
-                We use a combination of industry-leading, eco-friendly cleaning products that are effective yet safe for the environment and your employees.
-              </p>
-            </div>
-          </Column>
-          
-          <Column>
-            <div className="bg-white p-6 rounded-lg shadow-md h-full">
-              <h3 className="text-xl font-semibold mb-3">Do you offer recurring cleaning services?</h3>
-              <p className="text-gray-600">
-                Yes, we offer daily, weekly, bi-weekly, and monthly recurring cleaning services tailored to your business needs and schedule.
-              </p>
-            </div>
-          </Column>
-        </Grid>
-      </Container>
+      </div>
     </MainLayout>
   );
 } 

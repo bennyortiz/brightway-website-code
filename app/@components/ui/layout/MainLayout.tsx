@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import ScrollToTop from './ScrollToTop';
+import { ScrollProgressBar } from '../animations/scroll-progress';
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -36,6 +37,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col">
+      <ScrollProgressBar />
       <Navigation />
       {/* Add padding-top to account for fixed header, except on the home page */}
       <main className={`flex-grow ${!isHomePage ? (isMobile ? 'pt-20' : 'pt-24') : ''}`}>

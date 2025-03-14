@@ -4,7 +4,6 @@ import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Clock } fr
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import { footerNavigation } from '@/app/@lib/constants/navigationItems';
 import Logo from '../Logo';
-import { Grid, Column, Container } from './';
 
 const getSocialIcon = (icon: string) => {
   switch (icon) {
@@ -21,12 +20,6 @@ const getSocialIcon = (icon: string) => {
   }
 };
 
-/**
- * Footer Component
- * 
- * Displays the site footer with company information, contact details, services, and company links.
- * Uses a responsive grid layout that properly aligns on all screen sizes.
- */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const startYear = siteConfig.business.startYear;
@@ -34,11 +27,10 @@ const Footer = () => {
 
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
-      <Container>
-        {/* Main footer content uses a 4-column grid on larger screens */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-          {/* Business info column */}
-          <div className="space-y-4">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+          {/* Company Information */}
+          <div className="space-y-4 md:col-span-2">
             <Logo className="text-white" />
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
@@ -55,8 +47,59 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Contact Us column - directly to the right of business info */}
-          <div className="space-y-4">
+          {/* Services */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <ul className="space-y-2">
+              {footerNavigation.services.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Locations */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Locations</h3>
+            <ul className="space-y-2">
+              {footerNavigation.locations.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <ul className="space-y-2">
+              {footerNavigation.company.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="space-y-4 md:col-span-2">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start">
@@ -87,40 +130,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-
-          {/* Services column */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              {footerNavigation.services.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company column */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              {footerNavigation.company.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-gray-400 hover:text-primary transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Legal Footer */}
@@ -140,7 +149,7 @@ const Footer = () => {
             ))}
           </div>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 };

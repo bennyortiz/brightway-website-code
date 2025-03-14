@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import ImageSkeleton from './image-skeleton';
 
 type ImagePlacement = 'hero' | 'above-fold' | 'mid-page' | 'below-fold' | 'footer';
@@ -19,15 +19,11 @@ interface SafeImageProps {
   width?: number;
   height?: number;
   sizes?: string;
-  containerHeight?: boolean;
 }
 
 /**
  * Enhanced safe image component with intelligent loading strategies
  * based on image placement within the page and optimized for LCP performance
- * 
- * Now with container height responsiveness - when containerHeight is true,
- * the image will adjust its height to match its parent container automatically
  */
 export default function SafeImage({
   src,
@@ -42,12 +38,9 @@ export default function SafeImage({
   width,
   height,
   sizes,
-  containerHeight = false,
 }: SafeImageProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
 
   // Determine priority based on placement if not explicitly set
   const shouldPrioritize = priority || placement === 'hero';
@@ -84,42 +77,6 @@ export default function SafeImage({
     imageSizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw";
   }
 
-  // Container height responsiveness
-  useEffect(() => {
-    if (!containerHeight || !containerRef.current) return;
-
-    // Initial measurement
-    updateDimensions();
-
-    // Set up resize observer to track parent container changes
-    const resizeObserver = new ResizeObserver(() => {
-      updateDimensions();
-    });
-
-    // Observe container element
-    if (containerRef.current) {
-      resizeObserver.observe(containerRef.current.parentElement || containerRef.current);
-    }
-
-    // Clean up
-    return () => {
-      resizeObserver.disconnect();
-    };
-  }, [containerHeight]);
-
-  // Update container dimensions
-  const updateDimensions = () => {
-    if (!containerRef.current) return;
-    
-    const parent = containerRef.current.parentElement;
-    if (parent) {
-      setContainerDimensions({
-        width: parent.clientWidth,
-        height: parent.clientHeight
-      });
-    }
-  };
-
   // Handle image load completion
   const handleLoadingComplete = (img: HTMLImageElement) => {
     setIsLoading(false);
@@ -148,22 +105,16 @@ export default function SafeImage({
   }
 
   return (
-    <div 
-      ref={containerRef} 
-      className={`${containerHeight ? 'h-full' : ''} relative`}
-      style={{ 
-        minHeight: containerHeight ? '100%' : undefined
-      }}
-    >
+    <>
       {isLoading && <ImageSkeleton aspectRatio={aspectRatio} className={className} />}
       
       <Image
         src={src}
         alt={alt || fallbackText || 'Image'}
         className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-        fill={containerHeight || (!width && !height)}
-        width={!containerHeight ? width : undefined}
-        height={!containerHeight ? height : undefined}
+        fill={!width || !height}
+        width={width}
+        height={height}
         sizes={imageSizes}
         priority={shouldPrioritize}
         loading={loadingStrategy}
@@ -173,8 +124,6 @@ export default function SafeImage({
         style={{
           // For mobile optimization, applying content visibility to non-critical images
           contentVisibility: placement === 'below-fold' || placement === 'footer' ? 'auto' : undefined,
-          height: containerHeight ? '100%' : undefined,
-          objectFit: containerHeight ? 'cover' : undefined,
         }}
       />
       
@@ -183,6 +132,6 @@ export default function SafeImage({
           {fallbackText || alt || 'Image could not be loaded'}
         </div>
       )}
-    </div>
+    </>
   );
 }

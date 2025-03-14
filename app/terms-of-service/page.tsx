@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
-import { Container } from '@/app/@components/ui/layout';
 
 /**
  * Page Metadata
@@ -13,7 +11,7 @@ import { Container } from '@/app/@components/ui/layout';
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Terms of Service | Brightway Cleaning',
-  description: 'Our terms of service outline the agreement between Brightway Cleaning and our clients. Please review these terms before using our services.',
+  description: 'Please read our Terms of Service to understand the conditions for using Brightway Cleaning services.',
   canonicalPath: '/terms-of-service',
   seo: {
     maxSnippet: 0, // Prevent showing snippets of legal text in search results
@@ -23,97 +21,108 @@ export const metadata: Metadata = generatePageMetadata({
 export default function TermsOfService() {
   return (
     <MainLayout>
-      <Container className="py-16 md:py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Terms of Service</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-8">Terms of Service</h1>
           
           <div className="prose prose-lg max-w-none">
+            <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+            
+            <h2>1. Acceptance of Terms</h2>
             <p>
-              Last Updated: March 2023
+              By accessing and using the services provided by Brightway Cleaning ("we," "our," or "us"), 
+              you agree to be bound by these Terms of Service. If you do not agree to all the terms and 
+              conditions, you should not use our services.
             </p>
             
+            <h2>2. Description of Services</h2>
             <p>
-              Welcome to Brightway Cleaning. These Terms of Service ("Terms") govern your use of our website and services. By accessing our website or using our services, you agree to be bound by these Terms.
+              Brightway Cleaning provides commercial cleaning services in the DFW metroplex. Our services 
+              include but are not limited to office cleaning, commercial space cleaning, industrial cleaning, 
+              sanitization services, and waste management.
             </p>
             
-            <h2>Services</h2>
+            <h2>3. Service Agreements</h2>
             <p>
-              Brightway Cleaning provides commercial cleaning services to businesses in the Dallas-Fort Worth metroplex. Our services include, but are not limited to, regular janitorial services, deep cleaning, floor care, and specialized cleaning solutions.
+              All cleaning services are subject to a service agreement that outlines specific terms, 
+              including scope of work, schedule, pricing, and payment terms. Service agreements may 
+              contain additional terms that supplement these Terms of Service.
             </p>
             
-            <h2>Service Agreements</h2>
+            <h2>4. Scheduling and Access</h2>
             <p>
-              All cleaning services are subject to a Service Agreement that outlines the specific services to be performed, scheduling, pricing, and other terms. The Service Agreement, once executed, becomes part of these Terms.
+              Clients are responsible for providing necessary access to the premises where services will be performed. 
+              If we are unable to access the premises at the scheduled time, we reserve the right to charge a 
+              cancellation fee as specified in your service agreement.
             </p>
             
-            <h2>Scheduling and Access</h2>
+            <h2>5. Payment Terms</h2>
             <p>
-              Clients are responsible for providing safe access to the premises during scheduled cleaning times. If access is not available during the scheduled time, we reserve the right to charge a cancellation fee as outlined in your Service Agreement.
+              Payment terms are specified in your service agreement. We accept various payment methods and 
+              may require a deposit for certain services. Late payments may incur additional fees as outlined 
+              in your service agreement.
             </p>
             
-            <h2>Payment Terms</h2>
+            <h2>6. Cancellation Policy</h2>
             <p>
-              Payment terms are specified in your Service Agreement. Generally, payment is due upon receipt of invoice, unless otherwise arranged. We accept various payment methods, including credit card, check, and electronic bank transfers.
-            </p>
-            <p>
-              Late payments may incur a fee as specified in your Service Agreement. Continued non-payment may result in suspension or termination of services.
-            </p>
-            
-            <h2>Cancellation Policy</h2>
-            <p>
-              Cancellation policies are outlined in your Service Agreement. Generally, we require at least 24 hours' notice for cancellation of scheduled services to avoid a cancellation fee.
+              Cancellation policies vary based on the type of service. For regular scheduled services, 
+              we typically require 48 hours' notice to avoid a cancellation fee. Please refer to your 
+              service agreement for specific cancellation terms.
             </p>
             
-            <h2>Service Quality and Satisfaction</h2>
+            <h2>7. Quality Guarantee</h2>
             <p>
-              We strive to provide high-quality cleaning services. If you are not satisfied with any aspect of our service, please notify us within 24 hours of service completion, and we will address the issue promptly.
+              We strive to provide high-quality cleaning services. If you are not satisfied with our services, 
+              please notify us within 24 hours of service completion, and we will address your concerns promptly.
             </p>
             
-            <h2>Insurance and Liability</h2>
+            <h2>8. Liability Limitations</h2>
             <p>
-              Brightway Cleaning maintains comprehensive liability insurance and workers' compensation coverage. However, we are not responsible for pre-existing damage or normal wear and tear to facilities or equipment.
+              While we take precautions to prevent damage, we are not responsible for normal wear and tear, 
+              pre-existing damage, or damage resulting from client negligence. Our liability is limited to 
+              the cost of services provided.
             </p>
             
-            <h2>Confidentiality</h2>
+            <h2>9. Insurance</h2>
             <p>
-              We respect the confidentiality of our clients' business information. Our employees are trained to maintain confidentiality regarding any information they may encounter during the course of their duties.
+              Brightway Cleaning maintains general liability insurance and workers' compensation insurance. 
+              Proof of insurance is available upon request.
             </p>
             
-            <h2>Modification of Terms</h2>
+            <h2>10. Confidentiality</h2>
             <p>
-              We reserve the right to modify these Terms at any time. Any changes will be effective immediately upon posting on our website. Your continued use of our services after any changes indicates your acceptance of the modified Terms.
+              We respect the confidentiality of our clients' information and premises. Our staff is trained 
+              to maintain confidentiality and handle sensitive information appropriately.
             </p>
             
-            <h2>Termination</h2>
+            <h2>11. Modification of Terms</h2>
             <p>
-              Either party may terminate services as outlined in the Service Agreement. We reserve the right to terminate services immediately if payment is significantly overdue or if there are safety concerns for our employees.
+              We reserve the right to modify these Terms of Service at any time. Changes will be effective 
+              upon posting to our website. Continued use of our services after changes indicates your acceptance 
+              of the modified terms.
             </p>
             
-            <h2>Governing Law</h2>
+            <h2>12. Termination</h2>
             <p>
-              These Terms are governed by the laws of the State of Texas. Any disputes arising from these Terms or our services shall be resolved in the courts of Tarrant County, Texas.
+              Either party may terminate services as specified in the service agreement. We reserve the right 
+              to terminate services immediately for non-payment or violation of these Terms of Service.
             </p>
             
-            <h2>Contact Us</h2>
+            <h2>13. Governing Law</h2>
             <p>
-              If you have questions or concerns about these Terms, please contact us at:
-            </p>
-            <p>
-              <strong>Brightway Cleaning</strong><br />
-              1234 Main Street<br />
-              Bedford, TX 76021<br />
-              Email: legal@brightwaycleaning.com<br />
-              Phone: (817) 555-1234
+              These Terms of Service are governed by the laws of the State of Texas. Any disputes arising from 
+              these terms shall be resolved in the courts of Tarrant County, Texas.
             </p>
             
-            <div className="mt-12 pt-6 border-t border-gray-200">
-              <p>
-                Looking for our Privacy Policy? <Link href="/privacy-policy" className="text-primary hover:underline">Click here</Link>.
-              </p>
-            </div>
+            <h2>14. Contact Information</h2>
+            <p>
+              If you have questions about these Terms of Service, please contact us at:<br />
+              Email: info@brightwaycleaning.com<br />
+              Phone: (555) 123-4567
+            </p>
           </div>
         </div>
-      </Container>
+      </div>
     </MainLayout>
   );
 } 

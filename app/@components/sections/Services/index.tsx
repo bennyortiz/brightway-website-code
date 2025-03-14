@@ -5,7 +5,6 @@ import Link from 'next/link';
 import ServiceCard from './ServiceCard';
 import { serviceItems } from '@/app/@lib/data/services';
 import { Building2, Briefcase, Building, Droplets, Trash2, Clock } from 'lucide-react';
-import { Grid, Column, Container, Section } from '../../ui/layout';
 
 // Service icons mapping
 const serviceIcons = [
@@ -17,22 +16,29 @@ const serviceIcons = [
   <Clock key="clock" className="h-14 w-14 text-primary" />,
 ];
 
-// Remove fallback service data to avoid unnecessary code
-// Always use the imported service items
+// Fallback service data in case the import fails
+const fallbackServiceItems = [
+  {
+    title: 'Office Cleaning',
+    description: 'Comprehensive cleaning solutions for offices of all sizes.',
+    features: ['Daily sanitization', 'Carpet cleaning', 'Restroom maintenance'],
+  },
+];
 
 /**
  * Services Section Component
  *
  * Displays a grid of service offerings with animation effects.
- * Optimized for faster loading and preventing layout shift.
- * Using direct Tailwind grid classes for more reliable responsive layout.
+ * Uses the IntersectionObserver API for scroll-based animations.
  */
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(true); // Start with visible state for above-fold content
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Use service data if available, otherwise use fallback
+  const services = serviceItems || fallbackServiceItems;
 
   useEffect(() => {
-    // Setup observer for animating on scroll
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -59,11 +65,8 @@ const Services = () => {
   }, []);
 
   return (
-    <div id="services" ref={sectionRef}>
-      <Section 
-        className="py-16 md:py-24 bg-gray-50"
-        withContainer={true}
-      >
+    <section id="services" ref={sectionRef} className="w-full py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -72,18 +75,16 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Direct grid implementation for more reliable responsive layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          {serviceItems.map((service, index) => (
-            <div key={index} className="h-full flex">
-              <div
-                className={`transform transition-all duration-500 w-full ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-                }`}
-                style={{ transitionDelay: `${Math.min(index * 50, 300)}ms` }} // Limit delay to 300ms maximum
-              >
-                <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className={`transform transition-all duration-700 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
             </div>
           ))}
         </div>
@@ -96,8 +97,8 @@ const Services = () => {
             Get a Free Quote
           </Link>
         </div>
-      </Section>
-    </div>
+      </div>
+    </section>
   );
 };
 

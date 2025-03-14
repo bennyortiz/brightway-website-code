@@ -3,7 +3,6 @@ import Image from 'next/image';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
-import { Grid, Column, Section, Container } from '@/app/@components/ui/layout';
 
 /**
  * Page Metadata
@@ -21,7 +20,7 @@ export default function AboutUs() {
 
   return (
     <MainLayout>
-      <Container className="py-16 md:py-24">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">About Brightway Cleaning</h1>
           
@@ -33,8 +32,8 @@ export default function AboutUs() {
             </p>
             
             {/* Main Content with Image */}
-            <Grid columns={{ default: 1, lg: 12 }} gap={12} className="mb-16">
-              <Column span={{ default: 'full', lg: 5 }} className="mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+              <div className="lg:col-span-5 mx-auto">
                 <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl">
                   <Image
                     src="/images/brightway-commercial-cleaning-wiping.jpg"
@@ -44,9 +43,9 @@ export default function AboutUs() {
                     height={700}
                   />
                 </div>
-              </Column>
+              </div>
               
-              <Column span={{ default: 'full', lg: 7 }} className="flex flex-col justify-center">
+              <div className="lg:col-span-7 flex flex-col justify-center">
                 <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">Our Story</h2>
                 <div className="prose prose-lg max-w-none text-gray-600 text-center lg:text-left">
                   <p>
@@ -67,8 +66,8 @@ export default function AboutUs() {
                     {siteConfig.business.satisfaction} client satisfaction rate.
                   </p>
                 </div>
-              </Column>
-            </Grid>
+              </div>
+            </div>
             
             {/* Mission Statement Banner */}
             <div className="relative w-full bg-primary rounded-xl overflow-hidden mb-16">
@@ -86,218 +85,240 @@ export default function AboutUs() {
             {/* Core Values Section */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-8 text-center">Our Core Values</h2>
-              <Grid columns={{ default: 1, md: 3 }} gap={8}>
-                <Column>
-                  <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Excellence</h3>
-                    <p className="text-gray-600 text-center md:text-left">
-                      We strive for excellence in every cleaning task, no matter how small, because we
-                      believe that details matter and quality is non-negotiable.
-                    </p>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Integrity</h3>
-                    <p className="text-gray-600 text-center md:text-left">
-                      We operate with complete transparency, honesty, and accountability in all our
-                      business relationships and cleaning practices.
-                    </p>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Reliability</h3>
-                    <p className="text-gray-600 text-center md:text-left">
-                      We are committed to consistent, dependable service that our clients can count on,
-                      day in and day out, without compromise.
-                    </p>
-                  </div>
-                </Column>
-              </Grid>
-            </div>
-            
-            {/* Team Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold mb-8 text-center">Meet Our Leadership Team</h2>
-              <Grid columns={{ default: 1, md: 2, lg: 4 }} gap={8}>
-                <Column>
-                  <div className="flex flex-col items-center">
-                    <div className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-md">
-                      <Image
-                        src="/images/team/team-member-1.jpg"
-                        alt="John Smith - CEO"
-                        width={200}
-                        height={200}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold">John Smith</h3>
-                    <p className="text-primary font-medium">CEO & Founder</p>
-                    <p className="text-gray-600 text-center mt-2">
-                      Leading our company vision since {siteConfig.business.startYear}.
-                    </p>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="flex flex-col items-center">
-                    <div className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-md">
-                      <Image
-                        src="/images/team/team-member-2.jpg"
-                        alt="Sarah Johnson - Operations Director"
-                        width={200}
-                        height={200}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold">Sarah Johnson</h3>
-                    <p className="text-primary font-medium">Operations Director</p>
-                    <p className="text-gray-600 text-center mt-2">
-                      Ensuring seamless service delivery to all clients.
-                    </p>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="flex flex-col items-center">
-                    <div className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-md">
-                      <Image
-                        src="/images/team/team-member-3.jpg"
-                        alt="Michael Rodriguez - Quality Control Manager"
-                        width={200}
-                        height={200}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold">Michael Rodriguez</h3>
-                    <p className="text-primary font-medium">Quality Control Manager</p>
-                    <p className="text-gray-600 text-center mt-2">
-                      Maintaining our high standards across all services.
-                    </p>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="flex flex-col items-center">
-                    <div className="w-48 h-48 rounded-full overflow-hidden mb-4 shadow-md">
-                      <Image
-                        src="/images/team/team-member-4.jpg"
-                        alt="Jennifer Lee - Client Relations"
-                        width={200}
-                        height={200}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <h3 className="text-xl font-semibold">Jennifer Lee</h3>
-                    <p className="text-primary font-medium">Client Relations</p>
-                    <p className="text-gray-600 text-center mt-2">
-                      Building strong relationships with our valued clients.
-                    </p>
-                  </div>
-                </Column>
-              </Grid>
-            </div>
-            
-            {/* Why Choose Us Section */}
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold mb-8 text-center">Why Choose Brightway Cleaning?</h2>
-              <Grid columns={{ default: 1, md: 2 }} gap={10}>
-                <Column>
-                  <div className="bg-white p-8 rounded-xl shadow-md h-full">
-                    <h3 className="text-xl font-semibold mb-4">We're Committed to Quality</h3>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Rigorous training programs for all cleaning technicians
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Regular quality inspections and performance reviews
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Continuous improvement based on client feedback
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        State-of-the-art equipment and premium cleaning products
-                      </li>
-                    </ul>
-                  </div>
-                </Column>
-                <Column>
-                  <div className="bg-white p-8 rounded-xl shadow-md h-full">
-                    <h3 className="text-xl font-semibold mb-4">We're Client-Focused</h3>
-                    <ul className="space-y-3 text-gray-600">
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Customized cleaning plans tailored to your specific needs
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Flexible scheduling to accommodate your business hours
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Responsive customer service and 24/7 support
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
-                        Satisfaction guarantee on all our services
-                      </li>
-                    </ul>
-                  </div>
-                </Column>
-              </Grid>
-            </div>
-            
-            {/* Certifications and Achievements */}
-            <div>
-              <h2 className="text-3xl font-bold mb-8 text-center">Certifications & Achievements</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
-                <div className="bg-white p-4 rounded-lg shadow-md w-full text-center">
-                  <Image
-                    src="/images/certifications/green-certified.svg"
-                    alt="Green Cleaning Certified"
-                    width={120}
-                    height={120}
-                    className="mx-auto mb-3"
-                  />
-                  <p className="font-medium">Green Cleaning Certified</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Excellence</h3>
+                  <p className="text-gray-600 text-center md:text-left">
+                    We strive for excellence in every cleaning task, no matter how small, because we
+                    believe that details matter and quality is non-negotiable.
+                  </p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-md w-full text-center">
-                  <Image
-                    src="/images/certifications/issa-member.svg"
-                    alt="ISSA Member"
-                    width={120}
-                    height={120}
-                    className="mx-auto mb-3"
-                  />
-                  <p className="font-medium">ISSA Member</p>
+                <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Integrity</h3>
+                  <p className="text-gray-600 text-center md:text-left">
+                    We operate with complete transparency, honesty, and accountability in all our
+                    business relationships and cleaning practices.
+                  </p>
                 </div>
-                <div className="bg-white p-4 rounded-lg shadow-md w-full text-center">
-                  <Image
-                    src="/images/certifications/5-star-rated.svg"
-                    alt="5-Star Rated Service"
-                    width={120}
-                    height={120}
-                    className="mx-auto mb-3"
-                  />
-                  <p className="font-medium">5-Star Rated Service</p>
-                </div>
-                <div className="bg-white p-4 rounded-lg shadow-md w-full text-center">
-                  <Image
-                    src="/images/certifications/bbb-a-rated.svg"
-                    alt="BBB A+ Rated"
-                    width={120}
-                    height={120}
-                    className="mx-auto mb-3"
-                  />
-                  <p className="font-medium">BBB A+ Rated</p>
+                <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">Reliability</h3>
+                  <p className="text-gray-600 text-center md:text-left">
+                    Our clients can count on us to show up on time, every time, and deliver
+                    consistent, dependable cleaning services they can trust.
+                  </p>
                 </div>
               </div>
             </div>
+            
+            {/* Team Section */}
+            <div id="team" className="mb-16">
+              <h2 className="text-3xl font-bold mb-8 text-center">Our Leadership Team</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                  <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                    <Image
+                      src="/images/team-placeholder.jpg"
+                      alt="John Doe"
+                      width={160}
+                      height={160}
+                      className="object-cover h-full w-full"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-1">John Doe</h3>
+                  <p className="text-primary font-medium mb-3">Founder & CEO</p>
+                  <p className="text-gray-600">
+                    With over 20 years of experience in commercial cleaning, John founded Brightway Cleaning 
+                    with a vision to provide exceptional service to businesses throughout DFW.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                  <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                    <Image
+                      src="/images/team-placeholder.jpg"
+                      alt="Jane Smith"
+                      width={160}
+                      height={160}
+                      className="object-cover h-full w-full"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-1">Jane Smith</h3>
+                  <p className="text-primary font-medium mb-3">Operations Director</p>
+                  <p className="text-gray-600">
+                    Jane ensures our daily operations run smoothly and efficiently. Her attention to detail 
+                    and commitment to excellence are reflected in every aspect of our service delivery.
+                  </p>
+                </div>
+                
+                <div className="bg-white p-6 rounded-lg shadow-md text-center">
+                  <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
+                    <Image
+                      src="/images/team-placeholder.jpg"
+                      alt="Michael Johnson"
+                      width={160}
+                      height={160}
+                      className="object-cover h-full w-full"
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-1">Michael Johnson</h3>
+                  <p className="text-primary font-medium mb-3">Client Relations Manager</p>
+                  <p className="text-gray-600">
+                    Michael builds and maintains strong relationships with our clients, ensuring their 
+                    needs are met and expectations are exceeded with every service.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Company History Timeline */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold mb-8 text-center">Our Journey</h2>
+              <div className="space-y-8 text-center md:text-left">
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
+                    <p className="text-gray-600">
+                      Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
+                      commercial cleaning services to local businesses.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0 flex justify-center md:justify-start">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
+                    <p className="text-gray-600">
+                      Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
+                      commercial cleaning services to local businesses.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2 text-center md:text-left">Company Founded</h3>
+                    <p className="text-gray-600 text-center md:text-left">
+                      Brightway Cleaning was established in Bedford, TX, with a mission to provide high-quality 
+                      commercial cleaning services to local businesses.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear + 5}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Expansion Throughout DFW</h3>
+                    <p className="text-gray-600">
+                      After five successful years, we expanded our services to cover the entire DFW metroplex, 
+                      growing our team and client base significantly.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">{siteConfig.business.startYear + 10}</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Introduction of Specialized Services</h3>
+                    <p className="text-gray-600">
+                      We introduced specialized cleaning services for various industries, including healthcare, 
+                      educational institutions, and industrial facilities.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/4 mb-4 md:mb-0">
+                    <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
+                      <span className="text-xl font-bold">Today</span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4">
+                    <h3 className="text-xl font-semibold mb-2">Leading Commercial Cleaning Provider</h3>
+                    <p className="text-gray-600">
+                      Today, Brightway Cleaning stands as one of the most trusted commercial cleaning 
+                      companies in the DFW metroplex, serving hundreds of businesses with a commitment 
+                      to excellence and customer satisfaction.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Community Involvement */}
+            <div className="bg-gray-50 rounded-xl p-8 md:p-12 mb-16">
+              <h2 className="text-3xl font-bold mb-6 text-center">Community Involvement</h2>
+              <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-center">
+                As a locally owned business, we're committed to giving back to the DFW community. We
+                regularly participate in local charity events, sponsor youth sports teams, and offer
+                special cleaning services to non-profit organizations.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white p-5 rounded-lg shadow-md text-center">
+                  <h3 className="text-lg font-semibold mb-2">Local Charities</h3>
+                  <p className="text-gray-600">
+                    We donate a portion of our profits to local charities that support education and housing.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-md text-center">
+                  <h3 className="text-lg font-semibold mb-2">Youth Programs</h3>
+                  <p className="text-gray-600">
+                    We sponsor local youth sports teams and educational programs throughout DFW.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-md text-center">
+                  <h3 className="text-lg font-semibold mb-2">Environmental Initiatives</h3>
+                  <p className="text-gray-600">
+                    We participate in local environmental cleanup events and practice eco-friendly cleaning.
+                  </p>
+                </div>
+                <div className="bg-white p-5 rounded-lg shadow-md text-center">
+                  <h3 className="text-lg font-semibold mb-2">Non-Profit Support</h3>
+                  <p className="text-gray-600">
+                    We offer discounted services to non-profit organizations throughout the metroplex.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Call to Action */}
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-6">Ready to Experience the Brightway Difference?</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-8">
+                Contact us today to learn more about our services or to request a free quote for your business.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
+              >
+                Contact Us
+              </a>
+            </div>
           </div>
         </div>
-      </Container>
+      </div>
     </MainLayout>
   );
 } 

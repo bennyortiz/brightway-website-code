@@ -31,9 +31,6 @@ export * from './carousel';
 // Export layout components
 export * from './layout';
 
-// Export page components
-export * from './page';
-
 // Add additional component exports as the library grows
 // export * from './navigation';
 // export * from './feedback';

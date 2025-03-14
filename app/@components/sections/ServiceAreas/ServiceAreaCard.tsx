@@ -1,89 +1,69 @@
-'use client';
-
 import React from 'react';
-import { Clock, ChevronRight } from 'lucide-react';
-import { DFWMapRegion } from '@/app/@lib/data/dfwMapData';
+import { MapPin, Users, Building } from 'lucide-react';
 
-interface ServiceAreaCardProps {
-  area: DFWMapRegion;
-  onClick: () => void;
+export interface ServiceAreaCardProps {
+  city: string;
+  description: string;
+  population?: string;
+  keyLocations: string[];
+  isFeatured?: boolean;
 }
 
 /**
- * Service Area Card Component
+ * ServiceAreaCard Component
  * 
- * Displays a preview of a service area with key information
- * including coverage level, response time, and key areas
+ * Displays information about a single service area in a card format
+ * Highlights featured areas with a special badge
  */
-const ServiceAreaCard = ({ area, onClick }: ServiceAreaCardProps) => {
+const ServiceAreaCard: React.FC<ServiceAreaCardProps> = ({
+  city,
+  description,
+  population,
+  keyLocations,
+  isFeatured = false,
+}) => {
   return (
-    <div 
-      className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer border border-gray-100 group h-full"
-      onClick={onClick}
-    >
-      <div className={`h-2 ${getCoverageLevelColor(area.coverageLevel)}`} />
-      <div className="p-6 flex flex-col h-full">
-        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{area.name}</h3>
-        
-        <div className="flex flex-wrap gap-4 mb-4">
-          <div className="flex items-center text-sm text-gray-600">
-            <div className={`w-2 h-2 rounded-full ${getCoverageLevelColor(area.coverageLevel)} mr-2`}></div>
-            <span>{getCoverageLevelText(area.coverageLevel)} coverage</span>
-          </div>
-          
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="h-4 w-4 text-primary mr-1.5" />
-            <span>{area.responseTime}</span>
-          </div>
-        </div>
-        
-        <div className="flex-grow">
-          {area.keyLocations && area.keyLocations.length > 0 && (
-            <div className="mb-4">
-              <p className="text-sm text-gray-500 mb-1">Key areas served:</p>
-              <p className="text-sm text-gray-700 line-clamp-1">
-                {area.keyLocations.join(', ')}
-              </p>
-            </div>
+    <div className={`
+      bg-white rounded-xl shadow-lg overflow-hidden transition-transform 
+      duration-300 hover:shadow-xl hover:-translate-y-1
+      ${isFeatured ? 'border-l-4 border-primary' : ''}
+    `}>
+      <div className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-xl font-bold text-gray-900">{city}</h3>
+          {isFeatured && (
+            <span className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full font-medium">
+              Featured Area
+            </span>
           )}
         </div>
         
-        <div className="mt-4 flex justify-end">
-          <div className="text-primary font-medium text-sm flex items-center">
-            View details
-            <ChevronRight className="ml-1 h-4 w-4" />
+        <p className="text-gray-600 mb-4">{description}</p>
+        
+        {population && (
+          <div className="flex items-center text-sm text-gray-500 mb-4">
+            <Users className="h-4 w-4 mr-2 text-primary/70" />
+            <span>Population: {population}</span>
           </div>
+        )}
+        
+        <div className="mt-4">
+          <div className="flex items-center mb-2">
+            <MapPin className="h-4 w-4 mr-2 text-primary" />
+            <span className="text-sm font-medium text-gray-700">Key Areas Served</span>
+          </div>
+          <ul className="pl-6 grid grid-cols-2 gap-x-2 gap-y-1">
+            {keyLocations.map((location, index) => (
+              <li key={index} className="text-sm text-gray-600 flex items-center">
+                <span className="w-1.5 h-1.5 bg-primary/60 rounded-full mr-2"></span>
+                {location}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
   );
-};
-
-// Helper functions for coverage level styling
-export const getCoverageLevelColor = (level: string): string => {
-  switch (level) {
-    case 'full':
-      return 'bg-green-500';
-    case 'partial':
-      return 'bg-yellow-500';
-    case 'limited':
-      return 'bg-orange-500';
-    default:
-      return 'bg-gray-300';
-  }
-};
-
-export const getCoverageLevelText = (level: string): string => {
-  switch (level) {
-    case 'full':
-      return 'Full';
-    case 'partial':
-      return 'Partial';
-    case 'limited':
-      return 'Limited';
-    default:
-      return 'Standard';
-  }
 };
 
 export default ServiceAreaCard; 

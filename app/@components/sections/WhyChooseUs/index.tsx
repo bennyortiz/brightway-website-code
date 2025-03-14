@@ -15,7 +15,6 @@ import {
   ScaleIn, 
   StaggerContainer 
 } from '../../ui/animations/motion-components';
-import { Grid, Column, Section, Container } from '../../ui/layout';
 
 // Animation variants
 const countUpVariants = {
@@ -53,12 +52,11 @@ const MotionCounter = ({ targetValue, label }: { targetValue: string | number, l
  * Highlights the company's competitive advantages and unique selling points.
  * Displays benefits with icons in a visually appealing grid layout.
  * Enhanced with animations for a more engaging experience.
- * Uses Grid and Column components for responsive layout.
  */
 const WhyChooseUs = () => {
   return (
-    <div id="why-choose-us">
-      <Section className="bg-gray-50">
+    <section id="why-choose-us" className="w-full py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4">
         <FadeInUp>
           <SectionHeader
             subtitle="Why Choose Us"
@@ -77,108 +75,79 @@ const WhyChooseUs = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
             >
-              <StaggerContainer>
-                <Grid columns={{ default: 1, md: 4 }} gap={8}>
-                  <Column>
-                    <MotionCounter targetValue={siteConfig.business.clientsServed} label="Clients Served" />
-                  </Column>
-                  <Column>
-                    <MotionCounter targetValue={yearsInBusiness()} label="Years Experience" />
-                  </Column>
-                  <Column>
-                    <MotionCounter targetValue={siteConfig.business.servicesCount} label="Service Options" />
-                  </Column>
-                  <Column>
-                    <MotionCounter targetValue={siteConfig.business.satisfaction} label="Satisfaction Rate" />
-                  </Column>
-                </Grid>
+              <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <MotionCounter targetValue={siteConfig.business.clientsServed} label="Clients Served" />
+                <MotionCounter targetValue={yearsInBusiness()} label="Years Experience" />
+                <MotionCounter targetValue={siteConfig.business.servicesCount} label="Service Options" />
+                <MotionCounter targetValue={siteConfig.business.satisfaction} label="Satisfaction Rate" />
               </StaggerContainer>
             </motion.div>
           </FadeIn>
 
           {/* Benefits Grid */}
-          <StaggerContainer>
-            <Grid columns={{ default: 1, md: 2, lg: 4 }} gap={6}>
-              {benefitsData.slice(0, 8).map((benefit, index) => (
-                <Column key={index}>
-                  <motion.div 
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { duration: 0.5, delay: index * 0.1 }
-                      }
-                    }}
-                  >
-                    <BenefitItem 
-                      title={benefit.title}
-                      description={benefit.description}
-                      icon={benefit.icon}
-                    />
-                  </motion.div>
-                </Column>
-              ))}
-            </Grid>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefitsData.slice(0, 8).map((benefit, index) => (
+              <motion.div 
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { duration: 0.5, delay: index * 0.1 }
+                  }
+                }}
+              >
+                <BenefitItem
+                  icon={benefit.icon}
+                  title={benefit.title}
+                  description={benefit.description}
+                />
+              </motion.div>
+            ))}
           </StaggerContainer>
-        </div>
 
-        {/* Additional Content - Trust points */}
-        <div className="mt-16">
-          <Grid columns={{ default: 1, md: 2 }} gap={10} className="items-center">
-            <Column>
-              <FadeInUp>
-                <div className="p-4">
-                  <h3 className="text-2xl font-bold mb-6">Why Our Clients Trust Us</h3>
-                  <div className="space-y-4">
-                    {trustPoints.map((point, index) => (
-                      <div key={index} className="flex items-start">
-                        <CheckCircle className="h-6 w-6 text-primary mr-3 flex-shrink-0 mt-0.5" />
-                        <p>{point}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </FadeInUp>
-            </Column>
-            
-            <Column>
-              <ScaleIn>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg h-full">
-                  <SafeImage
-                    src="/images/team-cleaning.jpg"
-                    alt="Professional cleaning team"
-                    fallbackText="Our professional team at work"
-                    priority={false}
-                    placement="mid-page"
-                    quality={80}
-                    className="object-cover"
-                    containerHeight={true}
-                  />
-                </div>
-              </ScaleIn>
-            </Column>
-          </Grid>
+          {/* Client Promise */}
+          <ScaleIn className="mt-16">
+            <motion.div 
+              className="text-center bg-white rounded-xl p-8 shadow-md max-w-4xl mx-auto"
+              whileHover={{ 
+                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                y: -5,
+                transition: { duration: 0.3 }
+              }}
+            >
+              <h3 className="text-2xl font-bold mb-4">Our Client Promise</h3>
+              <p className="text-lg text-gray-600 mb-6">
+                When you choose Brightway Cleaning, you're not just getting a cleaning service -
+                you're getting a committed partner in maintaining the cleanliness, health, and
+                professional appearance of your business environment.
+              </p>
+              <p className="text-lg text-gray-600 mb-8">
+                Experience the Brightway difference for yourself. Our{' '}
+                {siteConfig.business.satisfaction} satisfaction rate speaks volumes about our
+                dedication to excellence.
+              </p>
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Get a Free Quote
+              </motion.a>
+            </motion.div>
+          </ScaleIn>
         </div>
-      </Section>
-    </div>
+      </div>
+    </section>
   );
 };
 
-// Calculate years in business
+// Helper function to calculate years in business
 const yearsInBusiness = () => {
-  const startYear = siteConfig.business.startYear;
   const currentYear = new Date().getFullYear();
-  return currentYear - startYear;
+  return currentYear - siteConfig.business.startYear;
 };
-
-// Trust points data
-const trustPoints = [
-  "Fully licensed, insured, and bonded for your peace of mind",
-  "Rigorous staff training and background checks for security",
-  "Eco-friendly cleaning solutions that are safe for your space",
-  "Consistent quality with regular supervision and inspections",
-  "Flexible scheduling to accommodate your business hours",
-];
 
 export default WhyChooseUs;

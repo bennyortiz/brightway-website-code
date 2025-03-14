@@ -14,21 +14,23 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
-// Import critical components directly
-import MainLayout from '@/app/@components/ui/layout/MainLayout';
+// Import critical above-fold components directly
 import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
 import CTABanner from '@/app/@components/sections/CTABanner';
 import SEO from '@/app/@components/shared/SEO';
-import ErrorBoundary from '@/app/@components/ui/ErrorBoundary';
 
 // Dynamically import below-fold components
+const MainLayout = dynamic(() => import('@/app/@components/ui/layout/MainLayout'));
 const WhyChooseUs = dynamic(() => import('@/app/@components/sections/WhyChooseUs'));
 const ServiceAreas = dynamic(() => import('@/app/@components/sections/ServiceAreas'));
 const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
-const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
+const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
+
+// Import ErrorBoundary
+const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
 
 /**
  * Section Wrapper
@@ -65,27 +67,32 @@ const SectionWrapper = ({ children, name }: { children: React.ReactNode; name: s
  * Home Page Component
  *
  * The main page component that assembles all sections of the landing page
- * Sections are rendered in a specific order to create a cohesive user experience
+ * Sections are rendered in a specific order to create a cohesive user experience:
+ * 1. Hero - Main banner with headline and call to action
+ * 2. Services - Overview of cleaning services offered
+ * 3. About - Company information and values
+ * 4. Why Choose Us - Competitive advantages and benefits
+ * 5. Service Areas - Locations where we provide services
+ * 6. Testimonials - Customer reviews and feedback
+ * 7. FAQ - Frequently asked questions
+ * 8. Contact - Contact form and information
  */
 export default function HomePage() {
   return (
     <MainLayout>
       <SEO type="all" />
       
-      {/* Critical above-fold content rendered immediately */}
-      <div className="critical-content">
-        <SectionWrapper name="Hero">
-          <Hero />
-        </SectionWrapper>
-        
-        <SectionWrapper name="Services">
-          <Services />
-        </SectionWrapper>
-        
-        <SectionWrapper name="CTA Banner">
-          <CTABanner />
-        </SectionWrapper>
-      </div>
+      <SectionWrapper name="Hero">
+        <Hero />
+      </SectionWrapper>
+      
+      <SectionWrapper name="Services">
+        <Services />
+      </SectionWrapper>
+      
+      <SectionWrapper name="CTA Banner">
+        <CTABanner />
+      </SectionWrapper>
       
       {/* Below-fold content loaded after initial render */}
       <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
@@ -106,12 +113,12 @@ export default function HomePage() {
             <Testimonials />
           </SectionWrapper>
           
-          <SectionWrapper name="FAQ">
-            <FAQ />
-          </SectionWrapper>
-          
           <SectionWrapper name="Contact">
             <Contact />
+          </SectionWrapper>
+          
+          <SectionWrapper name="FAQ">
+            <FAQ />
           </SectionWrapper>
         </div>
       </Suspense>

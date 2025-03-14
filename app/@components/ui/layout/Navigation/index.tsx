@@ -1,84 +1,68 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import MobileMenu from './MobileMenu';
+import { Menu, X } from 'lucide-react';
+import Logo from '../../Logo';
 import DesktopMenu from './DesktopMenu';
-import Logo from '@/app/@components/ui/Logo';
-import { Container } from '@/app/@components/ui/layout';
+import MobileMenu from './MobileMenu';
 
 const Navigation = () => {
-  // Initialize with default values that match the server-side rendering
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // Add state to track if component is mounted to prevent hydration mismatch
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Set isMounted to true once the component is mounted to the client
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Handle scroll event to change navigation style when scrolled
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
-  // Use a consistent class on first render to avoid hydration mismatch
-  const headerClass = isMounted 
-    ? `sticky top-0 w-full z-40 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-2' : 'bg-white/90 py-3 md:py-4'
-      }`
-    : 'sticky top-0 w-full z-40 transition-all duration-300 bg-white/90 py-3 md:py-4';
-
   return (
-    <header className={headerClass}>
-      <Container>
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" aria-label="Brightway Cleaning - Home" className="block">
-              <Logo textSize="md" />
-            </Link>
-          </div>
-          
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle navigation menu"
+    <div className="relative">
+      <nav
+        className={`w-full fixed top-0 z-50 transition-all duration-150 
+        ${
+          scrolled || isOpen
+            ? 'bg-white border-b border-gray-200 py-4 md:py-4'
+            : 'bg-transparent py-5 md:py-5'
+        }`}
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <Logo textSize="lg" />
+
+            {/* Desktop Navigation */}
+            <DesktopMenu scrolled={scrolled} isOpen={isOpen} />
+
+            {/* Mobile menu button */}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden text-primary p-1"
+              aria-label="Toggle menu"
             >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
-              </svg>
+              {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
             </button>
           </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <DesktopMenu scrolled={isScrolled} isOpen={isMobileMenuOpen} />
-          </div>
         </div>
-        
-        {/* Mobile Menu Dropdown */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-2">
-            <MobileMenu isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />
-          </div>
-        )}
-      </Container>
-    </header>
+      </nav>
+
+      {/* Mobile menu */}
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+    </div>
   );
 };
 

@@ -15,7 +15,6 @@ export interface TestimonialItem {
  *
  * Contains testimonial quotes from clients with their details.
  * Used in the Testimonials section to display client feedback.
- * Expanded to include a variety of clients from different industries.
  */
 export const testimonials: TestimonialItem[] = [
   {
@@ -38,48 +37,6 @@ export const testimonials: TestimonialItem[] = [
     author: 'Dr. Emily Rodriguez',
     position: 'Clinic Director',
     company: 'Wellness Medical Center',
-  },
-  {
-    quote:
-      'We switched to Brightway after having issues with our previous cleaning service. The difference in quality and professionalism was immediate and remarkable.',
-    author: 'Jason Williams',
-    position: 'Building Manager',
-    company: 'Highland Offices',
-  },
-  {
-    quote:
-      'As a restaurant owner, cleanliness is critical to our business. Brightway delivers exceptional service every time and our health inspections have never been better.',
-    author: 'Maria Gonzalez',
-    position: 'Owner',
-    company: 'The Fresh Kitchen',
-  },
-  {
-    quote:
-      'Our school district requires special attention to safety and sanitization. Brightway has provided excellent service consistently across all of our facilities.',
-    author: 'Robert Thompson',
-    position: 'Facilities Director',
-    company: 'Westview School District',
-  },
-  {
-    quote:
-      'The flexibility and responsiveness of the Brightway team has been exceptional. They adapted their services to our unique warehouse environment without missing a beat.',
-    author: 'Linda Castro',
-    position: 'Logistics Manager',
-    company: 'Global Distribution Co.',
-  },
-  {
-    quote:
-      'Brightway\'s eco-friendly cleaning options were a perfect match for our sustainability goals. Great service with environmental responsibility.',
-    author: 'David Park',
-    position: 'Chief Sustainability Officer',
-    company: 'Green Future Enterprises',
-  },
-  {
-    quote:
-      'The level of detail in their cleaning is impressive. They take care of spots other services would miss, and they\'re always on time and professional.',
-    author: 'Amanda Wilson',
-    position: 'Executive Assistant',
-    company: 'Premier Financial Group',
   },
 ];
 

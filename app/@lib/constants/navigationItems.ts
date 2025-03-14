@@ -28,6 +28,8 @@ export const footerNavigation = {
     { name: 'About Us', href: '/about-us' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
+    { name: 'Our Team', href: '/about-us#team' },
+    { name: 'Careers', href: '/about-us' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },

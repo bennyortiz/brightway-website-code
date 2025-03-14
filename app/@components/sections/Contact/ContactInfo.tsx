@@ -30,11 +30,10 @@ const ContactInfoItem = ({ icon, title, subtitle, children }: ContactInfoItemPro
  * Displays contact information including phone, email and address.
  * Uses Lucide icons for visual enhancement.
  * Optimized for mobile and responsive layouts.
- * Modified to ensure it fills the full height of its container.
  */
 const ContactInfo = () => {
   return (
-    <Card variant="elevated" className="h-full flex flex-col">
+    <Card variant="elevated" className="h-full">
       <CardHeader>
         <CardTitle>Contact Information</CardTitle>
         <p className="text-gray-600 mt-2">
@@ -42,7 +41,7 @@ const ContactInfo = () => {
         </p>
       </CardHeader>
       
-      <CardBody className="space-y-6 sm:space-y-8 flex-grow">
+      <CardBody className="space-y-6 sm:space-y-8">
         <ContactInfoItem 
           icon={<Phone className="h-6 w-6 text-primary" />}
           title="Call Us"

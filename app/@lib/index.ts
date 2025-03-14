@@ -1,26 +1,19 @@
 /**
- * Main library index file
- * Provides centralized exports for all utilities, hooks, constants, and types
- * This makes imports cleaner throughout the codebase
+ * Re-export utilities for easier imports
  */
 
-// Re-export utility functions
+// Constants
+export * from './constants/siteConfig';
+export * from './constants/navigationItems';
+
+// Utils
 export * from './utils';
 
-// Re-export hooks
-export * from './hooks';
-
-// Re-export constants
-export * from './constants';
-
-// Re-export types
-export * from './types';
-
-// Re-export animations
+// Animations
 export * from './animations';
 
-// Re-export API utilities
+// API
 export * from './api';
 
-// Re-export page utilities
-export * from './page-utils'; 
+// Hooks
+export * from './hooks'; 
