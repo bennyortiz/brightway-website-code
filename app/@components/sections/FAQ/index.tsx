@@ -42,8 +42,8 @@ const FAQ = () => {
     <div id="faq">
       <Section className="bg-gray-50">
         <div className="text-center mb-16">
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm">FAQ</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">FAQ</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Find answers to common questions about our commercial cleaning services. If you don't
             see what you're looking for, please contact us.
