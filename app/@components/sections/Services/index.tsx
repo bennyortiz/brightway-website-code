@@ -17,30 +17,22 @@ const serviceIcons = [
   <Clock key="clock" className="h-14 w-14 text-primary" />,
 ];
 
-// Fallback service data in case the import fails
-const fallbackServiceItems = [
-  {
-    title: 'Office Cleaning',
-    description: 'Comprehensive cleaning solutions for offices of all sizes.',
-    features: ['Daily sanitization', 'Carpet cleaning', 'Restroom maintenance'],
-  },
-];
+// Remove fallback service data to avoid unnecessary code
+// Always use the imported service items
 
 /**
  * Services Section Component
  *
  * Displays a grid of service offerings with animation effects.
- * Uses the IntersectionObserver API for scroll-based animations.
- * Uses Grid and Column components for responsive layout
+ * Optimized for faster loading and preventing layout shift.
+ * Uses Grid and Column components for responsive layout.
  */
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  // Use service data if available, otherwise use fallback
-  const services = serviceItems || fallbackServiceItems;
+  const [isVisible, setIsVisible] = useState(true); // Start with visible state for above-fold content
 
   useEffect(() => {
+    // Setup observer for animating on scroll
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -84,13 +76,13 @@ const Services = () => {
           columns={{ default: 1, md: 2, lg: 3 }} 
           gap={8}
         >
-          {services.map((service, index) => (
+          {serviceItems.map((service, index) => (
             <Column key={index}>
               <div
-                className={`transform transition-all duration-700 ${
-                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                className={`transform transition-all duration-500 ${
+                  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
                 }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                style={{ transitionDelay: `${Math.min(index * 50, 300)}ms` }} // Limit delay to 300ms maximum
               >
                 <ServiceCard {...service} icon={serviceIcons[index % serviceIcons.length]} />
               </div>
