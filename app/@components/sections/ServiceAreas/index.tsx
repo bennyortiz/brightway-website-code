@@ -150,20 +150,12 @@ const ServiceAreasPage = () => {
       <Grid columns={{ default: 1, md: 2, lg: 3 }} gap={6}>
         {filteredAreas.map((area) => (
           <Column key={area.id}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.3,
-                delay: 0.1 * Math.min(filteredAreas.indexOf(area), 5) 
-              }}
-              className="h-full"
-            >
+            <div className="h-full">
               <ServiceAreaCard 
                 area={area} 
                 onClick={() => handleSelectArea(area)} 
               />
-            </motion.div>
+            </div>
           </Column>
         ))}
       </Grid>

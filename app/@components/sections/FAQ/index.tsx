@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { faqData } from '@/app/@lib/data/faq';
 import { ChevronRight } from 'lucide-react';
-import { Grid, Column, Section, Container } from '../../ui/layout';
+import { Grid, Column, Section } from '../../ui/layout';
 
 // Fallback data in case the import fails
 const fallbackFaqData = [

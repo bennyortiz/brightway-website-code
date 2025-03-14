@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Clock, ChevronDown } from 'lucide-react';
+import { Clock, ChevronRight } from 'lucide-react';
 import { DFWMapRegion } from '@/app/@lib/data/dfwMapData';
 
 interface ServiceAreaCardProps {
@@ -18,11 +17,9 @@ interface ServiceAreaCardProps {
  */
 const ServiceAreaCard = ({ area, onClick }: ServiceAreaCardProps) => {
   return (
-    <motion.div 
+    <div 
       className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden cursor-pointer border border-gray-100 group h-full"
       onClick={onClick}
-      whileHover={{ y: -5 }}
-      transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className={`h-2 ${getCoverageLevelColor(area.coverageLevel)}`} />
       <div className="p-6 flex flex-col h-full">
@@ -52,13 +49,13 @@ const ServiceAreaCard = ({ area, onClick }: ServiceAreaCardProps) => {
         </div>
         
         <div className="mt-4 flex justify-end">
-          <div className="text-primary font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform">
+          <div className="text-primary font-medium text-sm flex items-center">
             View details
-            <ChevronDown className="ml-1 h-4 w-4 group-hover:rotate-180 transition-transform" />
+            <ChevronRight className="ml-1 h-4 w-4" />
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
