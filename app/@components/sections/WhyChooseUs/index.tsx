@@ -144,7 +144,7 @@ const WhyChooseUs = () => {
             
             <Column>
               <ScaleIn>
-                <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg">
+                <div className="relative aspect-video rounded-lg overflow-hidden shadow-lg h-full">
                   <SafeImage
                     src="/images/team-cleaning.jpg"
                     alt="Professional cleaning team"
@@ -152,7 +152,8 @@ const WhyChooseUs = () => {
                     priority={false}
                     placement="mid-page"
                     quality={80}
-                    className="object-cover w-full h-full"
+                    className="object-cover"
+                    containerHeight={true}
                   />
                 </div>
               </ScaleIn>

@@ -25,6 +25,7 @@ const MotionDiv = dynamic(
  * 3. Optimizing image loading strategy
  * 
  * Uses Grid and Column components for responsive layout
+ * Image now automatically adjusts to match the content container height
  */
 const Hero = () => {
   return (
@@ -64,6 +65,7 @@ const Hero = () => {
                   placement="above-fold"
                   quality={85}
                   className="w-full h-full object-cover transition-opacity duration-300"
+                  containerHeight={true}
                 />
               </MotionDiv>
             </Suspense>

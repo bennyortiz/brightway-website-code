@@ -8,6 +8,7 @@ import { Grid, Column, Section, Container } from '../../ui/layout';
  *
  * Displays basic information about the company with a simple image and text layout.
  * Uses Grid and Column components for responsive layout.
+ * The image now automatically adjusts to match the content height.
  */
 const About = () => {
   const currentYear = new Date().getFullYear();
@@ -26,7 +27,8 @@ const About = () => {
                 alt="Brightway Professional Cleaning Team"
                 fallbackText="Professional Cleaning Team"
                 loading="lazy"
-                className="object-cover object-center h-full"
+                className="object-cover object-center"
+                containerHeight={true}
               />
             </div>
           </Column>

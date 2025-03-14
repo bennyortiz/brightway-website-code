@@ -209,7 +209,7 @@ const ServiceAreaCard = ({ area, onClick }: { area: DFWMapRegion, onClick: () =>
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
       <div className={`h-2 ${getCoverageLevelColor(area.coverageLevel)}`} />
-      <div className="p-6">
+      <div className="p-6 flex flex-col h-full">
         <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{area.name}</h3>
         
         <div className="flex flex-wrap gap-4 mb-4">
@@ -224,14 +224,16 @@ const ServiceAreaCard = ({ area, onClick }: { area: DFWMapRegion, onClick: () =>
           </div>
         </div>
         
-        {area.keyLocations && area.keyLocations.length > 0 && (
-          <div className="mb-4">
-            <p className="text-sm text-gray-500 mb-1">Key areas served:</p>
-            <p className="text-sm text-gray-700 line-clamp-1">
-              {area.keyLocations.join(', ')}
-            </p>
-          </div>
-        )}
+        <div className="flex-grow">
+          {area.keyLocations && area.keyLocations.length > 0 && (
+            <div className="mb-4">
+              <p className="text-sm text-gray-500 mb-1">Key areas served:</p>
+              <p className="text-sm text-gray-700 line-clamp-1">
+                {area.keyLocations.join(', ')}
+              </p>
+            </div>
+          )}
+        </div>
         
         <div className="mt-4 flex justify-end">
           <div className="text-primary font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform">
