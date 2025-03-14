@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
+import { PageHeader } from '@/app/@components/ui/page';
 
 /**
  * Page Metadata
@@ -21,10 +22,13 @@ export const metadata: Metadata = generatePageMetadata({
 export default function TermsOfService() {
   return (
     <MainLayout>
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <PageHeader 
+        title="Terms of Service" 
+        backgroundPattern={false}
+      />
+      
+      <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8">Terms of Service</h1>
-          
           <div className="prose prose-lg max-w-none">
             <p>Last Updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             

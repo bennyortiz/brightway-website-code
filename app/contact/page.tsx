@@ -6,6 +6,7 @@ import ContactInfo from '@/app/@components/sections/Contact/ContactInfo';
 import { MapPin, PhoneCall } from 'lucide-react';
 import { Card, CardHeader, CardBody, CardTitle } from '@/app/@components/ui/cards';
 import { ButtonLink } from '@/app/@components/ui/buttons';
+import { PageHeader } from '@/app/@components/ui/page';
 
 /**
  * Page Metadata
@@ -20,17 +21,13 @@ export const metadata: Metadata = generatePageMetadata({
 export default function Contact() {
   return (
     <MainLayout>
-      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24">
+      <PageHeader 
+        title="Contact Us" 
+        description="Ready to experience the Brightway difference? Get in touch for a free quote or to learn more about our services. We're here to help keep your business looking its best."
+      />
+      
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-gray-900">Contact Us</h1>
-          
-          <div className="prose prose-lg max-w-none mb-8 md:mb-12 text-center">
-            <p className="text-lg md:text-xl text-gray-600">
-              Ready to experience the Brightway difference? Get in touch for a free quote or to learn
-              more about our services. We're here to help keep your business looking its best.
-            </p>
-          </div>
-          
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
             {/* Contact Information - Will display on top for mobile, left side for desktop */}
             <div className="lg:col-span-1 order-1 lg:order-1">

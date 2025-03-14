@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { MainLayout } from '@/app/@components/ui/layout';
 import { Section, Container, Grid, Column } from '@/app/@components/ui/layout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
+import { PageHeader } from '@/app/@components/ui/page';
 
 /**
  * Page Metadata
@@ -63,18 +64,10 @@ const galleryItems = [
 export default function GalleryPage() {
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <Section 
-        spacing="xl" 
-        background="bg-gradient-to-b from-blue-50 to-white"
-        className="text-center"
-      >
-        <h1 className="text-3xl md:text-5xl font-bold mb-6">Our Work Gallery</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Browse through our portfolio of commercial cleaning projects to see the 
-          quality and thoroughness of our services in action.
-        </p>
-      </Section>
+      <PageHeader 
+        title="Our Work Gallery" 
+        description="Browse through our portfolio of commercial cleaning projects to see the quality and thoroughness of our services in action."
+      />
 
       {/* Gallery Grid Section */}
       <Section spacing="lg">

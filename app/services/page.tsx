@@ -5,6 +5,7 @@ import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { serviceItems } from '@/app/@lib/data/services';
 import { BriefcaseIcon, CheckCircle2, ClockIcon, MessageSquareIcon, ShieldIcon, SparklesIcon } from 'lucide-react';
+import { PageHeader } from '@/app/@components/ui/page';
 
 /**
  * Page Metadata
@@ -31,36 +32,27 @@ const serviceIcons: Record<string, React.ReactNode> = {
 export default function ServicesPage() {
   return (
     <MainLayout>
-      {/* Hero Section */}
-      <section className="relative bg-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>
+      <PageHeader 
+        title="Professional Cleaning Services" 
+        description="Comprehensive commercial cleaning solutions tailored to meet the unique needs of your business."
+      />
+      
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300"
+          >
+            Get a Free Quote
+          </Link>
+          <a
+            href="#service-list"
+            className="inline-flex items-center px-6 py-3 rounded-lg bg-white border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition duration-300"
+          >
+            View All Services
+          </a>
         </div>
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-              Professional Cleaning Services
-            </h1>
-            <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
-              Comprehensive commercial cleaning solutions tailored to meet the unique needs of your business.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition duration-300"
-              >
-                Get a Free Quote
-              </Link>
-              <a
-                href="#service-list"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-white border border-gray-300 text-gray-800 font-semibold hover:bg-gray-100 transition duration-300"
-              >
-                View All Services
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* Main Services Section */}
       <section id="service-list" className="py-16 md:py-24 bg-white">
