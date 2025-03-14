@@ -21,6 +21,12 @@ const getSocialIcon = (icon: string) => {
   }
 };
 
+/**
+ * Footer Component
+ * 
+ * Displays the site footer with company information, contact details, services, and company links.
+ * Uses a responsive grid layout that properly aligns on all screen sizes.
+ */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const startYear = siteConfig.business.startYear;
@@ -29,9 +35,10 @@ const Footer = () => {
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
       <Container>
-        <Grid columns={{ default: 1, md: 12 }} gap={6}>
-          {/* Company Information - Takes 3 of 12 columns on desktop */}
-          <Column span={{ default: 'full', md: 3 }} className="space-y-4">
+        {/* Main footer content uses a 4-column grid on larger screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+          {/* Business info column */}
+          <div className="space-y-4">
             <Logo className="text-white" />
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
@@ -46,10 +53,10 @@ const Footer = () => {
                 </Link>
               ))}
             </div>
-          </Column>
+          </div>
 
-          {/* Contact Us - Takes 3 of 12 columns on desktop, directly to the right of logo */}
-          <Column span={{ default: 'full', md: 3 }} className="space-y-4">
+          {/* Contact Us column - directly to the right of business info */}
+          <div className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start">
@@ -79,10 +86,10 @@ const Footer = () => {
                 <span className="text-gray-400">{siteConfig.contact.hours}</span>
               </div>
             </div>
-          </Column>
+          </div>
 
-          {/* Services - Takes 3 of 12 columns on desktop */}
-          <Column span={{ default: 'full', md: 3 }}>
+          {/* Services column */}
+          <div>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               {footerNavigation.services.map((item) => (
@@ -96,10 +103,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </Column>
+          </div>
 
-          {/* Company - Takes 3 of 12 columns on desktop */}
-          <Column span={{ default: 'full', md: 3 }}>
+          {/* Company column */}
+          <div>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               {footerNavigation.company.map((item) => (
@@ -113,8 +120,8 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </Column>
-        </Grid>
+          </div>
+        </div>
 
         {/* Legal Footer */}
         <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
