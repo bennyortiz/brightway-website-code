@@ -16,10 +16,10 @@ const ContactInfoItem = ({ icon, title, subtitle, children }: ContactInfoItemPro
     <div className="bg-primary/10 p-3 rounded-full shrink-0 mb-2 sm:mb-0">
       {icon}
     </div>
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <h3 className="text-lg font-semibold mb-1">{title}</h3>
-      <p className="text-gray-600 mb-1">{subtitle}</p>
-      {children}
+      <p className="text-gray-600 mb-1 break-words">{subtitle}</p>
+      <div className="break-words overflow-wrap-anywhere">{children}</div>
     </div>
   </div>
 );
@@ -73,7 +73,7 @@ const ContactInfo = () => {
           title="Service Area"
           subtitle="Serving the DFW Metroplex"
         >
-          <address className="not-italic text-primary font-medium">
+          <address className="not-italic text-primary font-medium break-words">
             Based in {siteConfig.contact.address.full}
           </address>
         </ContactInfoItem>

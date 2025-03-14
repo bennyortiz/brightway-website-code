@@ -20,37 +20,37 @@ export const metadata: Metadata = generatePageMetadata({
 export default function Contact() {
   return (
     <MainLayout>
-      <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="container mx-auto px-4 py-12 md:py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-900">Contact Us</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center text-gray-900">Contact Us</h1>
           
-          <div className="prose prose-lg max-w-none mb-12 text-center">
-            <p className="text-xl text-gray-600">
+          <div className="prose prose-lg max-w-none mb-8 md:mb-12 text-center">
+            <p className="text-lg md:text-xl text-gray-600">
               Ready to experience the Brightway difference? Get in touch for a free quote or to learn
               more about our services. We're here to help keep your business looking its best.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {/* Contact Information */}
-            <div className="lg:col-span-1">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+            {/* Contact Information - Will display on top for mobile, left side for desktop */}
+            <div className="lg:col-span-1 order-1 lg:order-1">
               <ContactInfo />
             </div>
             
-            {/* Contact Form */}
-            <div className="lg:col-span-2">
+            {/* Contact Form - Will display below contact info for mobile, right side for desktop */}
+            <div className="lg:col-span-2 order-2 lg:order-2">
               <ContactForm />
             </div>
           </div>
           
           {/* Service Area Map */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Our Service Area</h2>
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-900">Our Service Area</h2>
             <Card variant="elevated">
-              <CardBody className="p-6">
-                <div className="flex items-center justify-center mb-4 text-center">
-                  <MapPin className="h-6 w-6 text-primary mr-2" />
-                  <p className="text-lg text-gray-600">
+              <CardBody className="p-4 md:p-6">
+                <div className="flex flex-col md:flex-row items-center justify-center mb-4 text-center gap-2">
+                  <MapPin className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+                  <p className="text-base md:text-lg text-gray-600">
                     Based in Bedford, TX — Proudly serving the entire DFW metroplex
                   </p>
                 </div>
@@ -72,40 +72,40 @@ export default function Contact() {
           </div>
           
           {/* FAQ Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Frequently Asked Questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-gray-900">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               <Card>
-                <CardBody>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">How quickly can you start service?</h3>
-                  <p className="text-gray-600">
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">How quickly can you start service?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
                     In most cases, we can begin service within 24-48 hours of finalizing your contract. For specialized cleaning needs, we may require additional time to prepare.
                   </p>
                 </CardBody>
               </Card>
               
               <Card>
-                <CardBody>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Do you provide free estimates?</h3>
-                  <p className="text-gray-600">
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Do you provide free estimates?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
                     Yes! We provide free, no-obligation estimates for all our commercial cleaning services. Contact us to schedule a consultation.
                   </p>
                 </CardBody>
               </Card>
               
               <Card>
-                <CardBody>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Are your employees insured?</h3>
-                  <p className="text-gray-600">
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Are your employees insured?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
                     Yes, all our employees are fully insured and bonded. We also carry comprehensive liability insurance for your peace of mind.
                   </p>
                 </CardBody>
               </Card>
               
               <Card>
-                <CardBody>
-                  <h3 className="text-xl font-semibold mb-3 text-primary">Do you bring your own supplies?</h3>
-                  <p className="text-gray-600">
+                <CardBody className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-primary">Do you bring your own supplies?</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
                     Yes, we provide all cleaning supplies and equipment. We use high-quality, eco-friendly products unless you have specific preferences.
                   </p>
                 </CardBody>
@@ -115,9 +115,9 @@ export default function Contact() {
           
           {/* Emergency Cleaning */}
           <Card variant="elevated" className="bg-primary/10 border-primary/20 mb-8">
-            <CardBody className="p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">Need Emergency Cleaning?</h2>
-              <p className="text-lg mb-6">
+            <CardBody className="p-4 md:p-8 text-center">
+              <h2 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Need Emergency Cleaning?</h2>
+              <p className="text-base md:text-lg mb-4 md:mb-6">
                 We offer emergency cleaning services for unexpected situations. Call our emergency line for immediate assistance.
               </p>
               <ButtonLink 
@@ -125,6 +125,7 @@ export default function Contact() {
                 variant="primary"
                 size="lg"
                 leftIcon={<PhoneCall size={18} />}
+                className="w-full md:w-auto break-words text-sm md:text-base px-3 py-2 md:px-4 md:py-3"
               >
                 Emergency Cleaning: (555) 123-4567
               </ButtonLink>

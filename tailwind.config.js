@@ -74,6 +74,13 @@ module.exports = {
       transitionDuration: {
         400: '400ms',
       },
+      utilities: {
+        '.overflow-wrap-anywhere': {
+          'overflow-wrap': 'anywhere',
+          'word-break': 'break-word',
+          'hyphens': 'auto'
+        }
+      }
     },
     container: {
       center: true,
