@@ -29,9 +29,9 @@ const Footer = () => {
   return (
     <footer className="w-full py-12 bg-gray-900 text-white">
       <Container>
-        <Grid columns={{ default: 1, md: 4 }} gap={8}>
-          {/* Company Information */}
-          <Column span={{ default: 'full', md: 1 }} className="space-y-4">
+        <Grid columns={{ default: 1, md: 12 }} gap={6}>
+          {/* Company Information - Takes 3 of 12 columns on desktop */}
+          <Column span={{ default: 'full', md: 3 }} className="space-y-4">
             <Logo className="text-white" />
             <p className="text-gray-400">{siteConfig.description}</p>
             <div className="flex space-x-4">
@@ -48,8 +48,8 @@ const Footer = () => {
             </div>
           </Column>
 
-          {/* Contact Us - Positioned right after Business Info */}
-          <Column span={{ default: 'full', md: 1 }} className="space-y-4" order={{ default: 0, md: 1 }}>
+          {/* Contact Us - Takes 3 of 12 columns on desktop, directly to the right of logo */}
+          <Column span={{ default: 'full', md: 3 }} className="space-y-4">
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <div className="space-y-3">
               <div className="flex items-start">
@@ -81,8 +81,8 @@ const Footer = () => {
             </div>
           </Column>
 
-          {/* Services */}
-          <Column order={{ default: 0, md: 2 }}>
+          {/* Services - Takes 3 of 12 columns on desktop */}
+          <Column span={{ default: 'full', md: 3 }}>
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-2">
               {footerNavigation.services.map((item) => (
@@ -98,8 +98,8 @@ const Footer = () => {
             </ul>
           </Column>
 
-          {/* Company */}
-          <Column order={{ default: 0, md: 3 }}>
+          {/* Company - Takes 3 of 12 columns on desktop */}
+          <Column span={{ default: 'full', md: 3 }}>
             <h3 className="text-lg font-semibold mb-4">Company</h3>
             <ul className="space-y-2">
               {footerNavigation.company.map((item) => (
