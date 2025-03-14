@@ -5,29 +5,32 @@ import { TestimonialItem, testimonials as staticTestimonials } from '@/app/@lib/
 import TestimonialCard from './TestimonialCard';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
+import { Grid, Column, Section, Container } from '../../ui/layout';
 
 /**
  * Skeleton loader component for testimonials while they're loading
  */
 const TestimonialsSkeleton = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+    <Grid columns={{ default: 1, md: 3 }} gap={{ default: 6, md: 8 }}>
       {[1, 2, 3].map((index) => (
-        <div key={index} className="bg-gray-50 rounded-lg shadow-sm p-8 md:p-12 animate-pulse">
-          <div className="h-6 bg-gray-200 rounded-full w-12 mb-8"></div>
-          <div className="space-y-3">
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="h-4 bg-gray-200 rounded w-full"></div>
-            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+        <Column key={index}>
+          <div className="bg-gray-50 rounded-lg shadow-sm p-8 md:p-12 animate-pulse">
+            <div className="h-6 bg-gray-200 rounded-full w-12 mb-8"></div>
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-4 bg-gray-200 rounded w-full"></div>
+              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            </div>
+            <div className="mt-6 space-y-2">
+              <div className="h-3 bg-gray-200 rounded w-24"></div>
+              <div className="h-3 bg-gray-200 rounded w-32"></div>
+            </div>
           </div>
-          <div className="mt-6 space-y-2">
-            <div className="h-3 bg-gray-200 rounded w-24"></div>
-            <div className="h-3 bg-gray-200 rounded w-32"></div>
-          </div>
-        </div>
+        </Column>
       ))}
-    </div>
+    </Grid>
   );
 };
 
@@ -47,6 +50,7 @@ const OptimizedTestimonialList = dynamic(
  * - Lazy loading based on visibility
  * - Reduced DOM elements
  * - Optimized rendering with virtualization
+ * - Uses Grid and Column components for responsive layout
  */
 const Testimonials = () => {
   const [ref, inView] = useInView({
@@ -69,43 +73,44 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section 
-      id="testimonials" 
-      ref={ref}
-      className="w-full py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden"
-    >
-      {/* Decorative background - simplified */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5"></div>
+    <div id="testimonials" ref={ref}>
+      <Section 
+        className="bg-gradient-to-b from-white to-gray-50 relative z-0 overflow-hidden"
+        spacing="xl"
+      >
+        {/* Decorative background - simplified */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-primary/5"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section header with visual accent */}
-        <div className="text-center mb-12 md:mb-16 relative">
-          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Testimonials</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
-            What Our Clients Say
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See how we've helped businesses keep their spaces clean and their clients impressed.
-          </p>
-        </div>
+        <div className="relative z-10">
+          {/* Section header with visual accent */}
+          <div className="text-center mb-12 md:mb-16 relative">
+            <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Testimonials</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
+              What Our Clients Say
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See how we've helped businesses keep their spaces clean and their clients impressed.
+            </p>
+          </div>
 
-        <div className="max-w-7xl mx-auto relative contains-many-items">
-          {/* Only load the component when in view */}
-          {isLoaded ? (
-            <OptimizedTestimonialList testimonials={displayedTestimonials} />
-          ) : (
-            <TestimonialsSkeleton />
-          )}
-        </div>
+          <div className="max-w-7xl mx-auto relative contains-many-items">
+            {/* Only load the component when in view */}
+            {isLoaded ? (
+              <OptimizedTestimonialList testimonials={displayedTestimonials} />
+            ) : (
+              <TestimonialsSkeleton />
+            )}
+          </div>
 
-        {/* Call to action */}
-        <div className="mt-12 md:mt-16 text-center">
-          <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300">
-            Get a Free Quote
-          </a>
+          {/* Call to action */}
+          <div className="mt-12 md:mt-16 text-center">
+            <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300">
+              Get a Free Quote
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </Section>
+    </div>
   );
 };
 
