@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface CarouselProps<T> {
@@ -16,12 +16,14 @@ export interface CarouselProps<T> {
   showIndicators?: boolean;
   className?: string;
   containerClassName?: string;
+  swipeThreshold?: number;
 }
 
 /**
  * Reusable Carousel Component
  *
  * A flexible carousel that can display any type of content with responsive behavior
+ * and touch-based swipe navigation for mobile devices
  */
 export function Carousel<T>({
   items,
@@ -34,11 +36,14 @@ export function Carousel<T>({
   showIndicators = true,
   className = '',
   containerClassName = '',
+  swipeThreshold = 50,
 }: CarouselProps<T>) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Determine items per view based on screen size
   const getItemsPerView = () => {
@@ -73,36 +78,87 @@ export function Carousel<T>({
   }, []);
 
   // Navigation functions
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
-  };
+  }, [totalPages]);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
   }, [totalPages]);
 
-  // Touch event handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
+  // Enhanced touch event handlers for mobile swipe
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
     setTouchEnd(e.targetTouches[0].clientX);
-  };
+    setIsDragging(true);
+    
+    // Pause autoplay during interaction
+    if (autoPlay && carouselRef.current) {
+      carouselRef.current.setAttribute('data-paused', 'true');
+    }
+  }, [autoPlay]);
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging) return;
     setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    // Swipe detection
-    if (touchStart - touchEnd > 30) {
-      // Swipe left, go to next
-      goToNext();
+    
+    // Prevent scrolling while swiping horizontally
+    if (Math.abs(touchEnd - touchStart) > 10) {
+      e.preventDefault();
     }
+  }, [isDragging, touchEnd, touchStart]);
 
-    if (touchEnd - touchStart > 30) {
-      // Swipe right, go to previous
-      goToPrevious();
+  const handleTouchEnd = useCallback(() => {
+    if (!isDragging) return;
+    
+    const swipeDistance = touchStart - touchEnd;
+    const isValidSwipe = Math.abs(swipeDistance) > swipeThreshold;
+    
+    if (isValidSwipe) {
+      if (swipeDistance > 0) {
+        // Swipe left, go to next
+        goToNext();
+      } else {
+        // Swipe right, go to previous
+        goToPrevious();
+      }
     }
-  };
+    
+    setIsDragging(false);
+    
+    // Resume autoplay after interaction
+    if (autoPlay && carouselRef.current) {
+      carouselRef.current.removeAttribute('data-paused');
+    }
+  }, [touchStart, touchEnd, swipeThreshold, goToNext, goToPrevious, isDragging, autoPlay]);
+
+  // Mouse drag handlers for desktop
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setTouchStart(e.clientX);
+    setTouchEnd(e.clientX);
+    setIsDragging(true);
+    
+    // Pause autoplay during interaction
+    if (autoPlay && carouselRef.current) {
+      carouselRef.current.setAttribute('data-paused', 'true');
+    }
+  }, [autoPlay]);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging) return;
+    setTouchEnd(e.clientX);
+    e.preventDefault();
+  }, [isDragging]);
+
+  const handleMouseUp = useCallback(() => {
+    handleTouchEnd();
+  }, [handleTouchEnd]);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isDragging) {
+      handleTouchEnd();
+    }
+  }, [isDragging, handleTouchEnd]);
 
   // Get current items to display
   const getCurrentItems = () => {
@@ -118,7 +174,10 @@ export function Carousel<T>({
     if (!autoPlay) return;
 
     const interval = setInterval(() => {
-      goToNext();
+      const isPaused = carouselRef.current?.getAttribute('data-paused') === 'true';
+      if (!isPaused) {
+        goToNext();
+      }
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
@@ -128,10 +187,16 @@ export function Carousel<T>({
     <div className={`w-full ${className}`}>
       {/* Main Carousel */}
       <div
+        ref={carouselRef}
         className={`w-full ${containerClassName}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        style={{ touchAction: 'pan-y', cursor: isDragging ? 'grabbing' : 'grab' }}
       >
         <div
           className={`grid grid-cols-1 sm:grid-cols-${Math.min(
