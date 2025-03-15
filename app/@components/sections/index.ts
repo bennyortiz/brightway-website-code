@@ -18,5 +18,10 @@ export { default as ServiceCard } from './Services/ServiceCard';
 export { default as ServiceDetails } from './Services/ServiceDetails';
 export { default as ServiceDetailsList } from './Services/ServiceDetailsList';
 
+// Export FAQ components
+export { default as FAQ } from './FAQ';
+export { default as FAQStats } from './FAQ/FAQStats';
+export { default as FAQCategoryIcon } from './FAQ/FAQCategoryIcon';
+
 // Data imports - prefer importing directly from lib
 // export { serviceItems } from '@/app/@lib/data/services';

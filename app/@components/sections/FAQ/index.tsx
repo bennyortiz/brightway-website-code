@@ -2,7 +2,10 @@
 
 import React, { useState } from 'react';
 import { faqData } from '@/app/@lib/data/faq';
-import { Plus, Minus, Search } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { cn } from '@/app/@lib/utils';
+import FAQCategoryIcon from './FAQCategoryIcon';
+import FAQStats from './FAQStats';
 
 // Fallback data in case the import fails
 const fallbackFaqData = [
@@ -21,153 +24,158 @@ const fallbackFaqData = [
 /**
  * FAQ Section Component
  *
- * Displays frequently asked questions in an accessible, intuitive accordion layout
- * with featured questions and search functionality.
+ * Displays frequently asked questions in a modern, full-width layout with category tabs
+ * and expandable accordion items for easy navigation.
  */
 const FAQ = () => {
   // Use faqData if available, otherwise use fallback
   const faqCategories = faqData || fallbackFaqData;
-  
-  // State for the expanded question in each category
-  const [expandedStates, setExpandedStates] = useState<Record<string, number | null>>({});
-  const [searchQuery, setSearchQuery] = useState('');
-  
-  // Helper to handle toggling questions
+
+  // Track the active category and expanded questions
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [expandedQuestions, setExpandedQuestions] = useState<{[key: string]: boolean}>({});
+
+  // Toggle question expansion
   const toggleQuestion = (categoryIndex: number, questionIndex: number) => {
-    setExpandedStates(prev => {
-      const categoryKey = `category-${categoryIndex}`;
-      const isCurrentlyExpanded = prev[categoryKey] === questionIndex;
-      
-      return {
-        ...prev,
-        [categoryKey]: isCurrentlyExpanded ? null : questionIndex
-      };
-    });
+    const key = `${categoryIndex}-${questionIndex}`;
+    setExpandedQuestions(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
   };
-  
-  // Featured questions for quick access (first question from each category)
-  const featuredQuestions = faqCategories.map(category => category.items[0]);
-  
-  // Filter questions based on search
-  const filteredCategories = searchQuery.trim() === '' 
-    ? faqCategories 
-    : faqCategories.map(category => ({
-        ...category,
-        items: category.items.filter(item => 
-          item.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.answer.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      })).filter(category => category.items.length > 0);
+
+  // Check if a question is expanded
+  const isQuestionExpanded = (categoryIndex: number, questionIndex: number) => {
+    const key = `${categoryIndex}-${questionIndex}`;
+    return expandedQuestions[key] || false;
+  };
 
   return (
-    <section id="faq" className="w-full py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
-      <div className="container-fluid px-4 md:px-8 mx-auto">
-        <div className="text-center mb-12">
+    <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8">
           <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">
             FAQ
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get quick answers to our most commonly asked questions. Need more help? Contact us directly.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Find quick answers to common questions about our cleaning services. 
+            If you need more information, don't hesitate to contact us.
           </p>
         </div>
-        
-        {/* Search bar */}
-        <div className="max-w-2xl mx-auto mb-12">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search questions..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-5 py-3 pl-12 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
-            <Search className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
-          </div>
-        </div>
-        
-        {/* Featured Questions - Card style */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          {featuredQuestions.map((item, index) => (
-            <div key={`featured-${index}`} className="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow border border-gray-100">
-              <h3 className="font-bold text-lg mb-3 text-gray-800">{item.question}</h3>
-              <p className="text-gray-600 line-clamp-3">{item.answer}</p>
-              <a 
-                href={`#category-${index}`}
-                className="mt-4 inline-block text-primary font-medium hover:underline"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setExpandedStates({ [`category-${index}`]: 0 });
-                  document.getElementById(`category-${index}`)?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Read more
-              </a>
-            </div>
+
+        {/* Stats Section */}
+        <FAQStats />
+
+        {/* Category Tabs - Horizontal scrolling on mobile */}
+        <div className="mb-8 border-b border-gray-200 overflow-x-auto pb-1 flex flex-nowrap">
+          {faqCategories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveCategory(index)}
+              className={cn(
+                "flex items-center flex-shrink-0 px-5 py-3 text-base font-medium border-b-2 whitespace-nowrap mr-2 transition-all",
+                activeCategory === index
+                  ? "border-primary text-primary"
+                  : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+              )}
+            >
+              <FAQCategoryIcon category={category.title} className={cn(
+                "mr-2 h-4 w-4",
+                activeCategory === index ? "text-primary" : "text-gray-400"
+              )} />
+              {category.title}
+            </button>
           ))}
         </div>
 
-        {/* Main FAQ Accordion */}
-        <div className="max-w-4xl mx-auto space-y-8">
-          {filteredCategories.map((category, catIndex) => (
-            <div 
-              key={`category-${catIndex}`} 
-              id={`category-${catIndex}`}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
-            >
-              <h3 className="bg-gray-50 px-6 py-4 font-bold text-lg text-gray-800 border-b border-gray-100">
-                {category.title}
-              </h3>
-              
-              <div className="divide-y divide-gray-100">
-                {category.items.map((item, qIndex) => {
-                  const isExpanded = expandedStates[`category-${catIndex}`] === qIndex;
-                  return (
-                    <div key={`q-${catIndex}-${qIndex}`} className="border-b border-gray-100 last:border-b-0">
-                      <button
-                        className="flex items-center justify-between w-full p-6 text-left hover:bg-gray-50 transition-colors"
-                        onClick={() => toggleQuestion(catIndex, qIndex)}
-                        aria-expanded={isExpanded}
-                      >
-                        <span className="font-medium text-gray-800 pr-8">{item.question}</span>
-                        {isExpanded ? (
-                          <Minus className="h-5 w-5 text-primary flex-shrink-0" />
-                        ) : (
-                          <Plus className="h-5 w-5 text-primary flex-shrink-0" />
-                        )}
-                      </button>
-                      
-                      {isExpanded && (
-                        <div className="px-6 pb-6 prose prose-sm max-w-none text-gray-600 animate-fadeIn">
-                          {item.answer}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+        {/* FAQ Accordion Items */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          {faqCategories[activeCategory].items.map((item, qIndex) => (
+            <div key={qIndex} className="border-b border-gray-100 last:border-b-0">
+              <button
+                onClick={() => toggleQuestion(activeCategory, qIndex)}
+                className="flex w-full justify-between items-center py-5 px-6 text-left focus:outline-none focus:bg-gray-50 hover:bg-gray-50 transition-colors"
+                aria-expanded={isQuestionExpanded(activeCategory, qIndex)}
+              >
+                <h3 className="text-lg font-medium text-gray-800">{item.question}</h3>
+                <ChevronDown
+                  className={cn(
+                    "h-5 w-5 text-primary transition-transform duration-300 flex-shrink-0 ml-4",
+                    isQuestionExpanded(activeCategory, qIndex) ? "rotate-180" : ""
+                  )}
+                />
+              </button>
+
+              <div
+                className={cn(
+                  "overflow-hidden transition-all duration-300 ease-in-out",
+                  isQuestionExpanded(activeCategory, qIndex)
+                    ? "max-h-96 opacity-100"
+                    : "max-h-0 opacity-0"
+                )}
+              >
+                <div className="px-6 pb-6 pt-1 text-gray-600 leading-relaxed">{item.answer}</div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="bg-primary/5 rounded-2xl p-8 mt-16 text-center max-w-3xl mx-auto">
-          <h3 className="font-bold text-xl mb-3">Still have questions?</h3>
-          <p className="text-gray-600 mb-6">Our team is ready to answer any specific questions you have about our services</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
+        {/* "View All FAQs" Link for mobile - Only visible if multiple categories exist */}
+        {faqCategories.length > 1 && (
+          <div className="mt-6 text-center md:hidden">
+            <button 
+              onClick={() => {
+                // Toggle between showing all categories and just the active one
+                // For simplicity, we'll just rotate through categories
+                setActiveCategory((activeCategory + 1) % faqCategories.length);
+              }}
+              className="text-primary font-medium text-sm underline underline-offset-4"
             >
-              Contact Us
-            </a>
-            <a
-              href="/services"
-              className="inline-flex items-center justify-center h-12 px-8 font-medium bg-white text-primary border border-primary rounded-md hover:bg-gray-50 transition-colors"
-            >
-              View Services
-            </a>
+              View next category: {faqCategories[(activeCategory + 1) % faqCategories.length].title}
+            </button>
           </div>
+        )}
+
+        {/* Quick Navigation Cards - Desktop Only */}
+        <div className="hidden md:grid grid-cols-3 gap-6 mt-12">
+          {faqCategories.map((category, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveCategory(index)}
+              className={cn(
+                "p-6 text-center rounded-lg transition-all border",
+                activeCategory === index
+                  ? "bg-primary/5 border-primary shadow-sm"
+                  : "bg-white border-gray-200 hover:border-primary/30 hover:shadow-sm"
+              )}
+            >
+              <div className="flex justify-center mb-3">
+                <FAQCategoryIcon 
+                  category={category.title} 
+                  className={cn(
+                    "h-8 w-8",
+                    activeCategory === index ? "text-primary" : "text-gray-400"
+                  )} 
+                />
+              </div>
+              <h3 className="font-bold text-lg mb-2">{category.title}</h3>
+              <p className="text-sm text-gray-600">
+                {category.items.length} question{category.items.length !== 1 ? 's' : ''}
+              </p>
+            </button>
+          ))}
+        </div>
+
+        {/* Contact CTA */}
+        <div className="text-center mt-16 p-8 bg-gray-100 rounded-xl">
+          <p className="text-gray-600 mb-4">Still have questions? We're here to help!</p>
+          <a
+            href="/contact"
+            className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
+          >
+            Contact Us
+          </a>
         </div>
       </div>
     </section>
