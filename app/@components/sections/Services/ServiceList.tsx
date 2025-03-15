@@ -6,6 +6,7 @@ import { Service } from '@/app/@lib/types';
 import { getServiceIcon } from '@/app/@lib/constants';
 import { useStaggeredAnimation } from '@/app/@lib/hooks';
 import ServiceCard from './ServiceCard';
+import { Carousel } from '@/app/@components/ui/carousel';
 
 export interface ServiceListProps {
   services: Service[];
@@ -21,7 +22,7 @@ export interface ServiceListProps {
 /**
  * ServiceList Component
  *
- * A reusable component for displaying a grid of services
+ * A reusable component for displaying a carousel of services
  * with consistent styling and animations
  */
 const ServiceList: React.FC<ServiceListProps> = ({
@@ -34,13 +35,7 @@ const ServiceList: React.FC<ServiceListProps> = ({
   columns = 3,
   className = '',
 }) => {
-  const [sectionRef, visibleItems] = useStaggeredAnimation<HTMLDivElement>(services.length);
-
-  const gridCols = {
-    2: 'md:grid-cols-2',
-    3: 'md:grid-cols-2 lg:grid-cols-3',
-    4: 'md:grid-cols-2 lg:grid-cols-4',
-  }[columns];
+  const [sectionRef] = useStaggeredAnimation<HTMLDivElement>(1);
 
   return (
     <section ref={sectionRef} className={`w-full py-16 md:py-24 bg-gray-50 ${className}`}>
@@ -61,15 +56,20 @@ const ServiceList: React.FC<ServiceListProps> = ({
           </div>
         )}
 
-        <div className={`grid grid-cols-1 ${gridCols} gap-8`}>
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className={`transform transition-all duration-700 ${
-                visibleItems[index] ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
+        {/* Services Carousel */}
+        <div className="mb-8">
+          <Carousel
+            items={services}
+            itemsPerView={{
+              mobile: 1,
+              tablet: 2,
+              desktop: columns,
+            }}
+            autoPlay={false}
+            showControls={true}
+            showIndicators={true}
+            className="pb-4"
+            renderItem={(service, index) => (
               <ServiceCard
                 service={{
                   ...service,
@@ -77,12 +77,12 @@ const ServiceList: React.FC<ServiceListProps> = ({
                 }}
                 _index={index}
               />
-            </div>
-          ))}
+            )}
+          />
         </div>
 
         {showCta && (
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <Link
               href={ctaHref}
               className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-white shadow transition-colors hover:bg-primary/90"

@@ -29,7 +29,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, _index }) => {
       featureIcon={<CheckCircle2 className="h-5 w-5 text-primary shrink-0 mr-2" />}
       animated={true}
       variant="default"
-      className="h-full"
+      className="h-full min-h-[400px] p-5 md:p-6 mx-2 my-2"
     />
   );
 };
