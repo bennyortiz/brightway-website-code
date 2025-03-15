@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export interface CarouselProps<T> {
@@ -72,25 +72,14 @@ export function Carousel<T>({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Auto play functionality
-  useEffect(() => {
-    if (!autoPlay) return;
-
-    const interval = setInterval(() => {
-      goToNext();
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, autoPlay, autoPlayInterval]);
-
   // Navigation functions
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
   };
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
-  };
+  }, [totalPages]);
 
   // Touch event handlers for mobile swipe
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -123,6 +112,17 @@ export function Carousel<T>({
 
   // Get currently visible items
   const visibleItems = getCurrentItems();
+
+  // Auto play functionality
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const interval = setInterval(() => {
+      goToNext();
+    }, autoPlayInterval);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, autoPlay, autoPlayInterval, goToNext]);
 
   return (
     <div className={`w-full ${className}`}>

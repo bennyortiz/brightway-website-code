@@ -14,18 +14,18 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
   testimonials,
   transparent = false,
 }) => {
-  // Safeguard against empty testimonials
-  if (!testimonials || testimonials.length === 0) {
-    console.warn('No testimonials provided to carousel');
-    return null;
-  }
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [cardHeight, setCardHeight] = useState<number | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Safeguard against empty testimonials
+  if (!testimonials || testimonials.length === 0) {
+    console.warn('No testimonials provided to carousel');
+    return null;
+  }
 
   // Items per view depends on screen size
   // For mobile (< 768px width), show only 1 item per view (carousel mode)

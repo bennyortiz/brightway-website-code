@@ -132,6 +132,8 @@ export function lazyLoad<T extends ComponentType<any>>(
   }) as T;
 }
 
+type IdleRequestCallback = (callback: () => void) => number;
+
 /**
  * Utility to preload components that will be needed soon
  * Use this when you want to preload a component before it's rendered
@@ -148,8 +150,9 @@ export function preloadComponent(importFn: () => Promise<any>): void {
   if (typeof window !== 'undefined') {
     // Use requestIdleCallback to preload during browser idle time
     // Falls back to setTimeout for browsers without requestIdleCallback
-    const requestIdleCallback =
-      (window as any).requestIdleCallback || ((cb: Function) => setTimeout(cb, 1));
+    const requestIdleCallback: IdleRequestCallback =
+      (window as any).requestIdleCallback ||
+      ((cb: () => void) => setTimeout(cb, 1));
 
     requestIdleCallback(() => {
       importFn().catch((err: Error) => console.warn('Preloading component failed:', err));
