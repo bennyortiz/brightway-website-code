@@ -43,7 +43,9 @@ export function Carousel<T>({
   const [touchEnd, setTouchEnd] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Determine items per view based on screen size
   const getItemsPerView = () => {
@@ -80,17 +82,33 @@ export function Carousel<T>({
   // Navigation functions
   const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+    setDragOffset(0);
   }, [totalPages]);
 
   const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+    setDragOffset(0);
   }, [totalPages]);
+
+  // Apply visual drag offset to content
+  const applyDragStyles = useCallback(() => {
+    if (!contentRef.current) return;
+    
+    if (isDragging) {
+      contentRef.current.style.transform = `translateX(${dragOffset}px)`;
+      contentRef.current.style.transition = 'none';
+    } else {
+      contentRef.current.style.transform = 'translateX(0)';
+      contentRef.current.style.transition = 'transform 0.3s ease-out';
+    }
+  }, [isDragging, dragOffset]);
 
   // Enhanced touch event handlers for mobile swipe
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX);
     setTouchEnd(e.targetTouches[0].clientX);
     setIsDragging(true);
+    setDragOffset(0);
     
     // Pause autoplay during interaction
     if (autoPlay && carouselRef.current) {
@@ -100,13 +118,20 @@ export function Carousel<T>({
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isDragging) return;
-    setTouchEnd(e.targetTouches[0].clientX);
+    
+    const currentX = e.targetTouches[0].clientX;
+    setTouchEnd(currentX);
+    
+    // Calculate drag offset for visual feedback
+    const newOffset = currentX - touchStart;
+    setDragOffset(newOffset * 0.6); // Dampen the movement slightly
+    applyDragStyles();
     
     // Prevent scrolling while swiping horizontally
-    if (Math.abs(touchEnd - touchStart) > 10) {
+    if (Math.abs(currentX - touchStart) > 10) {
       e.preventDefault();
     }
-  }, [isDragging, touchEnd, touchStart]);
+  }, [isDragging, touchStart, applyDragStyles]);
 
   const handleTouchEnd = useCallback(() => {
     if (!isDragging) return;
@@ -125,40 +150,124 @@ export function Carousel<T>({
     }
     
     setIsDragging(false);
+    setDragOffset(0);
+    
+    // Apply transition back to normal position
+    if (contentRef.current) {
+      contentRef.current.style.transform = 'translateX(0)';
+      contentRef.current.style.transition = 'transform 0.3s ease-out';
+    }
     
     // Resume autoplay after interaction
     if (autoPlay && carouselRef.current) {
       carouselRef.current.removeAttribute('data-paused');
     }
-  }, [touchStart, touchEnd, swipeThreshold, goToNext, goToPrevious, isDragging, autoPlay]);
+  }, [touchStart, touchEnd, swipeThreshold, goToNext, goToPrevious, isDragging, autoPlay, applyDragStyles]);
 
   // Mouse drag handlers for desktop
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     setTouchStart(e.clientX);
     setTouchEnd(e.clientX);
     setIsDragging(true);
+    setDragOffset(0);
+    
+    // Add document-level event listeners to track cursor movement outside the component
+    document.addEventListener('mousemove', handleDocumentMouseMove);
+    document.addEventListener('mouseup', handleDocumentMouseUp);
     
     // Pause autoplay during interaction
     if (autoPlay && carouselRef.current) {
       carouselRef.current.setAttribute('data-paused', 'true');
     }
+    
+    // Prevent default browser drag behavior
+    e.preventDefault();
   }, [autoPlay]);
+
+  // Handle document-level mouse move
+  const handleDocumentMouseMove = useCallback((e: MouseEvent) => {
+    if (!isDragging) return;
+    
+    const currentX = e.clientX;
+    setTouchEnd(currentX);
+    
+    // Calculate drag offset for visual feedback
+    const newOffset = currentX - touchStart;
+    setDragOffset(newOffset * 0.6); // Dampen the movement slightly
+    applyDragStyles();
+    
+    // Prevent text selection during drag
+    e.preventDefault();
+  }, [isDragging, touchStart, applyDragStyles]);
+
+  // Handle document-level mouse up
+  const handleDocumentMouseUp = useCallback(() => {
+    handleMouseUp();
+    
+    // Remove document-level event listeners
+    document.removeEventListener('mousemove', handleDocumentMouseMove);
+    document.removeEventListener('mouseup', handleDocumentMouseUp);
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!isDragging) return;
-    setTouchEnd(e.clientX);
+    
+    const currentX = e.clientX;
+    setTouchEnd(currentX);
+    
+    // Calculate drag offset for visual feedback
+    const newOffset = currentX - touchStart;
+    setDragOffset(newOffset * 0.6); // Dampen the movement slightly
+    applyDragStyles();
+    
     e.preventDefault();
-  }, [isDragging]);
+  }, [isDragging, touchStart, applyDragStyles]);
 
   const handleMouseUp = useCallback(() => {
-    handleTouchEnd();
-  }, [handleTouchEnd]);
+    if (!isDragging) return;
+    
+    const swipeDistance = touchStart - touchEnd;
+    const isValidSwipe = Math.abs(swipeDistance) > swipeThreshold;
+    
+    if (isValidSwipe) {
+      if (swipeDistance > 0) {
+        // Swipe left, go to next
+        goToNext();
+      } else {
+        // Swipe right, go to previous
+        goToPrevious();
+      }
+    }
+    
+    setIsDragging(false);
+    setDragOffset(0);
+    
+    // Apply transition back to normal position
+    if (contentRef.current) {
+      contentRef.current.style.transform = 'translateX(0)';
+      contentRef.current.style.transition = 'transform 0.3s ease-out';
+    }
+    
+    // Resume autoplay after interaction
+    if (autoPlay && carouselRef.current) {
+      carouselRef.current.removeAttribute('data-paused');
+    }
+  }, [touchStart, touchEnd, swipeThreshold, goToNext, goToPrevious, isDragging, autoPlay, applyDragStyles]);
 
   const handleMouseLeave = useCallback(() => {
     if (isDragging) {
-      handleTouchEnd();
+      handleMouseUp();
     }
-  }, [isDragging, handleTouchEnd]);
+  }, [isDragging, handleMouseUp]);
+
+  // Apply the effect when the component mounts
+  useEffect(() => {
+    return () => {
+      // Clean up document-level event listeners when component unmounts
+      document.removeEventListener('mousemove', handleDocumentMouseMove);
+      document.removeEventListener('mouseup', handleDocumentMouseUp);
+    };
+  }, [handleDocumentMouseMove, handleDocumentMouseUp]);
 
   // Get current items to display
   const getCurrentItems = () => {
@@ -188,7 +297,7 @@ export function Carousel<T>({
       {/* Main Carousel */}
       <div
         ref={carouselRef}
-        className={`w-full ${containerClassName}`}
+        className={`w-full overflow-hidden ${containerClassName}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -196,9 +305,14 @@ export function Carousel<T>({
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
-        style={{ touchAction: 'pan-y', cursor: isDragging ? 'grabbing' : 'grab' }}
+        style={{ 
+          touchAction: 'pan-y', 
+          cursor: isDragging ? 'grabbing' : 'grab',
+          userSelect: 'none' 
+        }}
       >
         <div
+          ref={contentRef}
           className={`grid grid-cols-1 sm:grid-cols-${Math.min(
             itemsPerView.tablet || 2,
             items.length
