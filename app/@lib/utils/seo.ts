@@ -32,15 +32,15 @@ export const generateLocalBusinessSchema = () => {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 37.7749, // Replace with actual coordinates
-      longitude: -122.4194, // Replace with actual coordinates
+      latitude: contact.coordinates.latitude,
+      longitude: contact.coordinates.longitude,
     },
     areaServed: {
       '@type': 'GeoCircle',
       geoMidpoint: {
         '@type': 'GeoCoordinates',
-        latitude: 37.7749, // Replace with actual coordinates
-        longitude: -122.4194, // Replace with actual coordinates
+        latitude: contact.coordinates.latitude,
+        longitude: contact.coordinates.longitude,
       },
       geoRadius: '50000', // 50km radius
     },
