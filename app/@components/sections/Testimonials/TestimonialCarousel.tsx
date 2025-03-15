@@ -45,8 +45,6 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // No need for the empty useEffect
-
   // Navigation functions
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev === 0 ? totalPages - 1 : prev - 1));

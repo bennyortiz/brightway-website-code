@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://brightwayservices.com/sitemap.xml 
+Sitemap: https://brightway-cleaning.com/sitemap.xml
