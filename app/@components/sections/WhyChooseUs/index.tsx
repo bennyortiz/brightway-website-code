@@ -199,7 +199,7 @@ const BenefitCard = ({
       <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
         {icon}
       </div>
-      <h4 className="text-lg font-semibold mb-2 text-gray-900">{title}</h4>
+      <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
       <p className="text-gray-600">{description}</p>
     </motion.div>
   );
