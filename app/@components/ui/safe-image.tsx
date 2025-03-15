@@ -140,7 +140,7 @@ export default function SafeImage({
       )}
 
       {hasError && (
-        <div className="flex items-center justify-center absolute inset-0 bg-gray-100 text-gray-500 text-sm p-4 text-center">
+        <div className="flex items-center justify-center relative h-full w-full bg-gray-100 text-gray-500 text-sm p-4 text-center">
           {fallbackText || alt || 'Image could not be loaded'}
         </div>
       )}
