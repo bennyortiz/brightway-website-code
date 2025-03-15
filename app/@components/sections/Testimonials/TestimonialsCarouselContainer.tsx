@@ -25,13 +25,10 @@ const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps
   }
 
   return (
-    <div className="w-full relative z-10">
-      {/* Visual enhancement for carousel container */}
-      <div className="absolute inset-0 bg-primary/5 -z-10 rounded-3xl transform -rotate-1 scale-105 opacity-70"></div>
-      
+    <div className="w-full">
       {/* Carousel content */}
-      <div className="relative py-4">
-        <TestimonialCarousel testimonials={testimonials} transparent={true} />
+      <div className="py-4">
+        <TestimonialCarousel testimonials={testimonials} transparent={false} />
       </div>
     </div>
   );
