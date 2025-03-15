@@ -4,6 +4,8 @@ import { PageTemplate, PageSection } from '@/app/@lib/page-utils';
 import Link from 'next/link';
 import { Calendar, FileText, Download } from 'lucide-react';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
+import { createElement } from 'react';
+import dynamic from 'next/dynamic';
 
 /**
  * Page Metadata
@@ -47,6 +49,18 @@ const currentDate = new Date().toLocaleDateString('en-US', {
   day: 'numeric',
 });
 
+// Create a client component for the Print button
+const PrintButton = dynamic(() => import('@/app/@components/ui/print-button'), { 
+  ssr: false,
+  loading: () => createElement('div', { 
+    className: 'flex items-center text-primary',
+    children: [
+      createElement(Download, { className: 'h-5 w-5 mr-2' }),
+      'Print'
+    ]
+  })
+});
+
 export default function TermsOfService() {
   return (
     <PageTemplate
@@ -72,13 +86,7 @@ export default function TermsOfService() {
               <FileText className="h-5 w-5 mr-2" />
               <span>Privacy Policy</span>
             </Link>
-            <button 
-              className="flex items-center text-primary hover:text-primary/80 transition-colors"
-              onClick={() => window.print()}
-            >
-              <Download className="h-5 w-5 mr-2" />
-              <span>Print</span>
-            </button>
+            <PrintButton />
           </div>
         </div>
       </PageSection>

@@ -1,8 +1,10 @@
 import { Metadata } from 'next';
+import { Calendar, Users, Award, ChevronRight, Heart, MapPin, Shield, CheckCircle2 } from 'lucide-react';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { siteConfig } from '@/app/@lib/constants/siteConfig';
 import SafeImage from '@/app/@components/ui/safe-image';
 import { PageTemplate, PageSection } from '@/app/@lib/page-utils';
+import { ButtonLink } from '@/app/@components/ui/buttons';
 
 /**
  * Page Metadata
@@ -15,6 +17,16 @@ export const metadata: Metadata = generatePageMetadata({
   canonicalPath: '/about-us',
 });
 
+// Define the sections for quick navigation
+const sections = [
+  { id: 'our-story', title: 'Our Story' },
+  { id: 'mission', title: 'Mission' },
+  { id: 'values', title: 'Core Values' },
+  { id: 'team', title: 'Our Team' },
+  { id: 'history', title: 'Company History' },
+  { id: 'community', title: 'Community Involvement' },
+];
+
 export default function AboutUs() {
   const currentYear = new Date().getFullYear();
   const yearsInBusiness = currentYear - siteConfig.business.startYear;
@@ -23,13 +35,33 @@ export default function AboutUs() {
     <PageTemplate
       title="About Brightway Cleaning"
       description="Based in Bedford, TX, and serving the entire DFW metroplex, Brightway Cleaning provides reliable, high-quality commercial cleaning services that keep your business looking its best."
-      headerOptions={{ fullWidth: true }}
+      headerOptions={{ fullWidth: true, centered: true }}
     >
+      {/* Quick Navigation */}
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="md">
+        <div className="mb-8">
+          <h2 className="text-xl md:text-2xl font-semibold text-center mb-6">
+            Quick Navigation
+          </h2>
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+            {sections.map(section => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary/10 text-gray-700 hover:text-primary transition-colors text-sm md:text-base"
+              >
+                {section.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      </PageSection>
+
       {/* Main Content with Image */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="primary-light" spacingY="lg" id="our-story">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 mx-auto">
-            <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl">
+            <div className="relative w-full rounded-xl overflow-hidden shadow-xl">
               <SafeImage
                 src="/images/brightway-commercial-cleaning-wiping.jpg"
                 alt="Brightway Professional Cleaning Team"
@@ -42,6 +74,10 @@ export default function AboutUs() {
           </div>
 
           <div className="lg:col-span-7 flex flex-col justify-center">
+            <div className="flex items-center mb-4">
+              <MapPin className="h-5 w-5 text-primary mr-2" />
+              <span className="text-sm font-medium">Based in Bedford, TX • Serving All DFW</span>
+            </div>
             <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center lg:text-left">
               Our Story
             </h2>
@@ -64,13 +100,42 @@ export default function AboutUs() {
                 {siteConfig.business.satisfaction} client satisfaction rate.
               </p>
             </div>
+
+            <div className="flex flex-wrap items-center gap-6 mt-8">
+              <div className="flex items-center">
+                <Calendar className="h-8 w-8 text-primary mr-3" />
+                <div>
+                  <div className="text-2xl font-bold">{yearsInBusiness}+</div>
+                  <div className="text-sm text-gray-600">Years of Experience</div>
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <Users className="h-8 w-8 text-primary mr-3" />
+                <div>
+                  <div className="text-2xl font-bold">{siteConfig.business.employeeCount}+</div>
+                  <div className="text-sm text-gray-600">Team Members</div>
+                </div>
+              </div>
+
+              <div className="flex items-center">
+                <Award className="h-8 w-8 text-primary mr-3" />
+                <div>
+                  <div className="text-2xl font-bold">{siteConfig.business.satisfaction}</div>
+                  <div className="text-sm text-gray-600">Client Satisfaction</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </PageSection>
 
       {/* Mission Statement Banner */}
-      <PageSection contentWidth="full" bgColor="primary-light" spacingY="md">
+      <PageSection contentWidth="full" maxWidth="full" bgColor="primary-light" spacingY="md" id="mission">
         <div className="relative z-10 p-10 md:p-16 text-white max-w-4xl mx-auto text-center">
+          <div className="inline-block p-3 rounded-full bg-white/10 mb-6">
+            <Shield className="h-10 w-10 text-white" />
+          </div>
           <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
           <p className="text-xl">
             Our mission is to create cleaner, healthier, and more productive work environments
@@ -81,10 +146,13 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Core Values Section */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg" id="values">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Core Values</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+              <Award className="h-6 w-6" />
+            </div>
             <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">
               Excellence
             </h3>
@@ -94,6 +162,9 @@ export default function AboutUs() {
             </p>
           </div>
           <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+              <Shield className="h-6 w-6" />
+            </div>
             <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">
               Integrity
             </h3>
@@ -103,6 +174,9 @@ export default function AboutUs() {
             </p>
           </div>
           <div className="bg-white p-8 rounded-lg shadow-md transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary mb-4">
+              <CheckCircle2 className="h-6 w-6" />
+            </div>
             <h3 className="text-xl font-semibold mb-4 text-primary text-center md:text-left">
               Reliability
             </h3>
@@ -115,7 +189,7 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Team Section */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="gray-50" spacingY="lg" id="team">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Leadership Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md text-center">
@@ -180,106 +254,132 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Company History Timeline */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg" id="history">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Journey</h2>
-        <div className="space-y-8 text-center md:text-left">
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/4 mb-4 md:mb-0">
-              <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
-                <span className="text-xl font-bold">{siteConfig.business.startYear}</span>
+        <div className="relative max-w-4xl mx-auto">
+          {/* Timeline line */}
+          <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary/30 md:left-1/2 md:-ml-0.5"></div>
+          
+          <div className="space-y-12">
+            <div className="relative flex flex-col md:flex-row md:items-center">
+              <div className="flex md:w-1/2 md:justify-end md:pr-8 md:text-right order-2 md:order-1">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
+                  <p className="text-gray-600">
+                    Brightway Cleaning was established in Bedford, TX, with a mission to provide
+                    high-quality commercial cleaning services to local businesses.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute left-0 md:left-1/2 flex items-center justify-center w-8 h-8 transform -translate-x-1/2 bg-primary rounded-full order-1 md:order-2 z-10">
+                <Calendar className="h-4 w-4 text-white" />
+              </div>
+              <div className="md:w-1/2 pl-12 md:pl-8 order-3">
+                <div className="inline-block bg-primary text-white rounded-lg py-2 px-4 font-bold text-lg">
+                  {siteConfig.business.startYear}
+                </div>
               </div>
             </div>
-            <div className="md:w-3/4">
-              <h3 className="text-xl font-semibold mb-2">Company Founded</h3>
-              <p className="text-gray-600">
-                Brightway Cleaning was established in Bedford, TX, with a mission to provide
-                high-quality commercial cleaning services to local businesses.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/4 mb-4 md:mb-0">
-              <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
-                <span className="text-xl font-bold">{siteConfig.business.startYear + 5}</span>
+            <div className="relative flex flex-col md:flex-row md:items-center">
+              <div className="md:w-1/2 pr-8 text-right order-3">
+                <div className="inline-block bg-primary text-white rounded-lg py-2 px-4 font-bold text-lg">
+                  {siteConfig.business.startYear + 5}
+                </div>
+              </div>
+              <div className="absolute left-0 md:left-1/2 flex items-center justify-center w-8 h-8 transform -translate-x-1/2 bg-primary rounded-full order-1 z-10">
+                <Calendar className="h-4 w-4 text-white" />
+              </div>
+              <div className="flex md:w-1/2 pl-12 md:pl-8 order-2">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Expansion Throughout DFW</h3>
+                  <p className="text-gray-600">
+                    After five successful years, we expanded our services to cover the entire DFW
+                    metroplex, growing our team and client base significantly.
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="md:w-3/4">
-              <h3 className="text-xl font-semibold mb-2">Expansion Throughout DFW</h3>
-              <p className="text-gray-600">
-                After five successful years, we expanded our services to cover the entire DFW
-                metroplex, growing our team and client base significantly.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/4 mb-4 md:mb-0">
-              <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
-                <span className="text-xl font-bold">{siteConfig.business.startYear + 10}</span>
+            <div className="relative flex flex-col md:flex-row md:items-center">
+              <div className="flex md:w-1/2 md:justify-end md:pr-8 md:text-right order-2 md:order-1">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Introduction of Specialized Services</h3>
+                  <p className="text-gray-600">
+                    We introduced specialized cleaning services for various industries, including
+                    healthcare, educational institutions, and industrial facilities.
+                  </p>
+                </div>
+              </div>
+              <div className="absolute left-0 md:left-1/2 flex items-center justify-center w-8 h-8 transform -translate-x-1/2 bg-primary rounded-full order-1 md:order-2 z-10">
+                <Calendar className="h-4 w-4 text-white" />
+              </div>
+              <div className="md:w-1/2 pl-12 md:pl-8 order-3">
+                <div className="inline-block bg-primary text-white rounded-lg py-2 px-4 font-bold text-lg">
+                  {siteConfig.business.startYear + 10}
+                </div>
               </div>
             </div>
-            <div className="md:w-3/4">
-              <h3 className="text-xl font-semibold mb-2">
-                Introduction of Specialized Services
-              </h3>
-              <p className="text-gray-600">
-                We introduced specialized cleaning services for various industries, including
-                healthcare, educational institutions, and industrial facilities.
-              </p>
-            </div>
-          </div>
 
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/4 mb-4 md:mb-0">
-              <div className="bg-primary text-white rounded-lg p-4 md:mr-4 inline-block">
-                <span className="text-xl font-bold">Today</span>
+            <div className="relative flex flex-col md:flex-row md:items-center">
+              <div className="md:w-1/2 pr-8 text-right order-3">
+                <div className="inline-block bg-primary text-white rounded-lg py-2 px-4 font-bold text-lg">
+                  Today
+                </div>
               </div>
-            </div>
-            <div className="md:w-3/4">
-              <h3 className="text-xl font-semibold mb-2">
-                Leading Commercial Cleaning Provider
-              </h3>
-              <p className="text-gray-600">
-                Today, Brightway Cleaning stands as one of the most trusted commercial cleaning
-                companies in the DFW metroplex, serving hundreds of businesses with a commitment
-                to excellence and customer satisfaction.
-              </p>
+              <div className="absolute left-0 md:left-1/2 flex items-center justify-center w-8 h-8 transform -translate-x-1/2 bg-primary rounded-full order-1 z-10">
+                <Calendar className="h-4 w-4 text-white" />
+              </div>
+              <div className="flex md:w-1/2 pl-12 md:pl-8 order-2">
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">Leading Commercial Cleaning Provider</h3>
+                  <p className="text-gray-600">
+                    Today, Brightway Cleaning stands as one of the most trusted commercial cleaning
+                    companies in the DFW metroplex, serving hundreds of businesses with a commitment
+                    to excellence and customer satisfaction.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </PageSection>
 
       {/* Community Involvement */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
-        <h2 className="text-3xl font-bold mb-6 text-center">Community Involvement</h2>
-        <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-center">
-          As a locally owned business, we&apos;re committed to giving back to the DFW community. We
-          regularly participate in local charity events, sponsor youth sports teams, and offer
-          special cleaning services to non-profit organizations.
-        </p>
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="gray-50" spacingY="lg" id="community">
+        <div className="text-center mb-8">
+          <div className="inline-block p-3 rounded-full bg-primary/10 mb-4">
+            <Heart className="h-8 w-8 text-primary" />
+          </div>
+          <h2 className="text-3xl font-bold mb-6 text-center">Community Involvement</h2>
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8 text-center">
+            As a locally owned business, we&apos;re committed to giving back to the DFW community. We
+            regularly participate in local charity events, sponsor youth sports teams, and offer
+            special cleaning services to non-profit organizations.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white p-5 rounded-lg shadow-md text-center">
+          <div className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold mb-2">Local Charities</h3>
             <p className="text-gray-600">
               We donate a portion of our profits to local charities that support education and
               housing.
             </p>
           </div>
-          <div className="bg-white p-5 rounded-lg shadow-md text-center">
+          <div className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold mb-2">Youth Programs</h3>
             <p className="text-gray-600">
               We sponsor local youth sports teams and educational programs throughout DFW.
             </p>
           </div>
-          <div className="bg-white p-5 rounded-lg shadow-md text-center">
+          <div className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold mb-2">Environmental Initiatives</h3>
             <p className="text-gray-600">
               We participate in local environmental cleanup events and practice eco-friendly
               cleaning.
             </p>
           </div>
-          <div className="bg-white p-5 rounded-lg shadow-md text-center">
+          <div className="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold mb-2">Non-Profit Support</h3>
             <p className="text-gray-600">
               We offer discounted services to non-profit organizations throughout the metroplex.
@@ -289,7 +389,7 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Call to Action */}
-      <PageSection contentWidth="container" maxWidth="xl" bgColor="white" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="xl" bgColor="primary-light" spacingY="lg">
         <div className="text-center">
           <h2 className="text-3xl font-bold mb-6">
             Ready to Experience the Brightway Difference?
@@ -298,12 +398,23 @@ export default function AboutUs() {
             Contact us today to learn more about our services or to request a free quote for your
             business.
           </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center h-12 px-8 font-medium bg-primary text-white rounded-md shadow hover:bg-primary/90 transition-colors"
-          >
-            Contact Us
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <ButtonLink 
+              href="/contact" 
+              variant="primary" 
+              size="lg"
+              rightIcon={<ChevronRight className="ml-1 h-4 w-4" />}
+            >
+              Get a Free Quote
+            </ButtonLink>
+            <ButtonLink 
+              href="/services" 
+              variant="outline" 
+              size="lg"
+            >
+              Explore Our Services
+            </ButtonLink>
+          </div>
         </div>
       </PageSection>
     </PageTemplate>
