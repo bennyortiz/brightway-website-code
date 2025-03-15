@@ -21,22 +21,11 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
   const [cardHeight, setCardHeight] = useState<number | null>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Safeguard against empty testimonials
-  if (!testimonials || testimonials.length === 0) {
-    console.warn('No testimonials provided to carousel');
-    return null;
-  }
-
-  // Items per view depends on screen size
-  // For mobile (< 768px width), show only 1 item per view (carousel mode)
-  // For desktop, show 3 items side by side
-  const itemsPerView = isMobile ? 1 : 3;
-
-  // Total number of "pages" in the carousel
-  const totalPages = Math.ceil(testimonials.length / itemsPerView);
-
   // Handle window resize for responsive behavior
   useEffect(() => {
+    // If no testimonials, don't bother with effects
+    if (!testimonials || testimonials.length === 0) return;
+    
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -49,10 +38,13 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
 
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [testimonials]);
 
   // Ensure all cards have the same height
   useEffect(() => {
+    // If no testimonials, don't bother with effects
+    if (!testimonials || testimonials.length === 0) return;
+    
     const calculateMaxHeight = () => {
       // Reset height to auto to get natural heights
       cardsRef.current.forEach((card) => {
@@ -63,30 +55,36 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({
       const heights = cardsRef.current.map((card) => card?.offsetHeight || 0);
       const maxHeight = Math.max(...heights);
 
+      // Set all cards to the max height
       if (maxHeight > 0) {
         setCardHeight(maxHeight);
-        // Apply the max height to all cards
-        cardsRef.current.forEach((card) => {
-          if (card) card.style.height = `${maxHeight}px`;
-        });
       }
     };
 
-    // Calculate on mount and when window resizes
-    calculateMaxHeight();
+    // Calculate initial heights after a short delay to ensure rendering
+    const timer = setTimeout(calculateMaxHeight, 100);
 
-    const resizeObserver = new ResizeObserver(() => {
-      calculateMaxHeight();
-    });
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateMaxHeight);
 
-    cardsRef.current.forEach((card) => {
-      if (card) resizeObserver.observe(card);
-    });
-
+    // Clean up
     return () => {
-      resizeObserver.disconnect();
+      clearTimeout(timer);
+      window.removeEventListener('resize', calculateMaxHeight);
     };
-  }, [currentIndex, isMobile, testimonials.length]);
+  }, [testimonials, isMobile, currentIndex]);
+
+  // Safeguard against empty testimonials
+  if (!testimonials || testimonials.length === 0) {
+    console.warn('No testimonials provided to carousel');
+    return null;
+  }
+
+  // Items per view depends on screen size
+  const itemsPerView = isMobile ? 1 : 3;
+
+  // Total number of "pages" in the carousel
+  const totalPages = Math.ceil(testimonials.length / itemsPerView);
 
   // Navigation functions
   const goToPrevious = () => {
