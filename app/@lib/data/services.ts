@@ -1,18 +1,6 @@
 import type { Service } from '../types';
 
 /**
- * Service Item Interface
- *
- * Defines the structure for service items displayed throughout the application
- */
-export interface ServiceItem {
-  title: string;
-  description: string;
-  features: string[];
-  icon?: React.ReactNode; // Optional icon to be provided by the component
-}
-
-/**
  * Service Items Data
  *
  * Contains all the service offerings data used throughout the application.

@@ -24,3 +24,11 @@ export { isValidEmail } from './utils/validation';
 
 // Re-export the cn utility from utils/index.ts
 export { cn } from './utils/index';
+
+// Re-export icon utilities
+export {
+  Icon,
+  getServiceIcon,
+  getFeatureIcon,
+  type IconName,
+} from './utils/icons';

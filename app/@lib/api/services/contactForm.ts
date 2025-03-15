@@ -1,13 +1,4 @@
-/**
- * Contact form submission interface
- */
-export interface ContactFormData {
-  name: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-}
+import { ContactFormData } from '../../types';
 
 /**
  * Submit contact form data

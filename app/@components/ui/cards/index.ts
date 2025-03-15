@@ -33,6 +33,29 @@
  *   animated={true}
  * />
  * ```
+ *
+ * // Using Card composition pattern
+ * ```tsx
+ * import { Card, CardHeader, CardTitle, CardBody, CardFooter } from '@/app/@components/ui/cards';
+ * 
+ * <Card>
+ *   <CardHeader>
+ *     <CardTitle>Card Title</CardTitle>
+ *   </CardHeader>
+ *   <CardBody>
+ *     Content goes here
+ *   </CardBody>
+ *   <CardFooter>
+ *     Footer content here
+ *   </CardFooter>
+ * </Card>
+ * ```
  */
 
 export { default as Card } from './Card';
+export {
+  CardHeader,
+  CardTitle,
+  CardBody,
+  CardFooter
+} from './CardComponents';

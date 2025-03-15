@@ -1,6 +1,14 @@
 /**
  * Common type definitions for the application
+ * Exports all type definitions from specialized category files
  */
+
+// Re-export all types from category files
+export * from './page';
+export * from './service';
+export * from './navigation';
+export * from './business';
+export * from './form';
 
 /**
  * Metadata for pages
