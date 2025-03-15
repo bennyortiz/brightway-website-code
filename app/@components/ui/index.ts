@@ -21,20 +21,14 @@
 // import { ComponentName } from '@/app/@components/ui';
 
 // Core UI Components
-export { default as Button } from './Button';
 export { default as Logo } from './Logo';
 export { default as SkipLink } from './SkipLink';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as SectionHeader } from './section-header';
 
-// Images - Use SafeImage for all image needs, it has the most features
+// Images - Use SafeImage for all image needs
 export { default as SafeImage } from './safe-image';
-export { default as OptimizedImage } from './OptimizedImage'; // Alternative with different API
 export { default as ImageSkeleton } from './image-skeleton';
-/**
- * @deprecated Use SafeImage instead. ServiceImage will be removed in a future update.
- */
-export { default as ServiceImage } from './service-image';
 
 // Layout Components (re-export from nested directories)
 export * from './layout';

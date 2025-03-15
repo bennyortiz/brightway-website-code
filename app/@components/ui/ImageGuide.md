@@ -2,11 +2,11 @@
 
 ## Overview
 
-This document provides guidance on how to use the image components in our codebase. We are consolidating our image components to use primarily `SafeImage` instead of the deprecated alternatives.
+This document provides guidance on how to use the image components in our codebase. We have standardized on using `SafeImage` for all image needs throughout the application.
 
 ## Recommended Component: SafeImage
 
-`SafeImage` is our most comprehensive image component with features for:
+`SafeImage` is our comprehensive image component with features for:
 - Intelligent loading strategies based on image placement
 - Quality optimization
 - Error handling
@@ -73,12 +73,14 @@ import { SafeImage } from '@/app/@components/ui';
 </div>
 ```
 
-## Deprecated Components
+## Removed Legacy Components
 
-The following components are deprecated and will be removed in future updates:
+The following components have been removed from the codebase:
 
-- `OptimizedImage`: Use `SafeImage` directly with appropriate parameters
-- `ServiceImage`: Use `SafeImage` with placement="below-fold"
+- `OptimizedImage`: Replaced by `SafeImage` with appropriate parameters
+- `ServiceImage`: Replaced by `SafeImage` with `placement="below-fold"`
+
+If you encounter references to these components in older code, replace them with the equivalent `SafeImage` implementation as shown in the examples above.
 
 ## Props Reference
 
