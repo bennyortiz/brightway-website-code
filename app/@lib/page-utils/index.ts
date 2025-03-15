@@ -8,10 +8,12 @@
  * import { PageSection, PageHeader, createPageWrapper } from '@/app/@lib/page-utils';
  */
 
-// Export the page wrapper HOC
+// Export utility functions for page components
 export * from './createPageWrapper';
 
 // Export page structure components
+export { default as PageTemplate } from './PageTemplate';
+export { default as PageSection } from './PageSection';
 export * from './pageStructure';
 
 // Export section layout components
