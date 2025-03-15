@@ -6,36 +6,33 @@
  *
  * Usage:
  * ```tsx
- * import { Card, CardHeader, CardBody, CardFooter, CardTitle } from '@/app/@components/ui/cards';
+ * import { Card } from '@/app/@components/ui/cards';
  *
  * // Basic card
- * <Card>
- *   This is a simple card with content
- * </Card>
- *
- * // Card with header, body, and footer
- * <Card>
- *   <CardHeader>
- *     <CardTitle>Card Title</CardTitle>
- *   </CardHeader>
- *   <CardBody>
- *     Main content goes here...
- *   </CardBody>
- *   <CardFooter>
- *     Footer content
- *   </CardFooter>
- * </Card>
- *
- * // Interactive card
- * <Card
- *   hoverable
- *   clickable
- *   onClick={() => handleCardClick()}
- *   variant="elevated"
+ * <Card 
+ *   title="Card Title" 
+ *   description="This is a card description"
  * >
- *   Click me!
+ *   Additional content here
  * </Card>
+ *
+ * // Feature card with icon
+ * <Card
+ *   title="Feature Title"
+ *   description="Feature description text"
+ *   icon={<Icon className="w-10 h-10 text-primary" />}
+ *   features={["Feature 1", "Feature 2", "Feature 3"]}
+ *   featureIcon={<CheckIcon className="w-5 h-5 text-primary" />}
+ * />
+ *
+ * // Link card
+ * <Card
+ *   title="Click Me"
+ *   description="This card is clickable"
+ *   href="/destination-page"
+ *   animated={true}
+ * />
  * ```
  */
 
-export * from './Card';
+export { default as Card } from './Card';
