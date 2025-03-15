@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom utilities for consistent site width */
+@layer components {
+  .site-container {
+    @apply container mx-auto px-4;
+    max-width: 100%;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
