@@ -15,7 +15,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { siteConfig } from './@lib/constants/siteConfig';
-import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -25,6 +24,7 @@ import '@fontsource-variable/plus-jakarta-sans';
 // Dynamically import components
 const SkipLink = dynamic(() => import('./@components/ui/SkipLink'));
 const WebVitals = dynamic(() => import('./@components/shared/WebVitals'));
+const PolyfillScript = dynamic(() => import('./@components/shared/PolyfillScript'));
 
 /**
  * Font Configuration
@@ -165,15 +165,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* Defer non-critical polyfills - use cdnjs as a reliable alternative */}
-        <Script
-          src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.32.2/minified.min.js"
-          strategy="lazyOnload"
-          id="polyfill-core-js"
-          onError={(e) => {
-            console.warn('Polyfill failed to load, but site functionality should not be affected');
-          }}
-        />
+        {/* Load polyfill script via client component */}
+        <PolyfillScript />
       </body>
     </html>
   );
