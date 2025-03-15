@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { TestimonialItem } from './testimonialsData';
 import TestimonialsCarousel from './TestimonialsCarousel';
 
@@ -15,10 +15,7 @@ interface TestimonialsCarouselContainerProps {
 const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps> = ({ 
   testimonials 
 }) => {
-  // Component initialization effect
-  useEffect(() => {
-    // Component mounted
-  }, [testimonials]);
+  // No initialization needed
 
   // If no testimonials are provided, render placeholder
   if (!testimonials || testimonials.length === 0) {

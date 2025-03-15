@@ -29,11 +29,5 @@ export {
   isValidEmail
 } from './utils/validation';
 
-// Export the cn utility directly (keeping for backward compatibility)
-import { ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-// Merges class names with tailwind-merge and clsx
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+// Re-export the cn utility from utils/index.ts
+export { cn } from './utils/index';
