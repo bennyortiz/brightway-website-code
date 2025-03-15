@@ -1,3 +1,13 @@
+/**
+ * Button Component
+ * 
+ * A versatile button component that supports various visual styles,
+ * sizes, loading states, and icon placements. This component serves as
+ * the primary action element throughout the application.
+ * 
+ * @module UI Components
+ */
+
 'use client';
 
 import React, { forwardRef } from 'react';
@@ -5,6 +15,8 @@ import Link from 'next/link';
 
 /**
  * Button Variants
+ * 
+ * Defines the visual style of the button
  */
 export type ButtonVariant = 
   | 'primary'   // Main call-to-action
@@ -16,11 +28,15 @@ export type ButtonVariant =
 
 /**
  * Button Sizes
+ * 
+ * Controls the size of the button
  */
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**
  * Base Button Props
+ * 
+ * Common props shared between Button and ButtonLink components
  */
 export interface BaseButtonProps {
   /**
@@ -30,21 +46,25 @@ export interface BaseButtonProps {
   
   /**
    * Button variant that determines the visual style
+   * @default "primary"
    */
   variant?: ButtonVariant;
   
   /**
    * Button size
+   * @default "md"
    */
   size?: ButtonSize;
   
   /**
    * Whether the button should take full width of container
+   * @default false
    */
   fullWidth?: boolean;
   
   /**
    * Whether the button should be in a loading state
+   * @default false
    */
   loading?: boolean;
   
