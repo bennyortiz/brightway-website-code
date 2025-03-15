@@ -27,7 +27,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
   }
 
   // Render a single testimonial card
-  const renderTestimonial = (testimonial: TestimonialItem, index: number) => {
+  const renderTestimonial = (testimonial: TestimonialItem, _index: number) => {
     return (
       <TestimonialCard
         quote={testimonial.quote}

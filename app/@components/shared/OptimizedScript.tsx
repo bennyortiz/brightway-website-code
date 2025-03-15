@@ -22,7 +22,7 @@ export default function OptimizedScript({ src, id, onLoad }: OptimizedScriptProp
     // Use requestIdleCallback to load the script when browser is idle
     if (typeof window !== 'undefined') {
       if ('requestIdleCallback' in window) {
-        // @ts-ignore - TypeScript doesn't recognize requestIdleCallback
+        // @ts-expect-error - TypeScript doesn't recognize requestIdleCallback
         window.requestIdleCallback(
           () => {
             setShouldLoad(true);

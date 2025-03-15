@@ -10,7 +10,7 @@ import type { Service } from '@/app/@lib/types';
  */
 interface ServiceCardProps {
   service: Service & { icon: React.ReactNode };
-  index: number;
+  _index: number;
 }
 
 // Animation variants
@@ -41,7 +41,7 @@ const featureVariants = {
  * Displays a service offering with icon, title, description, and features
  * Includes animation effects for enhanced visual engagement
  */
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, _index }) => {
   return (
     <motion.div
       className="flex flex-col h-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"

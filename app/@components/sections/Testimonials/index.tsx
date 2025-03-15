@@ -5,6 +5,10 @@ import { TestimonialItem, testimonials as staticTestimonials } from '@/app/@lib/
 import TestimonialCard from './TestimonialCard';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
+import { Container } from '@/app/@components/ui/container';
+import { _Suspense } from 'react';
+import { _TestimonialItem } from './testimonialsData';
+import { _TestimonialCard } from './TestimonialCard';
 
 /**
  * Skeleton loader component for testimonials while they're loading

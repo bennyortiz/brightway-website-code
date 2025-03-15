@@ -14,7 +14,7 @@ import { getTestimonials } from '@/app/@lib/api/services/testimonials';
 
 export default function TestimonialList() {
   const [testimonials, setTestimonials] = useState<TestimonialItem[]>(fallbackTestimonials);
-  const [loading, setLoading] = useState(true);
+  const [_loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch testimonials on the client side

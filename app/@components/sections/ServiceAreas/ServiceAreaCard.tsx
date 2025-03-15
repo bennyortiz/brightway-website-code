@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Users, Building } from 'lucide-react';
+import { MapPin, Users } from 'lucide-react';
 
 export interface ServiceAreaCardProps {
   city: string;
