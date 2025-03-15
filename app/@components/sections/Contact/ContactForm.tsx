@@ -7,9 +7,6 @@ import { Button } from '@/app/@components/ui/buttons';
 import { Card, CardHeader, CardBody, CardFooter, CardTitle } from '@/app/@components/ui/cards';
 import { submitContactForm } from '@/app/@lib/api/services/contactForm';
 import { serviceItems } from '@/app/@lib/data/services';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { contactFormSchema } from '@/lib/validations/contactForm';
 
 /**
  * ContactForm Component
@@ -18,19 +15,6 @@ import { contactFormSchema } from '@/lib/validations/contactForm';
  * Handles form state and submission with client-side validation.
  */
 const ContactForm = () => {
-  const form = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-    },
-  });
-
-  const { isSubmitting } = form.formState;
-  const _error = form.formState.errors;
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -40,6 +24,7 @@ const ContactForm = () => {
     consent: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success?: boolean;
     message?: string;
@@ -80,8 +65,6 @@ const ContactForm = () => {
         success: false,
         message: 'There was an error submitting your message. Please try again.',
       });
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
