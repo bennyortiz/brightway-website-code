@@ -140,45 +140,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={plusJakartaSans.variable}>
       <head>
-        {/* Preconnect to external domains for faster resource loading */}
-        <link rel="preconnect" href="https://images.unsplash.com" />
+        {/* Connection optimization for critical domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* DNS prefetch for third-party services */}
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-        {/* Optimized font loading for LCP performance */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-          /* Font optimization for LCP */
-          .hero-text p, .hero-text h1, .hero-text h2 {
-            font-display: swap;
-            text-rendering: optimizeSpeed;
-            content-visibility: auto;
-            contain-intrinsic-size: 1px 1000px;
-          }
-
-          /* Mobile optimization for text rendering */
-          @media (max-width: 768px) {
-            .text-lg, .text-xl, .text-2xl {
-              font-display: block;
-              text-rendering: optimizeSpeed;
-            }
-            
-            /* Force LCP content to render quickly */
-            .hero-content p {
-              content-visibility: auto;
-              contain-intrinsic-size: 1px 500px;
-            }
-          }
-        `,
-          }}
-        />
-        {/* Google Fonts - Inter */}
+        {/* Inter font already loaded via Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"

@@ -11,7 +11,7 @@ const MotionDiv = dynamic(
     import('framer-motion').then((mod) => ({
       default: mod.motion.div,
     })),
-  { ssr: true }
+  { ssr: false, loading: () => <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" /> }
 );
 
 /**
@@ -35,33 +35,28 @@ const Hero = () => {
 
           {/* Image section - client rendered with optimizations */}
           <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
-            <Suspense
-              fallback={
-                <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" />
-              }
+            <MotionDiv
+              className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                type: 'spring',
+                damping: 25,
+                stiffness: 100,
+                delay: 0.2,
+              }}
             >
-              <MotionDiv
-                className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  damping: 25,
-                  stiffness: 100,
-                  delay: 0.2,
-                }}
-              >
-                <SafeImage
-                  src="/images/brightway-commercial-hallway.jpg"
-                  alt="Brightway Commercial Hallway Cleaning"
-                  fallbackText="Commercial Hallway Cleaning"
-                  priority={true}
-                  placement="above-fold"
-                  quality={85}
-                  className="w-full h-full object-cover transition-opacity duration-300"
-                />
-              </MotionDiv>
-            </Suspense>
+              <SafeImage
+                src="/images/brightway-commercial-hallway.jpg"
+                alt="Brightway Commercial Hallway Cleaning"
+                fallbackText="Commercial Hallway Cleaning"
+                priority={true}
+                placement="hero"
+                quality={90}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="w-full h-full object-cover transition-opacity duration-300"
+              />
+            </MotionDiv>
           </div>
         </div>
       </div>
