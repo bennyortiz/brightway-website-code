@@ -159,7 +159,7 @@ const ServiceAreas = () => {
               <MapPin className="h-6 w-6 text-primary" />
             </div>
             <p className="text-gray-700">
-              <span className="font-medium">Don't see your area?</span> We likely service your
+              <span className="font-medium">Don&apos;t see your area?</span> We likely service your
               location too! Contact us to confirm availability in your specific area.
             </p>
           </div>

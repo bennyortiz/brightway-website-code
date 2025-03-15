@@ -101,7 +101,7 @@ export default function TermsOfService() {
 
             <h2>10. Confidentiality</h2>
             <p>
-              We respect the confidentiality of our clients' information and premises. Our staff is
+              We respect the confidentiality of our clients&apos; information and premises. Our staff is
               trained to maintain confidentiality and handle sensitive information appropriately.
             </p>
 
