@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { TestimonialItem } from './testimonialsData';
-import TestimonialsCarousel from './TestimonialsCarousel';
+import TestimonialCarousel from './TestimonialCarousel';
 
 interface TestimonialsCarouselContainerProps {
   testimonials: TestimonialItem[];
@@ -15,8 +15,6 @@ interface TestimonialsCarouselContainerProps {
 const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps> = ({ 
   testimonials 
 }) => {
-  // No initialization needed
-
   // If no testimonials are provided, render placeholder
   if (!testimonials || testimonials.length === 0) {
     return (
@@ -33,7 +31,7 @@ const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps
       
       {/* Carousel content */}
       <div className="relative py-4">
-        <TestimonialsCarousel testimonials={testimonials} cardStyle="transparent" />
+        <TestimonialCarousel testimonials={testimonials} transparent={true} />
       </div>
     </div>
   );

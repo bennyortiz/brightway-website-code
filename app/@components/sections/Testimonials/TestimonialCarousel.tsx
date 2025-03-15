@@ -1,15 +1,19 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { TestimonialItem } from './testimonialsData';
 import TestimonialCard from './TestimonialCard';
 
 interface TestimonialCarouselProps {
   testimonials: TestimonialItem[];
+  transparent?: boolean;
 }
 
-const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials }) => {
+const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ 
+  testimonials,
+  transparent = false
+}) => {
   // Safeguard against empty testimonials
   if (!testimonials || testimonials.length === 0) {
     console.warn('No testimonials provided to carousel');
@@ -20,6 +24,8 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [cardHeight, setCardHeight] = useState<number | null>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   
   // Items per view depends on screen size
   // For mobile (< 768px width), show only 1 item per view (carousel mode)
@@ -44,6 +50,43 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Ensure all cards have the same height
+  useEffect(() => {
+    const calculateMaxHeight = () => {
+      // Reset height to auto to get natural heights
+      cardsRef.current.forEach(card => {
+        if (card) card.style.height = 'auto';
+      });
+      
+      // Get the maximum height
+      const heights = cardsRef.current.map(card => card?.offsetHeight || 0);
+      const maxHeight = Math.max(...heights);
+      
+      if (maxHeight > 0) {
+        setCardHeight(maxHeight);
+        // Apply the max height to all cards
+        cardsRef.current.forEach(card => {
+          if (card) card.style.height = `${maxHeight}px`;
+        });
+      }
+    };
+    
+    // Calculate on mount and when window resizes
+    calculateMaxHeight();
+    
+    const resizeObserver = new ResizeObserver(() => {
+      calculateMaxHeight();
+    });
+    
+    cardsRef.current.forEach(card => {
+      if (card) resizeObserver.observe(card);
+    });
+    
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [currentIndex, isMobile, testimonials.length]);
 
   // Navigation functions
   const goToPrevious = () => {
@@ -97,18 +140,24 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
         onTouchEnd={handleTouchEnd}
       >
         <div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          style={{ 
+            transition: 'transform 0.5s ease-in-out',
+          }}
         >
           {visibleTestimonials.map((testimonial, idx) => (
             <div 
               key={`${testimonial.author}-${idx}`} 
-              className="w-full h-full min-h-[300px] testimonial-carousel-item opacity-100 visible"
+              className="w-full testimonial-carousel-item"
+              ref={el => cardsRef.current[idx] = el}
+              style={{ height: cardHeight ? `${cardHeight}px` : 'auto' }}
             >
               <TestimonialCard
                 quote={testimonial.quote}
                 author={testimonial.author}
                 position={testimonial.position}
                 company={testimonial.company}
+                transparent={transparent}
               />
             </div>
           ))}
@@ -124,7 +173,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
 
       {/* Navigation Controls - Only show if we have enough testimonials to navigate */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-12 gap-4">
+        <div className="flex justify-center mt-10 gap-4">
           {/* Previous Button */}
           <button
             onClick={goToPrevious}

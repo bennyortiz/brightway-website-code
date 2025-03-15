@@ -63,9 +63,9 @@ const Testimonials = () => {
     }
   }, [inView, isLoaded]);
 
-  // Limit number of testimonials to display
+  // Use all 6 testimonials
   const displayedTestimonials = useMemo(() => {
-    return staticTestimonials.slice(0, 6); // Show only 6 testimonials to reduce DOM size
+    return staticTestimonials; // Use all testimonials (now we have 6)
   }, []);
 
   return (

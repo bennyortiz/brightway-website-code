@@ -38,6 +38,27 @@ export const testimonials: TestimonialItem[] = [
     position: 'Clinic Director',
     company: 'Wellness Medical Center',
   },
+  {
+    quote:
+      'Since switching to Brightway, our employee satisfaction with office cleanliness has increased by 95%. Their team is professional, thorough, and always goes the extra mile.',
+    author: 'David Wilson',
+    position: 'HR Director',
+    company: 'Innovate Financial',
+  },
+  {
+    quote:
+      'As a property manager overseeing multiple buildings, I need reliable cleaning services. Brightway consistently delivers exceptional results across all our properties.',
+    author: 'Jennifer Martinez',
+    position: 'Property Manager',
+    company: 'Urban Properties Group',
+  },
+  {
+    quote:
+      'Brightway adapted quickly to our sustainable cleaning requirements. They use eco-friendly products without compromising on quality, which aligns perfectly with our company values.',
+    author: 'Robert Thompson',
+    position: 'Sustainability Officer',
+    company: 'GreenTech Enterprises',
+  },
 ];
 
 /**
@@ -49,4 +70,4 @@ export async function getTestimonials(): Promise<TestimonialItem[]> {
   await new Promise((resolve) => setTimeout(resolve, 1500));
   
   return testimonials;
-} 
+}
