@@ -165,11 +165,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* Defer non-critical scripts */}
+        {/* Defer non-critical polyfills - use cdnjs as a reliable alternative */}
         <Script
-          src="https://polyfill.io/v3/polyfill.min.js"
+          src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.32.2/minified.min.js"
           strategy="lazyOnload"
-          id="polyfill-io"
+          id="polyfill-core-js"
+          onError={(e) => {
+            console.warn('Polyfill failed to load, but site functionality should not be affected');
+          }}
         />
       </body>
     </html>
