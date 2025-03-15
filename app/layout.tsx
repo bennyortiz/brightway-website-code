@@ -96,12 +96,12 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: siteConfig.social.handles?.twitter || '@brightwayservices',
+    creator: siteConfig.social.handles?.twitter,
   },
   icons: {
-    icon: [{ url: '/favicon.ico' }, { url: '/favicon.svg', type: 'image/svg+xml' }],
-    apple: '/apple-touch-icon.png',
-    shortcut: '/favicon.ico',
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    apple: '/favicon.svg',
+    shortcut: '/favicon.svg',
   },
   verification: {
     google: siteConfig.seo.verification?.google,
@@ -126,7 +126,7 @@ export const metadata: Metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ffffff',
+  themeColor: '#0070f3',
 };
 
 /**
