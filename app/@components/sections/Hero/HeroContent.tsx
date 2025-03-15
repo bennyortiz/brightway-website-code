@@ -64,7 +64,7 @@ const HeroContent = () => {
           </motion.div>
 
           <motion.div 
-            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-2 md:pt-4"
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-3 md:pt-4"
             variants={itemVariants}
           >
             <PrimaryButton href="#contact">Get a Free Quote</PrimaryButton>

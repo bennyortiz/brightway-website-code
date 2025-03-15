@@ -40,9 +40,9 @@ export function LinkButton({
   };
 
   const sizeStyles = {
-    default: 'h-10 px-4 py-2 text-sm',
-    sm: 'h-9 px-3 text-xs',
-    lg: 'h-12 px-6 text-base',
+    default: 'h-11 sm:h-10 px-4 py-2 text-sm',
+    sm: 'h-10 sm:h-9 px-3 text-xs',
+    lg: 'h-13 sm:h-12 px-6 text-base',
   };
 
   return (

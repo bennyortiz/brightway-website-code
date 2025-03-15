@@ -15,9 +15,9 @@ interface TestimonialsCarouselContainerProps {
 const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps> = ({ 
   testimonials 
 }) => {
+  // Component initialization effect
   useEffect(() => {
-    // Log testimonials on client-side for debugging
-    console.log('TestimonialsCarouselContainer mounted with', testimonials.length, 'testimonials');
+    // Component mounted
   }, [testimonials]);
 
   // If no testimonials are provided, render placeholder
@@ -42,4 +42,4 @@ const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps
   );
 };
 
-export default TestimonialsCarouselContainer; 
+export default TestimonialsCarouselContainer;

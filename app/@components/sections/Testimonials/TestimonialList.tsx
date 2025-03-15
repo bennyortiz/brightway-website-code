@@ -19,13 +19,10 @@ export default function TestimonialList() {
       try {
         const data = await getTestimonials();
         
-        // Log testimonials for debugging
-        console.log("Fetched testimonials:", data.length);
         setTestimonials(data);
       } catch (error) {
         // If there's an error fetching testimonials, keep using the fallback data
         console.error("Error fetching testimonials:", error);
-        console.log("Using fallback testimonials:", fallbackTestimonials.length);
       } finally {
         setLoading(false);
       }
@@ -35,4 +32,4 @@ export default function TestimonialList() {
   }, []);
 
   return <TestimonialsCarouselContainer testimonials={testimonials} />;
-} 
+}

@@ -17,9 +17,6 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     return null;
   }
 
-  // Log the testimonials to debug
-  console.log('Rendering testimonials:', testimonials);
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(0);
@@ -49,13 +46,11 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // After mounting, log visibility status
+  // Check visibility after mounting
   useEffect(() => {
-    console.log('TestimonialCarousel mounted, checking visibility');
     // Give the browser time to render, then check if the testimonials are visible
     setTimeout(() => {
       const testimonialCards = document.querySelectorAll('.testimonial-carousel-item');
-      console.log(`Found ${testimonialCards.length} testimonial cards`);
     }, 1000);
   }, []);
 
@@ -176,4 +171,4 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
   );
 };
 
-export default TestimonialCarousel; 
+export default TestimonialCarousel;

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Navigation from './Navigation';
 import Footer from './Footer';
@@ -17,6 +17,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
   // Get current pathname to check if we're on the home page
   const pathname = usePathname();
   const isHomePage = pathname === '/';
+  // Create a ref for the main content
+  const mainRef = useRef<HTMLDivElement>(null);
 
   // Use effect to detect viewport size and set appropriate padding
   useEffect(() => {
@@ -37,10 +39,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <ScrollProgressBar />
+      <ScrollProgressBar containerRef={mainRef} />
       <Navigation />
       {/* Add padding-top to account for fixed header, except on the home page */}
-      <main className={`flex-grow ${!isHomePage ? (isMobile ? 'pt-20' : 'pt-24') : ''}`}>
+      <main 
+        ref={mainRef}
+        className={`flex-grow ${!isHomePage ? (isMobile ? 'pt-20' : 'pt-24') : ''}`}
+      >
         {children}
       </main>
       <Footer />

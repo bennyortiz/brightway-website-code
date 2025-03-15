@@ -24,8 +24,8 @@ const MotionDiv = dynamic(
  */
 const Hero = () => {
   return (
-    <section className="w-full min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center pt-20 md:pt-0 relative overflow-hidden">
-      <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 relative z-10">
+    <section className="w-full min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex items-center pt-16 md:pt-0 relative overflow-hidden">
+      <div className="container mx-auto px-4 py-14 md:py-24 lg:py-32 relative z-10">
         <div className="flex flex-col md:flex-row items-center">
           {/* Critical content - server rendered */}
           <Suspense fallback={null}>

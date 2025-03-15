@@ -29,11 +29,9 @@ export async function submitContactForm(formData: ContactFormData): Promise<{suc
     // });
     // return response.json();
     
-    console.log('Form submitted:', formData);
-    
     return { success: true };
   } catch (error) {
     console.error('Error submitting form:', error);
     throw new Error('Failed to submit contact form');
   }
-} 
+}

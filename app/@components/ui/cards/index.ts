@@ -30,7 +30,7 @@
  * <Card 
  *   hoverable 
  *   clickable 
- *   onClick={() => console.log('Card clicked!')}
+ *   onClick={() => handleCardClick()}
  *   variant="elevated"
  * >
  *   Click me!
@@ -38,4 +38,4 @@
  * ```
  */
 
-export * from './Card'; 
+export * from './Card';

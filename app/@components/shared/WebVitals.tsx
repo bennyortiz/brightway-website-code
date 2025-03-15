@@ -59,11 +59,9 @@ export default function WebVitals() {
     onTTFB((metric) => sendMetric({ name: 'TTFB', value: metric.value, id: metric.id }));
     
     // Report route change
-    if (process.env.NODE_ENV === 'production') {
-      console.log(`[Navigation] ${pathname}`);
-    }
+    // Navigation tracking would go here in production
   }, []);
 
   // This component doesn't render anything
   return null;
-} 
+}
