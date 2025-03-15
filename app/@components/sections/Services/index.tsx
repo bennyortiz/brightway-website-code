@@ -29,7 +29,9 @@ const Services = () => {
         services={services}
         title="Our Services"
         description="We provide comprehensive cleaning services for businesses of all sizes, with customized solutions tailored to your specific needs."
-        ctaHref="#contact"
+        showCta={true}
+        ctaText="View All Services"
+        ctaHref="/services"
       />
     </div>
   );
