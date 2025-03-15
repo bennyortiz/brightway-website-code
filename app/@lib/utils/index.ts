@@ -10,4 +10,15 @@
 export * from './metadata';
 export * from './formatting';
 export * from './seo';
-export * from '../utils'; // Re-export from root utils for backward compatibility 
+export * from './dom';
+export * from './validation';
+export * from './helpers';
+export * from './components';
+
+// Export the cn utility directly from the implementation
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+} 

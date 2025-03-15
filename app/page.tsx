@@ -19,6 +19,7 @@ import Hero from '@/app/@components/sections/Hero';
 import Services from '@/app/@components/sections/Services';
 import CTABanner from '@/app/@components/sections/CTABanner';
 import SEO from '@/app/@components/shared/SEO';
+import SectionWrapper from '@/app/@components/ui/page/SectionWrapper';
 
 // Dynamically import below-fold components
 const MainLayout = dynamic(() => import('@/app/@components/ui/layout/MainLayout'));
@@ -28,40 +29,6 @@ const About = dynamic(() => import('@/app/@components/sections/About'));
 const Testimonials = dynamic(() => import('@/app/@components/sections/Testimonials'));
 const Contact = dynamic(() => import('@/app/@components/sections/Contact'));
 const FAQ = dynamic(() => import('@/app/@components/sections/FAQ'));
-
-// Import ErrorBoundary
-const ErrorBoundary = dynamic(() => import('@/app/@components/ui/ErrorBoundary'));
-
-/**
- * Section Wrapper
- * 
- * A helper component that wraps each section in an ErrorBoundary
- * to prevent errors in one section from crashing the entire page
- */
-const SectionWrapper = ({ children, name }: { children: React.ReactNode; name: string }) => (
-  <ErrorBoundary
-    fallback={(error, reset) => (
-      <div className="py-16 px-4 bg-gray-50">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Unable to load {name} section
-          </h2>
-          <p className="text-gray-600 mb-6">
-            We encountered an error while loading this content.
-          </p>
-          <button
-            onClick={reset}
-            className="px-6 py-2 bg-primary hover:bg-primary/90 text-white rounded-md transition-colors"
-          >
-            Try again
-          </button>
-        </div>
-      </div>
-    )}
-  >
-    {children}
-  </ErrorBoundary>
-);
 
 /**
  * Home Page Component
