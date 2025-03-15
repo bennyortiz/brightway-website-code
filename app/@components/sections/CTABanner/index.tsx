@@ -48,7 +48,7 @@ const CTABanner: React.FC<CTABannerProps> = ({
         'Our cleaning experts will help you create a customized cleaning plan for your business. No obligation, just professional advice to meet your needs.',
       buttonText: 'Schedule Consultation',
       buttonIcon: (
-        <CalendarDays className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
+        <CalendarDays className="mr-1 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover:scale-110" />
       ),
     },
   };
