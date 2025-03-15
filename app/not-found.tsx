@@ -28,8 +28,8 @@ export const metadata: Metadata = generatePageMetadata({
   canonicalPath: '/404',
   seo: {
     noIndex: true, // Don't index 404 pages
-    maxSnippet: 0,  // Don't show snippets
-  }
+    maxSnippet: 0, // Don't show snippets
+  },
 });
 
 /**

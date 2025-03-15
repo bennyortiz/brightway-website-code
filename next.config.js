@@ -62,7 +62,7 @@ const nextConfig = {
 
   // External packages to be bundled with server components
   serverExternalPackages: ['sharp'],
-  
+
   // Enable experimental features for better performance
   experimental: {
     // Better code splitting
@@ -70,11 +70,11 @@ const nextConfig = {
     // Enable optimistic updates
     optimisticClientCache: true,
     // Enable server actions for form handling with less client JS
-    serverActions: { 
-      allowedOrigins: ['localhost:3000', 'brightway-website.vercel.app']
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'brightway-website.vercel.app'],
     },
   },
-  
+
   // Configure response headers for better caching
   async headers() {
     return [

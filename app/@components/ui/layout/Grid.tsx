@@ -13,30 +13,39 @@ type GridProps = {
     xl?: number;
     '2xl'?: number;
   };
-  gap?: {
-    default?: number | string;
-    sm?: number | string;
-    md?: number | string;
-    lg?: number | string;
-    xl?: number | string;
-    '2xl'?: number | string;
-  } | number | string;
-  rowGap?: {
-    default?: number | string;
-    sm?: number | string;
-    md?: number | string;
-    lg?: number | string;
-    xl?: number | string;
-    '2xl'?: number | string;
-  } | number | string;
-  columnGap?: {
-    default?: number | string;
-    sm?: number | string;
-    md?: number | string;
-    lg?: number | string;
-    xl?: number | string;
-    '2xl'?: number | string;
-  } | number | string;
+  gap?:
+    | {
+        default?: number | string;
+        sm?: number | string;
+        md?: number | string;
+        lg?: number | string;
+        xl?: number | string;
+        '2xl'?: number | string;
+      }
+    | number
+    | string;
+  rowGap?:
+    | {
+        default?: number | string;
+        sm?: number | string;
+        md?: number | string;
+        lg?: number | string;
+        xl?: number | string;
+        '2xl'?: number | string;
+      }
+    | number
+    | string;
+  columnGap?:
+    | {
+        default?: number | string;
+        sm?: number | string;
+        md?: number | string;
+        lg?: number | string;
+        xl?: number | string;
+        '2xl'?: number | string;
+      }
+    | number
+    | string;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -54,11 +63,11 @@ export const Grid: React.FC<GridProps> = ({
     value?: Record<string, number | string> | number | string
   ) => {
     if (value === undefined) return '';
-    
+
     if (typeof value === 'number' || typeof value === 'string') {
       return `${prefix}-${value}`;
     }
-    
+
     return Object.entries(value)
       .map(([breakpoint, val]) => {
         if (val === undefined) return '';
@@ -83,21 +92,14 @@ export const Grid: React.FC<GridProps> = ({
   const gapClasses = getResponsiveClasses('gap', gap);
   const rowGapClasses = getResponsiveClasses('gap-y', rowGap);
   const colGapClasses = getResponsiveClasses('gap-x', columnGap);
-  
+
   return (
-    <Component 
-      className={cn(
-        'grid',
-        columnsClasses,
-        gapClasses,
-        rowGapClasses,
-        colGapClasses,
-        className
-      )}
+    <Component
+      className={cn('grid', columnsClasses, gapClasses, rowGapClasses, colGapClasses, className)}
     >
       {children}
     </Component>
   );
 };
 
-export default Grid; 
+export default Grid;

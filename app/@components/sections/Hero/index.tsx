@@ -7,10 +7,11 @@ import dynamic from 'next/dynamic';
 
 // Dynamically import motion components to reduce initial bundle size
 const MotionDiv = dynamic(
-  () => import('framer-motion').then((mod) => ({ 
-    default: mod.motion.div 
-  })),
-  { ssr: false }
+  () =>
+    import('framer-motion').then((mod) => ({
+      default: mod.motion.div,
+    })),
+  { ssr: true }
 );
 
 /**
@@ -34,20 +35,20 @@ const Hero = () => {
 
           {/* Image section - client rendered with optimizations */}
           <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
-            <Suspense 
+            <Suspense
               fallback={
                 <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl bg-gray-100" />
               }
             >
-              <MotionDiv 
+              <MotionDiv
                 className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  type: "spring",
-                  damping: 25, 
+                transition={{
+                  type: 'spring',
+                  damping: 25,
                   stiffness: 100,
-                  delay: 0.2
+                  delay: 0.2,
                 }}
               >
                 <SafeImage

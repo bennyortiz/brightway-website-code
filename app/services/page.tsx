@@ -4,7 +4,14 @@ import Link from 'next/link';
 import MainLayout from '@/app/@components/ui/layout/MainLayout';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { serviceItems } from '@/app/@lib/data/services';
-import { BriefcaseIcon, CheckCircle2, ClockIcon, MessageSquareIcon, ShieldIcon, SparklesIcon } from 'lucide-react';
+import {
+  BriefcaseIcon,
+  CheckCircle2,
+  ClockIcon,
+  MessageSquareIcon,
+  ShieldIcon,
+  SparklesIcon,
+} from 'lucide-react';
 import { PageHeader } from '@/app/@components/ui/page';
 
 /**
@@ -13,7 +20,8 @@ import { PageHeader } from '@/app/@components/ui/page';
 export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Our Services | Brightway Cleaning',
-  description: 'Explore Brightway Cleaning\'s comprehensive commercial cleaning services for offices, retail spaces, medical facilities, and more.',
+  description:
+    "Explore Brightway Cleaning's comprehensive commercial cleaning services for offices, retail spaces, medical facilities, and more.",
   slug: 'services',
 });
 
@@ -32,11 +40,11 @@ const serviceIcons: Record<string, React.ReactNode> = {
 export default function ServicesPage() {
   return (
     <MainLayout>
-      <PageHeader 
-        title="Professional Cleaning Services" 
+      <PageHeader
+        title="Professional Cleaning Services"
         description="Comprehensive commercial cleaning solutions tailored to meet the unique needs of your business."
       />
-      
+
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-center gap-4">
           <Link
@@ -58,19 +66,24 @@ export default function ServicesPage() {
       <section id="service-list" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Our Service Offerings</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              Our Service Offerings
+            </h2>
             <p className="text-xl text-gray-600 mb-16 text-center max-w-3xl mx-auto">
-              We provide a wide range of professional cleaning services to meet the unique needs of businesses across various industries.
+              We provide a wide range of professional cleaning services to meet the unique needs of
+              businesses across various industries.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {serviceItems.map((service, index) => (
-                <div 
+                <div
                   key={index}
                   className="bg-white rounded-xl shadow-lg hover:shadow-xl p-8 transition-all duration-300 border border-gray-100 hover:border-primary/20 flex flex-col h-full group"
                 >
                   <div className="mb-5 p-3 bg-primary/10 rounded-lg w-fit group-hover:bg-primary/20 transition-colors duration-300">
-                    {serviceIcons[service.title] || <SparklesIcon className="w-10 h-10 text-primary" />}
+                    {serviceIcons[service.title] || (
+                      <SparklesIcon className="w-10 h-10 text-primary" />
+                    )}
                   </div>
                   <h3 className="text-2xl font-bold mb-3 text-gray-900">{service.title}</h3>
                   <p className="text-gray-600 mb-5">{service.description}</p>
@@ -99,33 +112,39 @@ export default function ServicesPage() {
         </div>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Our Cleaning Process</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              Our Cleaning Process
+            </h2>
             <p className="text-xl text-gray-600 mb-16 text-center max-w-3xl mx-auto">
               We follow a systematic approach to deliver consistent, high-quality cleaning services.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  title: "Initial Assessment",
-                  description: "We conduct a thorough assessment of your facility to understand your specific cleaning needs.",
+                  title: 'Initial Assessment',
+                  description:
+                    'We conduct a thorough assessment of your facility to understand your specific cleaning needs.',
                   icon: <span className="text-white text-2xl font-bold">1</span>,
                 },
                 {
-                  title: "Customized Plan",
-                  description: "Based on the assessment, we develop a customized cleaning plan tailored to your business.",
+                  title: 'Customized Plan',
+                  description:
+                    'Based on the assessment, we develop a customized cleaning plan tailored to your business.',
                   icon: <span className="text-white text-2xl font-bold">2</span>,
                 },
                 {
-                  title: "Implementation",
-                  description: "Our trained professionals execute the cleaning plan with precision and care.",
+                  title: 'Implementation',
+                  description:
+                    'Our trained professionals execute the cleaning plan with precision and care.',
                   icon: <span className="text-white text-2xl font-bold">3</span>,
                 },
                 {
-                  title: "Quality Assurance",
-                  description: "We regularly assess our work to ensure it meets our high standards and your expectations.",
+                  title: 'Quality Assurance',
+                  description:
+                    'We regularly assess our work to ensure it meets our high standards and your expectations.',
                   icon: <span className="text-white text-2xl font-bold">4</span>,
-                }
+                },
               ].map((step, index) => (
                 <div key={index} className="relative flex flex-col items-center text-center">
                   <div className="bg-primary w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-lg">
@@ -149,18 +168,30 @@ export default function ServicesPage() {
           <div className="max-w-5xl mx-auto bg-gradient-to-br from-primary to-primary-dark rounded-2xl overflow-hidden shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-5">
               <div className="hidden lg:block lg:col-span-2 relative">
-                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/cleaning-professional.jpg')" }}></div>
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: "url('/images/cleaning-professional.jpg')" }}
+                ></div>
               </div>
               <div className="p-8 md:p-12 lg:col-span-3">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Space?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                  Ready to Transform Your Space?
+                </h2>
                 <p className="text-white/90 mb-8 text-lg">
-                  Contact us today to discuss your cleaning needs and receive a customized quote for your business.
+                  Contact us today to discuss your cleaning needs and receive a customized quote for
+                  your business.
                 </p>
                 <div className="flex flex-wrap gap-4">
-                  <Link href="/contact" className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-gray-100 transition duration-300">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center px-6 py-3 rounded-lg bg-white text-primary font-semibold hover:bg-gray-100 transition duration-300"
+                  >
                     Get a Free Quote
                   </Link>
-                  <a href="tel:+12146362323" className="inline-flex items-center px-6 py-3 rounded-lg border border-white text-white font-semibold hover:bg-white/10 transition duration-300">
+                  <a
+                    href="tel:+12146362323"
+                    className="inline-flex items-center px-6 py-3 rounded-lg border border-white text-white font-semibold hover:bg-white/10 transition duration-300"
+                  >
                     <MessageSquareIcon className="mr-2 h-5 w-5" />
                     Call Us Now
                   </a>
@@ -172,4 +203,4 @@ export default function ServicesPage() {
       </section>
     </MainLayout>
   );
-} 
+}

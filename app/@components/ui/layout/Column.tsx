@@ -7,30 +7,36 @@ type ColumnProps = {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
-  span?: {
-    default?: ColumnSpan;
-    sm?: ColumnSpan;
-    md?: ColumnSpan;
-    lg?: ColumnSpan;
-    xl?: ColumnSpan;
-    '2xl'?: ColumnSpan;
-  } | ColumnSpan;
-  start?: {
-    default?: number;
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-    '2xl'?: number;
-  } | number;
-  order?: {
-    default?: number;
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-    '2xl'?: number;
-  } | number;
+  span?:
+    | {
+        default?: ColumnSpan;
+        sm?: ColumnSpan;
+        md?: ColumnSpan;
+        lg?: ColumnSpan;
+        xl?: ColumnSpan;
+        '2xl'?: ColumnSpan;
+      }
+    | ColumnSpan;
+  start?:
+    | {
+        default?: number;
+        sm?: number;
+        md?: number;
+        lg?: number;
+        xl?: number;
+        '2xl'?: number;
+      }
+    | number;
+  order?:
+    | {
+        default?: number;
+        sm?: number;
+        md?: number;
+        lg?: number;
+        xl?: number;
+        '2xl'?: number;
+      }
+    | number;
 };
 
 export const Column: React.FC<ColumnProps> = ({
@@ -47,12 +53,12 @@ export const Column: React.FC<ColumnProps> = ({
     value?: Record<string, number | string> | number | string
   ) => {
     if (value === undefined) return '';
-    
+
     if (typeof value === 'number' || typeof value === 'string') {
       const spanValue = value === 'full' ? 'full' : value;
       return `${prefix}-${spanValue}`;
     }
-    
+
     return Object.entries(value)
       .map(([breakpoint, val]) => {
         if (val === undefined) return '';
@@ -67,19 +73,12 @@ export const Column: React.FC<ColumnProps> = ({
   const spanClasses = getResponsiveClasses('col-span', span);
   const startClasses = getResponsiveClasses('col-start', start);
   const orderClasses = getResponsiveClasses('order', order);
-  
+
   return (
-    <Component 
-      className={cn(
-        spanClasses,
-        startClasses,
-        orderClasses,
-        className
-      )}
-    >
+    <Component className={cn(spanClasses, startClasses, orderClasses, className)}>
       {children}
     </Component>
   );
 };
 
-export default Column; 
+export default Column;

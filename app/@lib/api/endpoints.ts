@@ -1,6 +1,6 @@
 /**
  * API endpoints configuration
- * 
+ *
  * This file centralizes all API endpoint definitions for easier management and consistency.
  */
 
@@ -29,13 +29,13 @@ export const ENDPOINTS = {
   contact: {
     submit: '/contact',
   },
-  
+
   // Testimonials endpoints
   testimonials: {
     list: '/testimonials',
     single: (id: string) => `/testimonials/${id}`,
   },
-  
+
   // Services endpoints
   services: {
     list: '/services',
@@ -45,13 +45,13 @@ export const ENDPOINTS = {
 
 /**
  * Get a fully qualified API URL
- * 
+ *
  * @param endpoint - The endpoint path
  * @returns Full API URL
- * 
+ *
  * @example
  * getApiUrl(ENDPOINTS.contact.submit); // '/api/contact'
  */
 export function getApiUrl(endpoint: string): string {
   return `${getBaseUrl()}${endpoint}`;
-} 
+}

@@ -20,7 +20,7 @@ export interface SectionLayoutProps {
 
 /**
  * Section Layout Component
- * 
+ *
  * A component for creating consistent section layouts with title, description, and content.
  * This provides a standard way to structure sections across the site.
  */
@@ -60,9 +60,13 @@ export const SectionLayout: React.FC<SectionLayoutProps> = ({
                 {eyebrow}
               </div>
             )}
-            {title && <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${titleClassName}`}>{title}</h2>}
+            {title && (
+              <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${titleClassName}`}>{title}</h2>
+            )}
             {description && (
-              <p className={`text-lg text-gray-600 ${centered ? 'max-w-3xl mx-auto' : ''} ${descriptionClassName}`}>
+              <p
+                className={`text-lg text-gray-600 ${centered ? 'max-w-3xl mx-auto' : ''} ${descriptionClassName}`}
+              >
                 {description}
               </p>
             )}
@@ -93,7 +97,7 @@ export interface TwoColumnLayoutProps {
 
 /**
  * Two Column Layout Component
- * 
+ *
  * A component for creating consistent two-column layouts.
  * Easily create responsive side-by-side content.
  */
@@ -141,7 +145,9 @@ export const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
   const orderClass = reverse ? 'md:flex-row-reverse' : '';
 
   return (
-    <div className={`flex flex-col md:flex-row ${orderClass} ${alignmentClasses[verticalAlignment]} ${gapClasses[gap]} ${className}`}>
+    <div
+      className={`flex flex-col md:flex-row ${orderClass} ${alignmentClasses[verticalAlignment]} ${gapClasses[gap]} ${className}`}
+    >
       <div className={`w-full ${leftColumnClasses[leftColumnWidth]} ${leftClassName}`}>
         {leftContent}
       </div>
@@ -150,4 +156,4 @@ export const TwoColumnLayout: React.FC<TwoColumnLayoutProps> = ({
       </div>
     </div>
   );
-}; 
+};

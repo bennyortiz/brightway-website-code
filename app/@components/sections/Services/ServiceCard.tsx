@@ -16,11 +16,11 @@ interface ServiceCardProps {
 // Animation variants
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: 'easeOut' }
-  }
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
 };
 
 const featureVariants = {
@@ -29,10 +29,10 @@ const featureVariants = {
     opacity: 1,
     x: 0,
     transition: {
-      delay: 0.1 + (i * 0.05),
-      duration: 0.3
-    }
-  })
+      delay: 0.1 + i * 0.05,
+      duration: 0.3,
+    },
+  }),
 };
 
 /**
@@ -47,12 +47,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
       className="flex flex-col h-full p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: '-50px' }}
       variants={cardVariants}
       whileHover={{ y: -5 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      <motion.div 
+      <motion.div
         className="mb-4"
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
@@ -65,8 +65,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index }) => {
         <div className="font-semibold text-gray-800 mb-2">Key Features:</div>
         <ul className="space-y-2">
           {service.features.map((feature, index) => (
-            <motion.li 
-              key={index} 
+            <motion.li
+              key={index}
               className="flex items-start"
               custom={index}
               variants={featureVariants}

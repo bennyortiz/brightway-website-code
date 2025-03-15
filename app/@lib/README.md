@@ -5,6 +5,7 @@ This directory contains all utility functions, constants, hooks, and other non-c
 ## Directory Structure
 
 - **`utils/`** - Utility functions for common operations
+
   - **`formatting.ts`** - Data and string formatting utilities
   - **`dom.ts`** - Browser DOM manipulation utilities
   - **`validation.ts`** - Data validation utilities
@@ -15,30 +16,35 @@ This directory contains all utility functions, constants, hooks, and other non-c
   - **`index.ts`** - Barrel exports for utilities
 
 - **`constants/`** - Application-wide constants and configuration
+
   - **`siteConfig.ts`** - Site configuration and business information
   - **`routes.ts`** - Route definitions and navigation structure
   - **`theme.ts`** - Theme constants (colors, typography, etc.)
   - **`services.ts`** - Service definitions and categories
 
 - **`hooks/`** - Custom React hooks
+
   - **`useMediaQuery.ts`** - Responsive design media queries
   - **`useScroll.ts`** - Scroll behavior and tracking
   - **`useLocalStorage.ts`** - Local storage management
   - **`useSiteConfig.ts`** - Access to site configuration
 
 - **`api/`** - API-related utilities and services
+
   - **`endpoints.ts`** - API endpoint definitions
   - **`client.ts`** - API client configuration
   - **`contactService.ts`** - Contact form submission service
   - **`analytics.ts`** - Analytics tracking services
 
 - **`types/`** - TypeScript type definitions
+
   - **`common.ts`** - Shared types across the application
   - **`api.ts`** - API request and response types
   - **`business.ts`** - Business domain types
   - **`theme.ts`** - Theme-related types
 
 - **`animations/`** - Animation configurations and utilities
+
   - **`transitions.ts`** - Common transition configurations
   - **`variants.ts`** - Framer Motion animation variants
   - **`scroll.ts`** - Scroll-based animation utilities
@@ -120,10 +126,10 @@ When creating new utilities:
 ```typescript
 /**
  * Formats a phone number to a consistent format
- * 
+ *
  * @param phone - The phone number to format (can contain formatting)
  * @returns Phone number formatted as (XXX) XXX-XXXX
- * 
+ *
  * @example
  * formatPhoneNumber('1234567890'); // Returns: "(123) 456-7890"
  * formatPhoneNumber('123-456-7890'); // Returns: "(123) 456-7890"
@@ -131,14 +137,14 @@ When creating new utilities:
 export function formatPhoneNumber(phone: string): string {
   // Remove all non-digit characters
   const cleaned = phone.replace(/\D/g, '');
-  
+
   // Check if the input is of correct length
   const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-  
+
   if (match) {
     return `(${match[1]}) ${match[2]}-${match[3]}`;
   }
-  
+
   return phone;
 }
 ```
@@ -155,4 +161,4 @@ export function formatPhoneNumber(phone: string): string {
 5. **Documentation**: Document all parameters, return values, and examples
 6. **Avoid Side Effects**: Keep utilities free of unexpected side effects
 
-For more detailed guidelines, see the [Documentation Standards](../../docs/documentation-standards.md). 
+For more detailed guidelines, see the [Documentation Standards](../../docs/documentation-standards.md).

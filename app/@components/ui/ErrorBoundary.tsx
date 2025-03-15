@@ -24,20 +24,20 @@ interface ErrorBoundaryState {
 
 /**
  * ErrorBoundary Component
- * 
+ *
  * A reusable error boundary that catches JavaScript errors in its child component tree
  * and displays a fallback UI instead of crashing the whole app.
- * 
+ *
  * Usage:
  * ```jsx
  * <ErrorBoundary fallback={<p>Something went wrong</p>}>
  *   <ComponentThatMightError />
  * </ErrorBoundary>
  * ```
- * 
+ *
  * Or with a function as fallback:
  * ```jsx
- * <ErrorBoundary 
+ * <ErrorBoundary
  *   fallback={(error, reset) => (
  *     <div>
  *       <p>Error: {error.message}</p>
@@ -53,7 +53,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     super(props);
     this.state = {
       hasError: false,
-      error: null
+      error: null,
     };
   }
 
@@ -61,14 +61,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     // Update state so the next render will show the fallback UI
     return {
       hasError: true,
-      error
+      error,
     };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     // Log the error to an error reporting service
     console.error('ErrorBoundary caught an error:', error, errorInfo);
-    
+
     // Call the onError callback if provided
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
@@ -78,7 +78,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   resetErrorBoundary = (): void => {
     this.setState({
       hasError: false,
-      error: null
+      error: null,
     });
   };
 
@@ -113,4 +113,4 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 }
 
-export default ErrorBoundary; 
+export default ErrorBoundary;

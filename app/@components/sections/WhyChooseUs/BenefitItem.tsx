@@ -15,11 +15,11 @@ export interface BenefitItemProps {
 // Animation variants
 const iconVariants = {
   rest: { scale: 1 },
-  hover: { 
+  hover: {
     scale: 1.2,
     rotate: 5,
-    transition: { type: 'spring', stiffness: 400, damping: 10 } 
-  }
+    transition: { type: 'spring', stiffness: 400, damping: 10 },
+  },
 };
 
 /**
@@ -33,16 +33,16 @@ const iconVariants = {
  */
 const BenefitItem = ({ icon, title, description }: BenefitItemProps) => {
   return (
-    <motion.div 
+    <motion.div
       className="flex flex-col items-center p-6 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow border border-gray-100"
-      whileHover={{ 
+      whileHover={{
         y: -5,
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-        borderColor: "rgba(0, 112, 243, 0.3)",
+        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+        borderColor: 'rgba(0, 112, 243, 0.3)',
       }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      <motion.div 
+      <motion.div
         className="p-3 bg-primary/10 rounded-full mb-4"
         variants={iconVariants}
         initial="rest"
@@ -51,7 +51,7 @@ const BenefitItem = ({ icon, title, description }: BenefitItemProps) => {
       >
         {icon}
       </motion.div>
-      <motion.h3 
+      <motion.h3
         className="text-xl font-semibold mb-3 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -59,7 +59,7 @@ const BenefitItem = ({ icon, title, description }: BenefitItemProps) => {
       >
         {title}
       </motion.h3>
-      <motion.p 
+      <motion.p
         className="text-gray-600 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

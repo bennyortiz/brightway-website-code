@@ -1,10 +1,10 @@
 /**
  * Button Component
- * 
+ *
  * A versatile button component that supports various visual styles,
  * sizes, loading states, and icon placements. This component serves as
  * the primary action element throughout the application.
- * 
+ *
  * @module UI Components
  */
 
@@ -15,27 +15,27 @@ import Link from 'next/link';
 
 /**
  * Button Variants
- * 
+ *
  * Defines the visual style of the button
  */
-export type ButtonVariant = 
-  | 'primary'   // Main call-to-action
+export type ButtonVariant =
+  | 'primary' // Main call-to-action
   | 'secondary' // Secondary buttons
-  | 'outline'   // Outlined style
-  | 'ghost'     // Text-only style
-  | 'danger'    // Destructive actions
-  | 'success';  // Confirmation actions
+  | 'outline' // Outlined style
+  | 'ghost' // Text-only style
+  | 'danger' // Destructive actions
+  | 'success'; // Confirmation actions
 
 /**
  * Button Sizes
- * 
+ *
  * Controls the size of the button
  */
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**
  * Base Button Props
- * 
+ *
  * Common props shared between Button and ButtonLink components
  */
 export interface BaseButtonProps {
@@ -43,46 +43,46 @@ export interface BaseButtonProps {
    * Content to display inside the button
    */
   children: React.ReactNode;
-  
+
   /**
    * Button variant that determines the visual style
    * @default "primary"
    */
   variant?: ButtonVariant;
-  
+
   /**
    * Button size
    * @default "md"
    */
   size?: ButtonSize;
-  
+
   /**
    * Whether the button should take full width of container
    * @default false
    */
   fullWidth?: boolean;
-  
+
   /**
    * Whether the button should be in a loading state
    * @default false
    */
   loading?: boolean;
-  
+
   /**
    * Icon to display before the button text
    */
   leftIcon?: React.ReactNode;
-  
+
   /**
    * Icon to display after the button text
    */
   rightIcon?: React.ReactNode;
-  
+
   /**
    * Additional class names
    */
   className?: string;
-  
+
   /**
    * Makes the button corners rounded
    */
@@ -92,26 +92,26 @@ export interface BaseButtonProps {
 /**
  * Button Props
  */
-export interface ButtonProps extends 
-  BaseButtonProps,
-  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseButtonProps> {}
+export interface ButtonProps
+  extends BaseButtonProps,
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseButtonProps> {}
 
 /**
  * Button Link Props
  */
-export interface ButtonLinkProps extends 
-  BaseButtonProps,
-  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseButtonProps> {
+export interface ButtonLinkProps
+  extends BaseButtonProps,
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseButtonProps> {
   /**
    * The URL the link should navigate to
    */
   href: string;
-  
+
   /**
    * Whether the link should be handled by Next.js router
    */
   nextLink?: boolean;
-  
+
   /**
    * Target attribute (e.g., '_blank' for new tab)
    */
@@ -162,7 +162,7 @@ const getSizeClasses = (size: ButtonSize) => {
 
 /**
  * Button Component
- * 
+ *
  * A reusable button component with different variants, sizes, and states.
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -182,12 +182,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    const baseClasses =
+      'inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
     const variantClasses = getVariantClasses(variant);
     const sizeClasses = getSizeClasses(size);
     const widthClass = fullWidth ? 'w-full' : '';
     const roundedClass = rounded ? 'rounded-md' : '';
-    
+
     return (
       <button
         ref={ref}
@@ -196,28 +197,28 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {loading && (
-          <svg 
-            className="animate-spin -ml-1 mr-2 h-4 w-4 text-current" 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
+          <svg
+            className="animate-spin -ml-1 mr-2 h-4 w-4 text-current"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
             viewBox="0 0 24 24"
           >
-            <circle 
-              className="opacity-25" 
-              cx="12" 
-              cy="12" 
-              r="10" 
-              stroke="currentColor" 
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
               strokeWidth="4"
             />
-            <path 
-              className="opacity-75" 
-              fill="currentColor" 
+            <path
+              className="opacity-75"
+              fill="currentColor"
               d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
             />
           </svg>
         )}
-        
+
         {leftIcon && !loading && <span className="mr-2">{leftIcon}</span>}
         {children}
         {rightIcon && <span className="ml-2">{rightIcon}</span>}
@@ -230,7 +231,7 @@ Button.displayName = 'Button';
 
 /**
  * ButtonLink Component
- * 
+ *
  * A component that renders a link styled like a button.
  * Can be used with Next.js Link component or as a regular anchor.
  */
@@ -248,38 +249,29 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
   target,
   ...rest
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses =
+    'inline-flex items-center justify-center font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
   const variantClasses = getVariantClasses(variant);
   const sizeClasses = getSizeClasses(size);
   const widthClass = fullWidth ? 'w-full' : '';
   const roundedClass = rounded ? 'rounded-md' : '';
-  
+
   const linkClasses = `${baseClasses} ${variantClasses} ${sizeClasses} ${widthClass} ${roundedClass} ${className}`;
-  
+
   // If it should use Next.js Link component
   if (nextLink) {
     return (
-      <Link 
-        href={href}
-        className={linkClasses}
-        target={target}
-        {...rest}
-      >
+      <Link href={href} className={linkClasses} target={target} {...rest}>
         {leftIcon && <span className="mr-2">{leftIcon}</span>}
         {children}
         {rightIcon && <span className="ml-2">{rightIcon}</span>}
       </Link>
     );
   }
-  
+
   // Regular anchor tag
   return (
-    <a
-      href={href}
-      className={linkClasses}
-      target={target}
-      {...rest}
-    >
+    <a href={href} className={linkClasses} target={target} {...rest}>
       {leftIcon && <span className="mr-2">{leftIcon}</span>}
       {children}
       {rightIcon && <span className="ml-2">{rightIcon}</span>}

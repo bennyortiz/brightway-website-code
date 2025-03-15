@@ -22,7 +22,7 @@ const getSocialIcon = (icon: string) => {
 
 /**
  * Footer Component
- * 
+ *
  * The main site footer with company information, navigation, contact details,
  * and legal information.
  */
@@ -39,9 +39,7 @@ const Footer = () => {
           {/* Company Information */}
           <div className="space-y-6">
             <Logo className="text-white h-10" />
-            <p className="text-gray-400 max-w-xs">
-              {siteConfig.description}
-            </p>
+            <p className="text-gray-400 max-w-xs">{siteConfig.description}</p>
             <div className="flex space-x-5">
               {footerNavigation.social.map((item) => (
                 <Link

@@ -15,13 +15,13 @@ export function middleware(request: NextRequest) {
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
   response.headers.set('X-XSS-Protection', '1; mode=block');
-  
+
   // Only add Cache-Control headers in production
   if (process.env.NODE_ENV === 'production') {
     // Static assets - long cache times
     if (
-      pathname.startsWith('/_next/static/') || 
-      pathname.startsWith('/images/') || 
+      pathname.startsWith('/_next/static/') ||
+      pathname.startsWith('/images/') ||
       pathname.startsWith('/fonts/') ||
       pathname.endsWith('.jpg') ||
       pathname.endsWith('.png') ||
@@ -29,10 +29,7 @@ export function middleware(request: NextRequest) {
       pathname.endsWith('.ico')
     ) {
       // Static assets can be cached for a long time
-      response.headers.set(
-        'Cache-Control',
-        'public, max-age=31536000, immutable'
-      );
+      response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
     }
     // API routes - no caching
     else if (pathname.startsWith('/api/')) {
@@ -66,4 +63,4 @@ export const config = {
     // Apply to all routes except specific Next.js paths
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
-}; 
+};

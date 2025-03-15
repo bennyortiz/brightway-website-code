@@ -27,9 +27,10 @@ export interface RadioGroupProps {
 }
 
 /**
- * Radio Props 
+ * Radio Props
  */
-export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange'> {
+export interface RadioProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange'> {
   label?: string;
   value: string;
   checked?: boolean;
@@ -38,14 +39,14 @@ export interface RadioProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 
 /**
  * Radio Component
- * 
+ *
  * A simple radio button component
  */
 export const Radio = forwardRef<HTMLInputElement, RadioProps>(
   ({ label, value, checked, onChange, className = '', ...props }, ref) => {
     // Generate unique ID for radio field and label
     const id = props.id || `radio-${Math.random().toString(36).substring(2, 9)}`;
-    
+
     // Calculate radio classes
     const radioClasses = `
       h-4 w-4 rounded-full
@@ -75,8 +76,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
           {...props}
         />
         {label && (
-          <label 
-            htmlFor={id} 
+          <label
+            htmlFor={id}
             className={`ml-3 block text-sm font-medium ${props.disabled ? 'text-gray-400' : 'text-gray-700'} cursor-pointer`}
           >
             {label}
@@ -91,7 +92,7 @@ Radio.displayName = 'Radio';
 
 /**
  * RadioGroup Component
- * 
+ *
  * A group of radio buttons with consistent styling and features like
  * label, helper text, and error state.
  */
@@ -110,14 +111,14 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
 }) => {
   // Generate unique ID for the group
   const groupId = `radio-group-${Math.random().toString(36).substring(2, 9)}`;
-  
+
   // Handle radio change
   const handleRadioChange = (radioValue: string) => {
     if (onChange) {
       onChange(radioValue);
     }
   };
-  
+
   return (
     <div className={className}>
       {/* RadioGroup Label */}
@@ -127,10 +128,10 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
-      
+
       {/* Radio Options */}
-      <div 
-        role="radiogroup" 
+      <div
+        role="radiogroup"
         aria-labelledby={label ? `${groupId}-label` : undefined}
         className={`${inline ? 'flex flex-wrap gap-4' : 'space-y-2'}`}
       >
@@ -147,7 +148,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
           />
         ))}
       </div>
-      
+
       {/* Helper Text and Error Message */}
       <div className="mt-1 text-sm">
         {helperText && !error && (
@@ -163,4 +164,4 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
       </div>
     </div>
   );
-}; 
+};

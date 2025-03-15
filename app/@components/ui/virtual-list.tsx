@@ -10,10 +10,10 @@ interface VirtualListProps<T> {
 
 /**
  * VirtualList Component
- * 
+ *
  * Renders only the items that are visible in the viewport plus a buffer,
  * which significantly reduces DOM size and improves performance for long lists.
- * 
+ *
  * @param items - Array of data items to render
  * @param renderItem - Function to render each item
  * @param itemHeight - Approximate height of each item in pixels
@@ -33,18 +33,18 @@ export default function VirtualList<T>({
   useEffect(() => {
     const updateVisibleRange = () => {
       if (!containerRef.current) return;
-      
+
       const container = containerRef.current;
       const scrollTop = container.scrollTop;
       const viewportHeight = container.clientHeight;
-      
+
       // Calculate which items should be visible
       const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - windowSize);
       const endIndex = Math.min(
         items.length - 1,
         Math.ceil((scrollTop + viewportHeight) / itemHeight) + windowSize
       );
-      
+
       setVisibleRange({ start: startIndex, end: endIndex });
     };
 
@@ -54,7 +54,7 @@ export default function VirtualList<T>({
       window.addEventListener('resize', updateVisibleRange);
       updateVisibleRange();
     }
-    
+
     return () => {
       if (container) {
         container.removeEventListener('scroll', updateVisibleRange);
@@ -65,39 +65,30 @@ export default function VirtualList<T>({
 
   // Calculate total list height
   const totalHeight = items.length * itemHeight;
-  
+
   // Calculate spacer heights
   const topSpacerHeight = visibleRange.start * itemHeight;
   const bottomSpacerHeight = (items.length - visibleRange.end - 1) * itemHeight;
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`virtual-list-container overflow-auto relative ${className}`}
       style={{ height: '100%' }}
     >
       <div style={{ height: totalHeight, position: 'relative' }}>
-        {topSpacerHeight > 0 && (
-          <div style={{ height: topSpacerHeight }} />
-        )}
-        
+        {topSpacerHeight > 0 && <div style={{ height: topSpacerHeight }} />}
+
         <div className="virtual-list-items">
-          {items
-            .slice(visibleRange.start, visibleRange.end + 1)
-            .map((item, localIndex) => (
-              <div 
-                key={visibleRange.start + localIndex} 
-                className="virtual-list-item"
-              >
-                {renderItem(item, visibleRange.start + localIndex)}
-              </div>
-            ))}
+          {items.slice(visibleRange.start, visibleRange.end + 1).map((item, localIndex) => (
+            <div key={visibleRange.start + localIndex} className="virtual-list-item">
+              {renderItem(item, visibleRange.start + localIndex)}
+            </div>
+          ))}
         </div>
-        
-        {bottomSpacerHeight > 0 && (
-          <div style={{ height: bottomSpacerHeight }} />
-        )}
+
+        {bottomSpacerHeight > 0 && <div style={{ height: bottomSpacerHeight }} />}
       </div>
     </div>
   );
-} 
+}

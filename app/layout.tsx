@@ -17,8 +17,8 @@ import './globals.css';
 import { siteConfig } from './@lib/constants/siteConfig';
 import Script from 'next/script';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import dynamic from 'next/dynamic';
 import '@fontsource-variable/plus-jakarta-sans';
 
@@ -142,9 +142,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* DNS prefetch for third-party services */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
@@ -178,25 +178,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `,
           }}
         />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* Skip to content link for keyboard accessibility */}
         <SkipLink />
-        
+
         {/* Main content area with ID for skip link target */}
-        <div id="main-content">
-          {children}
-        </div>
-        
+        <div id="main-content">{children}</div>
+
         {/* Performance monitoring */}
         <WebVitals />
         <Analytics />
         <SpeedInsights />
 
         {/* Defer non-critical scripts */}
-        <Script 
-          src="https://polyfill.io/v3/polyfill.min.js" 
-          strategy="lazyOnload" 
+        <Script
+          src="https://polyfill.io/v3/polyfill.min.js"
+          strategy="lazyOnload"
           id="polyfill-io"
         />
       </body>

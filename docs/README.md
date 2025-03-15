@@ -15,4 +15,4 @@ Welcome to the Brightway Website documentation. This documentation provides info
 ## Quick Links
 
 - [Repository](https://github.com/bennyortiz/brightway-website-code)
-- [Next.js Documentation](https://nextjs.org/docs) 
+- [Next.js Documentation](https://nextjs.org/docs)

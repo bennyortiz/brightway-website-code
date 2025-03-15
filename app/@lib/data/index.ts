@@ -1,14 +1,14 @@
 /**
  * Data Exports
- * 
+ *
  * This file serves as a central export point for all data used throughout the application.
  * It allows for easier imports and better organization of data files.
- * 
+ *
  * Usage:
  * ```tsx
  * // Import specific data
  * import { faqData } from '@/app/@lib/data';
- * 
+ *
  * // Use in component
  * const FAQSection = () => {
  *   return (
@@ -36,4 +36,4 @@ export * from './service-areas';
 export * from './services';
 export * from './testimonials';
 export * from './benefits';
-export * from './dfwMapData'; 
+export * from './dfwMapData';

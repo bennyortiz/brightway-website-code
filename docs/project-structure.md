@@ -67,4 +67,4 @@ The `public` directory contains static assets like images, fonts, and other file
 
 ### Documentation
 
-The `docs` directory contains project documentation, including guides, API references, and more. 
+The `docs` directory contains project documentation, including guides, API references, and more.

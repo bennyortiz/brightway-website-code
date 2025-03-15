@@ -9,8 +9,9 @@ import { generatePageMetadata } from '@/app/@lib/utils/metadata';
  * The metadata is generated using a utility function for consistency
  */
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Brightway Commercial Cleaning Services', 
-  description: 'Professional commercial cleaning services for businesses in Austin, TX. Brighten your workspace with Brightway.',
+  title: 'Brightway Commercial Cleaning Services',
+  description:
+    'Professional commercial cleaning services for businesses in Austin, TX. Brighten your workspace with Brightway.',
   pageType: 'home',
   canonicalPath: '/', // Explicitly set canonical path for home page
-}); 
+});

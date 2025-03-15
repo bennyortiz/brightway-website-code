@@ -4,10 +4,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 export interface CarouselProps<T> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
-  itemsPerView?: { 
+  itemsPerView?: {
     mobile: number;
     tablet?: number;
-    desktop: number; 
+    desktop: number;
   };
   gap?: string;
   autoPlay?: boolean;
@@ -20,7 +20,7 @@ export interface CarouselProps<T> {
 
 /**
  * Reusable Carousel Component
- * 
+ *
  * A flexible carousel that can display any type of content with responsive behavior
  */
 export function Carousel<T>({
@@ -39,7 +39,7 @@ export function Carousel<T>({
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [windowWidth, setWindowWidth] = useState(0);
-  
+
   // Determine items per view based on screen size
   const getItemsPerView = () => {
     if (windowWidth < 640) {
@@ -50,24 +50,24 @@ export function Carousel<T>({
       return itemsPerView.desktop;
     }
   };
-  
+
   const currentItemsPerView = getItemsPerView();
-  
+
   // Total number of "pages" in the carousel
   const totalPages = Math.ceil(items.length / currentItemsPerView);
-  
+
   // Handle window resize for responsive behavior
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    
+
     // Set initial state
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -75,11 +75,11 @@ export function Carousel<T>({
   // Auto play functionality
   useEffect(() => {
     if (!autoPlay) return;
-    
+
     const interval = setInterval(() => {
       goToNext();
     }, autoPlayInterval);
-    
+
     return () => clearInterval(interval);
   }, [currentIndex, autoPlay, autoPlayInterval]);
 
@@ -108,7 +108,7 @@ export function Carousel<T>({
       // Swipe left, go to next
       goToNext();
     }
-    
+
     if (touchEnd - touchStart > 30) {
       // Swipe right, go to previous
       goToPrevious();
@@ -127,31 +127,30 @@ export function Carousel<T>({
   return (
     <div className={`w-full ${className}`}>
       {/* Main Carousel */}
-      <div 
+      <div
         className={`w-full ${containerClassName}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div 
-          className={`grid grid-cols-1 sm:grid-cols-${
-            Math.min(itemsPerView.tablet || 2, items.length)
-          } lg:grid-cols-${
-            Math.min(itemsPerView.desktop, items.length)
-          } ${gap}`}
+        <div
+          className={`grid grid-cols-1 sm:grid-cols-${Math.min(
+            itemsPerView.tablet || 2,
+            items.length
+          )} lg:grid-cols-${Math.min(itemsPerView.desktop, items.length)} ${gap}`}
         >
           {visibleItems.map((item, idx) => (
             <div key={idx} className="carousel-item w-full h-full">
               {renderItem(item, idx)}
             </div>
           ))}
-          
+
           {/* Fill in empty slots if needed */}
-          {windowWidth >= 640 && visibleItems.length < currentItemsPerView && (
+          {windowWidth >= 640 &&
+            visibleItems.length < currentItemsPerView &&
             Array.from({ length: currentItemsPerView - visibleItems.length }).map((_, idx) => (
               <div key={`empty-${idx}`} className="w-full h-full"></div>
-            ))
-          )}
+            ))}
         </div>
       </div>
 
@@ -169,7 +168,7 @@ export function Carousel<T>({
               <ChevronLeft className="h-5 w-5 text-primary" />
             </button>
           )}
-          
+
           {/* Indicators */}
           {showIndicators && (
             <div className="flex items-center space-x-2">
@@ -185,7 +184,7 @@ export function Carousel<T>({
               ))}
             </div>
           )}
-          
+
           {/* Next Button */}
           {showControls && (
             <button
@@ -201,4 +200,4 @@ export function Carousel<T>({
       )}
     </div>
   );
-} 
+}

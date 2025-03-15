@@ -5,9 +5,9 @@
 
 /**
  * Scroll to an element smoothly by its ID
- * 
+ *
  * @param elementId - ID of the element to scroll to
- * 
+ *
  * @example
  * scrollToElement('contact-section');
  */
@@ -16,4 +16,4 @@ export function scrollToElement(elementId: string): void {
   if (element) {
     element.scrollIntoView({ behavior: 'smooth' });
   }
-} 
+}

@@ -25,7 +25,7 @@ export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectE
 
 /**
  * Select Component
- * 
+ *
  * A reusable select component with consistent styling and features like
  * label, helper text, and error state.
  */
@@ -48,17 +48,17 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     // Generate stable ID for select field and label
     const uniqueId = useId();
     const id = props.id || `select-${uniqueId}`;
-    
+
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';
-    
+
     // Calculate sizing
     const sizeClasses = {
       sm: 'py-1.5 text-sm',
       md: 'py-2.5 text-base',
-      lg: 'py-3 text-lg'
+      lg: 'py-3 text-lg',
     };
-    
+
     // Calculate select classes based on error state and size
     const selectClasses = `
       block ${widthClass} px-4 ${sizeClasses[size]} pr-10 rounded-md appearance-none
@@ -79,7 +79,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
         )}
-        
+
         {/* Select Field with Icon */}
         <div className="relative">
           {icon && (
@@ -87,7 +87,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               {icon}
             </div>
           )}
-          
+
           <select
             id={id}
             ref={ref}
@@ -101,24 +101,24 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
                 {placeholder}
               </option>
             )}
-            
+
             {options.map((option) => (
               <option key={option.value} value={option.value} disabled={option.disabled}>
                 {option.label}
               </option>
             ))}
           </select>
-          
+
           {/* Custom select arrow */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-            <svg 
-              className={`h-5 w-5 ${error ? 'text-red-500' : 'text-gray-400'}`} 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 20 20" 
-              fill="currentColor" 
+            <svg
+              className={`h-5 w-5 ${error ? 'text-red-500' : 'text-gray-400'}`}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
               aria-hidden="true"
             >
-              <path 
+              <path
                 fillRule="evenodd"
                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                 clipRule="evenodd"
@@ -126,7 +126,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             </svg>
           </div>
         </div>
-        
+
         {/* Helper Text and Error Message */}
         <div className="mt-1 text-sm">
           {helperText && !error && (
@@ -145,4 +145,4 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   }
 );
 
-Select.displayName = 'Select'; 
+Select.displayName = 'Select';

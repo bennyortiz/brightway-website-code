@@ -1,6 +1,6 @@
 /**
  * Icon Utilities
- * 
+ *
  * Optimized icon system that uses dynamic imports to reduce bundle size
  * Only the icons that are actually used are included in the JS bundle
  */
@@ -20,19 +20,19 @@ export const iconComponents = {
   ArrowRight: dynamic(() => import('lucide-react/dist/esm/icons/arrow-right')),
   ChevronLeft: dynamic(() => import('lucide-react/dist/esm/icons/chevron-left')),
   ChevronRight: dynamic(() => import('lucide-react/dist/esm/icons/chevron-right')),
-  
+
   // Contact/Location icons
   Mail: dynamic(() => import('lucide-react/dist/esm/icons/mail')),
   Phone: dynamic(() => import('lucide-react/dist/esm/icons/phone')),
   MapPin: dynamic(() => import('lucide-react/dist/esm/icons/map-pin')),
   Clock: dynamic(() => import('lucide-react/dist/esm/icons/clock')),
-  
+
   // Social icons
   Facebook: dynamic(() => import('lucide-react/dist/esm/icons/facebook')),
   Twitter: dynamic(() => import('lucide-react/dist/esm/icons/twitter')),
   Instagram: dynamic(() => import('lucide-react/dist/esm/icons/instagram')),
   Linkedin: dynamic(() => import('lucide-react/dist/esm/icons/linkedin')),
-  
+
   // Service/Feature icons
   CheckCircle: dynamic(() => import('lucide-react/dist/esm/icons/check-circle')),
   CheckCircle2: dynamic(() => import('lucide-react/dist/esm/icons/check-circle-2')),
@@ -53,14 +53,14 @@ export const iconComponents = {
 export type IconName = keyof typeof iconComponents;
 
 // Icon component with optimized loading
-export function Icon({ 
-  name, 
+export function Icon({
+  name,
   className,
-  ...props 
-}: { 
-  name: IconName; 
+  ...props
+}: {
+  name: IconName;
   className?: string;
 } & Omit<LucideProps, 'ref'>) {
   const IconComponent = iconComponents[name] as React.ComponentType<LucideProps>;
   return <IconComponent className={className} {...props} />;
-} 
+}

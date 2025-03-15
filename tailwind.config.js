@@ -78,9 +78,9 @@ module.exports = {
         '.overflow-wrap-anywhere': {
           'overflow-wrap': 'anywhere',
           'word-break': 'break-word',
-          'hyphens': 'auto'
-        }
-      }
+          hyphens: 'auto',
+        },
+      },
     },
     container: {
       center: true,

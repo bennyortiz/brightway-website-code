@@ -38,7 +38,7 @@ export type Conditional = {
  * Helper to create a conditional component wrapper
  * @param Component - The component to be conditionally rendered
  * @returns A new component that only renders if the 'if' prop is true
- * 
+ *
  * @example
  * const ConditionalAlert = makeConditional(Alert);
  * <ConditionalAlert if={hasError}>Error message</ConditionalAlert>
@@ -56,7 +56,7 @@ export function makeConditional<T extends object>(
 
 /**
  * Combines multiple class names, filtering out undefined and null values
- * 
+ *
  * @deprecated Use the `cn` utility from '@/app/@lib/utils' instead
  */
 export function combineClasses(...classes: (string | undefined | null | false)[]) {
@@ -65,9 +65,9 @@ export function combineClasses(...classes: (string | undefined | null | false)[]
 
 /**
  * Extract a component from a larger component to improve maintainability
- * 
+ *
  * This is a pattern example, not a function to be used directly
- * 
+ *
  * @example
  * // Instead of:
  * function LargeComponent() {
@@ -81,7 +81,7 @@ export function combineClasses(...classes: (string | undefined | null | false)[]
  *     </div>
  *   );
  * }
- * 
+ *
  * // Extract components:
  * // components/LargeComponent/Header.tsx
  * function Header() {
@@ -92,10 +92,10 @@ export function combineClasses(...classes: (string | undefined | null | false)[]
  *     </div>
  *   );
  * }
- * 
+ *
  * // components/LargeComponent/index.tsx
  * import Header from './Header';
- * 
+ *
  * function LargeComponent() {
  *   return (
  *     <div>
@@ -104,4 +104,4 @@ export function combineClasses(...classes: (string | undefined | null | false)[]
  *     </div>
  *   );
  * }
- */ 
+ */

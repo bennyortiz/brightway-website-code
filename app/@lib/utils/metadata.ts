@@ -60,7 +60,7 @@ export function generatePageMetadata({
   // For the homepage, use the site URL directly without any path
   // For other pages, append the canonicalPath or slug to the site URL
   let canonicalUrl: string;
-  
+
   if (pageType === 'home' || canonicalPath === '/') {
     // For the homepage, just use the base URL without trailing slash
     canonicalUrl = siteConfig.url.replace(/\/+$/, '');
@@ -85,7 +85,8 @@ export function generatePageMetadata({
   if (seo.noSnippet) robotsDirectives['nosnippet'] = true;
   if (seo.maxSnippet !== undefined) robotsDirectives['max-snippet'] = seo.maxSnippet;
   if (seo.maxImagePreview) robotsDirectives['max-image-preview'] = seo.maxImagePreview;
-  if (seo.maxVideoPreview !== undefined) robotsDirectives['max-video-preview'] = seo.maxVideoPreview;
+  if (seo.maxVideoPreview !== undefined)
+    robotsDirectives['max-video-preview'] = seo.maxVideoPreview;
   if (seo.unavailableAfter) robotsDirectives['unavailable_after'] = seo.unavailableAfter;
 
   // Return complete metadata object

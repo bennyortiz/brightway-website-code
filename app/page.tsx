@@ -48,17 +48,17 @@ export default function HomePage() {
   return (
     <MainLayout>
       <SEO type="all" />
-      
+
       {/* Hero section - First impression */}
       <SectionWrapper name="Hero">
         <Hero />
       </SectionWrapper>
-      
+
       {/* Services section - What we do */}
       <SectionWrapper name="Services">
         <Services />
       </SectionWrapper>
-      
+
       {/* Below-fold content loaded after initial render */}
       <Suspense fallback={<div className="min-h-[30rem] bg-gray-50" />}>
         <div className="below-fold-content">
@@ -66,37 +66,37 @@ export default function HomePage() {
           <SectionWrapper name="About">
             <About />
           </SectionWrapper>
-          
+
           {/* Why Choose Us - Our advantages */}
           <SectionWrapper name="Why Choose Us">
             <WhyChooseUs />
           </SectionWrapper>
-          
+
           {/* Service Areas - Where we operate */}
           <SectionWrapper name="Service Areas">
             <ServiceAreas />
           </SectionWrapper>
-          
+
           {/* First CTA Banner - After establishing who we are and what we do */}
           <SectionWrapper name="CTA Banner">
             <CTABanner variant="primary" backgroundColor="white" />
           </SectionWrapper>
-          
+
           {/* Testimonials - Proof from clients */}
           <SectionWrapper name="Testimonials">
             <Testimonials />
           </SectionWrapper>
-          
+
           {/* FAQ - Answer common questions */}
           <SectionWrapper name="FAQ">
             <FAQ />
           </SectionWrapper>
-          
+
           {/* Second CTA Banner - Before contact form */}
           <SectionWrapper name="Secondary CTA Banner">
             <CTABanner variant="secondary" backgroundColor="gray" />
           </SectionWrapper>
-          
+
           {/* Contact - Final action point */}
           <SectionWrapper name="Contact">
             <Contact />

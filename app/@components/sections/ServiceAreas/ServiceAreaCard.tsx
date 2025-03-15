@@ -11,7 +11,7 @@ export interface ServiceAreaCardProps {
 
 /**
  * ServiceAreaCard Component
- * 
+ *
  * Displays information about a single service area in a card format
  * Highlights featured areas with a special badge
  */
@@ -23,11 +23,13 @@ const ServiceAreaCard: React.FC<ServiceAreaCardProps> = ({
   isFeatured = false,
 }) => {
   return (
-    <div className={`
+    <div
+      className={`
       bg-white rounded-xl shadow-lg overflow-hidden transition-transform 
       duration-300 hover:shadow-xl hover:-translate-y-1
       ${isFeatured ? 'border-l-4 border-primary' : ''}
-    `}>
+    `}
+    >
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-xl font-bold text-gray-900">{city}</h3>
@@ -37,16 +39,16 @@ const ServiceAreaCard: React.FC<ServiceAreaCardProps> = ({
             </span>
           )}
         </div>
-        
+
         <p className="text-gray-600 mb-4">{description}</p>
-        
+
         {population && (
           <div className="flex items-center text-sm text-gray-500 mb-4">
             <Users className="h-4 w-4 mr-2 text-primary/70" />
             <span>Population: {population}</span>
           </div>
         )}
-        
+
         <div className="mt-4">
           <div className="flex items-center mb-2">
             <MapPin className="h-4 w-4 mr-2 text-primary" />
@@ -66,4 +68,4 @@ const ServiceAreaCard: React.FC<ServiceAreaCardProps> = ({
   );
 };
 
-export default ServiceAreaCard; 
+export default ServiceAreaCard;

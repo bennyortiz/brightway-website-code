@@ -12,10 +12,10 @@ export interface PageLayoutProps {
 
 /**
  * Create Page Wrapper
- * 
+ *
  * A higher-order component that provides consistent page layout structure.
  * It wraps the page content in the main layout and applies consistent spacing.
- * 
+ *
  * @param Component The component to wrap
  * @param options Optional configuration options
  * @returns A wrapped component with consistent page layout
@@ -35,7 +35,7 @@ export function createPageWrapper<T extends PageLayoutProps>(
     if (!withMainLayout) {
       return <Component {...props} />;
     }
-    
+
     // Otherwise, wrap the component with the main layout
     return (
       <MainLayout>
@@ -45,9 +45,9 @@ export function createPageWrapper<T extends PageLayoutProps>(
       </MainLayout>
     );
   };
-  
+
   // Copy display name for better debugging
   WrappedPage.displayName = `PageWrapper(${Component.displayName || Component.name || 'Component'})`;
-  
+
   return WrappedPage;
-} 
+}

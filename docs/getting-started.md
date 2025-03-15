@@ -82,4 +82,4 @@ yarn start
 - **Component Structure**: Group related components in directories
 - **Documentation**: Document functions and components with JSDoc comments
 
-For more information on path aliases, see the [Path Aliases Guide](./guides/path-aliases.md). 
+For more information on path aliases, see the [Path Aliases Guide](./guides/path-aliases.md).

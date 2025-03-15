@@ -7,18 +7,18 @@ interface ImageSkeletonProps {
 
 /**
  * ImageSkeleton Component
- * 
+ *
  * Displays a loading skeleton for images to improve perceived performance
- * especially for LCP elements. Shows a subtle gradient animation while 
+ * especially for LCP elements. Shows a subtle gradient animation while
  * the actual image is being loaded.
  */
-export default function ImageSkeleton({ 
+export default function ImageSkeleton({
   className = 'w-full h-full',
-  aspectRatio = 'square'
+  aspectRatio = 'square',
 }: ImageSkeletonProps) {
   // Determine the aspect ratio class
   let aspectRatioClass = 'aspect-square';
-  
+
   if (aspectRatio === '16/9') {
     aspectRatioClass = 'aspect-video';
   } else if (aspectRatio === '4/3') {
@@ -26,9 +26,9 @@ export default function ImageSkeleton({
   } else if (aspectRatio === '2/1') {
     aspectRatioClass = 'aspect-[2/1]';
   }
-  
+
   return (
-    <div 
+    <div
       className={`${className} ${aspectRatioClass} bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse rounded-md overflow-hidden`}
       data-testid="image-skeleton"
       aria-hidden="true"
@@ -49,4 +49,4 @@ export default function ImageSkeleton({
 // }
 // .animate-shimmer {
 //   animation: shimmer 1.5s infinite;
-// } 
+// }

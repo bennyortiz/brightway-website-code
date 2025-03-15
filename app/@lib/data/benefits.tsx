@@ -74,4 +74,4 @@ export const benefitsData: BenefitItemProps[] = [
     description:
       'We invest in state-of-the-art cleaning equipment and technologies to deliver superior results efficiently and safely.',
   },
-]; 
+];

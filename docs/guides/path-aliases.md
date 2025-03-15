@@ -36,7 +36,7 @@ These aliases are configured in the `tsconfig.json` file:
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./*"]
     }
   }
 }
@@ -49,4 +49,4 @@ The aliases work with the `@` prefix which maps to the root directory, allowing 
 1. Always use path aliases for imports that cross directory boundaries
 2. For imports within the same directory or adjacent files, relative imports are acceptable
 3. Be consistent with import patterns throughout the codebase
-4. Use barrel files (index.ts) when appropriate to simplify imports further 
+4. Use barrel files (index.ts) when appropriate to simplify imports further

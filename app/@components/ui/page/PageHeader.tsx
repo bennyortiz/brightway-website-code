@@ -9,7 +9,7 @@ interface PageHeaderProps {
 
 /**
  * PageHeader Component
- * 
+ *
  * A consistent header component to be used across all interior pages.
  * It provides a standardized appearance with an optional description and background pattern.
  */
@@ -28,13 +28,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
       )}
       <div className="container mx-auto px-4">
         <div className={`max-w-5xl mx-auto ${centered ? 'text-center' : 'text-left'}`}>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-            {title}
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">{title}</h1>
           {description && (
-            <p className="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">
-              {description}
-            </p>
+            <p className="text-xl text-gray-700 mb-6 max-w-3xl mx-auto">{description}</p>
           )}
         </div>
       </div>
@@ -42,4 +38,4 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   );
 };
 
-export default PageHeader; 
+export default PageHeader;

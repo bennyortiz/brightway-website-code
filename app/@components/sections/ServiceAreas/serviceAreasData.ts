@@ -5,4 +5,4 @@ import { ServiceAreaItem, serviceAreas as libServiceAreas } from '@/app/@lib/dat
  * This ensures consistency across the application
  */
 export type { ServiceAreaItem };
-export const serviceAreas = libServiceAreas; 
+export const serviceAreas = libServiceAreas;

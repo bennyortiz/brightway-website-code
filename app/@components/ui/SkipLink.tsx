@@ -5,10 +5,10 @@ import { cn } from '@/app/@lib/utils';
 
 /**
  * SkipLink Component
- * 
+ *
  * This component creates an accessible "skip to content" link that becomes visible when focused.
  * It allows keyboard users to bypass navigation and jump directly to the main content.
- * 
+ *
  * @example
  * ```tsx
  * // In your layout component
@@ -34,4 +34,4 @@ export default function SkipLink({ href = '#main-content' }: { href?: string }) 
       Skip to main content
     </a>
   );
-} 
+}

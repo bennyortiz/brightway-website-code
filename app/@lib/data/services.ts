@@ -82,4 +82,4 @@ export const serviceItems: Omit<Service, 'icon'>[] = [
       'Seasonal deep cleaning',
     ],
   },
-]; 
+];

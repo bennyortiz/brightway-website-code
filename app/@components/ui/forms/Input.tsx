@@ -14,7 +14,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 /**
  * Input Component
- * 
+ *
  * A reusable input component with consistent styling and features like
  * label, helper text, error state, and icons.
  */
@@ -35,10 +35,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     // Generate stable ID for input field and label
     const uniqueId = useId();
     const id = props.id || `input-${uniqueId}`;
-    
+
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';
-    
+
     // Calculate input classes based on error state and icon position
     const inputClasses = `
       block ${widthClass} px-4 py-3 rounded-md 
@@ -60,7 +60,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
         )}
-        
+
         {/* Input Field with Icon */}
         <div className="relative">
           {icon && iconPosition === 'left' && (
@@ -68,7 +68,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               {icon}
             </div>
           )}
-          
+
           <input
             id={id}
             ref={ref}
@@ -77,14 +77,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-describedby={`${id}-helper ${id}-error`}
             {...props}
           />
-          
+
           {icon && iconPosition === 'right' && (
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
               {icon}
             </div>
           )}
         </div>
-        
+
         {/* Helper Text and Error Message */}
         <div className="mt-1 text-sm">
           {helperText && !error && (
@@ -103,4 +103,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   }
 );
 
-Input.displayName = 'Input'; 
+Input.displayName = 'Input';

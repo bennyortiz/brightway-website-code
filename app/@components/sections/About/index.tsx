@@ -33,27 +33,28 @@ const About = () => {
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Header content */}
             <div className="mb-6 text-center lg:text-left">
-              <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">About Us</span>
+              <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">
+                About Us
+              </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Trusted Cleaning Partner</h2>
               <p className="text-gray-600 mb-6">
-                Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable, high-quality cleaning services.
+                Based in Bedford, TX, and serving the entire DFW metroplex, we provide reliable,
+                high-quality cleaning services.
               </p>
             </div>
-            
+
             {/* Company information */}
             <p className="text-lg text-gray-600 mb-4 text-center lg:text-left">
               For over {yearsInBusiness} years, Brightway Cleaning has been providing exceptional
               cleaning services to businesses throughout the DFW metroplex.
             </p>
-            <p className="text-lg text-gray-600 mb-4 text-center lg:text-left">
-              We've built our reputation on reliability, attention to detail, and a genuine
-              commitment to customer satisfaction with a {siteConfig.business.satisfaction} client satisfaction rate.
+            <p className="text-lg text-gray-600 mb-8 text-center lg:text-left">
+              We&apos;ve built our reputation on reliability, attention to detail, and a genuine
+              commitment to customer satisfaction with a {siteConfig.business.satisfaction} client
+              satisfaction rate.
             </p>
             <div className="mt-6 text-center lg:text-left">
-              <a
-                href="/about-us"
-                className="text-primary font-medium hover:underline"
-              >
+              <a href="/about-us" className="text-primary font-medium hover:underline">
                 Learn more about us →
               </a>
             </div>

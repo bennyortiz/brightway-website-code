@@ -17,8 +17,9 @@ Our documentation follows a hierarchy to address different levels of information
 ### Root Directory README.md
 
 Contains:
+
 - Project overview and purpose
-- Setup and installation instructions  
+- Setup and installation instructions
 - Key technologies used
 - Links to important documentation
 - Contribution guidelines
@@ -26,6 +27,7 @@ Contains:
 ### Directory README.md
 
 Each major directory should have a README.md containing:
+
 - Purpose of the directory
 - Structure overview
 - Usage examples
@@ -40,9 +42,9 @@ All source files should begin with a header comment:
 ```typescript
 /**
  * [Component/Module Name]
- * 
+ *
  * [Brief description of the purpose and functionality]
- * 
+ *
  * @module [Optional module grouping]
  */
 ```
@@ -54,9 +56,9 @@ Components should be documented with JSDoc comments:
 ```typescript
 /**
  * [Component Name]
- * 
+ *
  * [Description of the component's purpose and behavior]
- * 
+ *
  * @example
  * <ComponentName prop1="value" prop2={value}>
  *   Child content
@@ -75,13 +77,13 @@ interface ButtonProps {
    * @default "primary"
    */
   variant?: 'primary' | 'secondary' | 'outline';
-  
+
   /**
    * Whether the button should display a loading spinner
-   * @default false 
+   * @default false
    */
   loading?: boolean;
-  
+
   // Other props...
 }
 ```
@@ -93,12 +95,12 @@ Functions should be documented with JSDoc comments:
 ```typescript
 /**
  * [Function name in present tense]
- * 
+ *
  * [Description of what the function does]
- * 
+ *
  * @param paramName - Description of the parameter
  * @returns Description of the return value
- * 
+ *
  * @example
  * const result = formatDate('2023-01-01');
  * // Returns: "January 1, 2023"
@@ -111,12 +113,12 @@ Functions should be documented with JSDoc comments:
 /**
  * Represents the different placement positions for images on a page
  */
-type ImagePlacement = 
-  | 'hero'       // Top of page, highest priority
+type ImagePlacement =
+  | 'hero' // Top of page, highest priority
   | 'above-fold' // Visible without scrolling
-  | 'mid-page'   // Middle of the page
+  | 'mid-page' // Middle of the page
   | 'below-fold' // Requires scrolling to see
-  | 'footer';    // Bottom of the page
+  | 'footer'; // Bottom of the page
 ```
 
 ## Markdown Documentation Guidelines
@@ -135,21 +137,27 @@ For more complex topics, create specialized Markdown files:
 # [Component Name] Usage Guide
 
 ## Overview
+
 Brief description of the component's purpose and key features.
 
 ## Installation/Import
+
 How to import and use the component.
 
 ## Basic Usage
+
 Simple example of the component in action.
 
 ## Advanced Usage
+
 More complex examples and patterns.
 
 ## API Reference
+
 Detailed props, methods, and options.
 
 ## Best Practices
+
 Guidelines for effective use.
 ```
 
@@ -160,4 +168,4 @@ Guidelines for effective use.
 - Deprecate outdated documentation with notes pointing to replacements
 - Run periodic documentation audits
 
-By following these guidelines, we ensure that our codebase remains well-documented, maintainable, and accessible to all developers on the team. 
+By following these guidelines, we ensure that our codebase remains well-documented, maintainable, and accessible to all developers on the team.

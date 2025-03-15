@@ -13,9 +13,7 @@ interface ContactInfoItemProps {
 
 const ContactInfoItem = ({ icon, title, subtitle, children }: ContactInfoItemProps) => (
   <div className="flex flex-col sm:flex-row items-start gap-4">
-    <div className="bg-primary/10 p-3 rounded-full shrink-0 mb-2 sm:mb-0">
-      {icon}
-    </div>
+    <div className="bg-primary/10 p-3 rounded-full shrink-0 mb-2 sm:mb-0">{icon}</div>
     <div className="w-full overflow-hidden">
       <h3 className="text-lg font-semibold mb-1">{title}</h3>
       <p className="text-gray-600 mb-1 break-words">{subtitle}</p>
@@ -36,39 +34,37 @@ const ContactInfo = () => {
     <Card variant="elevated" className="h-full">
       <CardHeader>
         <CardTitle>Contact Information</CardTitle>
-        <p className="text-gray-600 mt-2">
-          Get in touch with our friendly team
-        </p>
+        <p className="text-gray-600 mt-2">Get in touch with our friendly team</p>
       </CardHeader>
-      
+
       <CardBody className="space-y-6 sm:space-y-8">
-        <ContactInfoItem 
+        <ContactInfoItem
           icon={<Phone className="h-6 w-6 text-primary" />}
           title="Call Us"
           subtitle="Available Monday-Friday"
         >
-          <a 
-            href={`tel:${siteConfig.contact.phone.raw}`} 
+          <a
+            href={`tel:${siteConfig.contact.phone.raw}`}
             className="text-primary hover:underline font-medium break-words"
           >
             {siteConfig.contact.phone.display}
           </a>
         </ContactInfoItem>
 
-        <ContactInfoItem 
+        <ContactInfoItem
           icon={<Mail className="h-6 w-6 text-primary" />}
           title="Email Us"
           subtitle="We'll respond within 24 hours"
         >
-          <a 
-            href={`mailto:${siteConfig.contact.email}`} 
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
             className="text-primary hover:underline font-medium break-words"
           >
             {siteConfig.contact.email}
           </a>
         </ContactInfoItem>
 
-        <ContactInfoItem 
+        <ContactInfoItem
           icon={<MapPin className="h-6 w-6 text-primary" />}
           title="Service Area"
           subtitle="Serving the DFW Metroplex"
@@ -77,8 +73,8 @@ const ContactInfo = () => {
             Based in {siteConfig.contact.address.full}
           </address>
         </ContactInfoItem>
-        
-        <ContactInfoItem 
+
+        <ContactInfoItem
           icon={<Clock className="h-6 w-6 text-primary" />}
           title="Business Hours"
           subtitle="When you can reach us"

@@ -3,7 +3,8 @@ import React, { forwardRef } from 'react';
 /**
  * Switch Props
  */
-export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'size'> {
+export interface SwitchProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'size'> {
   label?: string;
   helperText?: string;
   error?: string;
@@ -15,7 +16,7 @@ export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
 
 /**
  * Switch Component
- * 
+ *
  * A toggle switch component with consistent styling and features like
  * label, helper text, and error state.
  */
@@ -36,7 +37,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   ) => {
     // Generate unique ID for switch field and label
     const id = props.id || `switch-${Math.random().toString(36).substring(2, 9)}`;
-    
+
     // Size classes for switch track and thumb
     const sizeClasses = {
       sm: {
@@ -55,14 +56,14 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         translateX: 'translate-x-7',
       },
     };
-    
+
     // Label font size based on switch size
     const labelFontSize = {
       sm: 'text-xs',
       md: 'text-sm',
       lg: 'text-base',
     };
-    
+
     // Handle change
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -71,8 +72,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     };
 
     const labelComponent = label && (
-      <label 
-        htmlFor={id} 
+      <label
+        htmlFor={id}
         className={`font-medium ${labelFontSize[size]} ${props.disabled ? 'text-gray-400' : 'text-gray-700'} cursor-pointer select-none`}
       >
         {label}
@@ -84,10 +85,8 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       <div className={className}>
         <div className="flex items-center">
           {/* Label before switch */}
-          {label && labelPlacement === 'start' && (
-            <div className="mr-3">{labelComponent}</div>
-          )}
-          
+          {label && labelPlacement === 'start' && <div className="mr-3">{labelComponent}</div>}
+
           {/* Switch */}
           <div className="relative inline-flex flex-shrink-0 items-center">
             <input
@@ -101,7 +100,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               aria-describedby={`${id}-helper ${id}-error`}
               {...props}
             />
-            
+
             {/* Switch Track */}
             <div
               className={`
@@ -111,9 +110,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
                 ${props.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out
               `}
-              onClick={props.disabled ? undefined : () => {
-                if (onChange) onChange(!checked);
-              }}
+              onClick={
+                props.disabled
+                  ? undefined
+                  : () => {
+                      if (onChange) onChange(!checked);
+                    }
+              }
             >
               {/* Switch Thumb */}
               <span
@@ -126,13 +129,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
               />
             </div>
           </div>
-          
+
           {/* Label after switch */}
-          {label && labelPlacement === 'end' && (
-            <div className="ml-3">{labelComponent}</div>
-          )}
+          {label && labelPlacement === 'end' && <div className="ml-3">{labelComponent}</div>}
         </div>
-        
+
         {/* Helper Text and Error Message */}
         <div className={`mt-1 text-sm ${labelPlacement === 'end' ? 'ml-12' : ''}`}>
           {helperText && !error && (
@@ -151,4 +152,4 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   }
 );
 
-Switch.displayName = 'Switch'; 
+Switch.displayName = 'Switch';

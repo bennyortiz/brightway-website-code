@@ -54,7 +54,7 @@ import { FormGroup, Input, Textarea, Checkbox } from '@/app/@components/ui/forms
 
 <FormGroup label="Message" required>
   <Textarea placeholder="Type your message here..." />
-</FormGroup>
+</FormGroup>;
 ```
 
 ### Button Components
@@ -92,13 +92,11 @@ import { Card, CardHeader, CardBody, CardFooter, CardTitle } from '@/app/@compon
   <CardHeader>
     <CardTitle>Service Title</CardTitle>
   </CardHeader>
-  <CardBody>
-    Service description and details...
-  </CardBody>
+  <CardBody>Service description and details...</CardBody>
   <CardFooter>
     <Button fullWidth>Learn More</Button>
   </CardFooter>
-</Card>
+</Card>;
 ```
 
 ## Best Practices
@@ -107,4 +105,4 @@ import { Card, CardHeader, CardBody, CardFooter, CardTitle } from '@/app/@compon
 - Keep components focused on a single responsibility
 - Maintain comprehensive documentation
 - Use TypeScript for type safety
-- Follow consistent naming conventions 
+- Follow consistent naming conventions

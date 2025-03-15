@@ -2,21 +2,9 @@
 
 import React, { useState } from 'react';
 import { Send, User, Mail, Phone, BookCheck, MessageSquare } from 'lucide-react';
-import { 
-  Input, 
-  Textarea, 
-  Select, 
-  FormGroup, 
-  Checkbox 
-} from '@/app/@components/ui/forms';
+import { Input, Textarea, Select, FormGroup, Checkbox } from '@/app/@components/ui/forms';
 import { Button } from '@/app/@components/ui/buttons';
-import { 
-  Card, 
-  CardHeader, 
-  CardBody, 
-  CardFooter, 
-  CardTitle 
-} from '@/app/@components/ui/cards';
+import { Card, CardHeader, CardBody, CardFooter, CardTitle } from '@/app/@components/ui/cards';
 import { submitContactForm } from '@/app/@lib/api/services/contactForm';
 import { serviceItems } from '@/app/@lib/data/services';
 
@@ -33,9 +21,9 @@ const ContactForm = () => {
     phone: '',
     service: '',
     message: '',
-    consent: false
+    consent: false,
   });
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     success?: boolean;
@@ -47,7 +35,7 @@ const ContactForm = () => {
   ) => {
     const { name, value, type } = e.target;
     const newValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-    
+
     setFormData((prev) => ({ ...prev, [name]: newValue }));
   };
 
@@ -55,7 +43,7 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({});
-    
+
     try {
       const result = await submitContactForm(formData);
       if (result.success) {
@@ -69,7 +57,7 @@ const ContactForm = () => {
           phone: '',
           service: '',
           message: '',
-          consent: false
+          consent: false,
         });
       }
     } catch (error) {
@@ -81,14 +69,14 @@ const ContactForm = () => {
       setIsSubmitting(false);
     }
   };
-  
+
   // Create options for the service dropdown from our service data
   const serviceOptions = [
     { value: '', label: 'Select a service', disabled: true },
-    ...serviceItems.map(service => ({
+    ...serviceItems.map((service) => ({
       value: service.title.toLowerCase().replace(/\s+/g, '-'),
-      label: service.title
-    }))
+      label: service.title,
+    })),
   ];
 
   return (
@@ -99,21 +87,21 @@ const ContactForm = () => {
           Fill out the form below and our team will get back to you shortly.
         </p>
       </CardHeader>
-      
+
       <CardBody>
         <form onSubmit={handleSubmit}>
           {submitStatus.message && (
-            <div 
+            <div
               className={`p-4 mb-6 rounded-md ${
-                submitStatus.success 
-                  ? 'bg-green-50 border border-green-200 text-green-700' 
+                submitStatus.success
+                  ? 'bg-green-50 border border-green-200 text-green-700'
                   : 'bg-red-50 border border-red-200 text-red-700'
               }`}
             >
               {submitStatus.message}
             </div>
           )}
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <FormGroup>
               <Input
@@ -126,7 +114,7 @@ const ContactForm = () => {
                 icon={<User size={18} />}
               />
             </FormGroup>
-            
+
             <FormGroup>
               <Input
                 name="email"
@@ -140,7 +128,7 @@ const ContactForm = () => {
               />
             </FormGroup>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <FormGroup>
               <Input
@@ -154,7 +142,7 @@ const ContactForm = () => {
                 helperText="Optional, but helps us reach you faster"
               />
             </FormGroup>
-            
+
             <FormGroup>
               <Select
                 name="service"
@@ -166,7 +154,7 @@ const ContactForm = () => {
               />
             </FormGroup>
           </div>
-          
+
           <div className="mb-6">
             <FormGroup>
               <Textarea
@@ -180,7 +168,7 @@ const ContactForm = () => {
               />
             </FormGroup>
           </div>
-          
+
           <div className="mb-6">
             <Checkbox
               name="consent"
@@ -190,7 +178,7 @@ const ContactForm = () => {
               required
             />
           </div>
-          
+
           <Button
             type="submit"
             variant="primary"

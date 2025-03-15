@@ -16,4 +16,4 @@ export * from './animations';
 export * from './api';
 
 // Hooks
-export * from './hooks'; 
+export * from './hooks';

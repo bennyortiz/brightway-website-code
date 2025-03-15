@@ -44,16 +44,10 @@ export const Section: React.FC<SectionProps> = ({
   );
 
   return (
-    <Component
-      className={cn(
-        spacing && spacingClasses[spacing],
-        background,
-        className
-      )}
-    >
+    <Component className={cn(spacing && spacingClasses[spacing], background, className)}>
       {content}
     </Component>
   );
 };
 
-export default Section; 
+export default Section;

@@ -13,7 +13,6 @@ This directory contains all the UI components used throughout the Brightway webs
   - **`carousel/`** - Carousel and slider components
   - **`animations/`** - Animation components
   - **`index.ts`** - Barrel exports for all UI components
-  
 - **`sections/`** - Page-specific content sections
   - **`Hero/`** - Hero banners and headers
   - **`About/`** - About sections
@@ -23,7 +22,6 @@ This directory contains all the UI components used throughout the Brightway webs
   - **`Testimonials/`** - Customer reviews and testimonials
   - **`WhyChooseUs/`** - Value proposition sections
   - **`ServiceAreas/`** - Service areas and locations
-  
 - **`shared/`** - Shared components used across multiple pages
   - **`SEO/`** - SEO and metadata components
   - **`Footer/`** - Site footer
@@ -76,12 +74,14 @@ Components used across multiple pages with consistent functionality:
 #### Component File Organization
 
 For simple components:
+
 ```
 Button.tsx        # Component implementation
 index.ts          # Re-export
 ```
 
 For complex components:
+
 ```
 Button/
   ├── Button.tsx        # Main component
@@ -110,9 +110,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 // 3. Component definition with JSDoc
 /**
  * Button Component
- * 
+ *
  * Primary action element for user interactions
- * 
+ *
  * @example
  * <Button variant="primary" size="lg" onClick={handleClick}>
  *   Click Me
@@ -128,7 +128,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   // 4. Component logic
-  
+
   // 5. Component rendering
   return (
     <button
@@ -155,23 +155,28 @@ export default function Button({
 ## Best Practices
 
 1. **Single Responsibility Principle**
+
    - Each component should do one thing well
    - Break complex components into smaller, focused ones
 
 2. **Composition Over Inheritance**
+
    - Build complex UI by composing smaller components
    - Use prop drilling or context for data sharing
 
 3. **Consistent Prop Naming**
+
    - Use consistent prop names across similar components
    - Follow common conventions (e.g., `onClick`, `className`)
 
 4. **Accessibility**
+
    - Include proper ARIA attributes
    - Ensure keyboard navigation works
    - Test with screen readers
 
 5. **Performance**
+
    - Memoize expensive computations
    - Use virtualization for long lists
    - Lazy load below-fold components
@@ -181,4 +186,4 @@ export default function Button({
    - Include usage examples
    - Document any non-obvious behavior
 
-For more detailed guidelines, see the [Documentation Standards](../../docs/documentation-standards.md). 
+For more detailed guidelines, see the [Documentation Standards](../../docs/documentation-standards.md).

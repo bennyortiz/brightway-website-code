@@ -26,13 +26,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     // Set initial value
     handleResize();
-    
+
     // Add event listener
     window.addEventListener('resize', handleResize);
-    
+
     // Remove event listener on cleanup
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -42,7 +42,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <ScrollProgressBar containerRef={mainRef} />
       <Navigation />
       {/* Add padding-top to account for fixed header, except on the home page */}
-      <main 
+      <main
         ref={mainRef}
         className={`flex-grow ${!isHomePage ? (isMobile ? 'pt-20' : 'pt-24') : ''}`}
       >

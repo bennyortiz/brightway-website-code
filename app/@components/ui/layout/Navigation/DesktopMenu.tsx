@@ -44,4 +44,4 @@ const DesktopMenu = ({ scrolled, isOpen }: DesktopMenuProps) => {
   );
 };
 
-export default DesktopMenu; 
+export default DesktopMenu;

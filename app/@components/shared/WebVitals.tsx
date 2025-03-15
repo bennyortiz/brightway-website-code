@@ -15,7 +15,7 @@ const sendMetric = (metric: MetricValue) => {
   // Examples:
   // - Google Analytics: gtag('event', name, { value, event_category: 'Web Vitals' })
   // - Custom endpoint: fetch('/api/vitals', { method: 'POST', body: JSON.stringify(metric) })
-  
+
   // For development, just log to console
   if (process.env.NODE_ENV !== 'production') {
     console.log(`[Web Vitals] ${metric.name}: ${metric.value}`);
@@ -37,10 +37,10 @@ const sendMetric = (metric: MetricValue) => {
 
 /**
  * WebVitals Component
- * 
+ *
  * This component monitors Core Web Vitals metrics and reports them.
  * It doesn't render anything visible but works in the background.
- * 
+ *
  * Place this component in your root layout or on specific pages
  * where you want to track performance.
  */
@@ -48,16 +48,16 @@ export default function WebVitals() {
   useEffect(() => {
     // Get URL path excluding query string
     const pathname = window.location.pathname;
-    
+
     // Core Web Vitals
     onCLS((metric) => sendMetric({ name: 'CLS', value: metric.value, id: metric.id }));
     onFID((metric) => sendMetric({ name: 'FID', value: metric.value, id: metric.id }));
     onLCP((metric) => sendMetric({ name: 'LCP', value: metric.value, id: metric.id }));
-    
+
     // Additional metrics
     onFCP((metric) => sendMetric({ name: 'FCP', value: metric.value, id: metric.id }));
     onTTFB((metric) => sendMetric({ name: 'TTFB', value: metric.value, id: metric.id }));
-    
+
     // Report route change
     // Navigation tracking would go here in production
   }, []);

@@ -1,9 +1,9 @@
 /**
  * Cleanup Script for Old Directories
- * 
+ *
  * This script provides guidance on how to safely clean up old directories
  * after the project structure reorganization.
- * 
+ *
  * Run with: node scripts/cleanup-old-dirs.js
  */
 
@@ -27,15 +27,15 @@ console.log('====================================\n');
 // Check each directory
 for (const dir of oldDirectories) {
   const fullPath = path.join(rootDir, dir.path);
-  
+
   try {
     // Check if directory exists
     if (fs.existsSync(fullPath)) {
       const stats = fs.statSync(fullPath);
-      
+
       if (stats.isDirectory()) {
         const files = fs.readdirSync(fullPath);
-        
+
         if (files.length === 0) {
           console.log(`✅ ${dir.path}:`);
           console.log(`   - Directory is empty and can be safely removed`);
@@ -44,7 +44,9 @@ for (const dir of oldDirectories) {
           console.log(`⚠️ ${dir.path}:`);
           console.log(`   - Directory still contains ${files.length} files/directories`);
           console.log(`   - Content should be migrated to ${dir.migrated} before removal`);
-          console.log(`   - Files found: ${files.slice(0, 3).join(', ')}${files.length > 3 ? ', ...' : ''}\n`);
+          console.log(
+            `   - Files found: ${files.slice(0, 3).join(', ')}${files.length > 3 ? ', ...' : ''}\n`
+          );
         }
       }
     } else {
@@ -63,7 +65,7 @@ console.log('Suggested commands for empty directories:');
 console.log('----------------------------------------');
 for (const dir of oldDirectories) {
   const fullPath = path.join(rootDir, dir.path);
-  
+
   try {
     if (fs.existsSync(fullPath)) {
       const files = fs.readdirSync(fullPath);
@@ -75,4 +77,4 @@ for (const dir of oldDirectories) {
     // Skip errors
   }
 }
-console.log('\n'); 
+console.log('\n');

@@ -13,30 +13,19 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
 
 /**
  * Textarea Component
- * 
+ *
  * A reusable textarea component with consistent styling and features like
  * label, helper text, and error state.
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    {
-      label,
-      helperText,
-      error,
-      className = '',
-      fullWidth = true,
-      rows = 4,
-      ...props
-    },
-    ref
-  ) => {
+  ({ label, helperText, error, className = '', fullWidth = true, rows = 4, ...props }, ref) => {
     // Generate stable ID for textarea field and label
     const uniqueId = useId();
     const id = props.id || `textarea-${uniqueId}`;
-    
+
     // Calculate width class based on fullWidth prop
     const widthClass = fullWidth ? 'w-full' : '';
-    
+
     // Calculate textarea classes based on error state
     const textareaClasses = `
       block ${widthClass} px-4 py-3 rounded-md 
@@ -57,7 +46,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
         )}
-        
+
         {/* Textarea Field */}
         <textarea
           id={id}
@@ -68,7 +57,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-describedby={`${id}-helper ${id}-error`}
           {...props}
         />
-        
+
         {/* Helper Text and Error Message */}
         <div className="mt-1 text-sm">
           {helperText && !error && (
@@ -87,4 +76,4 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   }
 );
 
-Textarea.displayName = 'Textarea'; 
+Textarea.displayName = 'Textarea';

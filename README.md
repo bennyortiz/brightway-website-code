@@ -28,12 +28,14 @@ This website serves as the main online presence for Brightway Cleaning Services,
 ### Installation
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/bennyortiz/brightway-website-code.git
    cd brightway-website-code
    ```
 
 2. Install dependencies
+
    ```bash
    npm install
    # or
@@ -41,12 +43,14 @@ This website serves as the main online presence for Brightway Cleaning Services,
    ```
 
 3. Set up environment variables
+
    ```bash
    cp .env.example .env.local
    # Then edit .env.local with your configuration
    ```
 
 4. Start the development server
+
    ```bash
    npm run dev
    # or
@@ -75,7 +79,7 @@ This website serves as the main online presence for Brightway Cleaning Services,
 ├── app/                  # Next.js App Router
 │   ├── @components/      # UI components
 │   │   ├── ui/           # Reusable UI components
-│   │   ├── sections/     # Page sections 
+│   │   ├── sections/     # Page sections
 │   │   └── shared/       # Shared components
 │   ├── @lib/             # Utilities and helpers
 │   │   ├── utils/        # Utility functions
@@ -121,11 +125,13 @@ npm run typecheck # Run TypeScript compiler check
 ### Git Workflow
 
 1. Create a feature branch from `main`
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
 2. Make changes and commit with clear messages
+
    ```bash
    git commit -m "Feature: Add service area map component"
    ```

@@ -49,4 +49,4 @@ const MobileMenu = ({ isOpen, setIsOpen }: MobileMenuProps) => {
   );
 };
 
-export default MobileMenu; 
+export default MobileMenu;

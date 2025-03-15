@@ -18,18 +18,18 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      when: "beforeChildren"
-    }
-  }
+      when: 'beforeChildren',
+    },
+  },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 15 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
-  }
+    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
+  },
 };
 
 /**
@@ -39,7 +39,7 @@ const itemVariants = {
  * - Server-rendered text content (HeroText)
  * - Rating
  * - Call-to-action buttons
- * 
+ *
  * Optimized for better LCP performance by:
  * 1. Using server-rendered text
  * 2. Deferring animations until after hydration
@@ -53,7 +53,7 @@ const HeroContent = () => {
 
       {/* Interactive elements - client rendered with animations */}
       <LazyMotion features={domAnimation}>
-        <motion.div 
+        <motion.div
           className="mt-6 space-y-6"
           variants={containerVariants}
           initial="hidden"
@@ -63,7 +63,7 @@ const HeroContent = () => {
             <HeroRating />
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-3 md:pt-4"
             variants={itemVariants}
           >

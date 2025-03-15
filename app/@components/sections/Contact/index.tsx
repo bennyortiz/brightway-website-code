@@ -14,8 +14,12 @@ const Contact = () => {
     <section id="contact" className="w-full py-12 md:py-16 lg:py-24 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 md:mb-12">
-          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Contact Us</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-gray-900">Get In Touch</h2>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">
+            Contact Us
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-gray-900">
+            Get In Touch
+          </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Ready to experience the Brightway difference? Contact us for a free quote or to learn
             more about our professional cleaning services.
@@ -27,7 +31,7 @@ const Contact = () => {
           <div className="lg:col-span-1 order-2 lg:order-1">
             <ContactInfo />
           </div>
-          
+
           {/* On mobile: Form shown first */}
           <div className="lg:col-span-2 order-1 lg:order-2">
             <ContactForm />

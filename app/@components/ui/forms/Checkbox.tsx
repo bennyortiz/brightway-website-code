@@ -12,26 +12,16 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 
 /**
  * Checkbox Component
- * 
+ *
  * A reusable checkbox component with consistent styling and features like
  * label, helper text, and error state.
  */
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
-  (
-    {
-      label,
-      helperText,
-      error,
-      className = '',
-      labelPlacement = 'end',
-      ...props
-    },
-    ref
-  ) => {
+  ({ label, helperText, error, className = '', labelPlacement = 'end', ...props }, ref) => {
     // Generate stable ID for checkbox field and label
     const uniqueId = useId();
     const id = props.id || `checkbox-${uniqueId}`;
-    
+
     // Calculate checkbox classes based on error state
     const checkboxClasses = `
       h-5 w-5 rounded
@@ -43,8 +33,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
     `;
 
     const labelComponent = label && (
-      <label 
-        htmlFor={id} 
+      <label
+        htmlFor={id}
         className={`text-sm font-medium ${props.disabled ? 'text-gray-400' : 'text-gray-700'} cursor-pointer select-none`}
       >
         {label}
@@ -56,10 +46,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       <div>
         <div className="flex items-center">
           {/* Label before checkbox */}
-          {label && labelPlacement === 'start' && (
-            <div className="mr-3">{labelComponent}</div>
-          )}
-          
+          {label && labelPlacement === 'start' && <div className="mr-3">{labelComponent}</div>}
+
           {/* Checkbox */}
           <input
             id={id}
@@ -70,13 +58,11 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             aria-describedby={`${id}-helper ${id}-error`}
             {...props}
           />
-          
+
           {/* Label after checkbox */}
-          {label && labelPlacement === 'end' && (
-            <div className="ml-3">{labelComponent}</div>
-          )}
+          {label && labelPlacement === 'end' && <div className="ml-3">{labelComponent}</div>}
         </div>
-        
+
         {/* Helper Text and Error Message */}
         <div className="mt-1 text-sm pl-7">
           {helperText && !error && (
@@ -95,4 +81,4 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   }
 );
 
-Checkbox.displayName = 'Checkbox'; 
+Checkbox.displayName = 'Checkbox';

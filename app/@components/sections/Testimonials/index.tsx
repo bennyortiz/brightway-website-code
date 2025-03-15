@@ -32,13 +32,10 @@ const TestimonialsSkeleton = () => {
 };
 
 // Use dynamic import with a smaller, more performant implementation
-const OptimizedTestimonialList = dynamic(
-  () => import('./OptimizedTestimonialList'), 
-  {
-    loading: () => <TestimonialsSkeleton />,
-    ssr: false
-  }
-);
+const OptimizedTestimonialList = dynamic(() => import('./OptimizedTestimonialList'), {
+  loading: () => <TestimonialsSkeleton />,
+  ssr: false,
+});
 
 /**
  * Testimonials Section Component (Optimized)
@@ -53,9 +50,9 @@ const Testimonials = () => {
     triggerOnce: true,
     rootMargin: '200px 0px',
   });
-  
+
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   // Load testimonials only when in view
   useEffect(() => {
     if (inView && !isLoaded) {
@@ -69,8 +66,8 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section 
-      id="testimonials" 
+    <section
+      id="testimonials"
       ref={ref}
       className="w-full py-20 md:py-32 bg-gray-50 relative z-0 overflow-hidden"
     >
@@ -80,12 +77,14 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Section header with visual accent */}
         <div className="text-center mb-12 md:mb-16 relative">
-          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">Testimonials</span>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">
+            Testimonials
+          </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700">
             What Our Clients Say
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See how we've helped businesses keep their spaces clean and their clients impressed.
+            Here&apos;s what our clients say about our services
           </p>
         </div>
 
@@ -100,7 +99,10 @@ const Testimonials = () => {
 
         {/* Call to action */}
         <div className="mt-12 md:mt-16 text-center">
-          <a href="#contact" className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300">
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center py-3 px-8 font-semibold text-white bg-primary rounded-full hover:bg-primary-dark hover:shadow-lg transition-all duration-300"
+          >
             Get a Free Quote
           </a>
         </div>

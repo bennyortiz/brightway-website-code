@@ -7,7 +7,7 @@ import NoIndex from './@components/shared/NoIndex';
 
 /**
  * Error Component
- * 
+ *
  * Next.js Error Boundary component for the entire application
  * This component is rendered when an uncaught exception is thrown
  * in a React component tree at runtime.
@@ -28,7 +28,7 @@ export default function Error({
     <div className="min-h-screen flex items-center justify-center px-4">
       {/* Prevent search engines from indexing error pages */}
       <NoIndex noFollow={true} />
-      
+
       <div className="max-w-lg w-full text-center">
         <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
           <AlertTriangle className="w-8 h-8 text-red-500" />

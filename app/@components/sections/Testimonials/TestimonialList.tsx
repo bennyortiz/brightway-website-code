@@ -6,7 +6,10 @@
 
 import { useEffect, useState } from 'react';
 import TestimonialsCarouselContainer from './TestimonialsCarouselContainer';
-import { testimonials as fallbackTestimonials, TestimonialItem } from '@/app/@lib/data/testimonials';
+import {
+  testimonials as fallbackTestimonials,
+  TestimonialItem,
+} from '@/app/@lib/data/testimonials';
 import { getTestimonials } from '@/app/@lib/api/services/testimonials';
 
 export default function TestimonialList() {
@@ -18,11 +21,11 @@ export default function TestimonialList() {
     const fetchTestimonials = async () => {
       try {
         const data = await getTestimonials();
-        
+
         setTestimonials(data);
       } catch (error) {
         // If there's an error fetching testimonials, keep using the fallback data
-        console.error("Error fetching testimonials:", error);
+        console.error('Error fetching testimonials:', error);
       } finally {
         setLoading(false);
       }

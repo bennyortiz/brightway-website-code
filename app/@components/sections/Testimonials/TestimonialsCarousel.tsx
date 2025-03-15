@@ -10,12 +10,12 @@ interface TestimonialsCarouselProps {
 
 /**
  * TestimonialsCarousel Component
- * 
+ *
  * A specialized carousel for testimonials that uses the reusable Carousel component
  */
-const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({ 
+const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
   testimonials,
-  cardStyle = 'standard'
+  cardStyle = 'standard',
 }) => {
   // If no testimonials are provided, render placeholder
   if (!testimonials || testimonials.length === 0) {
@@ -53,4 +53,4 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
   );
 };
 
-export default TestimonialsCarousel; 
+export default TestimonialsCarousel;

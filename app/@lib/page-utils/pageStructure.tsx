@@ -13,7 +13,7 @@ export interface PageSectionProps {
 
 /**
  * Page Section Component
- * 
+ *
  * A component for creating consistent page sections with proper spacing and styling.
  * Use this to wrap content sections in pages for consistent styling.
  */
@@ -46,9 +46,7 @@ export const PageSection: React.FC<PageSectionProps> = ({
       id={id}
       className={`w-full ${spacingClasses[spacingY]} ${bgColorClasses[bgColor]} ${className}`}
     >
-      <div className="container mx-auto px-4">
-        {children}
-      </div>
+      <div className="container mx-auto px-4">{children}</div>
     </section>
   );
 };
@@ -68,7 +66,7 @@ export interface PageHeaderProps {
 
 /**
  * Page Header Component
- * 
+ *
  * A component for creating consistent page headers with title and optional description.
  */
 export const PageHeader: React.FC<PageHeaderProps> = ({
@@ -89,9 +87,7 @@ export const PageHeader: React.FC<PageHeaderProps> = ({
       )}
       <h1 className={`text-3xl md:text-5xl font-bold mb-6 ${titleClassName}`}>{title}</h1>
       {description && (
-        <p className={`text-lg text-gray-600 ${descriptionClassName}`}>
-          {description}
-        </p>
+        <p className={`text-lg text-gray-600 ${descriptionClassName}`}>{description}</p>
       )}
     </div>
   );
@@ -108,7 +104,7 @@ export interface PageContentProps {
 
 /**
  * Page Content Component
- * 
+ *
  * A component for creating consistent content sections within pages.
  */
 export const PageContent: React.FC<PageContentProps> = ({
@@ -125,9 +121,5 @@ export const PageContent: React.FC<PageContentProps> = ({
     full: '',
   };
 
-  return (
-    <div className={`${maxWidthClasses[maxWidth]} mx-auto ${className}`}>
-      {children}
-    </div>
-  );
-}; 
+  return <div className={`${maxWidthClasses[maxWidth]} mx-auto ${className}`}>{children}</div>;
+};

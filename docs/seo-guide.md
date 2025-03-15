@@ -34,7 +34,7 @@ export const metadata: Metadata = generatePageMetadata({
   canonicalPath: '/private-page',
   seo: {
     noIndex: true, // Prevents indexing
-  }
+  },
 });
 ```
 
@@ -65,19 +65,19 @@ export const metadata: Metadata = generatePageMetadata({
   pageType: 'custom',
   title: 'Advanced SEO Example',
   description: 'Example with advanced SEO controls',
-  
+
   // Advanced SEO controls
   seo: {
-    noIndex: true,           // Don't index this page
-    noFollow: false,         // Still follow links on this page
-    noCache: true,           // Don't cache this page
-    noArchive: true,         // Don't show cached version in search results
-    noSnippet: false,        // Allow snippets
-    maxSnippet: 150,         // Max snippet length
+    noIndex: true, // Don't index this page
+    noFollow: false, // Still follow links on this page
+    noCache: true, // Don't cache this page
+    noArchive: true, // Don't show cached version in search results
+    noSnippet: false, // Allow snippets
+    maxSnippet: 150, // Max snippet length
     maxImagePreview: 'large', // Image preview size ('none', 'standard', 'large')
-    maxVideoPreview: 0,      // Don't show video previews
+    maxVideoPreview: 0, // Don't show video previews
     unavailableAfter: '2023-12-31', // Remove from index after this date
-  }
+  },
 });
 ```
 
@@ -98,4 +98,4 @@ The following pages should generally not be indexed:
 2. **Use descriptive titles and descriptions**: Unique for each page
 3. **Control indexing appropriately**: Don't index pages that shouldn't be in search results
 4. **Test with search console**: Verify your settings work as expected
-5. **Update the sitemap**: When adding new pages that should be indexed 
+5. **Update the sitemap**: When adding new pages that should be indexed

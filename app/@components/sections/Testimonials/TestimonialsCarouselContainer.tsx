@@ -12,8 +12,8 @@ interface TestimonialsCarouselContainerProps {
  * Client component that receives testimonials data from server component
  * and renders the carousel with enhanced visual styling
  */
-const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps> = ({ 
-  testimonials 
+const TestimonialsCarouselContainer: React.FC<TestimonialsCarouselContainerProps> = ({
+  testimonials,
 }) => {
   // If no testimonials are provided, render placeholder
   if (!testimonials || testimonials.length === 0) {

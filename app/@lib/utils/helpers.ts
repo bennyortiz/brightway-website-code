@@ -4,9 +4,9 @@
 
 /**
  * Generate a random ID string
- * 
+ *
  * @returns Random string ID
- * 
+ *
  * @example
  * const id = generateId(); // "x7f9y2z"
  */
@@ -17,11 +17,11 @@ export function generateId(): string {
 /**
  * Creates a debounced function that delays invoking the provided function
  * until after the specified wait time has elapsed since the last invocation
- * 
+ *
  * @param func - The function to debounce
  * @param wait - The number of milliseconds to delay
  * @returns Debounced version of the function
- * 
+ *
  * @example
  * const debouncedSearch = debounce((term) => searchAPI(term), 300);
  */
@@ -35,4 +35,4 @@ export function debounce<T extends (...args: any[]) => any>(
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => func(...args), wait);
   };
-} 
+}

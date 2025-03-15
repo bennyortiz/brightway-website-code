@@ -1,9 +1,9 @@
 /**
  * NoIndex Component
- * 
+ *
  * A simple component to mark pages as non-indexable by search engines.
  * This component adds appropriate meta tags to prevent indexing.
- * 
+ *
  * Usage:
  * 1. Import at the top of your page: `import NoIndex from '@/app/@components/shared/NoIndex';`
  * 2. Add it anywhere in your page component: `<NoIndex />`
@@ -18,7 +18,7 @@ interface NoIndexProps {
 
 const NoIndex: React.FC<NoIndexProps> = ({ noFollow = false }) => {
   const content = noFollow ? 'noindex, nofollow' : 'noindex, follow';
-  
+
   return (
     <Head>
       <meta name="robots" content={content} />
@@ -27,4 +27,4 @@ const NoIndex: React.FC<NoIndexProps> = ({ noFollow = false }) => {
   );
 };
 
-export default NoIndex; 
+export default NoIndex;

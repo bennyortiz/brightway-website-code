@@ -27,11 +27,11 @@ const fallbackFaqData = [
 const FAQ = () => {
   // Use faqData if available, otherwise use fallback
   const faqCategories = faqData || fallbackFaqData;
-  
+
   // Track the active category and question
   const [activeCategory, setActiveCategory] = useState(0);
   const [activeQuestion, setActiveQuestion] = useState(0);
-  
+
   // Get currently selected FAQ item
   const selectedCategory = faqCategories[activeCategory];
   const selectedQuestion = selectedCategory?.items[activeQuestion] || { question: '', answer: '' };
@@ -40,11 +40,12 @@ const FAQ = () => {
     <section id="faq" className="w-full py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">FAQ</span>
+          <span className="inline-block text-sm font-bold tracking-wider text-primary uppercase bg-primary/10 px-4 py-1 rounded-full mb-3">
+            FAQ
+          </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Frequently Asked Questions</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about our commercial cleaning services. If you don't
-            see what you're looking for, please contact us.
+          <p className="text-lg text-gray-600 mb-8">
+            Here are some of our most frequently asked questions. Can&apos;t find what you&apos;re looking for?
           </p>
         </div>
 
@@ -53,9 +54,11 @@ const FAQ = () => {
           <div className="lg:col-span-5 space-y-8 h-full">
             {faqCategories.map((category, catIndex) => (
               <div key={catIndex} className="bg-white rounded-xl shadow-md overflow-hidden">
-                <h3 
+                <h3
                   className={`font-bold text-lg px-6 py-4 border-b cursor-pointer hover:bg-gray-50 transition-colors ${
-                    activeCategory === catIndex ? 'text-primary border-primary' : 'text-gray-800 border-gray-100'
+                    activeCategory === catIndex
+                      ? 'text-primary border-primary'
+                      : 'text-gray-800 border-gray-100'
                   }`}
                   onClick={() => setActiveCategory(catIndex)}
                 >
@@ -73,10 +76,12 @@ const FAQ = () => {
                         }`}
                         onClick={() => setActiveQuestion(qIndex)}
                       >
-                        <ChevronRight 
+                        <ChevronRight
                           className={`mr-2 h-4 w-4 flex-shrink-0 ${
-                            activeQuestion === qIndex && activeCategory === catIndex ? 'text-primary' : 'text-gray-400'
-                          }`} 
+                            activeQuestion === qIndex && activeCategory === catIndex
+                              ? 'text-primary'
+                              : 'text-gray-400'
+                          }`}
                         />
                         <span className="line-clamp-2">{item.question}</span>
                       </button>
@@ -86,22 +91,20 @@ const FAQ = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Right column - Answer display */}
           <div className="lg:col-span-7">
             <div className="bg-white rounded-xl shadow-md p-8 sticky top-24">
-              <h3 className="text-xl font-bold text-gray-800 mb-6">
-                {selectedQuestion.question}
-              </h3>
+              <h3 className="text-xl font-bold text-gray-800 mb-6">{selectedQuestion.question}</h3>
               <div className="prose prose-sm max-w-none text-gray-600">
                 {selectedQuestion.answer}
               </div>
-              
+
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <p className="text-gray-500 text-sm">Was this helpful?</p>
                 <div className="flex space-x-4 mt-2">
-                  <a 
-                    href="#contact" 
+                  <a
+                    href="#contact"
                     className="text-primary hover:text-primary-dark font-medium transition-colors text-sm"
                   >
                     Contact support

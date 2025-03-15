@@ -68,6 +68,6 @@ export const testimonials: TestimonialItem[] = [
 export async function getTestimonials(): Promise<TestimonialItem[]> {
   // Add artificial delay to simulate real API
   await new Promise((resolve) => setTimeout(resolve, 1500));
-  
+
   return testimonials;
 }

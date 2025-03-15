@@ -68,4 +68,4 @@ export interface BusinessInfo {
     days: string;
     hours: string;
   }[];
-} 
+}
