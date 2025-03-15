@@ -64,11 +64,8 @@ const FAQ = () => {
           </p>
         </div>
 
-        {/* Stats Section */}
-        <FAQStats />
-
-        {/* Category Tabs - Horizontal scrolling on mobile */}
-        <div className="mb-8 border-b border-gray-200 overflow-x-auto pb-1 flex flex-nowrap">
+        {/* Category Tabs - Desktop */}
+        <div className="hidden md:flex mb-8 border-b border-gray-200 overflow-x-auto pb-1 flex-nowrap">
           {faqCategories.map((category, index) => (
             <button
               key={index}
@@ -87,6 +84,27 @@ const FAQ = () => {
               {category.title}
             </button>
           ))}
+        </div>
+
+        {/* Mobile Category Selector */}
+        <div className="md:hidden mb-8">
+          <div className="relative">
+            <select
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(Number(e.target.value))}
+              className="block w-full rounded-lg border border-gray-300 bg-white py-3 px-4 pr-10 text-base focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/50 appearance-none"
+              aria-label="Select FAQ category"
+            >
+              {faqCategories.map((category, index) => (
+                <option key={index} value={index}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <ChevronDown className="h-5 w-5" />
+            </div>
+          </div>
         </div>
 
         {/* FAQ Accordion Items */}
@@ -121,51 +139,27 @@ const FAQ = () => {
           ))}
         </div>
 
-        {/* "View All FAQs" Link for mobile - Only visible if multiple categories exist */}
+        {/* Next/Previous Category Controls - Only for mobile */}
         {faqCategories.length > 1 && (
-          <div className="mt-6 text-center md:hidden">
+          <div className="mt-6 flex justify-between md:hidden">
             <button 
-              onClick={() => {
-                // Toggle between showing all categories and just the active one
-                // For simplicity, we'll just rotate through categories
-                setActiveCategory((activeCategory + 1) % faqCategories.length);
-              }}
-              className="text-primary font-medium text-sm underline underline-offset-4"
+              onClick={() => setActiveCategory((activeCategory - 1 + faqCategories.length) % faqCategories.length)}
+              className="text-primary font-medium text-sm flex items-center"
+              aria-label="Previous category"
             >
-              View next category: {faqCategories[(activeCategory + 1) % faqCategories.length].title}
+              <ChevronDown className="h-4 w-4 rotate-90 mr-1" />
+              Previous
+            </button>
+            <button 
+              onClick={() => setActiveCategory((activeCategory + 1) % faqCategories.length)}
+              className="text-primary font-medium text-sm flex items-center"
+              aria-label="Next category"
+            >
+              Next
+              <ChevronDown className="h-4 w-4 -rotate-90 ml-1" />
             </button>
           </div>
         )}
-
-        {/* Quick Navigation Cards - Desktop Only */}
-        <div className="hidden md:grid grid-cols-3 gap-6 mt-12">
-          {faqCategories.map((category, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveCategory(index)}
-              className={cn(
-                "p-6 text-center rounded-lg transition-all border",
-                activeCategory === index
-                  ? "bg-primary/5 border-primary shadow-sm"
-                  : "bg-white border-gray-200 hover:border-primary/30 hover:shadow-sm"
-              )}
-            >
-              <div className="flex justify-center mb-3">
-                <FAQCategoryIcon 
-                  category={category.title} 
-                  className={cn(
-                    "h-8 w-8",
-                    activeCategory === index ? "text-primary" : "text-gray-400"
-                  )} 
-                />
-              </div>
-              <h3 className="font-bold text-lg mb-2">{category.title}</h3>
-              <p className="text-sm text-gray-600">
-                {category.items.length} question{category.items.length !== 1 ? 's' : ''}
-              </p>
-            </button>
-          ))}
-        </div>
 
         {/* Contact CTA */}
         <div className="text-center mt-16 p-8 bg-gray-100 rounded-xl">
