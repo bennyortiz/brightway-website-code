@@ -45,13 +45,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ testimonials 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Check visibility after mounting
-  useEffect(() => {
-    // Give the browser time to render, then check if the testimonials are visible
-    setTimeout(() => {
-      const testimonialCards = document.querySelectorAll('.testimonial-carousel-item');
-    }, 1000);
-  }, []);
+  // No need for the empty useEffect
 
   // Navigation functions
   const goToPrevious = () => {
