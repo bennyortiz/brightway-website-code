@@ -99,7 +99,7 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Mission Statement Banner */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="blue-50" spacingY="lg" id="mission">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="lg" id="mission">
         <div className="max-w-7xl mx-auto">
           <div className="relative z-10 p-10 md:p-16 bg-primary text-white text-center rounded-lg">
             <div className="inline-block p-3 rounded-full bg-white/10 mb-6">
@@ -161,7 +161,7 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Call to Action */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="blue-50" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="lg">
         <div className="max-w-7xl mx-auto">
           <div className="text-center bg-primary p-10 md:p-16 rounded-lg">
             <h2 className="text-3xl font-bold mb-6 text-white">
@@ -183,8 +183,8 @@ export default function AboutUs() {
               </ButtonLink>
               <ButtonLink 
                 href="/services" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white/10"
+                variant="secondary" 
+                className="bg-primary-dark text-white hover:bg-primary-dark/90"
                 size="lg"
               >
                 Explore Our Services
