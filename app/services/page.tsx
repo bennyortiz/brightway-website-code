@@ -33,20 +33,34 @@ export default function ServicesPage() {
       {/* Quick Navigation */}
       <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="md">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-xl md:text-2xl font-semibold text-center mb-6">
-              Jump to a Service
-            </h2>
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-              {serviceItems.map(service => (
-                <a
-                  key={service.title}
-                  href={`#${createSlug(service.title)}`}
-                  className="px-4 py-2 rounded-full bg-gray-100 hover:bg-primary/10 text-gray-700 hover:text-primary transition-colors text-sm md:text-base"
-                >
-                  {service.title}
-                </a>
-              ))}
+          <div className="relative z-10">
+            <div className="sticky top-4 mb-12 pt-4">
+              <div className="bg-white shadow-md rounded-xl p-6 border border-gray-100">
+                <h2 className="text-xl font-semibold mb-5 flex items-center justify-center text-gray-800">
+                  <span className="w-8 h-1 bg-primary rounded-full mr-3"></span>
+                  Explore Our Services
+                  <span className="w-8 h-1 bg-primary rounded-full ml-3"></span>
+                </h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                  {serviceItems.map(service => {
+                    const slug = createSlug(service.title);
+                    return (
+                      <a
+                        key={service.title}
+                        href={`#${slug}`}
+                        className="flex flex-col items-center p-3 rounded-lg hover:bg-primary/5 transition-colors group"
+                      >
+                        <div className="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mb-2 group-hover:bg-primary/20 transition-colors">
+                          {getServiceIcon(service.title, 'w-6 h-6 text-primary')}
+                        </div>
+                        <span className="text-sm text-center text-gray-700 group-hover:text-primary font-medium">
+                          {service.title}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
