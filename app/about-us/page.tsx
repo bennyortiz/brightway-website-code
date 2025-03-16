@@ -99,9 +99,9 @@ export default function AboutUs() {
       </PageSection>
 
       {/* Mission Statement Banner */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="lg" id="mission">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="blue-50" spacingY="lg" id="mission">
         <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 p-10 md:p-16 text-white text-center">
+          <div className="relative z-10 p-10 md:p-16 bg-primary text-white text-center rounded-lg">
             <div className="inline-block p-3 rounded-full bg-white/10 mb-6">
               <Shield className="h-10 w-10 text-white" />
             </div>
@@ -160,77 +160,10 @@ export default function AboutUs() {
         </div>
       </PageSection>
 
-      {/* Team Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="gray-50" spacingY="lg" id="team">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our Leadership Team</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                <SafeImage
-                  src="/images/team-placeholder.jpg"
-                  alt="John Doe"
-                  width={160}
-                  height={160}
-                  className="object-cover h-full w-full"
-                  placement="mid-page"
-                />
-              </div>
-              <h3 className="text-xl font-semibold mb-1">John Doe</h3>
-              <p className="text-primary font-medium mb-3">Founder & CEO</p>
-              <p className="text-gray-600">
-                With over 20 years of experience in commercial cleaning, John founded Brightway
-                Cleaning with a vision to provide exceptional service to businesses throughout
-                DFW.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                <SafeImage
-                  src="/images/team-placeholder.jpg"
-                  alt="Jane Smith"
-                  width={160}
-                  height={160}
-                  className="object-cover h-full w-full"
-                  placement="mid-page"
-                />
-              </div>
-              <h3 className="text-xl font-semibold mb-1">Jane Smith</h3>
-              <p className="text-primary font-medium mb-3">Operations Director</p>
-              <p className="text-gray-600">
-                Jane ensures our daily operations run smoothly and efficiently. Her attention to
-                detail and commitment to excellence are reflected in every aspect of our service
-                delivery.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-md text-center">
-              <div className="w-40 h-40 rounded-full overflow-hidden mx-auto mb-4">
-                <SafeImage
-                  src="/images/team-placeholder.jpg"
-                  alt="Michael Johnson"
-                  width={160}
-                  height={160}
-                  className="object-cover h-full w-full"
-                  placement="mid-page"
-                />
-              </div>
-              <h3 className="text-xl font-semibold mb-1">Michael Johnson</h3>
-              <p className="text-primary font-medium mb-3">Client Relations Manager</p>
-              <p className="text-gray-600">
-                Michael builds and maintains strong relationships with our clients, ensuring their
-                needs are met and expectations are exceeded with every service.
-              </p>
-            </div>
-          </div>
-        </div>
-      </PageSection>
-
       {/* Call to Action */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="lg">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="blue-50" spacingY="lg">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center">
+          <div className="text-center bg-primary p-10 md:p-16 rounded-lg">
             <h2 className="text-3xl font-bold mb-6 text-white">
               Ready to Experience the Brightway Difference?
             </h2>
