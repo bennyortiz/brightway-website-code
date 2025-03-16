@@ -211,3 +211,74 @@ p.hero-text {
   display: flex !important;
   flex-direction: column !important;
 }
+
+/* Layout shift prevention */
+.layout-stable {
+  content-visibility: auto;
+  contain: layout style paint;
+}
+
+/* Contact form layout stability */
+#contact {
+  container-type: inline-size;
+  contain-intrinsic-size: auto 700px;
+}
+
+#contact .grid {
+  contain: layout;
+}
+
+/* Prevent layout shift during font loading */
+.text-center h2,
+.heading-stable {
+  min-height: 1.5em;
+  font-size-adjust: 0.5;
+}
+
+/* Ensure consistent heading sizes */
+h2.heading-stable {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  h2.heading-stable {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* Stabilize grid layouts */
+.grid {
+  grid-template-rows: auto;
+  grid-auto-rows: min-content;
+}
+
+/* Cards with stable dimensions */
+.card-stable {
+  min-height: 300px;
+  contain: layout style;
+}
+
+/* Contact section specific optimization */
+#contact {
+  display: flex;
+  flex-direction: column;
+}
+
+#contact div {
+  box-sizing: border-box;
+}
+
+/* Make sure contact form has consistent height across devices */
+@media (max-width: 768px) {
+  #contact form {
+    min-height: 350px;
+  }
+}
+
+@media (min-width: 769px) {
+  #contact form {
+    min-height: 450px;
+  }
+}
