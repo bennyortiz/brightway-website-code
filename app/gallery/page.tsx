@@ -3,7 +3,7 @@ import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { PageTemplate, PageSection } from '@/app/@lib/page-utils';
 import SafeImage from '@/app/@components/ui/safe-image';
 import { ButtonLink } from '@/app/@components/ui/buttons';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Filter } from 'lucide-react';
 
 /**
  * Page Metadata
@@ -62,6 +62,9 @@ const galleryItems = [
   },
 ];
 
+// Get unique categories for filtering
+const categories = ['All', ...Array.from(new Set(galleryItems.map(item => item.category)))];
+
 export default function GalleryPage() {
   return (
     <PageTemplate
@@ -69,6 +72,25 @@ export default function GalleryPage() {
       description="Browse through our portfolio of commercial cleaning projects to see the quality and thoroughness of our services in action."
       headerOptions={{ fullWidth: true, centered: true }}
     >
+      {/* Category Filter */}
+      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center flex-wrap gap-3 mb-8">
+            <span className="text-sm font-medium text-gray-700 mr-2 flex items-center">
+              <Filter className="h-4 w-4 mr-1"/> Filter by:
+            </span>
+            {categories.map(category => (
+              <button
+                key={category}
+                className="px-4 py-2 rounded-full text-sm bg-gray-100 hover:bg-primary/10 text-gray-700 hover:text-primary transition-colors"
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+      </PageSection>
+
       {/* Gallery Grid Section */}
       <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,23 +98,25 @@ export default function GalleryPage() {
             {galleryItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 flex flex-col h-full"
+                className="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full transform hover:-translate-y-1"
               >
-                <div className="relative h-56 md:h-64 w-full">
+                <div className="relative h-56 md:h-64 w-full overflow-hidden">
                   <SafeImage
                     src={item.imageUrl}
                     alt={item.title}
                     width={600}
                     height={400}
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                     placement="mid-page"
                   />
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="inline-block px-3 py-1 text-xs font-semibold bg-primary/10 text-primary rounded-full">
+                      {item.category}
+                    </span>
+                  </div>
                 </div>
                 <div className="p-5 md:p-6 flex-grow">
-                  <span className="inline-block px-3 py-1 text-sm font-semibold bg-primary/10 text-primary rounded-full mb-3">
-                    {item.category}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800">{item.title}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800 group-hover:text-primary transition-colors">{item.title}</h3>
                   <p className="text-gray-600 text-sm md:text-base">{item.description}</p>
                 </div>
               </div>
@@ -101,12 +125,15 @@ export default function GalleryPage() {
         </div>
       </PageSection>
 
-      {/* Features Section */}
+      {/* Services Overview */}
       <PageSection contentWidth="container" maxWidth="full" bgColor="gray-50" spacingY="xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Why Choose Our Cleaning Services</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Our Cleaning Services</h2>
             <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+              We offer a comprehensive range of professional cleaning services tailored to your specific needs.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
@@ -136,52 +163,6 @@ export default function GalleryPage() {
               <p className="text-gray-600 text-sm md:text-base">
                 We work around your schedule to minimize disruption to your business.
               </p>
-            </div>
-          </div>
-        </div>
-      </PageSection>
-
-      {/* Testimonial section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Client Testimonials</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100">
-              <p className="italic text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
-                &quot;Brightway Cleaning has been maintaining our office space for over 3 years, and
-                the level of service has been consistently excellent. Their attention to detail makes
-                our workspace shine!&quot;
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-primary/10 mr-4 flex items-center justify-center text-primary font-bold">
-                  SJ
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-800">Sarah Johnson</p>
-                  <p className="text-sm text-gray-500">Office Manager, TechCorp</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100">
-              <p className="italic text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
-                &quot;As a medical facility, cleanliness is paramount. Brightway understands our
-                specialized needs and delivers superior sanitization services that meet our strict
-                standards.&quot;
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-primary/10 mr-4 flex items-center justify-center text-primary font-bold">
-                  MC
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-800">Dr. Michael Chen</p>
-                  <p className="text-sm text-gray-500">Director, HealthFirst Clinic</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
