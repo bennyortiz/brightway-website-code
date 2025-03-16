@@ -20,7 +20,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   backgroundPattern = true,
 }) => {
   return (
-    <section className="relative bg-white py-16 md:py-24 overflow-hidden">
+    <section className="relative bg-white py-14 md:py-20 overflow-hidden">
       {backgroundPattern && (
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] bg-repeat"></div>

@@ -70,15 +70,15 @@ export default function GalleryPage() {
       headerOptions={{ fullWidth: true, centered: true }}
     >
       {/* Gallery Grid Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="lg">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {galleryItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 flex flex-col h-full"
               >
-                <div className="relative h-64 w-full">
+                <div className="relative h-56 md:h-64 w-full">
                   <SafeImage
                     src={item.imageUrl}
                     alt={item.title}
@@ -88,12 +88,12 @@ export default function GalleryPage() {
                     placement="mid-page"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-5 md:p-6 flex-grow">
                   <span className="inline-block px-3 py-1 text-sm font-semibold bg-primary/10 text-primary rounded-full mb-3">
                     {item.category}
                   </span>
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
+                  <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-800">{item.title}</h3>
+                  <p className="text-gray-600 text-sm md:text-base">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -102,35 +102,38 @@ export default function GalleryPage() {
       </PageSection>
 
       {/* Features Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="gray-50" spacingY="lg">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Why Choose Our Cleaning Services</h2>
+      <PageSection contentWidth="container" maxWidth="full" bgColor="gray-50" spacingY="xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Why Choose Our Cleaning Services</h2>
+            <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Professional Team</h3>
-              <p className="text-gray-600">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Professional Team</h3>
+              <p className="text-gray-600 text-sm md:text-base">
                 Our cleaners are trained, insured, and background-checked professionals.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Quality Guaranteed</h3>
-              <p className="text-gray-600">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Quality Guaranteed</h3>
+              <p className="text-gray-600 text-sm md:text-base">
                 We guarantee the quality of our work with a satisfaction guarantee on every job.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Eco-Friendly</h3>
-              <p className="text-gray-600">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Eco-Friendly</h3>
+              <p className="text-gray-600 text-sm md:text-base">
                 We use environmentally safe cleaning products whenever possible.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-sm">
-              <h3 className="text-xl font-semibold mb-4 text-primary">Flexible Scheduling</h3>
-              <p className="text-gray-600">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
+              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Flexible Scheduling</h3>
+              <p className="text-gray-600 text-sm md:text-base">
                 We work around your schedule to minimize disruption to your business.
               </p>
             </div>
@@ -139,36 +142,43 @@ export default function GalleryPage() {
       </PageSection>
 
       {/* Testimonial section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="lg">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-12 text-center">Client Testimonials</h2>
+      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Client Testimonials</h2>
+            <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+          </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <p className="italic text-gray-700 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100">
+              <p className="italic text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
                 &quot;Brightway Cleaning has been maintaining our office space for over 3 years, and
                 the level of service has been consistently excellent. Their attention to detail makes
                 our workspace shine!&quot;
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+                <div className="w-12 h-12 rounded-full bg-primary/10 mr-4 flex items-center justify-center text-primary font-bold">
+                  SJ
+                </div>
                 <div>
-                  <p className="font-semibold">Sarah Johnson</p>
+                  <p className="font-semibold text-gray-800">Sarah Johnson</p>
                   <p className="text-sm text-gray-500">Office Manager, TechCorp</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 rounded-xl shadow-md">
-              <p className="italic text-gray-700 mb-6">
+            <div className="bg-white p-6 md:p-8 rounded-xl shadow-md border border-gray-100">
+              <p className="italic text-gray-700 mb-6 text-sm md:text-base leading-relaxed">
                 &quot;As a medical facility, cleanliness is paramount. Brightway understands our
                 specialized needs and delivers superior sanitization services that meet our strict
                 standards.&quot;
               </p>
               <div className="flex items-center">
-                <div className="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+                <div className="w-12 h-12 rounded-full bg-primary/10 mr-4 flex items-center justify-center text-primary font-bold">
+                  MC
+                </div>
                 <div>
-                  <p className="font-semibold">Dr. Michael Chen</p>
+                  <p className="font-semibold text-gray-800">Dr. Michael Chen</p>
                   <p className="text-sm text-gray-500">Director, HealthFirst Clinic</p>
                 </div>
               </div>
@@ -178,11 +188,11 @@ export default function GalleryPage() {
       </PageSection>
 
       {/* CTA Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="lg">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">Ready to Transform Your Space?</h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-8 md:py-12 px-4 md:px-8 rounded-xl bg-primary-dark/30 backdrop-blur-sm">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">Ready to Transform Your Space?</h2>
+            <p className="text-base md:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto">
               Contact us today for a free consultation and quote for your commercial cleaning needs.
             </p>
             <ButtonLink 
