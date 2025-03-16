@@ -25,7 +25,8 @@
     
     // Create and add the script element
     var script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/core-js/3.32.2/minified.min.js';
+    // Use locally bundled version instead of CDN to avoid third-party request
+    script.src = '/_next/static/chunks/polyfills/core-js-bundle.min.js';
     script.async = true;
     script.defer = true;
     script.onload = function() {
