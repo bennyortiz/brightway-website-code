@@ -23,6 +23,8 @@ export function middleware(request: NextRequest) {
       pathname.startsWith('/_next/static/') ||
       pathname.startsWith('/images/') ||
       pathname.startsWith('/fonts/') ||
+      pathname.startsWith('/insights/') ||
+      pathname.startsWith('/speed-insights/') ||
       pathname.endsWith('.jpg') ||
       pathname.endsWith('.png') ||
       pathname.endsWith('.svg') ||
@@ -62,5 +64,8 @@ export const config = {
   matcher: [
     // Apply to all routes except specific Next.js paths
     '/((?!_next/static|_next/image|favicon.ico).*)',
+    // Explicitly include speed-insights and insights paths
+    '/insights/:path*',
+    '/speed-insights/:path*'
   ],
 };
