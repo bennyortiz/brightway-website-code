@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import HeroContent from './HeroContent';
-import SafeImage from '../../ui/safe-image';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Dynamically import motion components to reduce initial bundle size
@@ -21,7 +21,7 @@ const MotionDiv = dynamic(
  * Optimized for better LCP and overall performance by:
  * 1. Server-rendering critical content
  * 2. Lazy-loading non-critical components
- * 3. Optimizing image loading strategy
+ * 3. Using direct Next.js Image component with proper optimization settings
  */
 const Hero = () => {
   return (
@@ -33,30 +33,20 @@ const Hero = () => {
             <HeroContent />
           </Suspense>
 
-          {/* Image section - client rendered with optimizations */}
+          {/* Image section - high performance implementation */}
           <div className="mt-10 md:mt-0 md:w-1/2 flex justify-center md:justify-end">
-            <MotionDiv
-              className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                type: 'spring',
-                damping: 25,
-                stiffness: 100,
-                delay: 0.2,
-              }}
-            >
-              <SafeImage
+            <div className="relative w-full max-w-lg aspect-square rounded-2xl overflow-hidden shadow-2xl" style={{ minHeight: '400px', minWidth: '400px' }}>
+              <Image 
                 src="/images/brightway-commercial-hallway.jpg"
                 alt="Brightway Commercial Hallway Cleaning"
-                fallbackText="Commercial Hallway Cleaning"
-                priority={true}
-                placement="hero"
-                quality={90}
+                fill
+                priority
+                quality={85}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="w-full h-full object-cover transition-opacity duration-300"
+                className="w-full h-full object-cover"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </div>

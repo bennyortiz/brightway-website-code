@@ -169,3 +169,46 @@ For team members and contributors:
 3. Ensure all tests pass
 4. Keep accessibility in mind for all UI components
 5. Optimize for performance and SEO
+
+## Image Handling
+
+### Image Implementation
+
+For optimal image display and performance:
+
+1. **Direct Next.js Image Component:** For critical above-the-fold images, use the Next.js Image component directly with `fill` and proper styling:
+
+```tsx
+<div className="relative aspect-video">
+  <Image
+    src="/images/example.jpg"
+    alt="Description"
+    fill
+    priority
+    quality={85}
+    sizes="(max-width: 768px) 100vw, 50vw"
+    className="object-cover"
+    style={{ objectFit: 'cover', objectPosition: 'center' }}
+  />
+</div>
+```
+
+2. **SafeImage Component:** For less critical images, use the SafeImage component which provides additional error handling:
+
+```tsx
+<SafeImage
+  src="/images/example.jpg"
+  alt="Description"
+  placement="mid-page"
+  className="object-cover"
+/>
+```
+
+### Troubleshooting
+
+If images aren't displaying correctly:
+
+1. Run `npm run clean` to clear the Next.js cache
+2. Ensure the image path is correct 
+3. Check the Next.js image optimization settings in `next.config.js`
+4. Use direct Image components for critical images

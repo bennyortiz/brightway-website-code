@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" viewBox="0 0 200 220" fill="none">
+  <!-- Font definitions -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
+    text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+  </style>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="80" r="64" fill="#0070f3" />
+  
+  <!-- Perfectly centered B letterform -->
+  <path d="M76 48H108C116.837 48 124 55.1634 124 64C124 72.8366 116.837 80 108 80H76V48Z" fill="white" opacity="0.85" />
+  <path d="M76 80H112C120.837 80 128 87.1634 128 96C128 104.837 120.837 112 112 112H76V80Z" fill="white" />
+  
+  <!-- Brightway Text (Centered below) -->
+  <text x="40" y="170" font-size="24" fill="#0070f3">BRIGHTWAY</text>
+</svg> 

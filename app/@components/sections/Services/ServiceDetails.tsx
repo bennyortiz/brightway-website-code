@@ -88,8 +88,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({
             src={imgSrc}
             alt={imgAlt}
             fill
-            className="object-cover"
+            className="object-cover w-full h-full"
             sizes="(max-width: 768px) 100vw, 50vw"
+            style={{ position: 'absolute', objectFit: 'cover', inset: 0 }}
           />
         </div>
       </div>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="600" viewBox="0 0 1050 600" fill="none">
+  <!-- Font definitions -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap');
+    .logo-text { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+    .contact-info { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+    .name { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600; }
+    .title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; }
+  </style>
+
+  <!-- Card background -->
+  <rect width="1050" height="600" rx="20" fill="white" />
+  
+  <!-- Blue accent area -->
+  <rect width="1050" height="100" rx="20" fill="#0070f3" />
+  
+  <!-- Logo and company name -->
+  <g transform="translate(60, 200)">
+    <!-- Background circle -->
+    <circle cx="32" cy="32" r="32" fill="#0070f3" />
+    
+    <!-- Perfectly centered B letterform -->
+    <path d="M20 16H36C40.4183 16 44 19.5817 44 24C44 28.4183 40.4183 32 36 32H20V16Z" fill="white" opacity="0.85" />
+    <path d="M20 32H38C42.4183 32 46 35.5817 46 40C46 44.4183 42.4183 48 38 48H20V32Z" fill="white" />
+    
+    <!-- Brightway Text -->
+    <text x="80" y="39" font-size="32" fill="#0070f3" class="logo-text">BRIGHTWAY</text>
+    <text x="80" y="65" font-size="18" fill="#666666" class="logo-text">CLEANING</text>
+  </g>
+
+  <!-- Contact information -->
+  <g transform="translate(60, 350)">
+    <text y="30" font-size="20" fill="#333333" class="name">YOUR NAME</text>
+    <text y="60" font-size="16" fill="#666666" class="title">Position Title</text>
+    
+    <text y="100" font-size="14" fill="#666666" class="contact-info">Email: contact@brightwaycleaning.com</text>
+    <text y="130" font-size="14" fill="#666666" class="contact-info">Phone: (555) 123-4567</text>
+    <text y="160" font-size="14" fill="#666666" class="contact-info">Web: www.brightwaycleaning.com</text>
+    <text y="190" font-size="14" fill="#666666" class="contact-info">Address: 1234 Cleaning Way, Bedford, TX 76021</text>
+  </g>
+</svg> 

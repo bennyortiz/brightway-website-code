@@ -18,12 +18,12 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
           {/* Left Column - Image */}
           <div className="lg:col-span-5 flex items-stretch">
-            <div className="relative w-full rounded-xl overflow-hidden shadow-md h-full">
+            <div className="relative w-full rounded-xl overflow-hidden shadow-md h-full min-h-[400px]">
               <SafeImage
                 src="/images/brightway-commercial-cleaning-wiping.jpg"
                 alt="Brightway Professional Cleaning Team"
                 fallbackText="Professional Cleaning Team"
-                loading="lazy"
+                placement="above-fold"
                 className="object-cover object-center h-full"
               />
             </div>

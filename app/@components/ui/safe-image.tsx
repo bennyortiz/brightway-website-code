@@ -44,26 +44,35 @@ export default function SafeImage({
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [imageSrc, setImageSrc] = useState(src);
   
-  // Use WebP version if available
-  const imageSrc = useBestImageFormat(src);
-
-  // Set isMounted to true after component mounts
+  // Use WebP version if available, with fallback
   useEffect(() => {
     setIsMounted(true);
     
-    // Check if the source is valid
-    if (imageSrc) {
-      // Attempt to pre-load the image to catch any immediate errors
-      const img = new globalThis.Image();
-      img.src = imageSrc;
-      img.onerror = () => {
-        setHasError(true);
-        setIsLoading(false);
-        console.error(`Failed to preload image: ${imageSrc}`);
-      };
-    }
-  }, [imageSrc]);
+    // Always use the original source rather than trying WebP conversion
+    setImageSrc(src);
+    
+    // Pre-load the image to detect any issues
+    const img = new globalThis.Image();
+    img.src = src;
+    
+    img.onload = () => {
+      setIsLoading(false);
+    };
+    
+    img.onerror = () => {
+      console.error(`Failed to load image: ${src}`);
+      setHasError(true);
+      setIsLoading(false);
+    };
+    
+    // Cleanup function
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src]);
 
   // Determine priority based on placement if not explicitly set
   // Only use priority for true hero images to avoid excessive preloading
@@ -116,8 +125,16 @@ export default function SafeImage({
   // Handle image load error
   const handleError = () => {
     setIsLoading(false);
-    setHasError(true);
-    console.error(`Failed to load image: ${imageSrc}`);
+    
+    // If the current src is already the original (non-WebP), then we have a real error
+    if (imageSrc === src) {
+      setHasError(true);
+      console.error(`Failed to load image: ${imageSrc}`);
+    } else {
+      // Try falling back to original format
+      console.log(`Falling back to original image format: ${src}`);
+      setImageSrc(src);
+    }
   };
 
   // Aspect ratio for skeleton
@@ -141,7 +158,7 @@ export default function SafeImage({
 
   // Always render the image, but conditionally apply opacity and transition
   return (
-    <div className="image-container" style={computedStyle}>
+    <div className="image-container relative w-full h-full" style={computedStyle}>
       {isLoading && <ImageSkeleton aspectRatio={aspectRatio} className={className} />}
 
       {(isMounted || !hasError) && (
@@ -149,15 +166,21 @@ export default function SafeImage({
           src={imageSrc}
           alt={alt || fallbackText || 'Image'}
           className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-          fill={!width || !height}
-          width={width}
-          height={height}
+          fill={true}
+          width={width || undefined}
+          height={height || undefined}
           sizes={imageSizes}
           priority={shouldPrioritize}
           loading={loadingStrategy}
           quality={imageQuality}
           onLoad={handleLoadingComplete}
           onError={handleError}
+          style={{ 
+            objectFit: 'cover', 
+            objectPosition: 'center',
+            position: 'absolute',
+            inset: 0
+          }}
         />
       )}
 
@@ -172,7 +195,6 @@ export default function SafeImage({
 
 /**
  * Helper function to determine the best available image format
- * Checks if WebP version exists for the given image path
  */
 function useBestImageFormat(src: string): string {
   // If no src provided, return as is
@@ -181,21 +203,6 @@ function useBestImageFormat(src: string): string {
   // If already using a modern format, return as is
   if (src.endsWith('.webp') || src.endsWith('.avif')) return src;
   
-  // Default to original source if client-side detection not available
-  if (typeof window === 'undefined') return src;
-  
-  // For local images in the public folder, try to use the WebP version
-  if (src.startsWith('/')) {
-    // Extract file extension and path
-    const lastDotIndex = src.lastIndexOf('.');
-    if (lastDotIndex === -1) return src; // No extension found
-    
-    const pathWithoutExtension = src.substring(0, lastDotIndex);
-    
-    // Use WebP version
-    return `${pathWithoutExtension}.webp`;
-  }
-  
-  // For external images, return as is (Next.js Image component will optimize)
+  // For local images in the public folder, prefer original format for compatibility
   return src;
 }

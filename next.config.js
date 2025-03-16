@@ -144,7 +144,6 @@ const nextConfig = {
   output: 'standalone',
 
   // Image optimization configuration
-  // Controls which external images can be optimized and what formats to use
   images: {
     // Define which remote patterns are allowed for image optimization
     remotePatterns: [
@@ -154,13 +153,17 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    // Enable optimization for production
+    unoptimized: process.env.NODE_ENV === 'development', // Disable only in development for faster builds
     // Specify which next-gen image formats to use
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
     // Reduce the impact of images on Core Web Vitals with proper sizing
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Improve LCP by minimizing image size while maintaining visual quality
-    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+    // Cache configuration
+    minimumCacheTTL: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 : 60, // 1 day in production, 1 minute in dev
+    // Security settings
+    dangerouslyAllowSVG: true,
   },
 
   // External packages to be bundled with server components
