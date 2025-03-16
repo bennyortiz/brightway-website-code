@@ -2,8 +2,7 @@ import { Metadata } from 'next';
 import { generatePageMetadata } from '@/app/@lib/utils/metadata';
 import { PageTemplate, PageSection } from '@/app/@lib/page-utils';
 import SafeImage from '@/app/@components/ui/safe-image';
-import { ButtonLink } from '@/app/@components/ui/buttons';
-import { ChevronRight, Filter } from 'lucide-react';
+import { Filter } from 'lucide-react';
 
 /**
  * Page Metadata
@@ -72,10 +71,11 @@ export default function GalleryPage() {
       description="Browse through our portfolio of commercial cleaning projects to see the quality and thoroughness of our services in action."
       headerOptions={{ fullWidth: true, centered: true }}
     >
-      {/* Category Filter */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="md">
+      {/* Gallery Section with Filter */}
+      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center flex-wrap gap-3 mb-8">
+          {/* Category Filter */}
+          <div className="flex items-center justify-center flex-wrap gap-3 mb-10">
             <span className="text-sm font-medium text-gray-700 mr-2 flex items-center">
               <Filter className="h-4 w-4 mr-1"/> Filter by:
             </span>
@@ -88,12 +88,8 @@ export default function GalleryPage() {
               </button>
             ))}
           </div>
-        </div>
-      </PageSection>
 
-      {/* Gallery Grid Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="white" spacingY="xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Gallery Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {galleryItems.map((item) => (
               <div
@@ -121,70 +117,6 @@ export default function GalleryPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </PageSection>
-
-      {/* Services Overview */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="gray-50" spacingY="xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">Our Cleaning Services</h2>
-            <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
-            <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-              We offer a comprehensive range of professional cleaning services tailored to your specific needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Professional Team</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                Our cleaners are trained, insured, and background-checked professionals.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Quality Guaranteed</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                We guarantee the quality of our work with a satisfaction guarantee on every job.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Eco-Friendly</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                We use environmentally safe cleaning products whenever possible.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 h-full">
-              <h3 className="text-lg md:text-xl font-semibold mb-3 text-primary">Flexible Scheduling</h3>
-              <p className="text-gray-600 text-sm md:text-base">
-                We work around your schedule to minimize disruption to your business.
-              </p>
-            </div>
-          </div>
-        </div>
-      </PageSection>
-
-      {/* CTA Section */}
-      <PageSection contentWidth="container" maxWidth="full" bgColor="primary-light" spacingY="xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center py-8 md:py-12 px-4 md:px-8 rounded-xl bg-primary-dark/30 backdrop-blur-sm">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-white">Ready to Transform Your Space?</h2>
-            <p className="text-base md:text-xl text-white/90 mb-6 md:mb-8 max-w-2xl mx-auto">
-              Contact us today for a free consultation and quote for your commercial cleaning needs.
-            </p>
-            <ButtonLink 
-              href="/contact" 
-              variant="primary"
-              className="bg-white text-primary hover:bg-white/90"
-              size="lg"
-              rightIcon={<ChevronRight className="ml-1 h-4 w-4" />}
-            >
-              Request a Quote
-            </ButtonLink>
           </div>
         </div>
       </PageSection>
