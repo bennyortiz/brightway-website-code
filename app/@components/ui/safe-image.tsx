@@ -47,7 +47,19 @@ export default function SafeImage({
   // Set isMounted to true after component mounts
   useEffect(() => {
     setIsMounted(true);
-  }, []);
+    
+    // Check if the source is valid
+    if (src) {
+      // Attempt to pre-load the image to catch any immediate errors
+      const img = new globalThis.Image();
+      img.src = src;
+      img.onerror = () => {
+        setHasError(true);
+        setIsLoading(false);
+        console.error(`Failed to preload image: ${src}`);
+      };
+    }
+  }, [src]);
 
   // Determine priority based on placement if not explicitly set
   // Only use priority for true hero images to avoid excessive preloading
@@ -123,12 +135,12 @@ export default function SafeImage({
     computedStyle.aspectRatio = `${width} / ${height}`;
   }
 
-  // Only render image after component mounts to avoid hydration mismatches with sizes
+  // Always render the image, but conditionally apply opacity and transition
   return (
     <div className="image-container" style={computedStyle}>
       {isLoading && <ImageSkeleton aspectRatio={aspectRatio} className={className} />}
 
-      {isMounted && (
+      {(isMounted || !hasError) && (
         <Image
           src={src}
           alt={alt || fallbackText || 'Image'}

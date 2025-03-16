@@ -26,17 +26,25 @@
     // Create and add the script element
     var script = document.createElement('script');
     // Use locally bundled version instead of CDN to avoid third-party request
-    script.src = '/_next/static/chunks/polyfills/core-js-bundle.min.js';
-    script.async = true;
-    script.defer = true;
+    script.src = '/static/chunks/polyfills/core-js-bundle.min.js';
+    script.async = false; // Changed to false to ensure it loads before other scripts
+    script.defer = false; // Changed to false to ensure it loads before other scripts
     script.onload = function() {
       console.debug('Polyfills loaded successfully');
+      // Force a refresh of the page if needed
+      // window.location.reload();
     };
     script.onerror = function() {
       console.warn('Failed to load polyfills, but site functionality should not be affected');
     };
     
-    document.head.appendChild(script);
+    // Add to head at the beginning for fastest loading
+    var head = document.getElementsByTagName('head')[0];
+    if (head.firstChild) {
+      head.insertBefore(script, head.firstChild);
+    } else {
+      head.appendChild(script);
+    }
   } else {
     console.debug('Modern browser detected, skipping polyfills');
   }
