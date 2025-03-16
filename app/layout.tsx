@@ -157,6 +157,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
         {/* No external font loading - using Next.js font optimization instead */}
+        
+        {/* Modern browsers only script - will be ignored by older browsers */}
+        <script type="module" dangerouslySetInnerHTML={{ 
+          __html: `
+            console.log("Modern browser detected - using ES modules");
+            window.IS_MODERN_BROWSER = true;
+          ` 
+        }} />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* Skip to content link for keyboard accessibility */}
@@ -170,7 +178,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* Load polyfill script via client component */}
+        {/* Load polyfill script via client component - only for legacy browsers */}
         <PolyfillScript />
       </body>
     </html>
