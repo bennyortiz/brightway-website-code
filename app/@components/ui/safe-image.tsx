@@ -117,9 +117,15 @@ export default function SafeImage({
     }
   }
 
+  // Compute styles for the container to prevent layout shifts
+  const computedStyle: React.CSSProperties = {};
+  if (width && height && !className?.includes('w-full') && !className?.includes('h-full')) {
+    computedStyle.aspectRatio = `${width} / ${height}`;
+  }
+
   // Only render image after component mounts to avoid hydration mismatches with sizes
   return (
-    <>
+    <div className="image-container" style={computedStyle}>
       {isLoading && <ImageSkeleton aspectRatio={aspectRatio} className={className} />}
 
       {isMounted && (
@@ -144,6 +150,6 @@ export default function SafeImage({
           {fallbackText || alt || 'Image could not be loaded'}
         </div>
       )}
-    </>
+    </div>
   );
 }

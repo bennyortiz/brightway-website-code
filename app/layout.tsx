@@ -15,7 +15,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { siteConfig } from './@lib/constants/siteConfig';
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import dynamic from 'next/dynamic';
@@ -29,13 +29,22 @@ const PolyfillScript = dynamic(() => import('./@components/shared/PolyfillScript
 /**
  * Font Configuration
  *
- * Using Next.js built-in font optimization for Plus Jakarta Sans
+ * Using Next.js built-in font optimization for fonts
  * This automatically handles font loading, preloading, and CSS generation
  */
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-plus-jakarta-sans',
+  preload: true,
+  fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+  weight: ['400', '500', '600', '700'],
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
   preload: true,
   fallback: ['system-ui', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
   weight: ['400', '500', '600', '700'],
@@ -138,7 +147,7 @@ export const viewport = {
  */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={plusJakartaSans.variable}>
+    <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <head>
         {/* Connection optimization for critical domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -147,11 +156,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* DNS prefetch for third-party services */}
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-        {/* Inter font already loaded via Google Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
+        {/* Remove external font loading since we're using Next.js font optimization */}
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* Skip to content link for keyboard accessibility */}
