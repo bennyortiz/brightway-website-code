@@ -149,14 +149,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <head>
-        {/* Connection optimization for critical domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Connection optimization for critical domains - but no actual loading of fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
         {/* DNS prefetch for third-party services */}
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
 
-        {/* Remove external font loading since we're using Next.js font optimization */}
+        {/* No external font loading - using Next.js font optimization instead */}
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
         {/* Skip to content link for keyboard accessibility */}
