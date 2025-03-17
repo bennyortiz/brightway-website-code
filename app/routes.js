@@ -24,6 +24,22 @@ export const routes = {
     // Add specific service area routes here when created
   },
 
+  // City-specific service pages
+  servicePages: {
+    root: '/services',
+    getCityService: (city, service) => `/services/${city}/${service}`,
+    getCityServices: (city) => `/services/${city}`,
+  },
+
+  // Blog pages
+  blog: {
+    root: '/blog',
+    post: (slug) => `/blog/${slug}`,
+    category: (category) => `/blog/category/${category}`,
+    tag: (tag) => `/blog/tag/${tag}`,
+    author: (author) => `/blog/author/${author}`,
+  },
+
   // Direct anchor links
   anchors: {
     getQuote: '/#contact',

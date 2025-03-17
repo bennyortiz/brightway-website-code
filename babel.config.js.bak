@@ -1,0 +1,64 @@
+module.exports = {
+  presets: [
+    [
+      'next/babel',
+      {
+        'preset-env': {
+          // Use the browserslist config
+          targets: { browsers: 'defaults' },
+          // Only include polyfills and transforms that are needed
+          useBuiltIns: 'usage',
+          // Use the latest version of core-js for polyfills
+          corejs: { version: 3, proposals: true },
+          // Exclude transforms that are not needed for modern browsers
+          exclude: [
+            '@babel/plugin-transform-typeof-symbol',
+            '@babel/plugin-transform-unicode-regex',
+            '@babel/plugin-transform-sticky-regex',
+            '@babel/plugin-transform-new-target',
+            '@babel/plugin-transform-modules-umd',
+            '@babel/plugin-transform-modules-systemjs',
+            '@babel/plugin-transform-modules-amd',
+            '@babel/plugin-transform-literals'
+          ],
+        },
+      },
+    ],
+  ],
+  // Use browserslist environment in Node
+  env: {
+    modern: {
+      presets: [
+        [
+          'next/babel',
+          {
+            'preset-env': {
+              targets: { browsers: 'last 2 Chrome versions, last 2 Firefox versions, last 2 Safari versions, last 2 Edge versions' },
+              useBuiltIns: 'usage',
+              corejs: { version: 3, proposals: true },
+              // Exclude most transforms for modern browsers
+              exclude: [
+                '@babel/plugin-transform-classes',
+                '@babel/plugin-transform-arrow-functions',
+                '@babel/plugin-transform-for-of',
+                '@babel/plugin-transform-parameters',
+                '@babel/plugin-transform-destructuring',
+                '@babel/plugin-transform-template-literals',
+                '@babel/plugin-transform-spread',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-transform-typeof-symbol',
+                '@babel/plugin-transform-unicode-regex',
+                '@babel/plugin-transform-sticky-regex',
+                '@babel/plugin-transform-new-target',
+                '@babel/plugin-transform-modules-umd',
+                '@babel/plugin-transform-modules-systemjs',
+                '@babel/plugin-transform-modules-amd',
+                '@babel/plugin-transform-literals'
+              ],
+            },
+          },
+        ],
+      ],
+    },
+  },
+}; 

@@ -161,7 +161,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Modern browsers only script - will be ignored by older browsers */}
         <script type="module" dangerouslySetInnerHTML={{ 
           __html: `
-            console.log("Modern browser detected - using ES modules");
             window.IS_MODERN_BROWSER = true;
           ` 
         }} />
