@@ -17,7 +17,7 @@ export default function GlobalError({
   return (
     <html>
       <head>
-        {/* Prevent search engines from indexing error pages */}
+        {/* Prevent search engines from indexing error pages - direct meta tags needed for custom HTML doc */}
         <meta name="robots" content="noindex, nofollow" />
         <meta name="googlebot" content="noindex, nofollow" />
         <title>Error - Brightway Cleaning</title>

@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { AlertTriangle } from 'lucide-react';
-import NoIndex from './@components/shared/NoIndex';
 
 /**
  * Error Component
@@ -26,8 +25,8 @@ export default function Error({
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      {/* Prevent search engines from indexing error pages */}
-      <NoIndex noFollow={true} />
+      {/* Note: For client components like this error boundary, we can't use metadata API directly.
+          The no-index directives are added in the layout.tsx file via robots metadata */}
 
       <div className="max-w-lg w-full text-center">
         <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">

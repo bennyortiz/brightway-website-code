@@ -20,6 +20,9 @@ export const metadata: Metadata = generatePageMetadata({
   canonicalPath: '/privacy-policy',
   seo: {
     maxSnippet: 0, // Prevent showing snippets of legal text in search results
+    maxImagePreview: 'standard',
+    maxVideoPreview: 0, // Don't show video previews for legal pages
+    noArchive: true, // Don't show cached version in search results
   },
 });
 

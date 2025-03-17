@@ -40,19 +40,15 @@ export const metadata: Metadata = generatePageMetadata({
 
 ### Client-Side No-Index Control
 
-For client components where you can't use the metadata API, use the `NoIndex` component:
+For client components where you can't use the metadata API directly (like error boundaries), add meta tags in the parent layout or use direct meta tags in custom HTML documents:
 
 ```tsx
-import NoIndex from '@/app/@components/shared/NoIndex';
-
-export default function ClientComponent() {
-  return (
-    <div>
-      <NoIndex noFollow={true} />
-      {/* Your component content */}
-    </div>
-  );
-}
+// For custom HTML documents (like in global-error.tsx)
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Error Page</title>
+</head>
 ```
 
 ## Advanced SEO Controls

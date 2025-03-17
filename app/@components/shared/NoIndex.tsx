@@ -4,27 +4,45 @@
  * A simple component to mark pages as non-indexable by search engines.
  * This component adds appropriate meta tags to prevent indexing.
  *
- * Usage:
- * 1. Import at the top of your page: `import NoIndex from '@/app/@components/shared/NoIndex';`
- * 2. Add it anywhere in your page component: `<NoIndex />`
+ * Usage in App Router:
+ * 1. Import generatePageMetadata from '@/app/@lib/utils/metadata'
+ * 2. Use it in your page.tsx metadata export:
+ *    export const metadata = generatePageMetadata({
+ *      pageType: 'custom',
+ *      title: 'Your Title',
+ *      seo: { noIndex: true }
+ *    });
  */
 
-import Head from 'next/head';
-import React from 'react';
+import { Metadata } from 'next';
 
-interface NoIndexProps {
-  noFollow?: boolean; // Whether to also prevent following links
+/**
+ * Creates metadata that prevents indexing by search engines
+ * 
+ * @param title The page title
+ * @param description The page description
+ * @param noFollow Whether to also prevent following links
+ * @returns Metadata object with noindex directives
+ */
+export function createNoIndexMetadata(
+  title: string,
+  description: string,
+  noFollow: boolean = false
+): Metadata {
+  const robotContent = noFollow ? 'noindex, nofollow' : 'noindex, follow';
+  
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: !noFollow,
+      googleBot: {
+        index: false,
+        follow: !noFollow,
+      }
+    }
+  };
 }
 
-const NoIndex: React.FC<NoIndexProps> = ({ noFollow = false }) => {
-  const content = noFollow ? 'noindex, nofollow' : 'noindex, follow';
-
-  return (
-    <Head>
-      <meta name="robots" content={content} />
-      <meta name="googlebot" content={content} />
-    </Head>
-  );
-};
-
-export default NoIndex;
+export default createNoIndexMetadata;
