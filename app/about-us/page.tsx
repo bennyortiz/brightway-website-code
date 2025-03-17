@@ -34,7 +34,7 @@ export default function AboutUs() {
             <div className="lg:col-span-5 mx-auto">
               <div className="relative w-full rounded-xl overflow-hidden shadow-xl">
                 <SafeImage
-                  src="/images/brightway-commercial-cleaning-wiping.jpg"
+                  src="/images/brightway-commercial-cleaning-wiping.webp"
                   alt="Brightway Professional Cleaning Team"
                   className="object-cover object-center"
                   width={600}

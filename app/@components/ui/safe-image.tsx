@@ -166,7 +166,7 @@ export default function SafeImage({
           src={imageSrc}
           alt={alt || fallbackText || 'Image'}
           className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}
-          fill={true}
+          fill={width && height ? undefined : true}
           width={width || undefined}
           height={height || undefined}
           sizes={imageSizes}
@@ -178,8 +178,8 @@ export default function SafeImage({
           style={{ 
             objectFit: 'cover', 
             objectPosition: 'center',
-            position: 'absolute',
-            inset: 0
+            position: width && height ? 'relative' : 'absolute',
+            inset: width && height ? undefined : 0
           }}
         />
       )}
