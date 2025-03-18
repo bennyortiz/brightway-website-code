@@ -25,6 +25,7 @@ export { default as Logo } from './Logo';
 export { default as SkipLink } from './SkipLink';
 export { default as ErrorBoundary } from './ErrorBoundary';
 export { default as SectionHeader } from './section-header';
+export { default as VisuallyHidden } from './VisuallyHidden';
 
 // Images - Use SafeImage for all image needs
 export { default as SafeImage } from './safe-image';

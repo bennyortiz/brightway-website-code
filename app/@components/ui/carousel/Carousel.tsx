@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getCarouselAriaAttributes } from '@/app/@lib/utils/accessibility';
 
 export interface CarouselProps<T> {
   items: T[];
@@ -310,7 +311,12 @@ export function Carousel<T>({
           cursor: isDragging ? 'grabbing' : 'grab',
           userSelect: 'none' 
         }}
+        {...getCarouselAriaAttributes(totalPages, currentIndex)}
       >
+        {/* Hidden element for screen readers to announce current slide */}
+        <div id={`slide-status-${currentIndex}`} className="sr-only">
+          Showing slide {currentIndex + 1} of {totalPages}
+        </div>
         <div
           ref={contentRef}
           className={`grid grid-cols-1 sm:grid-cols-${Math.min(

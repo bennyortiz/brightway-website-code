@@ -15,6 +15,7 @@ export * from './validation';
 export * from './helpers';
 export * from './components';
 export * from './icons';
+export * from './accessibility';
 
 // Re-export from other lib directories for convenience
 export * from '../constants';
