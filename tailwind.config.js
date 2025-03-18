@@ -9,9 +9,9 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0070f3',
-          light: '#3291ff',
-          dark: '#0050a3',
+          DEFAULT: '#0055b8', // Darker blue for better contrast
+          light: '#2277cc',
+          dark: '#003d82',
         },
         secondary: {
           DEFAULT: '#10b981',
@@ -57,9 +57,9 @@ module.exports = {
           css: {
             color: '#374151',
             a: {
-              color: '#0070f3',
+              color: '#0055b8', // Updated to match new primary color
               '&:hover': {
-                color: '#0050a3',
+                color: '#003d82', // Updated to match new primary.dark
               },
             },
           },
