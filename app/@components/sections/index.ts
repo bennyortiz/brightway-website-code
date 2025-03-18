@@ -3,9 +3,19 @@
  * This allows for cleaner imports when using multiple section components
  *
  * Example usage:
- * import { ContactForm, ContactInfo } from '@/app/@components/sections';
+ * import { ContactForm, ContactInfo, Hero, CTABanner } from '@/app/@components/sections';
  * import { ServiceList, ServiceDetails } from '@/app/@components/sections';
  */
+
+// Main section components
+export { default as Hero } from './Hero';
+export { default as Contact } from './Contact';
+export { default as CTABanner } from './CTABanner';
+export { default as About } from './About';
+export { default as Gallery } from './Gallery';
+export { default as ServiceAreas } from './ServiceAreas';
+export { default as Testimonials } from './Testimonials';
+export { default as WhyChooseUs } from './WhyChooseUs';
 
 // Contact section components
 export * from './Contact/ContactForm';
