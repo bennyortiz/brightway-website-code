@@ -1,17 +1,34 @@
 /**
  * Common type definitions for the application
- * Exports all type definitions from specialized category files
+ * Re-exports the simplified type system for easier imports
  */
 
-// Re-export all types from category files
+// Re-export all types from core types file
+export * from './core';
+
+// Re-export specialized types for backward compatibility
+// but exclude conflicting exports
 export * from './page';
 export * from './service';
 export * from './navigation';
 export * from './business';
 export * from './form';
 
+// Manually re-export blog types to avoid conflicts
+// Using proper type exports for TypeScript isolatedModules
+import type { BlogAuthor, BlogCategory, BlogTag } from './blog';
+export type { BlogAuthor, BlogCategory, BlogTag };
+
+// Create backward compatibility types
+import { 
+  ContentBase, 
+  Service as CoreService,
+  SEOData,
+  BlogPost as CoreBlogPost
+} from './core';
+
 /**
- * Metadata for pages
+ * @deprecated Use interfaces from core.ts instead
  */
 export interface PageMetadata {
   pageType: 'home' | 'about' | 'services' | 'contact' | 'blog' | 'custom';
@@ -22,8 +39,7 @@ export interface PageMetadata {
 }
 
 /**
- * Service information
- * Centralized definition for all service-related types
+ * @deprecated Use Service from core.ts instead
  */
 export interface Service {
   title: string;
@@ -40,7 +56,7 @@ export interface Service {
 export type ServiceItem = Service;
 
 /**
- * Contact form data
+ * @deprecated Use ContactInfo from core.ts instead or create a specialized form type
  */
 export interface ContactFormData {
   firstName: string;
